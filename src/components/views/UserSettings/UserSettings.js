@@ -1,10 +1,12 @@
 import React from "react";
 import ThemeSwitch from "../../widgets/ThemeSwitch/ThemeSwitch";
+import LanguajeSelect from "../../widgets/LanguajeSelect/LanguajeSelect";
 
 const UserSettings = () => {
   return (
     <div>
-      <ThemeSwitch className="theme-switch" /> 
+      <ThemeSwitch/> 
+      <LanguajeSelect/> 
     </div>
   );
 };

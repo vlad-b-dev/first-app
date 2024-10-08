@@ -4,18 +4,18 @@ import "./ThemeSwitch.css";
 
 const ThemeSwitch = () => {
   const [checked, setChecked] = useState(false);
-  const [isVisible, setIsVisible] = useState(false); // For fade-in effect
+  const [isVisibleComponent, setIsVisible] = useState(false);
 
   const handleChange = (event) => {
-    setChecked(event.target.checked); // Handle switch toggle
+    setChecked(event.target.checked); 
   };
 
   useEffect(() => {
-    setIsVisible(true); // Trigger fade-in on mount
+    setIsVisible(true); 
   }, []);
 
   return (
-    <div className={`theme-switch ${isVisible ? "fade-in" : ""}`}>
+    <div className={`theme-switch ${isVisibleComponent ? "fade-in" : ""}`}>
       <Switch checked={checked} onChange={handleChange} />
       <p>Switch is {checked ? "ON" : "OFF"}</p>
     </div>
