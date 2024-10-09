@@ -1,9 +1,7 @@
 .main-page-background {
-    position: relative;
+    width: 100vw;
     height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: darkslategray;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(22, 37, 37);
 }

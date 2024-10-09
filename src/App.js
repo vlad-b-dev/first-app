@@ -20,7 +20,7 @@ function App() {
     return () => clearTimeout(timer); 
   }, [navigate]);
 
-  return <div>{isWelcomeVisible ? <WelcomePage /> : <MainPage />}</div>;
+  return <div style={{ width: '100vw', height: '100vh' }}>{isWelcomeVisible ? <WelcomePage /> : <MainPage />}</div>;
 }
 
 export default function MainApp() {
