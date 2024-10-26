@@ -29,7 +29,6 @@ export default function MainApp() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/main" element={<MainPage />} />
-        {/* Add other routes here as needed */}
       </Routes>
     </Router>
   );

@@ -1,0 +1,14 @@
+.main-page-header {
+    color: #af53ff;
+    background-color: #27242c;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 20vh;
+  }
+  .main-page-header-logo {
+    margin-left: 1vw;
+    height: 200px; 
+    width: auto; 
+  }
+  
