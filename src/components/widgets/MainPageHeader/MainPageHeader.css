@@ -1,14 +1,14 @@
+
 .main-page-header {
-    color: #af53ff;
-    background-color: #27242c;
-    display: flex;
-    align-items: center;
-    width: 100vw;
-    height: 20vh;
-  }
-  .main-page-header-logo {
-    margin-left: 1vw;
-    height: 200px; 
-    width: auto; 
-  }
-  
+  color: #af53ff;
+  background-color: #27242c;
+  align-items: center;
+  width: 100vw;
+}
+.main-page-header-logo {
+  height: 130px;
+  width: auto;
+  padding-left: 1vw;
+  padding-top: 1vh;
+  padding-bottom: 2vh;
+}
