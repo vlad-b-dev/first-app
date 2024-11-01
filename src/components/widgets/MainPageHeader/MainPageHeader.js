@@ -38,7 +38,7 @@ const MainPageHeader = () => {
           <MainButton label="Resume" onClick={handleButtonClick} />
         </div>
       </div>
-      <div className="row m-0" style={{ backgroundColor: "#AF53FF", height: "0.8vh" }}></div>
+      <div className="row m-0" style={{ backgroundColor:  "var(--main-purple-color)", height: "0.8vh" }}></div>
     </div>
   );
 };

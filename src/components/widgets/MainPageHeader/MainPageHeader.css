@@ -1,7 +1,6 @@
-
 .main-page-header {
-  color: #af53ff;
-  background-color: #27242c;
+  color: var(--main-purple-color);
+  background-color: var(--header-background-color);
   align-items: center;
   width: 100vw;
 }

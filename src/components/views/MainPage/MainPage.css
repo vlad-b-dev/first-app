@@ -3,5 +3,5 @@
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #36333C;
+    background-color: var(--main-background-color);
 }

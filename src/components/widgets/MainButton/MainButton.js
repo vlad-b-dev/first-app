@@ -9,7 +9,7 @@ const MainButton = ({ label, onClick }) => {
         sx={{
           fontSize: "20px",
           whiteSpace: "nowrap",
-          color: "#AF53FF",
+          color:  "var(--main-purple-color)",
         }}
       >
         {label}
