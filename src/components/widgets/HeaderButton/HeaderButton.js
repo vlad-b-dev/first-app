@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 
-const MainButton = ({ label, onClick }) => {
+const HeaderButton = ({ label, onClick }) => {
   return (
     <div>
       <Button
@@ -18,4 +18,4 @@ const MainButton = ({ label, onClick }) => {
   );
 };
 
-export default MainButton;
+export default HeaderButton;

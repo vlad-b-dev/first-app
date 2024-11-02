@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Switch from "@mui/material/Switch";
-import "./ThemeSwitch.css"; 
+import "./ThemeSwitch.scss"; 
 
 const ThemeSwitch = () => {
   const [checked, setChecked] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import UserSettings from "../UserSettings/UserSettings";
-import "./WelcomePage.css";
+import UserSettings from "../../widgets/UserSettings/UserSettings";
+import "./WelcomePage.scss";
 
 export const WelcomePage = () => {
   const welcomeMessage = "Welcome!";
