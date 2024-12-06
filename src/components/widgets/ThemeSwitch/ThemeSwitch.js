@@ -1,21 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Switch from "@mui/material/Switch";
-import "./ThemeSwitch.scss"; 
+import "./ThemeSwitch.scss";
 
 const ThemeSwitch = () => {
   const [checked, setChecked] = useState(false);
-  const [isVisibleComponent, setIsVisible] = useState(false);
-
   const handleChange = (event) => {
-    setChecked(event.target.checked); 
+    setChecked(event.target.checked);
   };
 
-  useEffect(() => {
-    setIsVisible(true); 
-  }, []);
-
   return (
-    <div className={`theme-switch ${isVisibleComponent ? "fade-in" : ""}`}>
+    <div>
       <Switch checked={checked} onChange={handleChange} />
       <p>Switch is {checked ? "ON" : "OFF"}</p>
     </div>

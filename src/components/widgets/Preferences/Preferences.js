@@ -18,39 +18,37 @@ const UserSettings = () => {
   return (
     <div>
       <Button
-  onClick={preferencesClick}
-  sx={{
-    fontSize: "20px",
-    whiteSpace: "nowrap",
-    color: "var(--main-purple-color)",
-    backgroundColor: "transparent",
-    "&:hover": {
-      backgroundColor: "transparent",
-    },
-  }}
->
-  <div 
-    className="preferences-gear-wrapper"
-    onMouseEnter={() => setHover(true)}
-    onMouseLeave={() => setHover(false)}
-  >
-    <img
-      src={preferencesIcon}
-      className={`preferences-gear ${hover ? "hidden" : "visible"}`}
-      alt="Default Gear"
-    />
-    <img
-      src={preferencesIconHover}
-      className={`preferences-gear ${hover ? "visible" : "hidden"}`}
-      alt="Hover Gear"
-    />
-  </div>
-</Button>
+        onClick={preferencesClick}
+        sx={{
+          fontSize: "20px",
+          whiteSpace: "nowrap",
+          color: "var(--main-purple-color)",
+          backgroundColor: "transparent",
+          "&:hover": {
+            backgroundColor: "transparent",
+          },
+        }}
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+      >
+        <div className="preferences-gear-wrapper">
+          <img
+            src={preferencesIcon}
+            className={`preferences-gear ${hover ? "hidden" : "visible"}`}
+            alt="Default Gear"
+          />
+          <img
+            src={preferencesIconHover}
+            className={`preferences-gear ${hover ? "visible" : "hidden"}`}
+            alt="Hover Gear"
+          />
+        </div>
+      </Button>
 
       {showPreferences && (
-        <div>
-          <ThemeSwitch />
+        <div className="preferences-window">
           <LanguageSelect />
+          <ThemeSwitch />
         </div>
       )}
     </div>
