@@ -1,13 +1,43 @@
-.preferences-gear {
-  height: 70px;
-  width: auto;
-  padding-right: 4.5vw;
-  padding-bottom: 1vh; 
-  transition: all 0.3s ease;
+.preferences-gear-wrapper {
+  position: relative;
+  display: inline-block;  padding-right: 7vw;
+  padding-bottom: 10vh; 
 }
 
-.preferences-gear:hover {
-    opacity: 0.9; 
-    transform: scale(1.2); 
-    transform: rotate(25deg) translateY(15px); 
+.preferences-gear {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+
 }
+
+.preferences-gear.visible {
+  opacity: 1;
+}
+
+.preferences-gear.hidden {
+  opacity: 0;
+}
+
+.preferences-gear-wrapper:hover .preferences-gear {
+  transform: scale(1.2) rotate(25deg) ;
+}
+
+
+/* .preferences-gear {
+    height: 70px;
+    width: auto;
+    padding-right: 4.5vw;
+    padding-bottom: 1vh; 
+    transition: all 0.3s ease;
+  }
+  
+  .preferences-gear:hover {
+      opacity: 0.9; 
+      transform: scale(1.2); 
+      transform: rotate(25deg) translateY(15px) translateX(1px); 
+  } */
