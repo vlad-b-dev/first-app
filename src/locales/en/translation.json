@@ -1,10 +1,9 @@
 {
-    "buttons": {
-      "thisWebsite": "This website",
-      "design": "Design",
-      "technologiesAndSkills": "Technologies and skills",
-      "experience": "Experience",
-      "resume": "Resume"
-    }
+  "headerButtons": {
+    "thisWebsite": "This website",
+    "design": "Design",
+    "technologiesAndSkills": "Technologies and skills",
+    "experience": "Experience",
+    "resume": "Resume"
   }
-  
+}

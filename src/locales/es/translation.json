@@ -1,10 +1,9 @@
 {
-    "buttons": {
-      "thisWebsite": "Este sitio web",
-      "design": "Diseño",
-      "technologiesAndSkills": "Tecnologías y habilidades",
-      "experience": "Experiencia",
-      "resume": "Currículum"
-    }
+  "headerButtons": {
+    "thisWebsite": "Este sitio web",
+    "design": "Diseño",
+    "technologiesAndSkills": "Tecnologías y habilidades",
+    "experience": "Experiencia",
+    "resume": "Currículum"
   }
-  
+}

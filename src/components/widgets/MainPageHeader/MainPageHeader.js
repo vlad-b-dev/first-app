@@ -25,31 +25,31 @@ const MainPageHeader = () => {
         </div>
         <div className="col d-flex align-items-center justify-content-center">
           <HeaderButton
-            label={t("buttons.thisWebsite")}
+            label={t("headerButtons.thisWebsite")}
             onClick={handleButtonClick}
           />
         </div>
         <div className="col d-flex align-items-center justify-content-start">
           <HeaderButton
-            label={t("buttons.design")}
+            label={t("headerButtons.design")}
             onClick={handleButtonClick}
           />
         </div>
         <div className="col d-flex align-items-center justify-content-center">
           <HeaderButton
-            label={t("buttons.technologiesAndSkills")}
+            label={t("headerButtons.technologiesAndSkills")}
             onClick={handleButtonClick}
           />
         </div>
         <div className="col d-flex align-items-center justify-content-end">
           <HeaderButton
-            label={t("buttons.experience")}
+            label={t("headerButtons.experience")}
             onClick={handleButtonClick}
           />
         </div>
         <div className="col d-flex align-items-center justify-content-center">
           <HeaderButton
-            label={t("buttons.resume")}
+            label={t("headerButtons.resume")}
             onClick={handleButtonClick}
           />
         </div>

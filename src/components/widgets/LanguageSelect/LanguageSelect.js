@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import i18n from "../../../i18n";
-
+import ukFlag from "../../../resources/images/icons/languageFlags/uk/flag.png";
+import spainFlag from "../../../resources/images/icons/languageFlags/spain/flag.png";
 const LanguageSelect = () => {
   const [language, setLanguage] = useState(i18n.language);
 
@@ -16,10 +17,14 @@ const LanguageSelect = () => {
         value={language}
         exclusive
         onChange={handleLanguageChange}
-        aria-label="text alignment"
+        aria-label="language selection"
       >
-        <ToggleButton value="en">Ingles</ToggleButton>
-        <ToggleButton value="es">Epangless</ToggleButton>
+        <ToggleButton value="en">
+          <img src={ukFlag} className="flag-icon" alt="English" />
+        </ToggleButton>
+        <ToggleButton value="es">
+          <img src={spainFlag} className="flag-icon" alt="Spanish" />
+        </ToggleButton>
       </ToggleButtonGroup>
     </div>
   );
