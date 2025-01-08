@@ -4,6 +4,11 @@
     "design": "Diseño",
     "technologiesAndSkills": "Tecnologías y habilidades",
     "experience": "Experiencia",
-    "resume": "Currículum"
+    "resume": "Currículum",
+    "theme": "Tema"
+  },
+  "preferences": {
+    "language": "Idioma",
+    "theme": "Tema"
   }
 }

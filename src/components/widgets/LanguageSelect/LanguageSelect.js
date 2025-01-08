@@ -3,26 +3,56 @@ import { ToggleButtonGroup, ToggleButton } from "@mui/material";
 import i18n from "../../../i18n";
 import ukFlag from "../../../resources/images/icons/languageFlags/uk/flag.png";
 import spainFlag from "../../../resources/images/icons/languageFlags/spain/flag.png";
+import { useTranslation } from "react-i18next";
+
 const LanguageSelect = () => {
+  const { t } = useTranslation();
+
   const [language, setLanguage] = useState(i18n.language);
 
   const handleLanguageChange = (event, lang) => {
-    setLanguage(lang);
-    i18n.changeLanguage(lang);
+    if (lang !== null) {
+      setLanguage(lang);
+      i18n.changeLanguage(lang);
+    }
+  };
+
+  const toggleButtonStyles = {
+    backgroundColor: "var(--header-background-color)",
+    borderRadius: "12px",
+    width: "4vw",
+    height: "auto",
+    "&:hover": {
+      backgroundColor: "var(--main-blue-color)",
+    },
+    "&.Mui-selected": {
+      backgroundColor: "var(--main-purple-color)",
+    },
+    "&.Mui-selected:hover": {
+      backgroundColor: "var(--main-purple-color)",
+    },
   };
 
   return (
-    <div className="main-container">
+    <div
+      className="container"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <span>{t("preferences.language")}</span>
       <ToggleButtonGroup
+        size="small"
         value={language}
-        exclusive
         onChange={handleLanguageChange}
-        aria-label="language selection"
+        exclusive
       >
-        <ToggleButton value="en">
+        <ToggleButton value="en" sx={toggleButtonStyles}>
           <img src={ukFlag} className="flag-icon" alt="English" />
         </ToggleButton>
-        <ToggleButton value="es">
+        <ToggleButton value="es" sx={toggleButtonStyles}>
           <img src={spainFlag} className="flag-icon" alt="Spanish" />
         </ToggleButton>
       </ToggleButtonGroup>

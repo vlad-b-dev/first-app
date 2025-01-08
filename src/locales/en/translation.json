@@ -5,5 +5,9 @@
     "technologiesAndSkills": "Technologies and skills",
     "experience": "Experience",
     "resume": "Resume"
+  },
+  "preferences": {
+    "language": "Language",
+    "theme": "Theme"
   }
 }
