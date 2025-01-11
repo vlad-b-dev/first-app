@@ -5,6 +5,9 @@ import ukFlag from "../../../resources/images/icons/languageFlags/uk/flag.png";
 import spainFlag from "../../../resources/images/icons/languageFlags/spain/flag.png";
 import { useTranslation } from "react-i18next";
 
+import "./LanguageSelect.scss";
+import "./../Preferences/Preferences.scss";
+
 const LanguageSelect = () => {
   const { t } = useTranslation();
 
@@ -42,7 +45,7 @@ const LanguageSelect = () => {
         alignItems: "center",
       }}
     >
-      <span>{t("preferences.language")}</span>
+      <div className="preferences-text"> {t("preferences.language")}</div>
       <ToggleButtonGroup
         size="small"
         value={language}

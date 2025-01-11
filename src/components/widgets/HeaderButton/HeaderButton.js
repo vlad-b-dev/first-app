@@ -9,7 +9,7 @@ const HeaderButton = ({ label, onClick }) => {
         sx={{
           fontSize: "20px",
           whiteSpace: "nowrap",
-          color: "var(--text-purple-color)",
+          color: "var(--main-text-color)",
         }}
       >
         {label}

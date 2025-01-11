@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import UserSettings from "../../widgets/UserSettings/UserSettings";
 import "./WelcomePage.scss";
 
 export const WelcomePage = () => {
   const welcomeMessage = "Welcome!";
-  const [showUserSettings, setShowUserSettings] = useState(false);
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(true);
 
   useEffect(() => {
@@ -15,9 +13,7 @@ export const WelcomePage = () => {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowUserSettings(true);
-    }, 4500);
+    const timer = setTimeout(() => {}, 4500);
     return () => clearInterval(timer);
   }, []);
 
@@ -26,7 +22,6 @@ export const WelcomePage = () => {
       <div className="welcome-page-foreground">
         {showWelcomeMessage && <h1 className="cool-text">{welcomeMessage}</h1>}
       </div>
-      {showUserSettings && <UserSettings/>}
     </div>
   );
 };
