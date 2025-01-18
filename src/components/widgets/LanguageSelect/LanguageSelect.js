@@ -26,13 +26,13 @@ const LanguageSelect = () => {
     width: "4vw",
     height: "auto",
     "&:hover": {
-      backgroundColor: "var(--main-blue-color)",
+      backgroundColor: "var(--main-hover-color)",
     },
     "&.Mui-selected": {
-      backgroundColor: "var(--main-purple-color)",
+      backgroundColor: "var(--main-color)",
     },
     "&.Mui-selected:hover": {
-      backgroundColor: "var(--main-purple-color)",
+      backgroundColor: "var(--main-color)",
     },
   };
 

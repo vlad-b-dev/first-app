@@ -1,8 +1,15 @@
-:root {
-  --main-purple-color: #af53ff;
-  --text-purple-color: #d19dff;
+[data-theme="dark"] {
+  --main-color: #af53ff;
+  --main-hover-color: #00ffff;
   --main-background-color: #36333c;
-  --header-background-color: #27242c;
   --main-text-color: #00ffff;
-  --main-blue-color: #00ffff;
+  --header-background-color: #27242c;
+}
+
+[data-theme="light"] {
+  --main-color: #f5c62c;
+  --main-hover-color: #54534f;
+  --main-background-color: #d7d7d7;
+  --main-text-color: #000000;
+  --header-background-color: #ffffff;
 }

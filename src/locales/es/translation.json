@@ -1,11 +1,10 @@
 {
   "headerButtons": {
+    "aboutMe": "Sobre mí",
     "thisWebsite": "Este sitio web",
     "design": "Diseño",
-    "technologiesAndSkills": "Tecnologías y habilidades",
-    "experience": "Experiencia",
-    "resume": "Currículum",
-    "theme": "Tema"
+    "playground": "Pruébame",
+    "contact": "Contacto"
   },
   "preferences": {
     "preferences": "Preferencias",

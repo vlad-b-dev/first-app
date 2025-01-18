@@ -1,35 +1,38 @@
-import React, { useState } from "react";
+import React from "react";
 import Switch from "@mui/material/Switch";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "../../../styles/ThemeContext";
 
 import "./ThemeSwitch.scss";
 import "./../Preferences/Preferences.scss";
 
 const ThemeSwitch = () => {
   const { t } = useTranslation();
+  const { theme, toggleTheme } = useTheme();
 
-  const [checked, setChecked] = useState(false);
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
+  const handleChange = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    toggleTheme(newTheme);
   };
+
   const switchStyles = {
     "& .MuiSwitch-switchBase": {
-      color: "black",
+      color: "white",
       "&:hover": {
-        backgroundColor: "var(--main-purple-color)", 
+        backgroundColor: "var(--main-hover-color)",
       },
     },
     "& .MuiSwitch-switchBase.Mui-checked": {
-      color: "white", 
+      color: "black",
       "&:hover": {
-        backgroundColor: "var(--main-blue-color)", 
+        backgroundColor: "var(--main-hover-color)",
       },
     },
     "& .MuiSwitch-track": {
-      backgroundColor: "#111", 
+      backgroundColor: "#fff",
     },
     "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-      backgroundColor: "#ddd", 
+      backgroundColor: "#101",
     },
   };
 
@@ -44,7 +47,11 @@ const ThemeSwitch = () => {
         {t("preferences.theme")}
       </div>
       <div className="d-flex justify-content-center">
-        <Switch checked={checked} onChange={handleChange} sx={switchStyles} />
+        <Switch
+          checked={theme === "dark"}
+          onChange={handleChange}
+          sx={switchStyles}
+        />
       </div>
     </div>
   );

@@ -10,6 +10,10 @@ const HeaderButton = ({ label, onClick }) => {
           fontSize: "20px",
           whiteSpace: "nowrap",
           color: "var(--main-text-color)",
+          "&:hover": {
+            color: "var(--header-background-color)",
+            backgroundColor: "var(--main-hover-color)",
+          },
         }}
       >
         {label}
