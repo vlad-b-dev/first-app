@@ -10,7 +10,8 @@ import "./MainPageHeader.scss";
 
 const MainPageHeader = () => {
   const { t } = useTranslation();
-  const { theme } = useTheme();
+  const { theme } = useTheme(); 
+
 
   const handleButtonClick = () => {
     alert("Button clicked!");
@@ -62,7 +63,7 @@ const MainPageHeader = () => {
       </div>
       <div
         className="row m-0"
-        style={{ backgroundColor: "var(--main-color)", height: "0.8vh" }}
+        style={{ backgroundColor: "var(--main-purple-color)", height: "0.8vh" }}
       ></div>
     </div>
   );

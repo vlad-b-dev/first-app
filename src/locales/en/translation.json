@@ -10,5 +10,9 @@
     "preferences": "Preferences",
     "language": "Language",
     "theme": "Theme"
+  },
+  "pageTitles": {
+    "welcome": "Welcome",
+    "main": "Main"
   }
 }
