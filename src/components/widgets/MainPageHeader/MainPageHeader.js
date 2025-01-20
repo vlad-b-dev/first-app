@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import mainWebsiteLogoDark from "../../../resources/images/logos/mainWebsiteLogoDark.png";
 import mainWebsiteLogoLight from "../../../resources/images/logos/mainWebsiteLogoLight.png";
 import HeaderButton from "../../../components/widgets/HeaderButton/HeaderButton";
@@ -10,57 +10,93 @@ import "./MainPageHeader.scss";
 
 const MainPageHeader = () => {
   const { t } = useTranslation();
-  const { theme } = useTheme(); 
-
+  const { theme } = useTheme();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleButtonClick = () => {
     alert("Button clicked!");
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
   return (
     <div className="main-page-header">
-      <div className="row m-0 mb-1">
-        <div className="col">
+      <div className="row m-0 mb-1 align-items-center">
+        <div className="col d-flex d-md-none justify-content-start">
+          <button className="dropdown-toggle-btn" onClick={toggleDropdown}>
+            ☰
+          </button>
+        </div>
+
+        <div className="col d-flex justify-content-center">
           <img
             src={theme === "dark" ? mainWebsiteLogoDark : mainWebsiteLogoLight}
             className="main-page-header-logo"
             alt="Logo"
           />
         </div>
-        <div className="col d-flex align-items-center justify-content-center">
+
+        <div className="col d-none d-md-flex align-items-center justify-content-center">
           <HeaderButton
             label={t("headerButtons.aboutMe")}
             onClick={handleButtonClick}
           />
         </div>
-        <div className="col d-flex align-items-center justify-content-start">
+        <div className="col d-none d-md-flex align-items-center justify-content-start">
           <HeaderButton
             label={t("headerButtons.thisWebsite")}
             onClick={handleButtonClick}
           />
         </div>
-        <div className="col d-flex align-items-center justify-content-center">
+        <div className="col d-none d-md-flex align-items-center justify-content-center">
           <HeaderButton
             label={t("headerButtons.design")}
             onClick={handleButtonClick}
           />
         </div>
-        <div className="col d-flex align-items-center justify-content-end">
+        <div className="col d-none d-md-flex align-items-center justify-content-end">
           <HeaderButton
             label={t("headerButtons.playground")}
             onClick={handleButtonClick}
           />
         </div>
-        <div className="col d-flex align-items-center justify-content-center">
+        <div className="col d-none d-md-flex align-items-center justify-content-center">
           <HeaderButton
             label={t("headerButtons.contact")}
             onClick={handleButtonClick}
           />
         </div>
-        <div className="col d-flex align-items-center justify-content-end">
+
+        <div className="col d-flex justify-content-end">
           <Preferences />
         </div>
       </div>
+
+      <div className={`dropdown-menu ${isDropdownOpen ? "open" : ""}`}>
+        <HeaderButton
+          label={t("headerButtons.aboutMe")}
+          onClick={handleButtonClick}
+        />
+        <HeaderButton
+          label={t("headerButtons.thisWebsite")}
+          onClick={handleButtonClick}
+        />
+        <HeaderButton
+          label={t("headerButtons.design")}
+          onClick={handleButtonClick}
+        />
+        <HeaderButton
+          label={t("headerButtons.playground")}
+          onClick={handleButtonClick}
+        />
+        <HeaderButton
+          label={t("headerButtons.contact")}
+          onClick={handleButtonClick}
+        />
+      </div>
+
       <div
         className="row m-0"
         style={{ backgroundColor: "var(--main-color)", height: "0.8vh" }}
