@@ -58,7 +58,6 @@ const Preferences = () => {
       <Button
         onClick={preferencesClick}
         sx={{
-          fontSize: "20px",
           whiteSpace: "nowrap",
           color: "var(--main-color)",
           backgroundColor: "transparent",

@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import mainWebsiteLogoDark from "../../../resources/images/logos/mainWebsiteLogoDark.png";
-import mainWebsiteLogoLight from "../../../resources/images/logos/mainWebsiteLogoLight.png";
+import mainWebsiteLogoDark from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.png";
+import mainWebsiteLogoLight from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.png";
 import HeaderButton from "../../../components/widgets/HeaderButton/HeaderButton";
 import { useTranslation } from "react-i18next";
 import Preferences from "../../widgets/Preferences/Preferences";
 import { useTheme } from "../../../styles/ThemeContext";
+import HamburgerButton from "../HamburgerButton/HamburgerButton";
 
 import "./MainPageHeader.scss";
 
-const MainPageHeader = () => {
+const MainPageHeader = ({ onClick }) => {
   const { t } = useTranslation();
   const { theme } = useTheme();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -25,9 +26,7 @@ const MainPageHeader = () => {
     <div className="main-page-header">
       <div className="row m-0 mb-1 align-items-center">
         <div className="col d-flex d-md-none justify-content-start">
-          <button className="dropdown-toggle-btn" onClick={toggleDropdown}>
-            ☰
-          </button>
+          <HamburgerButton onClick={toggleDropdown} />
         </div>
 
         <div className="col d-flex justify-content-center">
