@@ -1,4 +1,10 @@
 .flag-icon {
-  height: 35px;
-  width: auto;
+  @media (max-width: 767px) {
+    width: 7vw;
+    height: auto;
+  }
+  @media (min-width: 768px) {
+    width: 3vw;
+    height: auto;
+  }
 }
