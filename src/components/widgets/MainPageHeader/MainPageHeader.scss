@@ -46,26 +46,31 @@
     .main-page-header-logo {
       height: 14vh;
       width: auto;
-      /* padding-top: 0vh; */
       padding-bottom: 5vh;
     }
 
-    .dropdown-menu {
-      display: none;
+    .sidebar-menu {
       flex-direction: column;
       align-items: center;
-      width: 100%;
-      position: absolute;
-      top: 60px;
+      height: 100vh;
+      width: 40vw;
+      position: fixed;
+      top: 0;
       left: 0;
       background-color: var(--header-background-color);
-      padding: 1rem;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       z-index: 1000;
     }
 
-    .dropdown-menu.open {
-      display: flex;
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      transition: opacity 0.3s ease;
     }
   }
 }
@@ -75,13 +80,4 @@
   height: auto;
   padding-top: 1vh;
   padding-bottom: 2vh;
-}
-
-.dropdown-menu {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--header-background-color);
-  padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
