@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import HeaderButton from "../HeaderButton/HeaderButton";
 import { useTheme } from "../../../styles/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 import "./SidebarMenu.scss";
 
@@ -18,6 +19,8 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
   } else {
     logo = mainWebsiteLogoLight;
   }
+
+  const navigate = useNavigate();
 
   const sidebarMenuRef = useRef(null);
 
@@ -55,17 +58,31 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
         type: "spring",
         stiffness: 200,
         damping: 15,
-        staggerChildren: 0.2,
-        delayChildren: 0.25,
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
       },
     },
     exit: { x: "-100%", opacity: 0 },
+  };
+  const sidebarMenuLogoAnimation = {
+    initial: { y: "-100%", opacity: 0 },
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        y: { duration: 0.15, delay: 0.3 },
+      },
+    },
+    exit: { y: "-100%", opacity: 0 },
   };
 
   const sidebarMenuButtonAnimation = {
     initial: { x: "-50%", opacity: 0 },
     animate: { x: 0, opacity: 1 },
     exit: { x: "-50%", opacity: 0 },
+  };
+  const handleNavigationClick = (route) => {
+    navigate(route);
   };
 
   return (
@@ -80,15 +97,18 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
             exit="exit"
           >
             <div ref={sidebarMenuRef} className="sidebar-menu">
-              <div className="col d-flex justify-content-center sidebar-menu-logo-wrapper">
+              <motion.div
+                variants={sidebarMenuLogoAnimation}
+                className="col d-flex justify-content-center sidebar-menu-logo-wrapper"
+              >
                 <img src={logo} className="sidebar-menu-logo" alt="Logo" />
-              </div>
+              </motion.div>
               <motion.div variants={sidebarMenuButtonAnimation}>
-                <div className="sidebar-menu-button-wrapper" >
+                <div className="sidebar-menu-button-wrapper">
                   <HeaderButton
                     className="sidebar-menu-button"
-                    label={t("headerButtons.aboutMe")}
-                    onClick={() => alert("Button clicked!")}
+                    label={t("headerButtons.resume")}
+                    onClick={() => handleNavigationClick("/resume")}
                   />
                 </div>
               </motion.div>
@@ -97,7 +117,7 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
                   <HeaderButton
                     className="sidebar-menu-button"
                     label={t("headerButtons.thisWebsite")}
-                    onClick={() => alert("Button clicked!")}
+                    onClick={() => handleNavigationClick("/this-website")}
                   />
                 </div>
               </motion.div>
@@ -106,16 +126,7 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
                   <HeaderButton
                     className="sidebar-menu-button"
                     label={t("headerButtons.design")}
-                    onClick={() => alert("Button clicked!")}
-                  />
-                </div>
-              </motion.div>
-              <motion.div variants={sidebarMenuButtonAnimation}>
-                <div className="sidebar-menu-button-wrapper">
-                  <HeaderButton
-                    className="sidebar-menu-button"
-                    label={t("headerButtons.playground")}
-                    onClick={() => alert("Button clicked!")}
+                    onClick={() => handleNavigationClick("/design")}
                   />
                 </div>
               </motion.div>
@@ -124,7 +135,16 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
                   <HeaderButton
                     className="sidebar-menu-button"
                     label={t("headerButtons.contact")}
-                    onClick={() => alert("Button clicked!")}
+                    onClick={() => handleNavigationClick("/contact")}
+                  />
+                </div>
+              </motion.div>
+              <motion.div variants={sidebarMenuButtonAnimation}>
+                <div className="sidebar-menu-button-wrapper">
+                  <HeaderButton
+                    className="sidebar-menu-button"
+                    label={t("headerButtons.playground")}
+                    onClick={() => handleNavigationClick("/playground")}
                   />
                 </div>
               </motion.div>

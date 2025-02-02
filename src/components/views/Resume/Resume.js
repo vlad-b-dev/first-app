@@ -1,17 +1,17 @@
 import React from "react";
 import MainPageHeader from "../../../components/widgets/MainPageHeader/MainPageHeader";
 
-import "./MainPage.scss";
+import "./Resume.scss";
 
-const MainPage = () => {
+const Resume = () => {
   return (
     <div className="main-page-background">
       <MainPageHeader />
       <div className="w-100 text-center mt-5">
-        PRUEBA MAIN PAGE 
+      PRUEBA RESUME 
       </div>
     </div>
   );
 };
 
-export default MainPage;
+export default Resume;

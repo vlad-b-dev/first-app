@@ -1,10 +1,10 @@
 {
   "headerButtons": {
-    "aboutMe": "Sobre mí",
+    "resume": "Curriculum",
     "thisWebsite": "Este sitio web",
     "design": "Diseño",
-    "playground": "Pruébame",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "playground": "¿Quieres probar?"
   },
   "preferences": {
     "preferences": "Preferencias",
@@ -13,6 +13,11 @@
   },
   "pageTitles": {
     "welcome": "Bienvenido",
-    "main": "Principal"
+    "main": "Principal",
+    "resume": "Curriculum",
+    "thisWebsite": "Este sitio web",
+    "design": "Diseño",
+    "contact": "Contacto",
+    "playground": "¿Quieres probar?"
   }
 }

@@ -9,21 +9,24 @@ import Preferences from "../../widgets/Preferences/Preferences";
 import { useTheme } from "../../../styles/ThemeContext";
 import HamburgerButton from "../HamburgerButton/HamburgerButton";
 import SidebarMenu from "../../../components/widgets/SidebarMenu/SidebarMenu";
+import { useNavigate } from "react-router-dom";
 
 import "./MainPageHeader.scss";
 
 const MainPageHeader = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
   const { theme } = useTheme();
   const [showSidebarMenu, setShowSidebarMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
   const toggleDropdown = () => {
-    setShowSidebarMenu(prevState => !prevState);
+    setShowSidebarMenu((prevState) => !prevState);
   };
 
   const handleSidebarClose = () => {
-    setShowSidebarMenu(false); 
+    setShowSidebarMenu(false);
   };
 
   useEffect(() => {
@@ -47,6 +50,10 @@ const MainPageHeader = () => {
     logo = mainWebsiteMinimalLogoLight;
   }
 
+  const handleNavigationClick = (route) => {
+    navigate(route);
+  };
+
   return (
     <div className="main-page-header">
       <div className="row m-0 mb-1 align-items-center">
@@ -60,32 +67,33 @@ const MainPageHeader = () => {
 
         <div className="col d-none d-md-flex align-items-center justify-content-center">
           <HeaderButton
-            label={t("headerButtons.aboutMe")}
-            onClick={() => alert("Button clicked!")}
+            label={t("headerButtons.resume")}
+            onClick={() => handleNavigationClick("/resume")} 
           />
         </div>
         <div className="col d-none d-md-flex align-items-center justify-content-start">
           <HeaderButton
             label={t("headerButtons.thisWebsite")}
-            onClick={() => alert("Button clicked!")}
+            onClick={() => handleNavigationClick("/this-website")}
           />
         </div>
         <div className="col d-none d-md-flex align-items-center justify-content-center">
           <HeaderButton
             label={t("headerButtons.design")}
-            onClick={() => alert("Button clicked!")}
+            onClick={() => handleNavigationClick("/design")}
+          />
+        </div>
+
+        <div className="col d-none d-md-flex align-items-center justify-content-center">
+          <HeaderButton
+            label={t("headerButtons.contact")}
+            onClick={() => handleNavigationClick("/contact")}
           />
         </div>
         <div className="col d-none d-md-flex align-items-center justify-content-end">
           <HeaderButton
             label={t("headerButtons.playground")}
-            onClick={() => alert("Button clicked!")}
-          />
-        </div>
-        <div className="col d-none d-md-flex align-items-center justify-content-center">
-          <HeaderButton
-            label={t("headerButtons.contact")}
-            onClick={() => alert("Button clicked!")}
+            onClick={() => handleNavigationClick("/playground")}
           />
         </div>
 
@@ -93,9 +101,9 @@ const MainPageHeader = () => {
           <Preferences />
         </div>
       </div>
-      <SidebarMenu 
-        showSidebarMenu={showSidebarMenu} 
-        onClose={handleSidebarClose} 
+      <SidebarMenu
+        showSidebarMenu={showSidebarMenu}
+        onClose={handleSidebarClose}
       />
     </div>
   );

@@ -1,0 +1,49 @@
+:root {
+  --cursor-light: url("resources/images/cursors/arrow/cursorLight.png"), auto;
+  --cursor-dark: url("resources/images/cursors/arrow/cursorDark.png"), auto;
+
+  --pointer-light: url("resources/images/cursors/pointer/pointerLight.png"),
+    pointer;
+  --pointer-dark: url("resources/images/cursors/pointer/pointerDark.png"),
+    pointer;
+}
+
+::selection {
+  background-color: var(--main-hover-color);
+  color: var(--header-background-color);
+}
+
+button:hover,
+a:hover {
+  background-color: var(--main-hover-color);
+  color: var(--header-background-color);
+}
+
+button:active,
+a:active {
+  background-color: var(--main-hover-color);
+  color: var(--header-background-color);
+}
+
+body {
+  color: var(--main-text-color) !important;
+}
+body.light-mode {
+  cursor: var(--cursor-light) !important;
+}
+
+body.dark-mode {
+  cursor: var(--cursor-dark) !important;
+}
+
+button,
+a,
+.clickable {
+  cursor: var(--pointer-light) !important;
+}
+
+.dark-mode button,
+.dark-mode a,
+.dark-mode .clickable {
+  cursor: var(--pointer-dark) !important;
+}
