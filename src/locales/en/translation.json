@@ -11,13 +11,25 @@
     "language": "Language",
     "theme": "Theme"
   },
-  "pageTitles": {
-    "welcome": "Welcome",
-    "main": "Main",
-    "resume": "Resume", 
-    "thisWebsite": "This website",
-    "design": "Design",
-    "contact": "Contact", 
-    "playground": "Wanna try?"
+  "welcomePage": {
+    "pageTitle": "Welcome"
+  },
+  "mainPage": {
+    "pageTitle": "Main"
+  },
+  "resumePage": {
+    "pageTitle": "Resume"
+  },
+  "thisWebsitePage": {
+    "pageTitle": "This website"
+  },
+  "designPage": {
+    "pageTitle": "Design"
+  },
+  "contactPage": {
+    "pageTitle": "Contact"
+  },
+  "playgroundPage": {
+    "pageTitle": "Wanna try?"
   }
 }

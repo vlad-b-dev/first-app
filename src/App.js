@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -24,13 +24,13 @@ const DynamicTitle = () => {
 
   useEffect(() => {
     const pageTitles = {
-      "/": ` ${appName} - ${t("pageTitles.welcome")}`,
-      "/main": ` ${appName} - ${t("pageTitles.main")}`,
-      "/resume": ` ${appName} - ${t("pageTitles.resume")}`,
-      "/this-website": ` ${appName} - ${t("pageTitles.thisWebsite")}`,
-      "/design": ` ${appName} - ${t("pageTitles.design")}`,
-      "/contact": ` ${appName} - ${t("pageTitles.contact")}`,
-      "/playground": ` ${appName} - ${t("pageTitles.playground")}`,
+      "/": ` ${appName} - ${t("welcomePage.pageTitle")}`,
+      "/main": ` ${appName} - ${t("mainPage.pageTitle")}`,
+      "/resume": ` ${appName} - ${t("resumePage.pageTitle")}`,
+      "/this-website": ` ${appName} - ${t("thisWebsitePage.pageTitle")}`,
+      "/design": ` ${appName} - ${t("designPage.pageTitle")}`,
+      "/contact": ` ${appName} - ${t("contactPage.pageTitle")}`,
+      "/playground": ` ${appName} - ${t("playgroundPage.pageTitle")}`,
     };
 
     document.title = pageTitles[location.pathname] || appName;
@@ -39,13 +39,24 @@ const DynamicTitle = () => {
   return null;
 };
 
+function ThemeHandler() {
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    document.body.className = theme === "dark" ? "dark-mode" : "light-mode";
+  }, [theme]);
+
+  return null;
+}
+
 export default function MainApp() {
   return (
     <ThemeProvider>
       <Router>
+        <ThemeHandler />
         <DynamicTitle />
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<WelcomeOrMain />} />
           <Route path="/main" element={<MainPage />} />
           <Route path="/resume" element={<Resume />} />
           <Route path="/this-website" element={<ThisWebsite />} />
@@ -58,9 +69,8 @@ export default function MainApp() {
   );
 }
 
-function App() {
-  const [isWelcomeVisible, setIsWelcomeVisible] = useState(true);
-  const { theme } = useTheme();
+function WelcomeOrMain() {
+  const [isWelcomeVisible, setIsWelcomeVisible] = React.useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -68,10 +78,6 @@ function App() {
     }, 4500);
     return () => clearTimeout(timer);
   }, []);
-
-  useEffect(() => {
-    document.body.className = theme === "dark" ? "dark-mode" : "light-mode";
-  }, [theme]);
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>

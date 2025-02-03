@@ -15,27 +15,6 @@ const ThemeSwitch = () => {
     toggleTheme(newTheme);
   };
 
-  const switchStyles = {
-    "& .MuiSwitch-switchBase": {
-      color: "white",
-      "&:hover": {
-        backgroundColor: "var(--main-hover-color)",
-      },
-    },
-    "& .MuiSwitch-switchBase.Mui-checked": {
-      color: "black",
-      "&:hover": {
-        backgroundColor: "var(--main-hover-color)",
-      },
-    },
-    "& .MuiSwitch-track": {
-      backgroundColor: "#fff",
-    },
-    "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
-      backgroundColor: "#101",
-    },
-  };
-
   return (
     <div
       style={{
@@ -50,7 +29,30 @@ const ThemeSwitch = () => {
         <Switch
           checked={theme === "dark"}
           onChange={handleChange}
-          sx={switchStyles}
+          sx={{
+            cursor:
+              theme === "dark"
+                ? "url('resources/images/cursors/pointer/pointerDark.png'), pointer"
+                : "url('resources/images/cursors/pointer/pointerLight.png'), pointer",
+            "& .MuiSwitch-switchBase": {
+              color: "white",
+              "&:hover": {
+                backgroundColor: "var(--main-hover-color)",
+              },
+            },
+            "& .MuiSwitch-switchBase.Mui-checked": {
+              color: "black",
+              "&:hover": {
+                backgroundColor: "var(--main-hover-color)",
+              },
+            },
+            "& .MuiSwitch-track": {
+              backgroundColor: "#fff",
+            },
+            "& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track": {
+              backgroundColor: "#101",
+            },
+          }}
         />
       </div>
     </div>

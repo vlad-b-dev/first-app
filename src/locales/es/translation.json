@@ -11,13 +11,25 @@
     "language": "Idioma",
     "theme": "Tema"
   },
-  "pageTitles": {
-    "welcome": "Bienvenido",
-    "main": "Principal",
-    "resume": "Curriculum",
-    "thisWebsite": "Este sitio web",
-    "design": "Diseño",
-    "contact": "Contacto",
-    "playground": "¿Quieres probar?"
+  "welcomePage": {
+    "pageTitle": "Bienvenido"
+  },
+  "mainPage": {
+    "pageTitle": "Principal"
+  },
+  "resumePage": {
+    "pageTitle": "Curriculum"
+  },
+  "thisWebsitePage": {
+    "pageTitle": "Este sitio web"
+  },
+  "designPage": {
+    "pageTitle": "Diseño"
+  },
+  "contactPage": {
+    "pageTitle": "Contacto"
+  },
+  "playgroundPage": {
+    "pageTitle": "¿Quieres probar?"
   }
 }

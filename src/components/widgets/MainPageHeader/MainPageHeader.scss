@@ -50,6 +50,18 @@
   }
 }
 
+.main-page-header-logo-button {
+  all: unset;
+  display: inline-block;
+  &:hover,
+  &:focus,
+  &:active {
+    background: none;
+    box-shadow: none;
+    outline: none;
+    filter: none;
+  }
+}
 .main-page-header-logo {
   width: 10vw;
   height: auto;

@@ -62,13 +62,18 @@ const MainPageHeader = () => {
         </div>
 
         <div className="col d-flex justify-content-center">
-          <img src={logo} className="main-page-header-logo" alt="Logo" />
+          <button
+            className="main-page-header-logo-button"
+            onClick={() => handleNavigationClick("/main")}
+          >
+            <img src={logo} className="main-page-header-logo" alt="Logo" />
+          </button>
         </div>
 
         <div className="col d-none d-md-flex align-items-center justify-content-center">
           <HeaderButton
             label={t("headerButtons.resume")}
-            onClick={() => handleNavigationClick("/resume")} 
+            onClick={() => handleNavigationClick("/resume")}
           />
         </div>
         <div className="col d-none d-md-flex align-items-center justify-content-start">
