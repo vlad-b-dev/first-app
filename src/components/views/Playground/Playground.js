@@ -5,11 +5,9 @@ import "./Playground.scss";
 
 const Playground = () => {
   return (
-    <div className="main-page-background">
+    <div className="page-background">
       <MainPageHeader />
-      <div className="w-100 text-center mt-5">
-      PRUEBA THIS Playground 
-      </div>
+      <div className="w-100 text-center mt-5">PRUEBA THIS Playground</div>
     </div>
   );
 };

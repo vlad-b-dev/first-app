@@ -5,11 +5,9 @@ import "./MainPage.scss";
 
 const MainPage = () => {
   return (
-    <div className="main-page-background">
+    <div className="page-background">
       <MainPageHeader />
-      <div className="w-100 text-center mt-5">
-        PRUEBA MAIN PAGE 
-      </div>
+      <div className="w-100 text-center mt-5">PRUEBA MAIN PAGE</div>
     </div>
   );
 };

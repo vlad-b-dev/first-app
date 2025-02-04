@@ -5,11 +5,9 @@ import "./Contact.scss";
 
 const Contact = () => {
   return (
-    <div className="main-page-background">
+    <div className="page-background">
       <MainPageHeader />
-      <div className="w-100 text-center mt-5">
-      PRUEBA THIS Contact 
-      </div>
+      <div className="w-100 text-center mt-5">PRUEBA THIS Contact</div>
     </div>
   );
 };
