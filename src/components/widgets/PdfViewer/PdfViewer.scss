@@ -1,10 +1,29 @@
+.pdf-viewer {
+  /*   background-color: yellowgreen;
+ */
+}
 .resume-container {
+  text-align: center !important;
   overflow: auto;
-  height: 50vh;
-  width: 50vw;
+  height: 60vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--header-background-color);
+  border: 3px solid var(--main-hover-color);
 }
 
 .resume-document {
-  width: 100%;
-  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.react-pdf__Document {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+.react-pdf__Page {
+  margin: 0;
+  padding: 0;
 }
