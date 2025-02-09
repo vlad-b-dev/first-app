@@ -12,11 +12,47 @@ import ThisWebsite from "./components/views/ThisWebsite/ThisWebsite";
 import Design from "./components/views/Design/Design";
 import Contact from "./components/views/Contact/Contact";
 import Playground from "./components/views/Playground/Playground";
-import { ThemeProvider, useTheme } from "./styles/ThemeContext";
+import {
+  ThemeProvider as CustomThemeProvider,
+  useTheme,
+} from "./styles/ThemeContext";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
 import "./App.scss";
 
-const appName = "VB";
+const appName = "All In";
+
+const muiTheme = createTheme({
+  components: {
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          color: "var(--main-text-color)",
+          transition: "color 0.3s ease-in-out",
+          "&:hover": {
+            color: "var(--secondary-background-color)",
+          },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          color: "var(--main-text-color)",
+          backgroundColor: "var(--primary-background-color)",
+          transition: "all 0.3s ease-in-out",
+          "&:hover": {
+            color: "var(--secondary-background-color)",
+            backgroundColor: "var(--main-hover-color)",
+          },
+          "&:hover .MuiSvgIcon-root": {
+            color: "var(--secondary-background-color)",
+          },
+        },
+      },
+    },
+  },
+});
 
 const DynamicTitle = () => {
   const location = useLocation();
@@ -51,21 +87,23 @@ function ThemeHandler() {
 
 export default function MainApp() {
   return (
-    <ThemeProvider>
-      <Router>
-        <ThemeHandler />
-        <DynamicTitle />
-        <Routes>
-          <Route path="/" element={<WelcomeOrMain />} />
-          <Route path="/main" element={<MainPage />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/this-website" element={<ThisWebsite />} />
-          <Route path="/design" element={<Design />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/playground" element={<Playground />} />
-        </Routes>
-      </Router>
-    </ThemeProvider>
+    <CustomThemeProvider>
+      <ThemeProvider theme={muiTheme}>
+        <Router>
+          <ThemeHandler />
+          <DynamicTitle />
+          <Routes>
+            <Route path="/" element={<WelcomeOrMain />} />
+            <Route path="/main" element={<MainPage />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/this-website" element={<ThisWebsite />} />
+            <Route path="/design" element={<Design />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/playground" element={<Playground />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </CustomThemeProvider>
   );
 }
 

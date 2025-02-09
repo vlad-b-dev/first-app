@@ -1,6 +1,6 @@
 .main-page-header {
   color: var(--main-text-color);
-  background-color: var(--header-background-color);
+  background-color: var(--secondary-background-color);
   align-items: center;
   width: 100vw;
 
@@ -36,7 +36,7 @@
       padding-left: 1vw;
       padding-top: 2vh;
       transform: translateY(-50%);
-      background-color: var(--header-background-color);
+      background-color: var(--secondary-background-color);
       color: var(--main-color);
       border: none;
       border-radius: 5px;

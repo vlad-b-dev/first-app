@@ -19,11 +19,11 @@ const HeaderButton = ({ label, onClick }) => {
       <Button
         onClick={onClick}
         sx={{
-          fontSize: isMobile ? "2.5vh" : "1.4vw", 
+          fontSize: isMobile ? "2.5vh" : "1.4vw",
           whiteSpace: "nowrap",
           color: "var(--main-text-color)",
           "&:hover": {
-            color: "var(--header-background-color)",
+            color: "var(--secondary-background-color)",
             backgroundColor: "var(--main-hover-color)",
           },
         }}

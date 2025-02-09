@@ -10,30 +10,33 @@
 
 ::selection {
   background-color: var(--main-hover-color);
-  color: var(--header-background-color);
+  color: var(--secondary-background-color);
 }
 
 button:hover,
 a:hover {
   background-color: var(--main-hover-color);
-  color: var(--header-background-color);
+  color: var(--secondary-background-color);
 }
 
 button:active,
 a:active {
   background-color: var(--main-hover-color);
-  color: var(--header-background-color);
+  color: var(--secondary-background-color);
 }
 
 body {
   color: var(--main-text-color) !important;
+  background-color: var(--main-background-color);
 }
 body.light-mode {
   cursor: var(--cursor-light) !important;
+  background-color: var(--main-background-color);
 }
 
 body.dark-mode {
   cursor: var(--cursor-dark) !important;
+  background-color: var(--main-background-color);
 }
 
 button,
@@ -53,5 +56,7 @@ a,
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-color: var(--main-background-color);
+  background-color: var(--main-background-color) !important;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

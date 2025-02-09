@@ -21,7 +21,7 @@ const LanguageSelect = () => {
   };
 
   const toggleButtonStyles = {
-    backgroundColor: "var(--header-background-color)",
+    backgroundColor: "var(--secondary-background-color)",
     borderRadius: "12px",
     width: "10vw",
     height: "auto",
