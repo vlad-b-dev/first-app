@@ -60,3 +60,21 @@ a,
   overflow-y: auto;
   overflow-x: hidden;
 }
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 0.7vw !important;
+  height: 1vh !important;
+}
+::-webkit-scrollbar-track {
+  background: var(--secondary-background-color) !important;
+  border: 0.1vw solid var(--main-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--main-color) !important;
+  border-radius: 50px;
+  border: 0.1vw solid var(--main-hover-color) !important;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--main-hover-color) !important;
+}

@@ -9,7 +9,6 @@ import FileDownloadRoundedIcon from "@mui/icons-material/FileDownloadRounded";
 import ExpandCircleDownRoundedIcon from "@mui/icons-material/ExpandCircleDownRounded";
 import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@mui/material";
-
 import "./PdfViewer.scss";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
@@ -32,6 +31,15 @@ const rotationConfig = (expandPdf) => ({
     duration: 2,
   },
 });
+
+const expandPdfAnimation = {
+  key: "expandPdf",
+  initial: { height: 0, opacity: 0, scaleY: 0.8 },
+  animate: { height: "auto", opacity: 1, scaleY: 1 },
+  exit: { height: 0, opacity: 0, scaleY: 0.8 },
+  transition: { duration: 0.2, ease: "easeInOut" },
+  className: "expandable-container",
+};
 
 const PdfViewer = () => {
   const [numPages, setNumPages] = useState(null);
@@ -69,7 +77,6 @@ const PdfViewer = () => {
           </Button>
           <h3>PDF Viewer</h3>
         </div>
-
         <div className="col-4 d-flex justify-content-center gap-1">
           <AnimatePresence>
             {expandPdf && (
@@ -90,7 +97,6 @@ const PdfViewer = () => {
             )}
           </AnimatePresence>
         </div>
-
         <div className="col-4 d-flex justify-content-end">
           <Button
             href={englishResume}
@@ -100,7 +106,6 @@ const PdfViewer = () => {
           >
             <OpenInNewRoundedIcon />
           </Button>
-
           <Button
             href={englishResume}
             download="Resume.pdf"
@@ -110,30 +115,33 @@ const PdfViewer = () => {
           </Button>
         </div>
       </div>
-
-      {expandPdf && (
-        <div className="row justify-content-center">
-          <div className="col-md-10 d-flex justify-content-center">
-            <div className="resume-container">
-              <Document
-                className="resume-document"
-                file={englishResume}
-                onLoadSuccess={onDocumentLoadSuccess}
-              >
-                {Array.from(new Array(numPages), (el, index) => (
-                  <Page
-                    key={`page_${index + 1}`}
-                    pageNumber={index + 1}
-                    renderTextLayer={false}
-                    renderAnnotationLayer={false}
-                    scale={scale}
-                  />
-                ))}
-              </Document>
+      <AnimatePresence>
+        {expandPdf && (
+          <motion.div {...expandPdfAnimation}>
+            <div className="row justify-content-center">
+              <div className="col-md-10 d-flex justify-content-center">
+                <div className="resume-container">
+                  <Document
+                    className="resume-document"
+                    file={englishResume}
+                    onLoadSuccess={onDocumentLoadSuccess}
+                  >
+                    {Array.from(new Array(numPages), (el, index) => (
+                      <Page
+                        key={`page_${index + 1}`}
+                        pageNumber={index + 1}
+                        renderTextLayer={false}
+                        renderAnnotationLayer={false}
+                        scale={scale}
+                      />
+                    ))}
+                  </Document>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

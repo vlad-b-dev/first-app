@@ -16,12 +16,13 @@
   text-align: center !important;
   overflow: auto;
   height: 60vh;
+  /* height: 90vh; */
   margin: 0;
   padding: 0;
   border: 0.4vw solid var(--main-background-color);
   margin-top: 0.5vh;
   margin-bottom: 0.5vh;
-  background-color: var(--secondary-background-color);
+  background-color: var(--secondary-background-color) !important;
 }
 
 .resume-document {
