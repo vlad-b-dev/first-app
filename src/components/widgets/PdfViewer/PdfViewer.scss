@@ -1,5 +1,5 @@
 .pdf-viewer {
-  width: 60vw !important;
+  width: 98vw !important;
   margin-top: 1vh;
   background-color: var(--secondary-background-color);
   border: 0.1vw solid black;
@@ -16,13 +16,18 @@
   text-align: center !important;
   overflow: auto;
   height: 60vh;
-  /* height: 90vh; */
   margin: 0;
   padding: 0;
   border: 0.4vw solid var(--main-background-color);
   margin-top: 0.5vh;
   margin-bottom: 0.5vh;
   background-color: var(--secondary-background-color) !important;
+}
+.scale-indicator {
+  padding: 0.5vw;
+  padding-top: 0.3vw;
+  background-color: var(--secondary-background-color);
+  border-radius: 0.5vw;
 }
 
 .resume-document {
@@ -39,4 +44,31 @@
 .react-pdf__Page {
   margin: 0;
   padding: 0;
+}
+
+.flag-icon {
+  @media (max-width: 767px) {
+    width: 1.1rem;
+    height: auto;
+  }
+  @media (min-width: 768px) {
+    width: 1.5rem;
+    height: auto;
+  }
+}
+
+.resume-title {
+  font-weight: bold;
+  margin-right: 1vw;
+  margin-left: 0;
+
+  @media (max-width: 767px) {
+    font-size: 1rem;
+    margin-top: 0.6rem;
+    margin-left: -1rem;
+  }
+  @media (min-width: 768px) {
+    font-size: 2vw;
+    margin-bottom: 0.2vh;
+  }
 }
