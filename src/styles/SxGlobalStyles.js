@@ -24,3 +24,13 @@ export const noHoverButtonStyles = {
     color: "var(--main-hover-color)",
   },
 };
+
+export const expandButton = (isMobile) => ({
+  marginLeft: isMobile ? "-1.8rem" : "-0.8rem",
+  ...noHoverButtonStyles,
+  "&:hover .MuiSvgIcon-root": { color: "var(--main-color)" },
+});
+
+export const expandIcon = (isMobile) => ({
+  fontSize: isMobile ? "1.4rem" : "1.8vw",
+});

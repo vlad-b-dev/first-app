@@ -14,8 +14,6 @@ import { ToggleButtonGroup, ToggleButton, Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import "./PdfViewer.scss";
 import {
-  expandPdfButton,
-  expandIcon,
   toggleButtonGroup,
   zoomOutButton,
   zoomIcon,
@@ -24,7 +22,11 @@ import {
   actionButton,
   toggleButtonStylesSize,
 } from "./PdfViewerSx";
-import { toggleButtonStyles } from "../../../styles/SxGlobalStyles";
+import {
+  toggleButtonStyles,
+  expandButton,
+  expandIcon,
+} from "../../../styles/SxGlobalStyles";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
 
@@ -62,7 +64,7 @@ const PdfViewer = () => {
     <div className="container pdf-viewer">
       <div className="row pdf-viewer-header">
         <div className="col-3 d-flex">
-          <Button onClick={clickExpandPdf} sx={expandPdfButton(isMobile)}>
+          <Button onClick={clickExpandPdf} sx={expandButton(isMobile)}>
             <motion.div
               animate={{ rotate: expandPdf ? 540 : 0 }}
               transition={{ type: "spring", stiffness: 100, damping: 5 }}
