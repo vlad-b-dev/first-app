@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 
 import "./LanguageSelect.scss";
 import "./../Preferences/Preferences.scss";
+import { toggleButtonStyles } from "../../../styles/SxGlobalStyles";
 
 const LanguageSelect = () => {
   const { t } = useTranslation();
@@ -20,20 +21,10 @@ const LanguageSelect = () => {
     }
   };
 
-  const toggleButtonStyles = {
-    backgroundColor: "var(--secondary-background-color)",
+  const toggleButtonStylesSize = {
     borderRadius: "12px",
     width: "10vw",
     height: "auto",
-    "&:hover": {
-      backgroundColor: "var(--main-hover-color)",
-    },
-    "&.Mui-selected": {
-      backgroundColor: "var(--main-color)",
-    },
-    "&.Mui-selected:hover": {
-      backgroundColor: "var(--main-color)",
-    },
   };
 
   return (
@@ -52,10 +43,22 @@ const LanguageSelect = () => {
         onChange={handleLanguageChange}
         exclusive
       >
-        <ToggleButton value="en" sx={toggleButtonStyles}>
+        <ToggleButton
+          value="en"
+          sx={{
+            ...toggleButtonStyles,
+            ...toggleButtonStylesSize,
+          }}
+        >
           <img src={ukFlag} className="flag-icon" alt="English" />
         </ToggleButton>
-        <ToggleButton value="es" sx={toggleButtonStyles}>
+        <ToggleButton
+          value="es"
+          sx={{
+            ...toggleButtonStyles,
+            ...toggleButtonStylesSize,
+          }}
+        >
           <img src={spainFlag} className="flag-icon" alt="Spanish" />
         </ToggleButton>
       </ToggleButtonGroup>

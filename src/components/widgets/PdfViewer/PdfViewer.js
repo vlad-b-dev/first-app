@@ -13,6 +13,18 @@ import spainFlag from "../../../resources/images/icons/languageFlags/spain/flag.
 import { ToggleButtonGroup, ToggleButton, Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import "./PdfViewer.scss";
+import {
+  expandPdfButton,
+  expandIcon,
+  toggleButtonGroup,
+  zoomOutButton,
+  zoomIcon,
+  zoomInButton,
+  resetButton,
+  actionButton,
+  toggleButtonStylesSize,
+} from "./PdfViewerSx";
+import { toggleButtonStyles } from "../../../styles/SxGlobalStyles";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
 
@@ -37,14 +49,9 @@ const PdfViewer = () => {
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 767);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
     window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
@@ -55,30 +62,37 @@ const PdfViewer = () => {
     <div className="container pdf-viewer">
       <div className="row pdf-viewer-header">
         <div className="col-3 d-flex">
-          <Button
-            onClick={clickExpandPdf}
-            sx={{ marginLeft: isMobile ? "-1.8rem" : "-0.8rem" }}
-          >
+          <Button onClick={clickExpandPdf} sx={expandPdfButton(isMobile)}>
             <motion.div
               animate={{ rotate: expandPdf ? 540 : 0 }}
               transition={{ type: "spring", stiffness: 100, damping: 5 }}
             >
-              <ExpandCircleDownRoundedIcon
-                sx={{ fontSize: isMobile ? "1.4rem" : "1.8vw" }}
-              />
+              <ExpandCircleDownRoundedIcon sx={expandIcon(isMobile)} />
             </motion.div>
           </Button>
-          <div className="resume-title">Resume</div>
+          <div className="resume-title">PDF</div>
           <ToggleButtonGroup
-            sx={{ marginTop: "0.2vh" }}
+            sx={toggleButtonGroup}
             exclusive
             value={language}
             onChange={handleLanguageChange}
           >
-            <ToggleButton value="en">
+            <ToggleButton
+              value="en"
+              sx={{
+                ...toggleButtonStyles,
+                ...toggleButtonStylesSize(isMobile),
+              }}
+            >
               <img src={ukFlag} className="flag-icon" alt="English" />
             </ToggleButton>
-            <ToggleButton value="es">
+            <ToggleButton
+              value="es"
+              sx={{
+                ...toggleButtonStyles,
+                ...toggleButtonStylesSize(isMobile),
+              }}
+            >
               <img src={spainFlag} className="flag-icon" alt="Spanish" />
             </ToggleButton>
           </ToggleButtonGroup>
@@ -91,55 +105,37 @@ const PdfViewer = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0 }}
               >
-                <Button
-                  onClick={zoomOut}
-                  sx={{
-                    marginLeft: isMobile ? "2.8rem" : "1.8vw",
-                    marginRight: isMobile ? "-1rem" : "1.8vw",
-                    marginTop: isMobile ? "-0.6rem" : "0",
-                  }}
-                >
-                  <RemoveRoundedIcon
-                    sx={{ fontSize: isMobile ? "2rem" : "1.8vw" }}
-                  />
+                <Button onClick={zoomOut} sx={zoomOutButton(isMobile)}>
+                  <RemoveRoundedIcon sx={zoomIcon(isMobile)} />
                 </Button>
                 {!isMobile && (
                   <span className="scale-indicator">{scale.toFixed(1)}x</span>
                 )}
-                <Button
-                  onClick={zoomIn}
-                  sx={{
-                    marginLeft: isMobile ? "-1rem" : "1.8vw",
-                    marginRight: isMobile ? "-2rem" : "1.8vw",
-                    marginTop: isMobile ? "-0.6rem" : "0",
-                  }}
-                >
-                  <AddRoundedIcon
-                    sx={{ fontSize: isMobile ? "2rem" : "1.8vw" }}
-                  />
+                <Button onClick={zoomIn} sx={zoomInButton(isMobile)}>
+                  <AddRoundedIcon sx={zoomIcon(isMobile)} />
                 </Button>
-                {!isMobile && (
-                  <Button onClick={resetScale}>
-                    <ResetIcon />
-                  </Button>
-                )}
+                <Button onClick={resetScale} sx={resetButton(isMobile)}>
+                  <ResetIcon />
+                </Button>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
         <div className="col-3 d-flex justify-content-end">
-          <Button
-            href={resumeFile}
-            target="_blank"
-            rel="noopener noreferrer"
-            sx={{ marginRight: isMobile ? "-1.5rem" : "1.8vw" }}
-          >
-            <OpenInNewRoundedIcon />
-          </Button>
+          {!isMobile && (
+            <Button
+              href={resumeFile}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={actionButton(isMobile)}
+            >
+              <OpenInNewRoundedIcon />
+            </Button>
+          )}
           <Button
             href={resumeFile}
             download={`Resume_${language}.pdf`}
-            sx={{ marginRight: isMobile ? "-1rem" : "1.8vw" }}
+            sx={actionButton(isMobile)}
           >
             <FileDownloadRoundedIcon />
           </Button>
