@@ -5,8 +5,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import "./ContentSection.scss";
 import { expandButton, expandIcon } from "../../../styles/SxGlobalStyles";
 
-const ContentSection = ({ children, title = "Content Section Title" }) => {
-  const [expandContent, setExpandContent] = useState(false);
+const ContentSection = ({ children, title, startExpanded, minBodyHeight }) => {
+  const [expandContent, setExpandContent] = useState(
+    startExpanded ? startExpanded : false
+  );
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
   const clickExpandContent = () => setExpandContent((prev) => !prev);
@@ -38,6 +40,7 @@ const ContentSection = ({ children, title = "Content Section Title" }) => {
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0 }}
+            style={{ minHeight: minBodyHeight ? minBodyHeight : "auto" }}
           >
             {children}
           </motion.div>

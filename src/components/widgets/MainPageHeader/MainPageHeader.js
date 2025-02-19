@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import mainWebsiteLogoDark from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.png";
-import mainWebsiteLogoMinimalDark from "../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoDark.png";
-import mainWebsiteLogoLight from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.png";
-import mainWebsiteMinimalLogoLight from "../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoLight.png";
+import mainWebsiteLogoDark from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.webp";
+import mainWebsiteLogoMinimalDark from "../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoDark.webp";
+import mainWebsiteLogoLight from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
+import mainWebsiteMinimalLogoLight from "../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoLight.webp";
 import HeaderButton from "../../../components/widgets/HeaderButton/HeaderButton";
 import { useTranslation } from "react-i18next";
 import Preferences from "../../widgets/Preferences/Preferences";

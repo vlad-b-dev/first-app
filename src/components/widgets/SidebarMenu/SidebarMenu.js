@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import mainWebsiteLogoDark from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.png";
-import mainWebsiteLogoLight from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.png";
+import mainWebsiteLogoDark from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.webp";
+import mainWebsiteLogoLight from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";

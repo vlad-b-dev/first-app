@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import hamburgerIcon from "../../../resources/images/icons/hamburgerButton/hamburgerButtonDark.png";
-import hamburgerIconHover from "../../../resources/images/icons/hamburgerButton/hamburgerButtonDarkHover.png";
-import hamburgerIconLight from "../../../resources/images/icons/hamburgerButton/hamburgerButtonLight.png";
-import hamburgerIconHoverLight from "../../../resources/images/icons/hamburgerButton/hamburgerButtonLightHover.png";
+import hamburgerIcon from "../../../resources/images/icons/hamburgerButton/hamburgerButtonDark.webp";
+import hamburgerIconHover from "../../../resources/images/icons/hamburgerButton/hamburgerButtonDarkHover.webp";
+import hamburgerIconLight from "../../../resources/images/icons/hamburgerButton/hamburgerButtonLight.webp";
+import hamburgerIconHoverLight from "../../../resources/images/icons/hamburgerButton/hamburgerButtonLightHover.webp";
 import { Button } from "@mui/material";
 import { useTheme } from "../../../styles/ThemeContext";
 
@@ -17,13 +17,13 @@ const HamburgerButton = ({ onClick }) => {
       <Button
         onClick={onClick}
         sx={{
-          width: '10vw', 
-          height: 'auto', 
+          width: "10vw",
+          height: "auto",
           whiteSpace: "nowrap",
           color: "var(--main-color)",
           backgroundColor: "transparent",
-          padding: 0, 
-          minWidth: 'unset', 
+          padding: 0,
+          minWidth: "unset",
           "&:hover": {
             backgroundColor: "transparent",
           },
@@ -34,7 +34,9 @@ const HamburgerButton = ({ onClick }) => {
         <div className="hamburger-button-wrapper">
           {hover ? (
             <img
-              src={theme === "dark" ? hamburgerIconHover : hamburgerIconHoverLight}
+              src={
+                theme === "dark" ? hamburgerIconHover : hamburgerIconHoverLight
+              }
               className="hamburger-button-image"
               alt="Hamburger Button Hover"
             />

@@ -18,7 +18,12 @@
     "pageTitle": "Principal"
   },
   "resumePage": {
-    "pageTitle": "Curriculum"
+    "pageTitle": "Curriculum",
+    "generalSectionTitle": "General",
+    "experienceSectionTitle": "Experiencia",
+    "killsSectionTitle": "Skills",
+    "strategySectionTitle": "Enfoque y objetivos",
+    "personalSectionTitle": "A nivel personal"
   },
   "thisWebsitePage": {
     "pageTitle": "Este sitio web"

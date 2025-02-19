@@ -1,18 +1,19 @@
 .content-section {
-  width: 98vw !important;
+  width: 92vw !important;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1vh;
   background-color: var(--secondary-background-color);
   border: 0.1vw solid black;
-  color: var(--main-hover-color);
+  color: var(--main-text-color);
   box-shadow: 0.8vw 1.5vh 20px 5px rgba(0, 0, 0, 0.5);
 }
 .content-section-header {
   background-color: var(--main-background-color);
-  padding-top: 2vh;
+  padding-top: 0.7rem;
   padding-bottom: 2vh;
   border-bottom: 0.2rem solid var(--main-color);
+  height: 9vh !important;
 }
 
 .content-section-title {
@@ -22,11 +23,11 @@
 
   @media (max-width: 767px) {
     font-size: 1rem;
-    margin-top: 0.6rem;
+    margin-top: 0.5rem;
     margin-left: -1rem;
   }
   @media (min-width: 768px) {
-    font-size: 2vw;
-    margin-bottom: 0.2vh;
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
   }
 }

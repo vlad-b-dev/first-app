@@ -18,7 +18,12 @@
     "pageTitle": "Main"
   },
   "resumePage": {
-    "pageTitle": "Resume"
+    "pageTitle": "Resume",
+    "generalSectionTitle": "General",
+    "experienceSectionTitle": "Experience",
+    "skillsSectionTitle": "Skills",
+    "strategySectionTitle": "Ahead",
+    "personalSectionTitle": "Deeper"
   },
   "thisWebsitePage": {
     "pageTitle": "This website"
