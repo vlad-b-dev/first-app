@@ -1,18 +1,22 @@
-.general-text {
-  margin-top: 6vh !important;
-  margin-right: -10vw !important;
-  margin-left: -6.7vw !important;
-  font-size: 1.2rem;
-  width: 50vw !important;
+.general-data-container {
+  /*  height: 62vh; */
 }
+.general-text-column {
+  margin-left: -4vw;
+}
+
 .hi-text {
-  font-size: 4rem;
+  font-size: 3vw;
 }
 .thanks-text {
-  font-size: 1.4rem;
-  margin-bottom: 2.5vh;
+  font-size: 1.5vw;
 }
+
+.general-text {
+  font-size: 1vw;
+}
+
 .description-text {
-  margin-top: 2.5vh !important;
+  margin-top: 2.5vh;
   text-align: justify;
 }

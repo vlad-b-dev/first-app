@@ -32,5 +32,5 @@ export const expandButton = (isMobile) => ({
 });
 
 export const expandIcon = (isMobile) => ({
-  fontSize: isMobile ? "1.4rem" : "1.4vw",
+  fontSize: isMobile ? "1.4rem" : "1.7vw",
 });

@@ -12,49 +12,49 @@ const Resume = () => {
   return (
     <div className="page-background">
       <MainPageHeader />
-      <div className="row mt-2 mb-2 ">
-        <ContentSection
-          title={t("resumePage.generalSection.title")}
-          startExpanded={true}
-          textColor={"var(--general-resume-text)"}
-        >
-          <div className="container m-0">
-            <div className="row mt-1">
-              <div className="col-5">
-                <ResumePhoto />
-              </div>
-              <div className="col-7 general-text">
-                <h1 className="text-align-center hi-text">
-                  {t("resumePage.generalSection.hiText")}
-                </h1>
-                <h2 className="text-align-center thanks-text">
-                  {t("resumePage.generalSection.thanksText")}
-                </h2>
-                <br />
-                <h4 className="text-align-left">
-                  {t("resumePage.generalSection.nameText")}
-                </h4>
-                <p className="description-text">
-                  <p className="mb-3">
-                    {t("resumePage.generalSection.descriptionP1")}
-                  </p>
-                  <p className="mb-3">
-                    {t("resumePage.generalSection.descriptionP2")}
-                  </p>
-                  <p>{t("resumePage.generalSection.descriptionP3")}</p>
+      <ContentSection
+        title={t("resumePage.generalSection.title")}
+        startExpanded={true}
+        textColor={"var(--general-resume-text)"}
+        minBodyHeight={"62vh"}
+      >
+        <div className="general-data-container">
+          <div className="row mt-2">
+            <div className="col-3">
+              <ResumePhoto />
+            </div>
+            <div className="col-6 general-text-column">
+              <h1 className="text-align-center hi-text mt-3">
+                {t("resumePage.generalSection.hiText")}
+              </h1>
+              <p className="text-align-center thanks-text">
+                {t("resumePage.generalSection.thanksText")}
+              </p>
+              <br />
+              <h4 className="text-align-left">
+                {t("resumePage.generalSection.nameText")}
+              </h4>
+              <div className="description-text">
+                <p className="mb-3">
+                  {t("resumePage.generalSection.descriptionP1")}
                 </p>
+                <p className="mb-3">
+                  {t("resumePage.generalSection.descriptionP2")}
+                </p>
+                <p>{t("resumePage.generalSection.descriptionP3")}</p>
               </div>
             </div>
+            <div className="col-3">AAAAAAAAAAAAAAAAAAAAA</div>
           </div>
-        </ContentSection>
-      </div>
-      <div className="row mt-2 mb-2">
+        </div>
+      </ContentSection>
+      <div className="mt-2 mb-2">
         <ContentSection title={t("resumePage.experienceSectionTitle")}>
           UNIVERSIDAD - ZEO - WEB (DESCRIBIR CADA PERIODO EN DETALLE) Reporting
           Big data amounts Design Outdatet library Own testing projects
         </ContentSection>
       </div>
-      <div className="row mt-2 mb-2">
+      <div className="mt-2 mb-2">
         <ContentSection title={t("resumePage.skillsSectionTitle")}>
           <div>
             <h1>SOFT SKILLS NOT SOFTWARE XD</h1>
@@ -107,7 +107,7 @@ const Resume = () => {
           </div>
         </ContentSection>
       </div>
-      <div className="row mt-2 mb-2">
+      <div className="mt-2 mb-2">
         <ContentSection title={t("resumePage.strategySectionTitle")}>
           {" "}
           WHAT I AM - FUTURE PLANS - WHY IM LEAVING - WHAT I CAN APPORT -
@@ -115,7 +115,7 @@ const Resume = () => {
           - ai - design
         </ContentSection>
       </div>
-      <div className="row mt-2 mb-2">
+      <div className="mt-2 mb-2">
         <ContentSection title={t("resumePage.personalSectionTitle")}>
           {" "}
           RANDOM PERSONAL INFO

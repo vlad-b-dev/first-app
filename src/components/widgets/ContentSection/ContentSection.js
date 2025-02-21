@@ -20,32 +20,34 @@ const ContentSection = ({ children, title, startExpanded, minBodyHeight }) => {
   }, []);
 
   return (
-    <div className="container content-section">
-      <div className="row content-section-header">
-        <div className="d-flex">
-          <Button onClick={clickExpandContent} sx={expandButton(isMobile)}>
-            <motion.div
-              animate={{ rotate: expandContent ? 540 : 0 }}
-              transition={{ type: "spring", stiffness: 100, damping: 5 }}
-            >
-              <ExpandCircleDownRoundedIcon sx={expandIcon(isMobile)} />
-            </motion.div>
-          </Button>
-          <div className="content-section-title">{title}</div>
+    <div className="row">
+      <div className="content-section">
+        <div className="row content-section-header">
+          <div className="d-flex">
+            <Button onClick={clickExpandContent} sx={expandButton(isMobile)}>
+              <motion.div
+                animate={{ rotate: expandContent ? 540 : 0 }}
+                transition={{ type: "spring", stiffness: 100, damping: 5 }}
+              >
+                <ExpandCircleDownRoundedIcon sx={expandIcon(isMobile)} />
+              </motion.div>
+            </Button>
+            <div className="content-section-title">{title}</div>
+          </div>
         </div>
+        <AnimatePresence>
+          {expandContent && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              style={{ minHeight: minBodyHeight }}
+            >
+              <div>{children}</div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      <AnimatePresence>
-        {expandContent && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0 }}
-            style={{ minHeight: minBodyHeight ? minBodyHeight : "auto" }}
-          >
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
