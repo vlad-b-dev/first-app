@@ -12,32 +12,36 @@ const Resume = () => {
   return (
     <div className="page-background">
       <MainPageHeader />
-      <div className="row mt-2 mb-2">
+      <div className="row mt-2 mb-2 ">
         <ContentSection
-          title={t("resumePage.generalSectionTitle")}
+          title={t("resumePage.generalSection.title")}
           startExpanded={true}
           textColor={"var(--general-resume-text)"}
         >
-          <div className="container">
-            <div className="row mt-1 mb-4">
-              <div className="col-3">
+          <div className="container m-0">
+            <div className="row mt-1">
+              <div className="col-5">
                 <ResumePhoto />
               </div>
-              <div className="col-9 d-flex flex-column justify-content-center">
-                <h1>Hi, dear visitor!</h1>
-                <h4>First of all, I’m really glad to have you here.</h4>
-                <h4>
-                  My name is Vladyslav Boychuk, but everyone just calls me
-                  "Vlad."
-                </h4>
+              <div className="col-7 general-text">
+                <h1 className="text-align-center hi-text">
+                  {t("resumePage.generalSection.hiText")}
+                </h1>
+                <h2 className="text-align-center thanks-text">
+                  {t("resumePage.generalSection.thanksText")}
+                </h2>
                 <br />
-                <p>
-                  Developer with professional experience in the field of web
-                  development for Industry 4.0. I believe that a good product
-                  should not only work properly but also do it in a pleasant and
-                  user-friendly way. That's why I strive to find creative
-                  solutions both on a technical level and in terms of visual and
-                  design.
+                <h4 className="text-align-left">
+                  {t("resumePage.generalSection.nameText")}
+                </h4>
+                <p className="description-text">
+                  <p className="mb-3">
+                    {t("resumePage.generalSection.descriptionP1")}
+                  </p>
+                  <p className="mb-3">
+                    {t("resumePage.generalSection.descriptionP2")}
+                  </p>
+                  <p>{t("resumePage.generalSection.descriptionP3")}</p>
                 </p>
               </div>
             </div>

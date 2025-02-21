@@ -1,12 +1,14 @@
 import React from "react";
-import vladProfile from "../../../resources/images/contentPhotos/vladProfile.webp";
+import { useTheme } from "../../../styles/ThemeContext";
+import vladProfileDark from "../../../resources/images/contentPhotos/vladProfileDark.webp";
+import vladProfileLight from "../../../resources/images/contentPhotos/vladProfileLight.webp";
+import "./ResumePhoto.scss";
 
 const ResumePhoto = () => {
-  return (
-    <div>
-      <img alt="Resume" src={vladProfile} className="vlad-profile-image" />
-    </div>
-  );
+  const { theme } = useTheme();
+  const vladProfile = theme === "dark" ? vladProfileDark : vladProfileLight;
+
+  return <img alt="Resume" src={vladProfile} className="vlad-profile-image" />;
 };
 
 export default ResumePhoto;

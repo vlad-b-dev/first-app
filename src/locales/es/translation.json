@@ -19,11 +19,19 @@
   },
   "resumePage": {
     "pageTitle": "Curriculum",
-    "generalSectionTitle": "General",
     "experienceSectionTitle": "Experiencia",
     "killsSectionTitle": "Skills",
     "strategySectionTitle": "Enfoque y objetivos",
-    "personalSectionTitle": "A nivel personal"
+    "personalSectionTitle": "A nivel personal",
+    "generalSection": {
+      "title": "General",
+      "hiText": "¡Hola y bienvenido!",
+      "thanksText": "Antes de nada, me alegra mucho que estés por aquí",
+      "nameText": "Mi nombre es Vladyslav Boychuk, pero puedes llamarme 'Vlad'",
+      "descriptionP1": "Desarrollador profesional con años de experiencia en la creación de soluciones software para industria 4.0 e ingeniero por vocación en todos los ámbitos.",
+      "descriptionP2": "En el balance está la virtud. Por ello, aunque tengo conocimientos tanto a nivel de backend, como de frontend, prefiero centrarme en este último. De esta forma, puedo complementar mis dos facetas, aparentemente opuestas, para ofrecer soluciones creativas tanto en diseño como en el apartado técnico.",
+      "descriptionP3": "Un buen producto no debe limitarse a funcionar correctamente, sino que lo tiene que hacer de una forma agradable y sencilla para la persona que va a utilizarlo."
+    }
   },
   "thisWebsitePage": {
     "pageTitle": "Este sitio web"
