@@ -26,11 +26,18 @@
     "generalSection": {
       "title": "General",
       "hiText": "Hi, dear visitor!",
-      "thanksText": "First of all, I’m really glad to have you here",
-      "nameText": "My name is Vladyslav Boychuk, simplified 'Vlad'",
+      "thanksText": "First of all, I'm really glad to have you here",
+      "nameText": "My name is Vlad (Vladyslav Boychuk)",
       "descriptionP1": "Professional developer with years of experience crafting software solutions for Industry 4.0 and an engineer at heart, no matter the field.",
       "descriptionP2": "Balance is the key. That's why, even though I have experience in both backend and frontend development, I choose to focus on the latter. This allows me to blend two seemingly opposite skill sets, combining technical expertise with creative design to deliver well-rounded, innovative solutions.",
-      "descriptionP3": "A good product shouldn't just work—it should feel intuitive and enjoyable for the person using it."
+      "descriptionP3": "A good product shouldn't just work—it should feel intuitive and enjoyable for the person using it.",
+      "languages": "Languages",
+      "spanish": "Spanish: \u00A0\u00A0\u00A0\u00A0Native",
+      "russian": "Russian: \u00A0\u00A0\u00A0\u00A0Native",
+      "english": "English: \u00A0\u00A0\u00A0\u00A0\u00A0Fluent",
+      "ukrainian": "Ukrainian: \u00A0\u00A0Low",
+      "contact": "Contact",
+      "location": "Pamplona, Navarre, Spain"
     }
   },
   "thisWebsitePage": {

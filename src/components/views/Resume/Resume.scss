@@ -1,22 +1,63 @@
-.general-data-container {
-  /*  height: 62vh; */
-}
 .general-text-column {
   margin-left: -4vw;
+  text-align: center;
 }
 
 .hi-text {
   font-size: 3vw;
 }
 .thanks-text {
-  font-size: 1.5vw;
+  font-size: 1.2vw;
+  margin-top: -1vh;
 }
-
-.general-text {
-  font-size: 1vw;
+.name-text {
+  margin-top: 6.5vh;
+  font-size: 2vw;
+  text-align: center;
 }
 
 .description-text {
-  margin-top: 2.5vh;
-  text-align: justify;
+  margin-top: 2.4vh;
+  font-size: 0.95vw;
+  text-align: center;
+}
+
+.general-data-column {
+  margin-top: 1vh !important;
+  margin-left: 2.2vw;
+}
+.general-data-list {
+  margin: 0;
+  padding: 0;
+  margin-top: 0.7vh !important;
+  margin-bottom: 0.7vh !important;
+  padding-left: 0.9vw;
+  padding-right: 1vw;
+  list-style: none;
+}
+
+.general-data-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1vw;
+  padding: 0.7vh 0;
+}
+.general-data-list-icon {
+  margin-right: 1vh;
+  margin-bottom: 0.3vh;
+}
+.language-sub-section {
+  margin-bottom: 0.8vh;
+}
+
+.general-data-action-button {
+  background: none;
+  border: none;
+  &:hover {
+    background-color: var(--secondary-background-color);
+    .MuiSvgIcon-root {
+      color: var(--main-color);
+    }
+  }
 }

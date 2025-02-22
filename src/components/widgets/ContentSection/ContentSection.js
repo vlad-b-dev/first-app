@@ -43,7 +43,7 @@ const ContentSection = ({ children, title, startExpanded, minBodyHeight }) => {
               exit={{ opacity: 0, scale: 0 }}
               style={{ minHeight: minBodyHeight }}
             >
-              <div>{children}</div>
+              <div className="row">{children}</div>
             </motion.div>
           )}
         </AnimatePresence>
