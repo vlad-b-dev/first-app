@@ -3,7 +3,7 @@ import ExpandCircleDownRoundedIcon from "@mui/icons-material/ExpandCircleDownRou
 import { Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import "./ContentSection.scss";
-import { expandButton, expandIcon } from "../../../styles/SxGlobalStyles";
+import { expandButton, expandIcon } from "../../../../styles/SxGlobalStyles";
 
 const ContentSection = ({ children, title, startExpanded, minBodyHeight }) => {
   const [expandContent, setExpandContent] = useState(

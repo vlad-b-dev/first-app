@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { ToggleButtonGroup, ToggleButton } from "@mui/material";
-import i18n from "../../../i18n";
-import ukFlag from "../../../resources/images/icons/languageFlags/uk/flag.webp";
-import spainFlag from "../../../resources/images/icons/languageFlags/spain/flag.webp";
+import i18n from "../../../../i18n";
+import ukFlag from "../../../../resources/images/icons/languageFlags/uk/flag.webp";
+import spainFlag from "../../../../resources/images/icons/languageFlags/spain/flag.webp";
 import { useTranslation } from "react-i18next";
 
 import "./LanguageSelect.scss";
-import "./../Preferences/Preferences.scss";
-import { toggleButtonStyles } from "../../../styles/SxGlobalStyles";
+import { toggleButtonStyles } from "../../../../styles/SxGlobalStyles";
 
 const LanguageSelect = () => {
   const { t } = useTranslation();

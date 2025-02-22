@@ -36,10 +36,14 @@ const CopyToClipboardButton = ({ content }) => {
   return (
     <button
       onClick={copyToClipboard}
-      className="general-data-action-button"
+      className="copy-to-clipboard-button"
       aria-label="Copy content to clipboard"
     >
-      <span className={`icon-transition ${iconColor}`}>{icon}</span>
+      <span
+        className={`icon-transition copy-to-clipboard-button-icon ${iconColor}`}
+      >
+        {icon}
+      </span>
     </button>
   );
 };

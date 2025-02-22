@@ -15,7 +15,9 @@
     "pageTitle": "Welcome"
   },
   "mainPage": {
-    "pageTitle": "Main"
+    "pageTitle": "Main",
+    "hiText": "Hi, dear visitor!",
+    "thanksText": "First of all, I'm really glad to have you here"
   },
   "resumePage": {
     "pageTitle": "Resume",
@@ -25,9 +27,7 @@
     "personalSectionTitle": "Deeper",
     "generalSection": {
       "title": "General",
-      "hiText": "Hi, dear visitor!",
-      "thanksText": "First of all, I'm really glad to have you here",
-      "nameText": "My name is Vlad (Vladyslav Boychuk)",
+      "nameText": "Hi! My name is Vladyslav Boychuk (Vlad)",
       "descriptionP1": "Professional developer with years of experience crafting software solutions for Industry 4.0 and an engineer at heart, no matter the field.",
       "descriptionP2": "Balance is the key. That's why, even though I have experience in both backend and frontend development, I choose to focus on the latter. This allows me to blend two seemingly opposite skill sets, combining technical expertise with creative design to deliver well-rounded, innovative solutions.",
       "descriptionP3": "A good product shouldn't just work—it should feel intuitive and enjoyable for the person using it.",

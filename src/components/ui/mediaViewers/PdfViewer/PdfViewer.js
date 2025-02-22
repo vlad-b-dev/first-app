@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import englishResume from "../../../resources/documents/pdfs/resume/englishResume.pdf";
-import spanishResume from "../../../resources/documents/pdfs/resume/spanishResume.pdf";
+import englishResume from "../../../../resources/documents/pdfs/resume/englishResume.pdf";
+import spanishResume from "../../../../resources/documents/pdfs/resume/spanishResume.pdf";
 import ResetIcon from "@mui/icons-material/RotateLeftRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import FileDownloadRoundedIcon from "@mui/icons-material/FileDownloadRounded";
 import ExpandCircleDownRoundedIcon from "@mui/icons-material/ExpandCircleDownRounded";
-import ukFlag from "../../../resources/images/icons/languageFlags/uk/flag.webp";
-import spainFlag from "../../../resources/images/icons/languageFlags/spain/flag.webp";
+import ukFlag from "../../../../resources/images/icons/languageFlags/uk/flag.webp";
+import spainFlag from "../../../../resources/images/icons/languageFlags/spain/flag.webp";
 import { ToggleButtonGroup, ToggleButton, Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import "./PdfViewer.scss";
@@ -26,7 +26,7 @@ import {
   toggleButtonStyles,
   expandButton,
   expandIcon,
-} from "../../../styles/SxGlobalStyles";
+} from "../../../../styles/SxGlobalStyles";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
 

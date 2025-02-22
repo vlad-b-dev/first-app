@@ -1,5 +1,5 @@
 import React from "react";
-import MainPageHeader from "../../../components/widgets/MainPageHeader/MainPageHeader";
+import MainPageHeader from "../../../components/ui/menus/MainPageHeader/MainPageHeader";
 
 import "./ThisWebsite.scss";
 

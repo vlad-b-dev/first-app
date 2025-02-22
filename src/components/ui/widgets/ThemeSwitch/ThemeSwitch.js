@@ -1,10 +1,9 @@
 import React from "react";
 import Switch from "@mui/material/Switch";
 import { useTranslation } from "react-i18next";
-import { useTheme } from "../../../styles/ThemeContext";
+import { useTheme } from "../../../../styles/ThemeContext";
 
 import "./ThemeSwitch.scss";
-import "./../Preferences/Preferences.scss";
 
 const ThemeSwitch = () => {
   const { t } = useTranslation();

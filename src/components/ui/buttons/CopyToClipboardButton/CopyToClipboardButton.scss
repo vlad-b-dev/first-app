@@ -1,0 +1,37 @@
+.copy-to-clipboard-button {
+  font-size: 1.3vw !important;
+
+  background: none;
+  border: none;
+
+  &:hover {
+    background-color: var(--secondary-background-color);
+    .MuiSvgIcon-root {
+      color: var(--main-color);
+    }
+  }
+  .icon-transition {
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  .success {
+    .MuiSvgIcon-root {
+      color: green;
+    }
+    transform: scale(1.2);
+  }
+  .error {
+    .MuiSvgIcon-root {
+      color: red;
+    }
+    transform: scale(1.2);
+  }
+}
+.copy-to-clipboard-button-icon {
+  .MuiSvgIcon-root {
+    font-size: 1.3vw !important;
+    margin-bottom: 0.2vw;
+    margin-right: 0.5vw;
+    margin-left: 0.1vw;
+  }
+}

@@ -1,9 +1,9 @@
 import React from "react";
-import MainPageHeader from "../../../components/widgets/MainPageHeader/MainPageHeader";
-import PdfViewer from "../../../components/widgets/PdfViewer/PdfViewer";
-import ContentSection from "../../../components/widgets/ContentSection/ContentSection";
-import ContentSubSection from "../../../components/widgets/ContentSubSection/ContentSubSection";
-import ResumePhoto from "../../../components/widgets/ResumePhoto/ResumePhoto";
+import MainPageHeader from "../../ui/menus/MainPageHeader/MainPageHeader";
+import PdfViewer from "../../ui/mediaViewers/PdfViewer/PdfViewer";
+import ContentSection from "../../ui/sections/ContentSection/ContentSection";
+import ContentSubSection from "../../ui/sections/ContentSubSection/ContentSubSection";
+import ResumePhoto from "../../../components/ui/mediaViewers/ResumePhoto/ResumePhoto";
 import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import AlternateEmailRoundedIcon from "@mui/icons-material/AlternateEmailRounded";
@@ -15,9 +15,9 @@ import SignalCellularAlt1BarRoundedIcon from "@mui/icons-material/SignalCellular
 import MyLocationRoundedIcon from "@mui/icons-material/MyLocationRounded";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
-import CopyToClipboardButton from "../../../components/widgets/CopyToClipboardButton/CopyToClipboardButton";
+import CopyToClipboardButton from "../../ui/buttons/CopyToClipboardButton/CopyToClipboardButton";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-
+import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import "./Resume.scss";
 
@@ -40,7 +40,7 @@ const Resume = () => {
         title={t("resumePage.generalSection.title")}
         startExpanded={true}
         textColor={"var(--general-resume-text)"}
-        minBodyHeight={"63vh"}
+        minBodyHeight={"62.5vh"}
       >
         <div>
           <div className="row mt-2">
@@ -48,15 +48,11 @@ const Resume = () => {
               <ResumePhoto />
             </div>
             <div className="col-6 general-text-column">
-              <h1 className="hi-text mt-3">
-                {t("resumePage.generalSection.hiText")}
-              </h1>
-              <h4 className="thanks-text">
-                {t("resumePage.generalSection.thanksText")}
-              </h4>
-              <h4 className="name-text">
+              <h1 className="name-text hi-text">
                 {t("resumePage.generalSection.nameText")}
-              </h4>
+              </h1>
+              <br />
+              <br />
               <div className="description-text">
                 <p className="mb-3">
                   {t("resumePage.generalSection.descriptionP1")}
@@ -66,6 +62,11 @@ const Resume = () => {
                 </p>
                 <p>{t("resumePage.generalSection.descriptionP3")}</p>
               </div>
+              <Button>
+                ExpandMoreRoundedIcon
+                {/* import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+                 */}
+              </Button>
             </div>
             <div className="col-3 general-data-column">
               <ContentSubSection
@@ -80,28 +81,28 @@ const Resume = () => {
                       <LanguageRoundedIcon className="general-data-list-icon" />
                       {t("resumePage.generalSection.spanish")}
                     </div>
-                    <SignalCellularAltRoundedIcon />
+                    <SignalCellularAltRoundedIcon className="general-data-list-icon" />
                   </li>
                   <li>
                     <div>
                       <LanguageRoundedIcon className="general-data-list-icon" />
                       {t("resumePage.generalSection.russian")}
                     </div>
-                    <SignalCellularAltRoundedIcon />
+                    <SignalCellularAltRoundedIcon className="general-data-list-icon" />
                   </li>
                   <li>
                     <div>
                       <LanguageRoundedIcon className="general-data-list-icon" />
                       {t("resumePage.generalSection.english")}
                     </div>
-                    <SignalCellularAlt2BarRoundedIcon />
+                    <SignalCellularAlt2BarRoundedIcon className="general-data-list-icon" />
                   </li>
                   <li>
                     <div>
                       <LanguageRoundedIcon className="general-data-list-icon" />
                       {t("resumePage.generalSection.ukrainian")}
                     </div>
-                    <SignalCellularAlt1BarRoundedIcon />
+                    <SignalCellularAlt1BarRoundedIcon className="general-data-list-icon" />
                   </li>
                 </ul>
               </ContentSubSection>
@@ -116,17 +117,25 @@ const Resume = () => {
                       <EmailRoundedIcon className="general-data-list-icon" />
                       vboychuk1122@gmail.com
                     </div>
-                    <CopyToClipboardButton content="vboychuk1122@gmail.com" />
+                    <CopyToClipboardButton
+                      content="vboychuk1122@gmail.com"
+                      iconClassName="general-data-list-icon"
+                      buttonClassName="general-data-action-button"
+                    />
                   </li>
                   <li>
                     <div>
                       <PermPhoneMsgRoundedIcon className="general-data-list-icon" />
                       673399221
                     </div>
-                    <CopyToClipboardButton content="673399221" />
+                    <CopyToClipboardButton
+                      content="673399221"
+                      iconClassName="general-data-list-icon"
+                      buttonClassName="general-data-action-button"
+                    />
                   </li>
                   <li>
-                    <div>
+                    <div className="mb-1">
                       <LinkedInIcon className="general-data-list-icon" />
                       vladyslav-boychuk-developer
                     </div>
@@ -135,7 +144,7 @@ const Resume = () => {
                       className="general-data-action-button"
                       aria-label="Open LinkedIn profile"
                     >
-                      <OpenInNewRoundedIcon />
+                      <OpenInNewRoundedIcon className="general-data-list-icon" />
                     </button>
                   </li>
                   <li>
@@ -148,7 +157,7 @@ const Resume = () => {
                       className="general-data-action-button"
                       aria-label="Open LinkedIn profile"
                     >
-                      <MyLocationRoundedIcon />
+                      <MyLocationRoundedIcon className="general-data-list-icon" />
                     </button>
                   </li>
                 </ul>

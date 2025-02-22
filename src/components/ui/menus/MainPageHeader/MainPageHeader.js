@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import mainWebsiteLogoDark from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.webp";
-import mainWebsiteLogoMinimalDark from "../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoDark.webp";
-import mainWebsiteLogoLight from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
-import mainWebsiteMinimalLogoLight from "../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoLight.webp";
-import HeaderButton from "../../../components/widgets/HeaderButton/HeaderButton";
+import mainWebsiteLogoDark from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.webp";
+import mainWebsiteLogoMinimalDark from "../../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoDark.webp";
+import mainWebsiteLogoLight from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
+import mainWebsiteMinimalLogoLight from "../../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoLight.webp";
+import HeaderButton from "../../buttons/HeaderButton/HeaderButton";
 import { useTranslation } from "react-i18next";
-import Preferences from "../../widgets/Preferences/Preferences";
-import { useTheme } from "../../../styles/ThemeContext";
-import HamburgerButton from "../HamburgerButton/HamburgerButton";
-import SidebarMenu from "../../../components/widgets/SidebarMenu/SidebarMenu";
+import Preferences from "../Preferences/Preferences";
+import { useTheme } from "../../../../styles/ThemeContext";
+import HamburgerButton from "../../buttons/HamburgerButton/HamburgerButton";
+import SidebarMenu from "../SidebarMenu/SidebarMenu";
 import { useNavigate } from "react-router-dom";
 
 import "./MainPageHeader.scss";

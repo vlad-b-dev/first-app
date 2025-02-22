@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import hamburgerIcon from "../../../resources/images/icons/hamburgerButton/hamburgerButtonDark.webp";
-import hamburgerIconHover from "../../../resources/images/icons/hamburgerButton/hamburgerButtonDarkHover.webp";
-import hamburgerIconLight from "../../../resources/images/icons/hamburgerButton/hamburgerButtonLight.webp";
-import hamburgerIconHoverLight from "../../../resources/images/icons/hamburgerButton/hamburgerButtonLightHover.webp";
+import hamburgerIcon from "../../../../resources/images/icons/hamburgerButton/hamburgerButtonDark.webp";
+import hamburgerIconHover from "../../../../resources/images/icons/hamburgerButton/hamburgerButtonDarkHover.webp";
+import hamburgerIconLight from "../../../../resources/images/icons/hamburgerButton/hamburgerButtonLight.webp";
+import hamburgerIconHoverLight from "../../../../resources/images/icons/hamburgerButton/hamburgerButtonLightHover.webp";
 import { Button } from "@mui/material";
-import { useTheme } from "../../../styles/ThemeContext";
+import { useTheme } from "../../../../styles/ThemeContext";
 
 import "./HamburgerButton.scss";
 

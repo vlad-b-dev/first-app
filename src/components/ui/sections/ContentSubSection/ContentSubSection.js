@@ -7,13 +7,11 @@ const ContentSubSection = ({
   minBodyHeight,
   showHeader,
   icon: Icon,
-  className = "", // New prop for additional class names
+  className = "",
 }) => {
   return (
     <div className="row">
       <div className={`content-sub-section ${className}`}>
-        {" "}
-        {/* Apply dynamic class */}
         {showHeader && (
           <div className="row content-sub-section-header">
             <div className="d-flex">

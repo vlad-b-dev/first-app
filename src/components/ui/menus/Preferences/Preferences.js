@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
-import preferencesIcon from "../../../resources/images/icons/preferencesGear/preferencesGear.webp";
-import preferencesIconHover from "../../../resources/images/icons/preferencesGear/preferencesGearHover.webp";
-import preferencesIconLight from "../../../resources/images/icons/preferencesGear/preferencesGearLight.webp";
-import preferencesIconHoverLight from "../../../resources/images/icons/preferencesGear/preferencesGearHoverLight.webp";
-import LanguageSelect from "../LanguageSelect/LanguageSelect";
+import ThemeSwitch from "../../widgets/ThemeSwitch/ThemeSwitch";
+import preferencesIcon from "../../../../resources/images/icons/preferencesGear/preferencesGear.webp";
+import preferencesIconHover from "../../../../resources/images/icons/preferencesGear/preferencesGearHover.webp";
+import preferencesIconLight from "../../../../resources/images/icons/preferencesGear/preferencesGearLight.webp";
+import preferencesIconHoverLight from "../../../../resources/images/icons/preferencesGear/preferencesGearHoverLight.webp";
+import LanguageSelect from "../../widgets/LanguageSelect/LanguageSelect";
 import { Button } from "@mui/material";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTheme } from "../../../styles/ThemeContext";
+import { useTheme } from "../../../../styles/ThemeContext";
 
 import "./Preferences.scss";
 

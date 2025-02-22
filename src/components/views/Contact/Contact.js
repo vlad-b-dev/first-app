@@ -1,5 +1,5 @@
 import React from "react";
-import MainPageHeader from "../../widgets/MainPageHeader/MainPageHeader";
+import MainPageHeader from "../../ui/menus/MainPageHeader/MainPageHeader";
 
 import "./Contact.scss";
 

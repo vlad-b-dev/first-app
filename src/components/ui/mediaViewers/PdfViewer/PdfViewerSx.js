@@ -1,4 +1,4 @@
-import { noHoverButtonStyles } from "../../../styles/SxGlobalStyles";
+import { noHoverButtonStyles } from "../../../../styles/SxGlobalStyles";
 
 export const toggleButtonGroup = { marginTop: "0.2vh" };
 

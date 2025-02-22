@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useCallback } from "react";
-import mainWebsiteLogoDark from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.webp";
-import mainWebsiteLogoLight from "../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
+import mainWebsiteLogoDark from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.webp";
+import mainWebsiteLogoLight from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
-import HeaderButton from "../HeaderButton/HeaderButton";
-import { useTheme } from "../../../styles/ThemeContext";
+import HeaderButton from "../../buttons/HeaderButton/HeaderButton";
+import { useTheme } from "../../../../styles/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
 import "./SidebarMenu.scss";
