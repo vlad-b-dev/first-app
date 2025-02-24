@@ -17,6 +17,9 @@
 .content-sub-section-icon {
   font-size: 1.5vw !important;
   margin-right: 0.3vw;
+  &:hover {
+    color: var(--main-text-color) !important;
+  }
 }
 .content-sub-section-title {
   display: flex;

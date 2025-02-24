@@ -1,0 +1,55 @@
+.continue-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--secondary-background-color);
+    transform: scale(1.1);
+
+    .MuiSvgIcon-root {
+      color: var(--main-color);
+      animation: none;
+
+      transform: scale(1.1);
+    }
+  }
+}
+
+.icon-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 20vw !important;
+  margin: -4.2vh;
+  font-size: 5vw !important;
+  display: block;
+  color: var(--main-text-color);
+  animation: blink 3s infinite ease-in-out;
+  &:hover {
+    color: var(--main-color);
+  }
+}
+
+.icon-stack .icon:nth-child(1) {
+  animation-delay: 20s;
+}
+.icon-stack .icon:nth-child(2) {
+  animation-delay: 21.5s;
+}
+
+@keyframes blink {
+  0% {
+    color: var(--main-text-color);
+  }
+  50% {
+    color: var(--main-color);
+  }
+  100% {
+    color: var(--main-text-color);
+  }
+}

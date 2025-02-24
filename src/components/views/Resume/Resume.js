@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import MainPageHeader from "../../ui/menus/MainPageHeader/MainPageHeader";
 import PdfViewer from "../../ui/mediaViewers/PdfViewer/PdfViewer";
 import ContentSection from "../../ui/sections/ContentSection/ContentSection";
@@ -17,12 +17,23 @@ import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
 import CopyToClipboardButton from "../../ui/buttons/CopyToClipboardButton/CopyToClipboardButton";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import { Button } from "@mui/material";
+import Tooltip from "@mui/material/Tooltip";
+import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
+import ContinueButton from "../../ui/buttons/ContinueButton/ContinueButton";
 import { useTranslation } from "react-i18next";
 import "./Resume.scss";
 
 const Resume = () => {
   const { t } = useTranslation();
+
+  const experienceSectionRef = useRef(null);
+
+  const handleContinueClick = () => {
+    if (experienceSectionRef.current) {
+      experienceSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const openLinkedInProfile = () => {
     window.open(
       "https://www.linkedin.com/in/vladyslav-boychuk-developer",
@@ -40,7 +51,7 @@ const Resume = () => {
         title={t("resumePage.generalSection.title")}
         startExpanded={true}
         textColor={"var(--general-resume-text)"}
-        minBodyHeight={"62.5vh"}
+        minBodyHeight={"71vh"}
       >
         <div>
           <div className="row mt-2">
@@ -52,7 +63,6 @@ const Resume = () => {
                 {t("resumePage.generalSection.nameText")}
               </h1>
               <br />
-              <br />
               <div className="description-text">
                 <p className="mb-3">
                   {t("resumePage.generalSection.descriptionP1")}
@@ -62,11 +72,9 @@ const Resume = () => {
                 </p>
                 <p>{t("resumePage.generalSection.descriptionP3")}</p>
               </div>
-              <Button>
-                ExpandMoreRoundedIcon
-                {/* import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-                 */}
-              </Button>
+              <div className="continue-button-container">
+                <ContinueButton onClick={handleContinueClick} />
+              </div>
             </div>
             <div className="col-3 general-data-column">
               <ContentSubSection
@@ -81,7 +89,7 @@ const Resume = () => {
                       <LanguageRoundedIcon className="general-data-list-icon" />
                       {t("resumePage.generalSection.spanish")}
                     </div>
-                    <SignalCellularAltRoundedIcon className="general-data-list-icon" />
+                    <SignalCellularAltRoundedIcon className="general-data-list-icon " />
                   </li>
                   <li>
                     <div>
@@ -92,7 +100,13 @@ const Resume = () => {
                   </li>
                   <li>
                     <div>
-                      <LanguageRoundedIcon className="general-data-list-icon" />
+                      <Tooltip
+                        title={t("resumePage.generalSection.englishTooltip")}
+                        placement="left"
+                        arrow
+                      >
+                        <InfoRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
+                      </Tooltip>
                       {t("resumePage.generalSection.english")}
                     </div>
                     <SignalCellularAlt2BarRoundedIcon className="general-data-list-icon" />
@@ -117,22 +131,14 @@ const Resume = () => {
                       <EmailRoundedIcon className="general-data-list-icon" />
                       vboychuk1122@gmail.com
                     </div>
-                    <CopyToClipboardButton
-                      content="vboychuk1122@gmail.com"
-                      iconClassName="general-data-list-icon"
-                      buttonClassName="general-data-action-button"
-                    />
+                    <CopyToClipboardButton content="vboychuk1122@gmail.com" />
                   </li>
                   <li>
                     <div>
                       <PermPhoneMsgRoundedIcon className="general-data-list-icon" />
                       673399221
                     </div>
-                    <CopyToClipboardButton
-                      content="673399221"
-                      iconClassName="general-data-list-icon"
-                      buttonClassName="general-data-action-button"
-                    />
+                    <CopyToClipboardButton content="673399221" />
                   </li>
                   <li>
                     <div className="mb-1">
@@ -144,7 +150,7 @@ const Resume = () => {
                       className="general-data-action-button"
                       aria-label="Open LinkedIn profile"
                     >
-                      <OpenInNewRoundedIcon className="general-data-list-icon" />
+                      <OpenInNewRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
                     </button>
                   </li>
                   <li>
@@ -157,7 +163,7 @@ const Resume = () => {
                       className="general-data-action-button"
                       aria-label="Open LinkedIn profile"
                     >
-                      <MyLocationRoundedIcon className="general-data-list-icon" />
+                      <MyLocationRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
                     </button>
                   </li>
                 </ul>
@@ -166,12 +172,7 @@ const Resume = () => {
           </div>
         </div>
       </ContentSection>
-      <div className="mt-2 mb-2">
-        <ContentSection title={t("resumePage.experienceSectionTitle")}>
-          UNIVERSIDAD - ZEO - WEB (DESCRIBIR CADA PERIODO EN DETALLE) Reporting
-          Big data amounts Design Outdatet library Own testing projects
-        </ContentSection>
-      </div>
+
       <div className="mt-2 mb-2">
         <ContentSection title={t("resumePage.skillsSectionTitle")}>
           <div>
@@ -226,8 +227,18 @@ const Resume = () => {
         </ContentSection>
       </div>
       <div className="mt-2 mb-2">
+        <ContentSection
+          minBodyHeight={"100vh"}
+          startExpanded={true}
+          ref={experienceSectionRef}
+          title={t("resumePage.experienceSectionTitle")}
+        >
+          UNIVERSIDAD - ZEO - WEB (DESCRIBIR CADA PERIODO EN DETALLE) Reporting
+          Big data amounts Design Outdatet library Own testing projects
+        </ContentSection>
+      </div>
+      <div className="mt-2 mb-2">
         <ContentSection title={t("resumePage.strategySectionTitle")}>
-          {" "}
           WHAT I AM - FUTURE PLANS - WHY IM LEAVING - WHAT I CAN APPORT -
           CONDITIONS Facts not promisses Productivity over formality - frontend
           - ai - design
@@ -235,7 +246,6 @@ const Resume = () => {
       </div>
       <div className="mt-2 mb-2">
         <ContentSection title={t("resumePage.personalSectionTitle")}>
-          {" "}
           RANDOM PERSONAL INFO
         </ContentSection>
       </div>

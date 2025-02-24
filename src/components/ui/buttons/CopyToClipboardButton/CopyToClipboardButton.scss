@@ -1,15 +1,24 @@
 .copy-to-clipboard-button {
   font-size: 1.3vw !important;
-
   background: none;
   border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  .MuiSvgIcon-root {
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
 
   &:hover {
     background-color: var(--secondary-background-color);
+    transform: scale(1.2);
+
     .MuiSvgIcon-root {
       color: var(--main-color);
+      transform: scale(1.2);
     }
   }
+
   .icon-transition {
     transition: color 0.3s ease, transform 0.3s ease;
   }
@@ -27,11 +36,10 @@
     transform: scale(1.2);
   }
 }
+
 .copy-to-clipboard-button-icon {
   .MuiSvgIcon-root {
     font-size: 1.3vw !important;
-    margin-bottom: 0.2vw;
-    margin-right: 0.5vw;
-    margin-left: 0.1vw;
+    margin: 0.2vw 0.5vw 0.2vw 0.1vw;
   }
 }

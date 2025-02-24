@@ -1,9 +1,12 @@
 .vlad-profile-image {
   width: 20.2vw;
   height: auto;
-  border-radius: 0rem;
+  border-radius: 0;
   padding: 0 !important;
-  margin: 0 !important;
-  margin-left: 0.3vw !important;
-  margin-bottom: -6vh !important;
+  margin: 1vh 0.3vw -6vh 0 !important;
+
+  transition: transform 0.6s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
