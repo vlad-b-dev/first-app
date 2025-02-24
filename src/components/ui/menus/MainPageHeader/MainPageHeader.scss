@@ -1,4 +1,8 @@
 .main-page-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000; // Ensures it stays above other content
+
   color: var(--main-text-color);
   background-color: var(--secondary-background-color);
   align-items: center;
@@ -50,7 +54,6 @@
     }
   }
 }
-
 .main-page-header-logo-button {
   all: unset;
   display: inline-block;
