@@ -33,27 +33,53 @@ const MainPageHeader = () => {
   useEffect(() => {
     const scrollableElement = document.querySelector(".page-background");
     let lastScrollY = 0;
+    let ticking = false;
 
     if (!scrollableElement) return;
 
     const handleScroll = () => {
-      const currentScrollY = scrollableElement.scrollTop;
-      controls.start({ y: currentScrollY > lastScrollY ? "-100%" : "0%" });
-      lastScrollY = currentScrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollableHeight =
+            scrollableElement.scrollHeight - scrollableElement.clientHeight;
+          const currentScrollY = scrollableElement.scrollTop;
+
+          const scrollPercentage = (currentScrollY / scrollableHeight) * 100;
+
+          const threshold = 15;
+
+          if (scrollPercentage >= threshold) {
+            if (currentScrollY > lastScrollY) {
+              controls.start({
+                y: "-200%",
+                transition: { duration: 1, ease: "easeOut" },
+              });
+            } else {
+              controls.start({
+                y: "0%",
+                transition: { duration: 0.3, ease: "easeOut" },
+              });
+            }
+          }
+
+          lastScrollY = currentScrollY;
+          ticking = false;
+        });
+
+        ticking = true;
+      }
     };
 
     scrollableElement.addEventListener("scroll", handleScroll);
     return () => scrollableElement.removeEventListener("scroll", handleScroll);
   }, [controls]);
 
-  const logo =
-    theme === "dark"
-      ? isMobile
-        ? mainWebsiteLogoMinimalDark
-        : mainWebsiteLogoDark
-      : isMobile
-      ? mainWebsiteMinimalLogoLight
-      : mainWebsiteLogoLight;
+  let logo;
+  if (theme === "dark") {
+    logo = isMobile ? mainWebsiteLogoMinimalDark : mainWebsiteLogoDark;
+  } else {
+    logo = isMobile ? mainWebsiteMinimalLogoLight : mainWebsiteLogoLight;
+  }
 
   const handleNavigationClick = (route) => navigate(route);
 
