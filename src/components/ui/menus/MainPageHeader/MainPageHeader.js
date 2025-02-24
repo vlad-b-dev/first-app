@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useAnimation, motion } from "framer-motion";
 import mainWebsiteLogoDark from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.webp";
 import mainWebsiteLogoMinimalDark from "../../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoDark.webp";
 import mainWebsiteLogoLight from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
@@ -10,57 +11,63 @@ import { useTheme } from "../../../../styles/ThemeContext";
 import HamburgerButton from "../../buttons/HamburgerButton/HamburgerButton";
 import SidebarMenu from "../SidebarMenu/SidebarMenu";
 import { useNavigate } from "react-router-dom";
-
 import "./MainPageHeader.scss";
 
 const MainPageHeader = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
   const { theme } = useTheme();
   const [showSidebarMenu, setShowSidebarMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+  const controls = useAnimation();
 
-  const toggleDropdown = () => {
-    setShowSidebarMenu((prevState) => !prevState);
-  };
-
-  const handleSidebarClose = () => {
-    setShowSidebarMenu(false);
-  };
+  const toggleDropdown = () => setShowSidebarMenu((prevState) => !prevState);
+  const handleSidebarClose = () => setShowSidebarMenu(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 767);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
     window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  let logo;
-  if (theme === "dark" && !isMobile) {
-    logo = mainWebsiteLogoDark;
-  } else if (theme === "dark" && isMobile) {
-    logo = mainWebsiteLogoMinimalDark;
-  } else if (theme === "light" && !isMobile) {
-    logo = mainWebsiteLogoLight;
-  } else if (theme === "light" && isMobile) {
-    logo = mainWebsiteMinimalLogoLight;
-  }
+  useEffect(() => {
+    const scrollableElement = document.querySelector(".page-background");
+    let lastScrollY = 0;
 
-  const handleNavigationClick = (route) => {
-    navigate(route);
-  };
+    if (!scrollableElement) return;
+
+    const handleScroll = () => {
+      const currentScrollY = scrollableElement.scrollTop;
+      controls.start({ y: currentScrollY > lastScrollY ? "-100%" : "0%" });
+      lastScrollY = currentScrollY;
+    };
+
+    scrollableElement.addEventListener("scroll", handleScroll);
+    return () => scrollableElement.removeEventListener("scroll", handleScroll);
+  }, [controls]);
+
+  const logo =
+    theme === "dark"
+      ? isMobile
+        ? mainWebsiteLogoMinimalDark
+        : mainWebsiteLogoDark
+      : isMobile
+      ? mainWebsiteMinimalLogoLight
+      : mainWebsiteLogoLight;
+
+  const handleNavigationClick = (route) => navigate(route);
 
   return (
-    <div className="main-page-header">
+    <motion.div
+      className="main-page-header"
+      animate={controls}
+      initial={{ y: "0%" }}
+      transition={{ type: "tween", duration: 0.3 }}
+    >
       <div className="row m-0 mb-1 align-items-center">
         <div className="col d-flex d-md-none justify-content-start hamburger-button">
           <HamburgerButton onClick={toggleDropdown} />
         </div>
-
         <div className="col d-flex justify-content-center">
           <button
             className="main-page-header-logo-button"
@@ -69,7 +76,6 @@ const MainPageHeader = () => {
             <img src={logo} className="main-page-header-logo" alt="Logo" />
           </button>
         </div>
-
         <div className="col d-none d-md-flex align-items-center justify-content-center">
           <HeaderButton
             label={t("headerButtons.resume")}
@@ -88,7 +94,6 @@ const MainPageHeader = () => {
             onClick={() => handleNavigationClick("/design")}
           />
         </div>
-
         <div className="col d-none d-md-flex align-items-center justify-content-center">
           <HeaderButton
             label={t("headerButtons.contact")}
@@ -101,7 +106,6 @@ const MainPageHeader = () => {
             onClick={() => handleNavigationClick("/playground")}
           />
         </div>
-
         <div className="col d-flex justify-content-end">
           <Preferences />
         </div>
@@ -110,7 +114,7 @@ const MainPageHeader = () => {
         showSidebarMenu={showSidebarMenu}
         onClose={handleSidebarClose}
       />
-    </div>
+    </motion.div>
   );
 };
 
