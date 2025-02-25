@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
+import PropTypes from "prop-types";
 import { Document, Page, pdfjs } from "react-pdf";
 import englishResume from "../../../../resources/documents/pdfs/resume/englishResume.pdf";
 import spanishResume from "../../../../resources/documents/pdfs/resume/spanishResume.pdf";
@@ -30,7 +31,7 @@ import {
 
 pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
 
-const PdfViewer = () => {
+const PdfViewer = forwardRef(({ className, ...props }, ref) => {
   const [numPages, setNumPages] = useState(null);
   const [scale, setScale] = useState(1);
   const [expandPdf, setExpandPdf] = useState(false);
@@ -61,120 +62,125 @@ const PdfViewer = () => {
   }, [isMobile]);
 
   return (
-    <div className="container pdf-viewer">
-      <div className="row pdf-viewer-header">
-        <div className="col-3 d-flex">
-          <Button onClick={clickExpandPdf} sx={expandButton(isMobile)}>
-            <motion.div
-              animate={{ rotate: expandPdf ? 540 : 0 }}
-              transition={{ type: "spring", stiffness: 100, damping: 5 }}
-            >
-              <ExpandCircleDownRoundedIcon sx={expandIcon(isMobile)} />
-            </motion.div>
-          </Button>
-          <div className="resume-title">PDF</div>
-          <ToggleButtonGroup
-            sx={toggleButtonGroup}
-            exclusive
-            value={language}
-            onChange={handleLanguageChange}
-          >
-            <ToggleButton
-              value="en"
-              sx={{
-                ...toggleButtonStyles,
-                ...toggleButtonStylesSize(isMobile),
-              }}
-            >
-              <img src={ukFlag} className="flag-icon" alt="English" />
-            </ToggleButton>
-            <ToggleButton
-              value="es"
-              sx={{
-                ...toggleButtonStyles,
-                ...toggleButtonStylesSize(isMobile),
-              }}
-            >
-              <img src={spainFlag} className="flag-icon" alt="Spanish" />
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </div>
-        <div className="col-6 d-flex justify-content-center mt-2">
-          <AnimatePresence>
-            {expandPdf && (
+    <div className={`row ${className || ""}`} ref={ref}>
+      <div className="container pdf-viewer">
+        <div className="row pdf-viewer-header">
+          <div className="col-3 d-flex">
+            <Button onClick={clickExpandPdf} sx={expandButton(isMobile)}>
               <motion.div
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
+                animate={{ rotate: expandPdf ? 540 : 0 }}
+                transition={{ type: "spring", stiffness: 100, damping: 5 }}
               >
-                <Button onClick={zoomOut} sx={zoomOutButton(isMobile)}>
-                  <RemoveRoundedIcon sx={zoomIcon(isMobile)} />
-                </Button>
-                {!isMobile && (
-                  <span className="scale-indicator">{scale.toFixed(1)}x</span>
-                )}
-                <Button onClick={zoomIn} sx={zoomInButton(isMobile)}>
-                  <AddRoundedIcon sx={zoomIcon(isMobile)} />
-                </Button>
-                <Button onClick={resetScale} sx={resetButton(isMobile)}>
-                  <ResetIcon />
-                </Button>
+                <ExpandCircleDownRoundedIcon sx={expandIcon(isMobile)} />
               </motion.div>
+            </Button>
+            <div className="resume-title">PDF</div>
+            <ToggleButtonGroup
+              sx={toggleButtonGroup}
+              exclusive
+              value={language}
+              onChange={handleLanguageChange}
+            >
+              <ToggleButton
+                value="en"
+                sx={{
+                  ...toggleButtonStyles,
+                  ...toggleButtonStylesSize(isMobile),
+                }}
+              >
+                <img src={ukFlag} className="flag-icon" alt="English" />
+              </ToggleButton>
+              <ToggleButton
+                value="es"
+                sx={{
+                  ...toggleButtonStyles,
+                  ...toggleButtonStylesSize(isMobile),
+                }}
+              >
+                <img src={spainFlag} className="flag-icon" alt="Spanish" />
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </div>
+          <div className="col-6 d-flex justify-content-center mt-2">
+            <AnimatePresence>
+              {expandPdf && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                >
+                  <Button onClick={zoomOut} sx={zoomOutButton(isMobile)}>
+                    <RemoveRoundedIcon sx={zoomIcon(isMobile)} />
+                  </Button>
+                  {!isMobile && (
+                    <span className="scale-indicator">{scale.toFixed(1)}x</span>
+                  )}
+                  <Button onClick={zoomIn} sx={zoomInButton(isMobile)}>
+                    <AddRoundedIcon sx={zoomIcon(isMobile)} />
+                  </Button>
+                  <Button onClick={resetScale} sx={resetButton(isMobile)}>
+                    <ResetIcon />
+                  </Button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <div className="col-3 d-flex justify-content-end">
+            {!isMobile && (
+              <Button
+                href={resumeFile}
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={actionButton(isMobile)}
+              >
+                <OpenInNewRoundedIcon />
+              </Button>
             )}
-          </AnimatePresence>
-        </div>
-        <div className="col-3 d-flex justify-content-end">
-          {!isMobile && (
             <Button
               href={resumeFile}
-              target="_blank"
-              rel="noopener noreferrer"
+              download={`Resume_${language}.pdf`}
               sx={actionButton(isMobile)}
             >
-              <OpenInNewRoundedIcon />
+              <FileDownloadRoundedIcon />
             </Button>
-          )}
-          <Button
-            href={resumeFile}
-            download={`Resume_${language}.pdf`}
-            sx={actionButton(isMobile)}
-          >
-            <FileDownloadRoundedIcon />
-          </Button>
+          </div>
         </div>
-      </div>
-      <AnimatePresence>
-        {expandPdf && (
-          <motion.div
-            initial={{ height: 0, opacity: 0, scaleY: 0.8 }}
-            animate={{ height: "auto", opacity: 1, scaleY: 1 }}
-            exit={{ height: 0, opacity: 0, scaleY: 0.8 }}
-          >
-            <div className="row justify-content-center">
-              <div className="col-md-10 d-flex justify-content-center">
-                <div className="resume-container">
-                  <Document
-                    file={resumeFile}
-                    onLoadSuccess={onDocumentLoadSuccess}
-                  >
-                    {Array.from(new Array(numPages), (el, index) => (
-                      <Page
-                        key={`page_${index + 1}`}
-                        pageNumber={index + 1}
-                        renderTextLayer={false}
-                        renderAnnotationLayer={false}
-                        scale={scale}
-                      />
-                    ))}
-                  </Document>
+        <AnimatePresence>
+          {expandPdf && (
+            <motion.div
+              initial={{ height: 0, opacity: 0, scaleY: 0.8 }}
+              animate={{ height: "auto", opacity: 1, scaleY: 1 }}
+              exit={{ height: 0, opacity: 0, scaleY: 0.8 }}
+            >
+              <div className="row justify-content-center">
+                <div className="col-md-10 d-flex justify-content-center">
+                  <div className="resume-container">
+                    <Document
+                      file={resumeFile}
+                      onLoadSuccess={onDocumentLoadSuccess}
+                    >
+                      {Array.from(new Array(numPages), (el, index) => (
+                        <Page
+                          key={`page_${index + 1}`}
+                          pageNumber={index + 1}
+                          renderTextLayer={false}
+                          renderAnnotationLayer={false}
+                          scale={scale}
+                        />
+                      ))}
+                    </Document>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
+});
+PdfViewer.propTypes = {
+  className: PropTypes.string,
 };
 
 export default PdfViewer;

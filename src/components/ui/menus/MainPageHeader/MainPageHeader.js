@@ -52,7 +52,7 @@ const MainPageHeader = () => {
             if (currentScrollY > lastScrollY) {
               controls.start({
                 y: "-200%",
-                transition: { duration: 1, ease: "easeOut" },
+                transition: { duration: 0.5, ease: "easeOut" },
               });
             } else {
               controls.start({

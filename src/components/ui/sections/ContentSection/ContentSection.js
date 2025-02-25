@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { expandButton, expandIcon } from "../../../../styles/SxGlobalStyles";
 
 const ContentSection = forwardRef(
-  ({ children, title, startExpanded, minBodyHeight }, ref) => {
+  ({ children, title, startExpanded, minBodyHeight, className }, ref) => {
     const [expandContent, setExpandContent] = useState(startExpanded || false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
@@ -20,7 +20,7 @@ const ContentSection = forwardRef(
     }, []);
 
     return (
-      <div className="row" ref={ref}>
+      <div className={`row ${className || ""}`} ref={ref}>
         <div className="content-section">
           <div className="row content-section-header">
             <div className="d-flex">
@@ -52,11 +52,13 @@ const ContentSection = forwardRef(
     );
   }
 );
+
 ContentSection.propTypes = {
   children: PropTypes.node,
   title: PropTypes.string.isRequired,
   startExpanded: PropTypes.bool,
   minBodyHeight: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default ContentSection;
