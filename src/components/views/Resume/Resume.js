@@ -26,11 +26,11 @@ import "./Resume.scss";
 const Resume = () => {
   const { t } = useTranslation();
 
-  const experienceSectionRef = useRef(null);
+  const pdfViewerRef = useRef(null);
 
   const handleContinueClick = () => {
-    if (experienceSectionRef.current) {
-      experienceSectionRef.current.scrollIntoView({ behavior: "smooth" });
+    if (pdfViewerRef.current) {
+      pdfViewerRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -172,7 +172,20 @@ const Resume = () => {
           </div>
         </div>
       </ContentSection>
+      {/*   <div ref={pdfViewerRef} className="row"> */}
+      <PdfViewer />
+      {/* </div> */}
 
+      <div className="mt-2 mb-2">
+        <ContentSection
+          minBodyHeight={"100vh"}
+          startExpanded={true}
+          title={t("resumePage.experienceSectionTitle")}
+        >
+          UNIVERSIDAD - ZEO - WEB (DESCRIBIR CADA PERIODO EN DETALLE) Reporting
+          Big data amounts Design Outdatet library Own testing projects
+        </ContentSection>
+      </div>
       <div className="mt-2 mb-2">
         <ContentSection title={t("resumePage.skillsSectionTitle")}>
           <div>
@@ -227,17 +240,6 @@ const Resume = () => {
         </ContentSection>
       </div>
       <div className="mt-2 mb-2">
-        <ContentSection
-          minBodyHeight={"100vh"}
-          startExpanded={true}
-          ref={experienceSectionRef}
-          title={t("resumePage.experienceSectionTitle")}
-        >
-          UNIVERSIDAD - ZEO - WEB (DESCRIBIR CADA PERIODO EN DETALLE) Reporting
-          Big data amounts Design Outdatet library Own testing projects
-        </ContentSection>
-      </div>
-      <div className="mt-2 mb-2">
         <ContentSection title={t("resumePage.strategySectionTitle")}>
           WHAT I AM - FUTURE PLANS - WHY IM LEAVING - WHAT I CAN APPORT -
           CONDITIONS Facts not promisses Productivity over formality - frontend
@@ -248,9 +250,6 @@ const Resume = () => {
         <ContentSection title={t("resumePage.personalSectionTitle")}>
           RANDOM PERSONAL INFO
         </ContentSection>
-      </div>
-      <div className="row">
-        <PdfViewer />
       </div>
     </div>
   );

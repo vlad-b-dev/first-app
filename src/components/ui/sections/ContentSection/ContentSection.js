@@ -3,13 +3,12 @@ import ExpandCircleDownRoundedIcon from "@mui/icons-material/ExpandCircleDownRou
 import { Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import "./ContentSection.scss";
+import PropTypes from "prop-types";
 import { expandButton, expandIcon } from "../../../../styles/SxGlobalStyles";
 
 const ContentSection = forwardRef(
   ({ children, title, startExpanded, minBodyHeight }, ref) => {
-    const [expandContent, setExpandContent] = useState(
-      startExpanded ? startExpanded : false
-    );
+    const [expandContent, setExpandContent] = useState(startExpanded || false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
     const clickExpandContent = () => setExpandContent((prev) => !prev);
@@ -53,5 +52,11 @@ const ContentSection = forwardRef(
     );
   }
 );
+ContentSection.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string.isRequired,
+  startExpanded: PropTypes.bool,
+  minBodyHeight: PropTypes.string,
+};
 
 export default ContentSection;
