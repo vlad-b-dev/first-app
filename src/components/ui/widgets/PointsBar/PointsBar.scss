@@ -1,0 +1,29 @@
+.points-bar {
+  position: relative;
+  // You can adjust padding or margin as needed
+  padding: 5px;
+
+  &.horizontal {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &.vertical {
+    width: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.point {
+  width: 20px;
+  height: 20px;
+  background-color: #fff; // Circle color; you can also pass this as a prop if needed
+  border-radius: 50%;
+}

@@ -1,0 +1,15 @@
+.level-indicator {
+  display: flex;
+  gap: 5px;
+}
+
+.bar {
+  width: 20px;
+  height: 10px;
+  background-color: #333; // dark color for off state
+  transition: background-color 0.3s;
+}
+
+.on {
+  background-color: purple; // purple for on state
+}

@@ -20,7 +20,9 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Tooltip from "@mui/material/Tooltip";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import ContinueButton from "../../ui/buttons/ContinueButton/ContinueButton";
+import LevelIndicator from "../../ui/widgets/LevelIndicator/LevelIndicator";
 import { useTranslation } from "react-i18next";
+import RwLogo from "../../ui/mediaViewers/RwLogo/RwLogo";
 import "./Resume.scss";
 
 const Resume = () => {
@@ -172,81 +174,82 @@ const Resume = () => {
         </div>
       </ContentSection>
       <PdfViewer ref={pdfViewerRef} className="mb-1" />
-      <div className="mt-2 mb-2">
-        <ContentSection
-          minBodyHeight={"100vh"}
-          startExpanded={true}
-          title={t("resumePage.experienceSectionTitle")}
-        >
-          UNIVERSIDAD - ZEO - WEB (DESCRIBIR CADA PERIODO EN DETALLE) Reporting
-          Big data amounts Design Outdatet library Own testing projects
-        </ContentSection>
-      </div>
-      <div className="mt-2 mb-2">
-        <ContentSection title={t("resumePage.skillsSectionTitle")}>
+      <ContentSection
+        minBodyHeight={"71vh"}
+        startExpanded={true}
+        title={t("resumePage.experienceSectionTitle")}
+      >
+        <div className="row center-content">
+          <div className="col-4  center-content">UNIVERSIDAD</div>
+          <div className="col-4 center-content">
+            ZEO Reporting Big data amounts Design Outdatet library Own testing
+            projects
+            <RwLogo />
+            {/*  <img src={rwLogo} alt="rwLogo" /> */}
+          </div>
+          <div className="col-4 center-content">OWN PROJECT</div>
+        </div>
+      </ContentSection>
+      <ContentSection title={t("resumePage.skillsSectionTitle")}>
+        <LevelIndicator level={3} />
+        <div>
+          <h1>SOFT SKILLS NOT SOFTWARE XD</h1>
+          Structure of all app Structure of a ti enterprise Colaboration
+          Language
+        </div>
+        <div>
+          <h1>HARD SKILLS</h1>
           <div>
-            <h1>SOFT SKILLS NOT SOFTWARE XD</h1>
-            Structure of all app Structure of a ti enterprise Colaboration
-            Language
+            <h2>FRONTEND</h2>
+            Angular React HTML Bootstrap classes Flex / Grid / ROW / Table
+            ThreeJs JS TS CSS SCSS SX Framer motion Animations Responsive layout
+            Cookies i18N primeng mui
           </div>
           <div>
-            <h1>HARD SKILLS</h1>
-            <div>
-              <h2>FRONTEND</h2>
-              Angular React HTML Bootstrap classes Flex / Grid / ROW / Table
-              ThreeJs JS TS CSS SCSS SX Framer motion Animations Responsive
-              layout Cookies i18N primeng mui
-            </div>
-            <div>
-              <h2>DESIGN</h2>
-              Mock up Designs Canva Inkscape Gimp AI Colour palitres UX / UI
-              Roles / user profiles , photo director
-            </div>
-
-            <div>
-              <h2>CORPORATIVE</h2>
-              Kanban Scrum Sprints Pull requests Jira - Factorial Teams Keepass
-              Teams Road map
-            </div>
-            <div>
-              <h2>GIT</h2>
-              Sourcetree GitCracken Merge Rebase PullReq Branch Module Project
-            </div>
-            <div>
-              <h2>TOOLS</h2>
-              Debugging Intellij Visual studio code Extensions Prettier
-              Supermaven Copilot ChatGpt
-            </div>
-            <div>
-              <h2>CODING</h2>
-              Data structures Clean code and testing Naming Algorithms
-              Efficience O(n) O(n*n) O(n*2) Refactoring code Documentation Big
-              Amounts of complex data
-            </div>
-
-            <div>
-              <h2>BACKEND</h2>
-              Java Spring boot
-            </div>
-            <div>
-              <h2>DATABASE</h2>
-              SQL PgAdmin Dbeaver PosgresSq
-            </div>
+            <h2>DESIGN</h2>
+            Mock up Designs Canva Inkscape Gimp AI Colour palitres UX / UI Roles
+            / user profiles , photo director
           </div>
-        </ContentSection>
-      </div>
-      <div className="mt-2 mb-2">
-        <ContentSection title={t("resumePage.strategySectionTitle")}>
-          WHAT I AM - FUTURE PLANS - WHY IM LEAVING - WHAT I CAN APPORT -
-          CONDITIONS Facts not promisses Productivity over formality - frontend
-          - ai - design
-        </ContentSection>
-      </div>
-      <div className="mt-2 mb-2">
-        <ContentSection title={t("resumePage.personalSectionTitle")}>
-          RANDOM PERSONAL INFO
-        </ContentSection>
-      </div>
+
+          <div>
+            <h2>CORPORATIVE</h2>
+            Kanban Scrum Sprints Pull requests Jira - Factorial Teams Keepass
+            Teams Road map
+          </div>
+          <div>
+            <h2>GIT</h2>
+            Sourcetree GitCracken Merge Rebase PullReq Branch Module Project
+          </div>
+          <div>
+            <h2>TOOLS</h2>
+            Debugging Intellij Visual studio code Extensions Prettier Supermaven
+            Copilot ChatGpt
+          </div>
+          <div>
+            <h2>CODING</h2>
+            Data structures Clean code and testing Naming Algorithms Efficience
+            O(n) O(n*n) O(n*2) Refactoring code Documentation Big Amounts of
+            complex data
+          </div>
+
+          <div>
+            <h2>BACKEND</h2>
+            Java Spring boot
+          </div>
+          <div>
+            <h2>DATABASE</h2>
+            SQL PgAdmin Dbeaver PosgresSq
+          </div>
+        </div>
+      </ContentSection>
+      <ContentSection title={t("resumePage.strategySectionTitle")}>
+        WHAT I AM - FUTURE PLANS - WHY IM LEAVING - WHAT I CAN APPORT -
+        CONDITIONS Facts not promisses Productivity over formality - frontend -
+        ai - design
+      </ContentSection>
+      <ContentSection title={t("resumePage.personalSectionTitle")}>
+        RANDOM PERSONAL INFO
+      </ContentSection>
     </div>
   );
 };
