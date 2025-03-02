@@ -1,11 +1,11 @@
 .general-text-column {
-  margin-left: -3vw;
+  margin-left: -2vw;
   text-align: center;
 }
 
 .name-text {
   margin-top: 7vh;
-  font-size: 2.5vw;
+  font-size: 2.4vw;
   text-align: center;
 }
 
@@ -87,4 +87,14 @@
   align-items: center;
   text-align: center;
   height: 100%;
+}
+.time-points-bar {
+  width: 96% !important;
+}
+.period-row {
+  color: var(--main-color) !important;
+}
+.experience-data-col {
+  border-right: 1px solid var(--main-color);
+  border-left: 1px solid var(--main-color);
 }

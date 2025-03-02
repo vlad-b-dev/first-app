@@ -1,0 +1,14 @@
+.generic-logo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.generic-logo {
+  width: 15vw; // or use inline width if provided
+  height: auto;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(var(--hover-scale, 1.2));
+  }
+}

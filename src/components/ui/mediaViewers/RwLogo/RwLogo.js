@@ -6,7 +6,7 @@ import "./RwLogo.scss";
 
 const RwLogo = () => {
   return (
-    <div className="logo-wrapper">
+    <div className="rw-logo-wrapper">
       <motion.img
         src={rwLogo}
         alt="rwLogo"

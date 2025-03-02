@@ -3,7 +3,6 @@ import MainPageHeader from "../../ui/menus/MainPageHeader/MainPageHeader";
 import PdfViewer from "../../ui/mediaViewers/PdfViewer/PdfViewer";
 import ContentSection from "../../ui/sections/ContentSection/ContentSection";
 import ContentSubSection from "../../ui/sections/ContentSubSection/ContentSubSection";
-import ResumePhoto from "../../../components/ui/mediaViewers/ResumePhoto/ResumePhoto";
 import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import AlternateEmailRoundedIcon from "@mui/icons-material/AlternateEmailRounded";
@@ -21,8 +20,16 @@ import Tooltip from "@mui/material/Tooltip";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import ContinueButton from "../../ui/buttons/ContinueButton/ContinueButton";
 import LevelIndicator from "../../ui/widgets/LevelIndicator/LevelIndicator";
+import PointsBar from "../../ui/widgets/PointsBar/PointsBar";
 import { useTranslation } from "react-i18next";
 import RwLogo from "../../ui/mediaViewers/RwLogo/RwLogo";
+import UpnaLogoDark from "../../../resources/images/contentPhotos/experience/upnaLogo/upnaLogoDark.webp";
+import UpnaLogoLight from "../../../resources/images/contentPhotos/experience/upnaLogo/upnaLogoLight.webp";
+import ZeoLogoDark from "../../../resources/images/contentPhotos/experience/zeoLogo/zeoLogoDark.webp";
+import ZeoLogoLight from "../../../resources/images/contentPhotos/experience/zeoLogo/zeoLogoLight.webp";
+import VladProfileDark from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileDark.webp";
+import VladProfileLight from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileLight.webp";
+import GenericLogo from "../../ui/mediaViewers/GenericLogo/GenericLogo";
 import "./Resume.scss";
 
 const Resume = () => {
@@ -46,6 +53,31 @@ const Resume = () => {
     window.open("https://maps.app.goo.gl/M3E99XCCPRqSHpYd6", "_blank");
   };
 
+  const calculateDuration = (startDate) => {
+    const [day, month, year] = startDate.split("-").map(Number);
+    const start = new Date(year, month - 1, day);
+    const now = new Date();
+
+    let diffYears = now.getFullYear() - start.getFullYear();
+    let diffMonths = now.getMonth() - start.getMonth();
+
+    if (diffMonths < 0) {
+      diffYears -= 1;
+      diffMonths += 12;
+    }
+
+    let yearText =
+      diffYears > 0 ? diffYears + (diffYears > 1 ? " years" : " year") : "";
+    let monthText =
+      diffMonths > 0
+        ? diffMonths + (diffMonths > 1 ? " months" : " month")
+        : "";
+
+    return yearText && monthText
+      ? `${yearText}, ${monthText}`
+      : yearText || monthText;
+  };
+
   return (
     <div className="page-background">
       <MainPageHeader />
@@ -58,7 +90,13 @@ const Resume = () => {
       >
         <div className="row mt-2">
           <div className="col-3">
-            <ResumePhoto />
+            <GenericLogo
+              logoLight={VladProfileLight}
+              logoDark={VladProfileDark}
+              width={"20vw"}
+              hoverScale={1.1}
+              className={"mt-2"}
+            />
           </div>
           <div className="col-6 general-text-column">
             <h1 className="name-text hi-text">
@@ -175,19 +213,75 @@ const Resume = () => {
       </ContentSection>
       <PdfViewer ref={pdfViewerRef} className="mb-1" />
       <ContentSection
-        minBodyHeight={"71vh"}
+        className="mb-3"
+        minBodyHeight={"81vh"}
         startExpanded={true}
         title={t("resumePage.experienceSectionTitle")}
       >
-        <div className="row center-content">
-          <div className="col-4  center-content">UNIVERSIDAD</div>
-          <div className="col-4 center-content">
-            ZEO Reporting Big data amounts Design Outdatet library Own testing
-            projects
+        <div className="row center-content mt-2 period-row">
+          <h5 className="col-4 text-start">
+            <date>2018-2023</date>
+          </h5>
+          <h5 className="col-4 center-content">
+            <date>2022-PRESENT</date>
+          </h5>
+          <h5 className="col-4 text-end">
+            <date>2024-PRESENT</date>
+          </h5>
+        </div>
+        <div className="row center-content mt-1 mb-3">
+          <PointsBar
+            orientation="horizontal"
+            points={3}
+            className="time-points-bar"
+          />
+        </div>
+        <div className="row text-center mt-0 mb-0">
+          <h2 className="col-3 ">University</h2>
+          <h2 className="col-6 ">ZEO Technology</h2>
+          <h2 className="col-3 ">This project</h2>
+        </div>
+        <div className="row text-center mb-0 mt-0">
+          <h5 className="col-3 text-center">
+            <date>4 years, 6 months</date>
+          </h5>
+          <h5 className="col-6 text-center">
+            <date> {calculateDuration("01-02-2022")}</date>
+          </h5>
+          <h5 className="col-3 text-center">
+            <date>{calculateDuration("01-09-2024")}</date>
+          </h5>
+        </div>
+        <div className="row text-center mt-0">
+          <p className="col-3">
+            <div className="row text-center">
+              <GenericLogo
+                logoLight={UpnaLogoLight}
+                logoDark={UpnaLogoDark}
+                width={"10vw"}
+              />
+            </div>
+            <div className="row text-center">
+              <p>JAJAJAJAJA</p>
+            </div>
+          </p>
+          <p className="col-6 text-center experience-data-col">
+            <div className="row text-center">
+              <GenericLogo
+                logoLight={ZeoLogoLight}
+                logoDark={ZeoLogoDark}
+                width={"15vw"}
+              />
+            </div>
+            <div className="row text-center">
+              <p>
+                Reporting Big data amounts Design Outdatet library Own testing
+                projects
+              </p>
+            </div>
             <RwLogo />
-            {/*  <img src={rwLogo} alt="rwLogo" /> */}
-          </div>
-          <div className="col-4 center-content">OWN PROJECT</div>
+          </p>
+          <p className="col-3 text-end">This project</p>
         </div>
       </ContentSection>
       <ContentSection title={t("resumePage.skillsSectionTitle")}>

@@ -1,11 +1,9 @@
-.logo-wrapper {
+.rw-logo-wrapper {
   position: relative;
   display: inline-block;
-  width: 15vw;
-  height: auto;
 }
 
-.logo-wrapper::after {
+.rw-logo-wrapper::after {
   content: "";
   position: absolute;
   bottom: 1.6%;
@@ -19,7 +17,7 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.logo-wrapper::before {
+.rw-logo-wrapper::before {
   content: "";
   position: absolute;
   bottom: 3.5%;
@@ -33,16 +31,16 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.logo-wrapper:hover::after {
+.rw-logo-wrapper:hover::after {
   transform: translateX(-50%) scale(1.4);
 }
 
-.logo-wrapper:hover::before {
+.rw-logo-wrapper:hover::before {
   transform: translateX(-50%) scale(1.3);
 }
 
 .rw-logo {
-  width: 15vw;
+  width: 14vw;
   height: auto;
   position: relative;
 }

@@ -1,24 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./PointsBar.scss";
+import { v4 as uuidv4 } from "uuid";
 
 const PointsBar = ({
   orientation = "horizontal",
-  color = "#3498db",
   points = 5,
+  className = "",
 }) => {
-  // Create an array based on the number of points
-  const circles = Array.from({ length: points });
+  const circles = Array.from({ length: points }, () => uuidv4());
 
   return (
-    <div
-      className={`points-bar ${orientation}`}
-      style={{ backgroundColor: color }}
-    >
-      {circles.map((_, index) => (
-        <div key={index} className="point" />
+    <div className={`points-bar ${orientation} ${className}`.trim()}>
+      {circles.map((id) => (
+        <div key={id} className="point" />
       ))}
     </div>
   );
+};
+
+PointsBar.propTypes = {
+  orientation: PropTypes.string,
+  points: PropTypes.number,
+  className: PropTypes.string,
 };
 
 export default PointsBar;
