@@ -29,6 +29,7 @@ import ZeoLogoDark from "../../../resources/images/contentPhotos/experience/zeoL
 import ZeoLogoLight from "../../../resources/images/contentPhotos/experience/zeoLogo/zeoLogoLight.webp";
 import VladProfileDark from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileDark.webp";
 import VladProfileLight from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileLight.webp";
+import MinimalLogoNeutral from "../../../resources/images/contentPhotos/experience/minimalLogoNeutral.webp";
 import GenericLogo from "../../ui/mediaViewers/GenericLogo/GenericLogo";
 import "./Resume.scss";
 
@@ -86,7 +87,7 @@ const Resume = () => {
         title={t("resumePage.generalSection.title")}
         startExpanded={true}
         textColor={"var(--general-resume-text)"}
-        minBodyHeight={"71vh"}
+        minBodyHeight={"70vh"}
       >
         <div className="row mt-2">
           <div className="col-3">
@@ -211,77 +212,133 @@ const Resume = () => {
           </div>
         </div>
       </ContentSection>
-      <PdfViewer ref={pdfViewerRef} className="mb-1" />
+      <PdfViewer ref={pdfViewerRef} />
       <ContentSection
-        className="mb-3"
-        minBodyHeight={"81vh"}
+        className="mb-3 text-center"
+        minBodyHeight={"79vh"}
         startExpanded={true}
         title={t("resumePage.experienceSectionTitle")}
       >
-        <div className="row center-content mt-2 period-row">
-          <h5 className="col-4 text-start">
+        <div className="row  mt-2 mb-0 pb-0">
+          <h5 className="col-3">
             <date>2018-2023</date>
           </h5>
-          <h5 className="col-4 center-content">
+          <h5 className="col-6">
             <date>2022-PRESENT</date>
           </h5>
-          <h5 className="col-4 text-end">
+          <h5 className="col-3">
             <date>2024-PRESENT</date>
           </h5>
         </div>
-        <div className="row center-content mt-1 mb-3">
+        <div className="row mt-0 mb-2">
           <PointsBar
             orientation="horizontal"
             points={3}
             className="time-points-bar"
           />
         </div>
-        <div className="row text-center mt-0 mb-0">
-          <h2 className="col-3 ">University</h2>
-          <h2 className="col-6 ">ZEO Technology</h2>
-          <h2 className="col-3 ">This project</h2>
+        <div className="row">
+          <h4 className="col-3">
+            University: <date className="period-row">4 years, 6 months</date>
+          </h4>
+          <h4 className="col-6">
+            ZEO Technology:{" "}
+            <date className="period-row">
+              {" "}
+              {calculateDuration("01-02-2022")}
+            </date>
+          </h4>
+          <h4 className="col-3">
+            All-In app:{" "}
+            <date className="period-row">
+              {calculateDuration("01-09-2024")}
+            </date>
+          </h4>
         </div>
-        <div className="row text-center mb-0 mt-0">
-          <h5 className="col-3 text-center">
-            <date>4 years, 6 months</date>
-          </h5>
-          <h5 className="col-6 text-center">
-            <date> {calculateDuration("01-02-2022")}</date>
-          </h5>
-          <h5 className="col-3 text-center">
-            <date>{calculateDuration("01-09-2024")}</date>
-          </h5>
-        </div>
-        <div className="row text-center mt-0">
+
+        <div className="row  mt-0">
           <p className="col-3">
-            <div className="row text-center">
-              <GenericLogo
-                logoLight={UpnaLogoLight}
-                logoDark={UpnaLogoDark}
-                width={"10vw"}
-              />
+            <div className="row ">
+              <div className="col-6">
+                <GenericLogo
+                  logoLight={UpnaLogoLight}
+                  logoDark={UpnaLogoDark}
+                  width={"11vw"}
+                />
+              </div>
+              <div className="col-6">
+                <RwLogo width="10.5vw" />
+              </div>
             </div>
-            <div className="row text-center">
-              <p>JAJAJAJAJA</p>
+            <div className="row text-start mt-3">
+              <p>
+                Graduado en Ingeniería Informática (2023). <br />
+                <br /> Durante mis estudios desarrollé proyectos, realicé
+                prácticas en Zeo Technology y creé Report Wizard, una
+                herramienta intuitiva para informes con drag and drop, adaptable
+                y en constante evolución.
+              </p>
             </div>
           </p>
-          <p className="col-6 text-center experience-data-col">
-            <div className="row text-center">
+          <p className="col-6  experience-data-col">
+            <div className="row">
               <GenericLogo
                 logoLight={ZeoLogoLight}
                 logoDark={ZeoLogoDark}
-                width={"15vw"}
+                width={"13vw"}
               />
             </div>
-            <div className="row text-center">
+            <div className="row text-start mb-0">
               <p>
-                Reporting Big data amounts Design Outdatet library Own testing
-                projects
+                Una compañía de Industria 4.0, su producto principal es un
+                sistema MES. Tras 1 año de prácticas, fui contratado como
+                desarrollador. Principales proyectos:
+                <br />
+                <br />
+                <ul>
+                  <li>
+                    Report Wizard, hay que volver a mencionarlo, muy bien
+                    recibido por clientes de todo el mundo, sigue en constante
+                    mejora y expansión, con funcionalidades como gráficos
+                    personalizados
+                  </li>
+                  <li>Sistema de visualización de informes</li>
+                  <li>
+                    Librería de componentes personalizados, adaptables a la
+                    estética y funcionalidad de la empresa
+                  </li>
+                  <li>
+                    Filtros configurables desde la aplicación, basados en los
+                    componentes anteriores
+                  </li>
+                  <li>
+                    Proyecto de envío automático y programado de informes por
+                    email, configurable por el usuario
+                  </li>
+                  <li>
+                    Creación y mantenimiento de apartados generales de la
+                    aplicación
+                  </li>
+                </ul>
               </p>
             </div>
-            <RwLogo />
           </p>
-          <p className="col-3 text-end">This project</p>
+          <p className="col-3">
+            <div className="row mb-4">
+              <GenericLogo logo={MinimalLogoNeutral} width={"10vw"} />
+            </div>
+            <div className="row text-start mb-0">
+              <p>
+                El diseño, UX/UI y el front-end siempre me han interesado.
+                Aunque trabajando de full-stack, necesitaba profundizar en este
+                campo. Aprovechando mi capacidad de autoaprendizaje, desarrollé
+                mi web personal y ahora manejo con soltura tanto Angular como
+                React, junto a otros conceptos relacionados
+                <br />
+                <br /> Si deseas conocer más sobre este proyecto, haz clic aquí.
+              </p>
+            </div>
+          </p>
         </div>
       </ContentSection>
       <ContentSection title={t("resumePage.skillsSectionTitle")}>
