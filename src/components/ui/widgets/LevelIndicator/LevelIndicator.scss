@@ -1,15 +1,66 @@
 .level-indicator {
   display: flex;
-  gap: 5px;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  .bar {
+    background-color: var(--main-background-color);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .bar.on {
+    background-color: var(--active-color);
+
+    animation: neonFlicker 6s infinite ease-in-out,
+      periodicOffGlow 15s infinite ease-in-out;
+  }
+
+  .bar.on:nth-child(-n + 3) {
+    --active-color: var(--main-color);
+  }
+  .bar.on:nth-child(4) {
+    --active-color: var(--main-hover-color);
+  }
+  .bar.on:nth-child(5) {
+    --active-color: var(--highlight-color);
+  }
 }
 
-.bar {
-  width: 20px;
-  height: 10px;
-  background-color: #333; // dark color for off state
-  transition: background-color 0.3s;
+@keyframes neonFlicker {
+  0% {
+    filter: brightness(1);
+  }
+  33% {
+    filter: brightness(1.05);
+  }
+  66% {
+    filter: brightness(0.95);
+  }
+  100% {
+    filter: brightness(1);
+  }
 }
 
-.on {
-  background-color: purple; // purple for on state
+@keyframes periodicOffGlow {
+  0%,
+  80% {
+    box-shadow: 0 0 5px var(--active-color), 0 0 10px var(--active-color),
+      0 0 20px var(--active-color), 0 0 30px var(--active-color);
+  }
+  /* First quick dip */
+  81%,
+  83% {
+    box-shadow: none;
+  }
+  82%,
+  84% {
+    box-shadow: 0 0 5px var(--active-color), 0 0 10px var(--active-color),
+      0 0 20px var(--active-color), 0 0 30px var(--active-color);
+  }
+  85%,
+  100% {
+    box-shadow: 0 0 5px var(--active-color), 0 0 10px var(--active-color),
+      0 0 20px var(--active-color), 0 0 30px var(--active-color);
+  }
 }

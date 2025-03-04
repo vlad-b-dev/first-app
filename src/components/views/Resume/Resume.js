@@ -258,7 +258,7 @@ const Resume = () => {
 
         <div className="row  mt-0">
           <p className="col-3">
-            <div className="row ">
+            <div className="row mt-2">
               <div className="col-6">
                 <GenericLogo
                   logoLight={UpnaLogoLight}
@@ -272,11 +272,13 @@ const Resume = () => {
             </div>
             <div className="row text-start mt-3">
               <p>
-                Graduado en Ingeniería Informática (2023). <br />
-                <br /> Durante mis estudios desarrollé proyectos, realicé
-                prácticas en Zeo Technology y creé Report Wizard, una
-                herramienta intuitiva para informes con drag and drop, adaptable
-                y en constante evolución.
+                Graduado en Ingeniería Informática (2023) <br />
+                <br /> Durante mis estudios aprendí las bases de la
+                programación, desarrollé proyectos y realicé prácticas en Zeo
+                Technology. Creé Report Wizard, una herramienta intuitiva de
+                creación, edición y visualización de informes. Con
+                funcionalidades como drag and drop, adaptable a cualquier
+                usuario y en constante evolución
               </p>
             </div>
           </p>
@@ -285,47 +287,52 @@ const Resume = () => {
               <GenericLogo
                 logoLight={ZeoLogoLight}
                 logoDark={ZeoLogoDark}
-                width={"13vw"}
+                width={"14vw"}
               />
             </div>
             <div className="row text-start mb-0">
               <p>
-                Una compañía de Industria 4.0, su producto principal es un
+                ZEO es una empresa dedicada a Industria 4.0, reconocida
+                internacionalmente en el sector, su producto principal es un
                 sistema MES. Tras 1 año de prácticas, fui contratado como
-                desarrollador. Principales proyectos:
-                <br />
+                desarrollador full-stack. Principales implementaciones:
                 <br />
                 <ul>
                   <li>
-                    Report Wizard, hay que volver a mencionarlo, muy bien
-                    recibido por clientes de todo el mundo, sigue en constante
-                    mejora y expansión, con funcionalidades como gráficos
-                    personalizados
-                  </li>
-                  <li>Sistema de visualización de informes</li>
-                  <li>
-                    Librería de componentes personalizados, adaptables a la
-                    estética y funcionalidad de la empresa
+                    <strong>Report Wizard</strong>, hay que volver a mencionarlo
+                    por ser mi principal proyecto. Es muy bien recibido por
+                    clientes de todo el mundo, sigue en constante mejora y
+                    expansión, con funcionalidades como gráficos personalizados
                   </li>
                   <li>
-                    Filtros configurables desde la aplicación, basados en los
-                    componentes anteriores
+                    <strong>Sistema de visualización de informes</strong>
                   </li>
                   <li>
-                    Proyecto de envío automático y programado de informes por
-                    email, configurable por el usuario
+                    <strong>Librería de componentes personalizables</strong>,
+                    adaptados a la estética y funcionalidad de la empresa
                   </li>
                   <li>
-                    Creación y mantenimiento de apartados generales de la
-                    aplicación
+                    <strong>Filtros configurables</strong>
+                    desde la aplicación, basados en los componentes anteriores
+                  </li>
+                  <li>
+                    Proyecto de
+                    <strong>
+                      envío automático y programado de informes por email
+                    </strong>
+                    , configurable por el usuario mediante una sencilla interfaz
+                  </li>
+                  <li>
+                    Creación, modificación, testing, documentación y
+                    mantenimiento de apartados generales de la aplicación
                   </li>
                 </ul>
               </p>
             </div>
           </p>
           <p className="col-3">
-            <div className="row mb-4">
-              <GenericLogo logo={MinimalLogoNeutral} width={"10vw"} />
+            <div className="row mb-3 mt-2">
+              <GenericLogo logo={MinimalLogoNeutral} width={"11vw"} />
             </div>
             <div className="row text-start mb-0">
               <p>
@@ -342,7 +349,14 @@ const Resume = () => {
         </div>
       </ContentSection>
       <ContentSection title={t("resumePage.skillsSectionTitle")}>
-        <LevelIndicator level={3} />
+        <LevelIndicator
+          className="mt-5 mb-5"
+          level={5}
+          width="4vw"
+          height="1vw"
+          gap="0.5vw"
+        />
+        <LevelIndicator level={2} width="4vw" height="1.5vh" gap="0.5vw" />
         <div>
           <h1>SOFT SKILLS NOT SOFTWARE XD</h1>
           Structure of all app Structure of a ti enterprise Colaboration
