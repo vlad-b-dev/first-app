@@ -42,8 +42,9 @@ const ContentSection = forwardRef(
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0 }}
                 style={{ minHeight: minBodyHeight }}
+                className="children-component"
               >
-                <div className="row children-component">{children}</div>
+                <div className="row">{children}</div>
               </motion.div>
             )}
           </AnimatePresence>
