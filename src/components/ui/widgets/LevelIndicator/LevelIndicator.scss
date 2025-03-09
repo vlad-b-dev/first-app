@@ -1,9 +1,14 @@
+.level-indicator-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
 .level-indicator {
   display: flex;
   margin-top: 1.5vh;
   margin-bottom: 1vh;
-  margin-left: 1vw;
-  margin-right: 1vw;
+
   .bar {
     background-color: var(--main-background-color);
     transition: background-color 0.3s, box-shadow 0.3s;
@@ -48,7 +53,6 @@
     box-shadow: 0 0 5px var(--active-color), 0 0 10px var(--active-color),
       0 0 20px var(--active-color), 0 0 30px var(--active-color);
   }
-  /* First quick dip */
   81%,
   83% {
     box-shadow: none;
@@ -62,5 +66,20 @@
   100% {
     box-shadow: 0 0 5px var(--active-color), 0 0 10px var(--active-color),
       0 0 20px var(--active-color), 0 0 30px var(--active-color);
+  }
+}
+
+.level-indicator-label {
+  z-index: 1;
+  color: var(--main-hover-color);
+  text-shadow: 0 0 5px var(--main-hover-color), 0 0 10px var(--main-hover-color);
+  font-size: 1.2rem;
+  position: absolute;
+  top: -1.2%;
+  left: 0;
+  width: 100%;
+  text-align: left;
+  &:hover {
+    color: var(--main-hover-color);
   }
 }

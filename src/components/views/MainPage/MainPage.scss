@@ -1,0 +1,79 @@
+.general-text-column {
+  margin-left: -2vw;
+  text-align: center;
+}
+
+.name-text {
+  margin-top: 7vh;
+  font-size: 2.4vw;
+  text-align: center;
+}
+
+.description-text {
+  margin-top: 1.2vh;
+  font-size: 1.2vw;
+  text-align: left;
+}
+.general-data-column {
+  margin-top: 2vh !important;
+  margin-left: 1vw;
+}
+.general-data-list {
+  margin: 0;
+  padding: 0;
+  margin-top: 0.5vw !important;
+  margin-bottom: 0.5vw !important;
+  padding-left: 0.9vw;
+  padding-right: 1vw;
+  list-style: none;
+}
+
+.general-data-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1vw;
+  padding: 0.32vw 0;
+}
+.general-data-list-icon {
+  font-size: 1.4vw !important;
+  margin-bottom: 0.2vw;
+  margin-right: 0.5vw;
+  margin-left: 0.1vw;
+  &:hover {
+    color: var(--main-text-color) !important;
+  }
+}
+
+.language-sub-section {
+  margin-bottom: 0.9vw;
+}
+.general-data-list-icon-interactive {
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.2);
+    color: var(--main-color) !important;
+  }
+}
+
+.general-data-action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  .MuiSvgIcon-root {
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
+  &:hover {
+    background-color: var(--secondary-background-color);
+    transform: scale(1.2);
+
+    .MuiSvgIcon-root {
+      color: var(--main-color);
+      transform: scale(1.2);
+    }
+  }
+}

@@ -55,16 +55,6 @@ const Resume = () => {
     }
   };
 
-  const openLinkedInProfile = () => {
-    window.open(
-      "https://www.linkedin.com/in/vladyslav-boychuk-developer",
-      "_blank"
-    );
-  };
-  const openLocation = () => {
-    window.open("https://maps.app.goo.gl/M3E99XCCPRqSHpYd6", "_blank");
-  };
-
   const calculateDuration = (startDate) => {
     const [day, month, year] = startDate.split("-").map(Number);
     const start = new Date(year, month - 1, day);
@@ -188,7 +178,7 @@ const Resume = () => {
   return (
     <div className="page-background">
       <MainPageHeader />
-      <ContentSection
+      {/*  <ContentSection
         className="mb-3"
         title={t("resumePage.generalSection.title")}
         startExpanded={true}
@@ -317,7 +307,7 @@ const Resume = () => {
             </ContentSubSection>
           </div>
         </div>
-      </ContentSection>
+      </ContentSection> */}
       <PdfViewer ref={pdfViewerRef} />
       <ContentSection
         className="mb-3 text-center"
@@ -433,6 +423,9 @@ const Resume = () => {
                   </li>
                 </ul>
               </p>
+              <div className="continue-button-container">
+                <ContinueButton onClick={handleContinueClick} />
+              </div>
             </div>
           </p>
           <p className="col-3">
@@ -454,20 +447,12 @@ const Resume = () => {
         </div>
       </ContentSection>
       <ContentSection title={t("resumePage.skillsSectionTitle")}>
-        <LevelIndicator
-          className="mt-5 mb-5"
-          level={5}
-          width="4vw"
-          height="1vw"
-          gap="0.5vw"
-        />
-        <LevelIndicator level={2} width="4vw" height="1.5vh" gap="0.5vw" />
         <div className="row m-0 p-0">
           <h1 className="skills-title">
             <Diversity1TwoToneIcon />
             Soft Skills
           </h1>
-          <ul className="ml-5">
+          <ul className="soft-skills-list">
             <li>
               <strong>Análisis:</strong> Capacidad analítica para comprender
               requerimientos, lógica de negocio y problemas complejos
@@ -494,10 +479,25 @@ const Resume = () => {
           </ul>
         </div>
         <div className="row m-0 p-0">
-          <h1 className="skills-title">
-            <BookmarkAddedTwoToneIcon />
-            Hard Skills
-          </h1>
+          <div className="row">
+            <div className="col-6">
+              <h1 className="skills-title">
+                <BookmarkAddedTwoToneIcon />
+                Hard Skills
+              </h1>
+            </div>
+            <div className="col-6">
+              <LevelIndicator
+                isExplanation={true}
+                className="skills-level-explanation"
+                level={2}
+                width="8.5vw"
+                height="1.2vh"
+                gap="0.5vw"
+              />
+            </div>
+          </div>
+
           <div className="row">
             <div className="col-6">
               <ContentSubSection
