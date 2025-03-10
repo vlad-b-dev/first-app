@@ -3,34 +3,8 @@ import MainPageHeader from "../../ui/menus/MainPageHeader/MainPageHeader";
 import PdfViewer from "../../ui/mediaViewers/PdfViewer/PdfViewer";
 import ContentSection from "../../ui/sections/ContentSection/ContentSection";
 import ContentSubSection from "../../ui/sections/ContentSubSection/ContentSubSection";
-import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
-import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
-import AlternateEmailRoundedIcon from "@mui/icons-material/AlternateEmailRounded";
-import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import PermPhoneMsgRoundedIcon from "@mui/icons-material/PermPhoneMsgRounded";
-import SignalCellularAltRoundedIcon from "@mui/icons-material/SignalCellularAltRounded";
-import SignalCellularAlt2BarRoundedIcon from "@mui/icons-material/SignalCellularAlt2BarRounded";
-import SignalCellularAlt1BarRoundedIcon from "@mui/icons-material/SignalCellularAlt1BarRounded";
-import MyLocationRoundedIcon from "@mui/icons-material/MyLocationRounded";
-import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
-import LanguageRoundedIcon from "@mui/icons-material/LanguageRounded";
-import CopyToClipboardButton from "../../ui/buttons/CopyToClipboardButton/CopyToClipboardButton";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import Tooltip from "@mui/material/Tooltip";
-import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
-import ContinueButton from "../../ui/buttons/ContinueButton/ContinueButton";
 import LevelIndicator from "../../ui/widgets/LevelIndicator/LevelIndicator";
-import PointsBar from "../../ui/widgets/PointsBar/PointsBar";
 import { useTranslation } from "react-i18next";
-import RwLogo from "../../ui/mediaViewers/RwLogo/RwLogo";
-import UpnaLogoDark from "../../../resources/images/contentPhotos/experience/upnaLogo/upnaLogoDark.webp";
-import UpnaLogoLight from "../../../resources/images/contentPhotos/experience/upnaLogo/upnaLogoLight.webp";
-import ZeoLogoDark from "../../../resources/images/contentPhotos/experience/zeoLogo/zeoLogoDark.webp";
-import ZeoLogoLight from "../../../resources/images/contentPhotos/experience/zeoLogo/zeoLogoLight.webp";
-import VladProfileDark from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileDark.webp";
-import VladProfileLight from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileLight.webp";
-import MinimalLogoNeutral from "../../../resources/images/contentPhotos/experience/minimalLogoNeutral.webp";
-import GenericLogo from "../../ui/mediaViewers/GenericLogo/GenericLogo";
 import Diversity1TwoToneIcon from "@mui/icons-material/Diversity1TwoTone";
 import BookmarkAddedTwoToneIcon from "@mui/icons-material/BookmarkAddedTwoTone";
 import CodeTwoToneIcon from "@mui/icons-material/CodeTwoTone";
@@ -42,43 +16,16 @@ import PolylineTwoToneIcon from "@mui/icons-material/PolylineTwoTone";
 import ConstructionTwoToneIcon from "@mui/icons-material/ConstructionTwoTone";
 import NextWeekTwoToneIcon from "@mui/icons-material/NextWeekTwoTone";
 import SkillsList from "../../ui/sections/SkillsList/SkillsList";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ExperienceSection from "./ExperienceSection/ExperienceSection";
 import "./Resume.scss";
 
 const Resume = () => {
   const { t } = useTranslation();
 
-  const pdfViewerRef = useRef(null);
+  const skillsSectionRef = useRef(null);
 
-  const handleContinueClick = () => {
-    if (pdfViewerRef.current) {
-      pdfViewerRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const calculateDuration = (startDate) => {
-    const [day, month, year] = startDate.split("-").map(Number);
-    const start = new Date(year, month - 1, day);
-    const now = new Date();
-
-    let diffYears = now.getFullYear() - start.getFullYear();
-    let diffMonths = now.getMonth() - start.getMonth();
-
-    if (diffMonths < 0) {
-      diffYears -= 1;
-      diffMonths += 12;
-    }
-
-    let yearText =
-      diffYears > 0 ? diffYears + (diffYears > 1 ? " years" : " year") : "";
-    let monthText =
-      diffMonths > 0
-        ? diffMonths + (diffMonths > 1 ? " months" : " month")
-        : "";
-
-    return yearText && monthText
-      ? `${yearText}, ${monthText}`
-      : yearText || monthText;
-  };
   const frontendSkills = [
     { text: "React", level: 5 },
     { text: "Angular", level: 5 },
@@ -178,275 +125,12 @@ const Resume = () => {
   return (
     <div className="page-background">
       <MainPageHeader />
-      {/*  <ContentSection
-        className="mb-3"
-        title={t("resumePage.generalSection.title")}
-        startExpanded={true}
-        textColor={"var(--general-resume-text)"}
-        minBodyHeight={"70vh"}
-      >
-        <div className="row mt-2">
-          <div className="col-3">
-            <GenericLogo
-              logoLight={VladProfileLight}
-              logoDark={VladProfileDark}
-              width={"20vw"}
-              hoverScale={1.1}
-              className={"mt-2"}
-            />
-          </div>
-          <div className="col-6 general-text-column">
-            <h1 className="name-text hi-text">
-              {t("resumePage.generalSection.nameText")}
-            </h1>
-            <br />
-            <div className="description-text">
-              <p className="mb-3">
-                {t("resumePage.generalSection.descriptionP1")}
-              </p>
-              <p className="mb-3">
-                {t("resumePage.generalSection.descriptionP2")}
-              </p>
-              <p>{t("resumePage.generalSection.descriptionP3")}</p>
-            </div>
-            <div className="continue-button-container">
-              <ContinueButton onClick={handleContinueClick} />
-            </div>
-          </div>
-          <div className="col-3 general-data-column">
-            <ContentSubSection
-              className="language-sub-section"
-              showHeader={true}
-              title={t("resumePage.generalSection.languages")}
-              icon={PublicRoundedIcon}
-            >
-              <ul className="general-data-list">
-                <li>
-                  <div>
-                    <LanguageRoundedIcon className="general-data-list-icon" />
-                    {t("resumePage.generalSection.spanish")}
-                  </div>
-                  <SignalCellularAltRoundedIcon className="general-data-list-icon " />
-                </li>
-                <li>
-                  <div>
-                    <LanguageRoundedIcon className="general-data-list-icon" />
-                    {t("resumePage.generalSection.russian")}
-                  </div>
-                  <SignalCellularAltRoundedIcon className="general-data-list-icon" />
-                </li>
-                <li>
-                  <div>
-                    <Tooltip
-                      title={t("resumePage.generalSection.englishTooltip")}
-                      placement="left"
-                      arrow
-                    >
-                      <InfoRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
-                    </Tooltip>
-                    {t("resumePage.generalSection.english")}
-                  </div>
-                  <SignalCellularAlt2BarRoundedIcon className="general-data-list-icon" />
-                </li>
-                <li>
-                  <div>
-                    <LanguageRoundedIcon className="general-data-list-icon" />
-                    {t("resumePage.generalSection.ukrainian")}
-                  </div>
-                  <SignalCellularAlt1BarRoundedIcon className="general-data-list-icon" />
-                </li>
-              </ul>
-            </ContentSubSection>
-            <ContentSubSection
-              showHeader={true}
-              title={t("resumePage.generalSection.contact")}
-              icon={AlternateEmailRoundedIcon}
-            >
-              <ul className="general-data-list">
-                <li>
-                  <div>
-                    <EmailRoundedIcon className="general-data-list-icon" />
-                    vboychuk1122@gmail.com
-                  </div>
-                  <CopyToClipboardButton content="vboychuk1122@gmail.com" />
-                </li>
-                <li>
-                  <div>
-                    <PermPhoneMsgRoundedIcon className="general-data-list-icon" />
-                    673399221
-                  </div>
-                  <CopyToClipboardButton content="673399221" />
-                </li>
-                <li>
-                  <div className="mb-1">
-                    <LinkedInIcon className="general-data-list-icon" />
-                    vladyslav-boychuk-developer
-                  </div>
-                  <button
-                    onClick={() => openLinkedInProfile()}
-                    className="general-data-action-button"
-                    aria-label="Open LinkedIn profile"
-                  >
-                    <OpenInNewRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
-                  </button>
-                </li>
-                <li>
-                  <div>
-                    <LocationOnRoundedIcon className="general-data-list-icon" />
-                    {t("resumePage.generalSection.location")}
-                  </div>
-                  <button
-                    onClick={() => openLocation()}
-                    className="general-data-action-button"
-                    aria-label="Open LinkedIn profile"
-                  >
-                    <MyLocationRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
-                  </button>
-                </li>
-              </ul>
-            </ContentSubSection>
-          </div>
-        </div>
-      </ContentSection> */}
-      <PdfViewer ref={pdfViewerRef} />
+      <ExperienceSection />
       <ContentSection
-        className="mb-3 text-center"
-        minBodyHeight={"79vh"}
         startExpanded={true}
-        title={t("resumePage.experienceSectionTitle")}
+        ref={skillsSectionRef}
+        title={t("resumePage.skillsSectionTitle")}
       >
-        <div className="row  mt-2 mb-0 pb-0">
-          <h5 className="col-3">
-            <date>2018-2023</date>
-          </h5>
-          <h5 className="col-6">
-            <date>2022-PRESENT</date>
-          </h5>
-          <h5 className="col-3">
-            <date>2024-PRESENT</date>
-          </h5>
-        </div>
-        <div className="row mt-0 mb-2">
-          <PointsBar
-            orientation="horizontal"
-            points={3}
-            className="time-points-bar"
-          />
-        </div>
-        <div className="row">
-          <h4 className="col-3">
-            University: <date className="period-row">4 years, 6 months</date>
-          </h4>
-          <h4 className="col-6">
-            ZEO Technology:
-            <date className="period-row">
-              {calculateDuration("01-02-2022")}
-            </date>
-          </h4>
-          <h4 className="col-3">
-            All-In app:
-            <date className="period-row">
-              {calculateDuration("01-09-2024")}
-            </date>
-          </h4>
-        </div>
-
-        <div className="row  mt-0">
-          <p className="col-3">
-            <div className="row mt-2">
-              <div className="col-6">
-                <GenericLogo
-                  logoLight={UpnaLogoLight}
-                  logoDark={UpnaLogoDark}
-                  width={"11vw"}
-                />
-              </div>
-              <div className="col-6">
-                <RwLogo width="10.5vw" />
-              </div>
-            </div>
-            <div className="row text-start mt-3">
-              <p>
-                Graduado en Ingeniería Informática (2023) <br />
-                <br /> Durante mis estudios aprendí las bases de la
-                programación, desarrollé proyectos y realicé prácticas en Zeo
-                Technology. Creé Report Wizard, una herramienta intuitiva de
-                creación, edición y visualización de informes. Con
-                funcionalidades como drag and drop, adaptable a cualquier
-                usuario y en constante evolución
-              </p>
-            </div>
-          </p>
-          <p className="col-6  experience-data-col">
-            <div className="row">
-              <GenericLogo
-                logoLight={ZeoLogoLight}
-                logoDark={ZeoLogoDark}
-                width={"14vw"}
-              />
-            </div>
-            <div className="row text-start mb-0">
-              <p>
-                ZEO es una empresa dedicada a Industria 4.0, reconocida
-                internacionalmente en el sector, su producto principal es un
-                sistema MES. Tras 1 año de prácticas, fui contratado como
-                desarrollador full-stack. Principales implementaciones:
-                <br />
-                <ul>
-                  <li>
-                    <strong>Report Wizard</strong>, hay que volver a mencionarlo
-                    por ser mi principal proyecto. Es muy bien recibido por
-                    clientes de todo el mundo, sigue en constante mejora y
-                    expansión, con funcionalidades como gráficos personalizados
-                  </li>
-                  <li>
-                    <strong>Sistema de visualización de informes</strong>
-                  </li>
-                  <li>
-                    <strong>Librería de componentes personalizables</strong>,
-                    adaptados a la estética y funcionalidad de la empresa
-                  </li>
-                  <li>
-                    <strong>Filtros configurables</strong>
-                    desde la aplicación, basados en los componentes anteriores
-                  </li>
-                  <li>
-                    Proyecto de
-                    <strong>
-                      envío automático y programado de informes por email
-                    </strong>
-                    , configurable por el usuario mediante una sencilla interfaz
-                  </li>
-                  <li>
-                    Creación, modificación, testing, documentación y
-                    mantenimiento de apartados generales de la aplicación
-                  </li>
-                </ul>
-              </p>
-              <div className="continue-button-container">
-                <ContinueButton onClick={handleContinueClick} />
-              </div>
-            </div>
-          </p>
-          <p className="col-3">
-            <div className="row mb-3 mt-2">
-              <GenericLogo logo={MinimalLogoNeutral} width={"11vw"} />
-            </div>
-            <div className="row text-start mb-0">
-              <p>
-                El diseño, UX/UI y el front-end siempre me han interesado.
-                Aunque trabajando de full-stack, necesitaba profundizar en este
-                campo. Aprovechando mi capacidad de autoaprendizaje, desarrollé
-                mi web personal y ahora manejo con soltura tanto Angular como
-                React, junto a otros conceptos relacionados
-                <br />
-                <br /> Si deseas conocer más sobre este proyecto, haz clic aquí.
-              </p>
-            </div>
-          </p>
-        </div>
-      </ContentSection>
-      <ContentSection title={t("resumePage.skillsSectionTitle")}>
         <div className="row m-0 p-0">
           <h1 className="skills-title">
             <Diversity1TwoToneIcon />
@@ -597,14 +281,21 @@ const Resume = () => {
           </div>
         </div>
       </ContentSection>
-      <ContentSection title={t("resumePage.strategySectionTitle")}>
+      <ContentSection
+        startExpanded={true}
+        title={t("resumePage.strategySectionTitle")}
+      >
         WHAT I AM - FUTURE PLANS - WHY IM LEAVING - WHAT I CAN APPORT -
         CONDITIONS Facts not promisses Productivity over formality - frontend -
         ai - design
       </ContentSection>
-      <ContentSection title={t("resumePage.personalSectionTitle")}>
+      <ContentSection
+        startExpanded={true}
+        title={t("resumePage.personalSectionTitle")}
+      >
         RANDOM PERSONAL INFO
       </ContentSection>
+      <PdfViewer />
     </div>
   );
 };

@@ -7,11 +7,22 @@ import PropTypes from "prop-types";
 import { expandButton, expandIcon } from "../../../../styles/SxGlobalStyles";
 
 const ContentSection = forwardRef(
-  ({ children, title, startExpanded, minBodyHeight, className }, ref) => {
+  (
+    { children, title, startExpanded, minBodyHeight, className, onToggle },
+    ref
+  ) => {
     const [expandContent, setExpandContent] = useState(startExpanded || false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
-    const clickExpandContent = () => setExpandContent((prev) => !prev);
+    const clickExpandContent = () => {
+      setExpandContent((prev) => {
+        const newState = !prev;
+        if (onToggle) {
+          onToggle(newState);
+        }
+        return newState;
+      });
+    };
 
     useEffect(() => {
       const handleResize = () => setIsMobile(window.innerWidth <= 767);
@@ -60,6 +71,7 @@ ContentSection.propTypes = {
   startExpanded: PropTypes.bool,
   minBodyHeight: PropTypes.string,
   className: PropTypes.string,
+  onToggle: PropTypes.func,
 };
 
 export default ContentSection;

@@ -1,0 +1,64 @@
+.slider-container {
+  padding: 0 !important;
+  margin-left: -1.1%;
+  position: relative;
+  overflow: hidden;
+}
+
+.slick-slide {
+  transition: transform 0.3s ease-in-out;
+}
+
+.slick-center .slick-slide {
+  filter: none;
+  transform: scale(1.05);
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  transform: translateY(-900%);
+}
+
+.slick-prev {
+  left: 1%;
+}
+
+.slick-next {
+  right: 1.2%;
+}
+
+.slick-slide:not(.slick-center) {
+  filter: blur(5px) brightness(1.2) contrast(1.2) opacity(0.5);
+}
+
+.slick-track {
+  display: flex;
+  justify-content: center;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 2.5rem;
+  color: var(--main-color) !important;
+}
+
+.slick-center .slick-slide {
+  transform: scale(1.25);
+}
+
+.inactive {
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  scale: 0.8;
+  color: var(--main-background-color) !important;
+}
+.active {
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+  color: inherit;
+}
+
+.period-row {
+  color: var(--main-color);
+}

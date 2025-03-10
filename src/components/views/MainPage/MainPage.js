@@ -17,7 +17,6 @@ import CopyToClipboardButton from "../../ui/buttons/CopyToClipboardButton/CopyTo
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Tooltip from "@mui/material/Tooltip";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
-import ContinueButton from "../../ui/buttons/ContinueButton/ContinueButton";
 import { useTranslation } from "react-i18next";
 import VladProfileDark from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileDark.webp";
 import VladProfileLight from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileLight.webp";
