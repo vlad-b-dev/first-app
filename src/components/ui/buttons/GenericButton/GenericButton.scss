@@ -1,0 +1,53 @@
+$transition-duration: 0.4s;
+$border-radius: 0.6em;
+
+.generic-button {
+  position: relative;
+  display: inline-block;
+  background-color: var(--main-color);
+  color: var(--main-text-color);
+  border-top: 0.1em solid var(--main-hover-color);
+  border-left: 0.2em solid var(--main-hover-color);
+  border-radius: $border-radius;
+  padding: 0.6em 0.8em;
+  font-size: 1.2em;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 1);
+  transition: transform $transition-duration ease,
+    box-shadow $transition-duration ease, border-color $transition-duration ease; // Smooth transition for border
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-hover-color);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transform: translateY(5em) scale(0.95) rotateX(10deg);
+    transform-origin: center;
+    transition: transform $transition-duration ease,
+      opacity $transition-duration ease;
+  }
+
+  &:hover {
+    transform: translateY(-0.25em);
+    box-shadow: 0 0.7em 1.5em black;
+    border-color: transparent;
+
+    &::before {
+      opacity: 1;
+      transform: translateY(0) scale(1) rotateX(0deg);
+    }
+  }
+
+  &:active {
+    transform: translateY(-0.25em);
+  }
+}

@@ -46,13 +46,13 @@ const MainPageHeader = () => {
 
           const scrollPercentage = (currentScrollY / scrollableHeight) * 100;
 
-          const threshold = 15;
+          const threshold = 10;
 
           if (scrollPercentage >= threshold) {
             if (currentScrollY > lastScrollY) {
               controls.start({
                 y: "-200%",
-                transition: { duration: 0.5, ease: "easeOut" },
+                transition: { duration: 0.4, ease: "easeOut" },
               });
             } else {
               controls.start({

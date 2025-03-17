@@ -125,7 +125,7 @@ const Resume = () => {
   return (
     <div className="page-background">
       <MainPageHeader />
-      <ExperienceSection />
+      <ExperienceSection scrollToRef={skillsSectionRef} />
       <ContentSection
         startExpanded={true}
         ref={skillsSectionRef}

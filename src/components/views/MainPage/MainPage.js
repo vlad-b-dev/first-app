@@ -55,6 +55,7 @@ const MainPage = () => {
               width={"20vw"}
               hoverScale={1.1}
               className={"mt-2"}
+              showSmoke={true}
             />
           </div>
           <div className="col-6 general-text-column">

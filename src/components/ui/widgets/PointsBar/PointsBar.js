@@ -30,10 +30,10 @@ const PointsBar = ({
 
       return () => cancelAnimationFrame(animationFrame);
     }
-  }, [activePoint, points]); // ✅ Removed animatedPercentage from dependencies
+  }, [activePoint, points]);
 
-  const offset = 25;
-  const innerOffset = offset / 4;
+  const offset = 30;
+  const innerOffset = offset / 3;
 
   const gradient =
     orientation === "horizontal"

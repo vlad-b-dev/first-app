@@ -6,7 +6,12 @@
 }
 
 .slick-slide {
-  transition: transform 0.3s ease-in-out;
+  background-color: var(--main-background-color);
+  border: 3px solid var(--main-color);
+  min-height: 45vh !important;
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  overflow: auto;
 }
 
 .slick-center .slick-slide {
@@ -17,9 +22,8 @@
 .slick-prev,
 .slick-next {
   position: absolute;
-  top: 50%;
+  top: 5%;
   z-index: 1;
-  transform: translateY(-900%);
 }
 
 .slick-prev {
@@ -27,38 +31,36 @@
 }
 
 .slick-next {
-  right: 1.2%;
+  right: 2%;
 }
 
 .slick-slide:not(.slick-center) {
   filter: blur(5px) brightness(1.2) contrast(1.2) opacity(0.5);
 }
 
-.slick-track {
-  display: flex;
-  justify-content: center;
-}
-
 .slick-prev:before,
 .slick-next:before {
   font-size: 2.5rem;
-  color: var(--main-color) !important;
+  color: var(--main-hover-color) !important;
 }
 
-.slick-center .slick-slide {
-  transform: scale(1.25);
-}
-
-.inactive {
+.inactive-text {
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
   scale: 0.8;
-  color: var(--main-background-color) !important;
+  color: var(--inactive-element-color) !important;
 }
-.active {
+.active-text {
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
   color: inherit;
 }
 
 .period-row {
   color: var(--main-color);
+}
+.continue-button-container {
+  margin-top: 2vh;
+}
+.this-website-button {
+  margin-top: 3vh;
+  margin-left: 14.2vw;
 }

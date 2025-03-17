@@ -11,14 +11,16 @@
   --main-background-color-translucent: #36333c55;
   --main-text-color: #00ffff;
   --secondary-background-color: #27242c;
+  --inactive-element-color: #4c4554;
 }
 
 [data-theme="light"] {
   --main-color: #efc847;
   --main-hover-color: #181818;
   --highlight-color: #0057d9;
-  --main-background-color: #9f9f9f;
+  --main-background-color: #d6d6d6;
   --main-background-color-translucent: #d7d7d755;
   --main-text-color: #000000;
   --secondary-background-color: #ffffff;
+  --inactive-element-color: #d0d0d0;
 }

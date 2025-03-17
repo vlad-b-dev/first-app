@@ -11,6 +11,7 @@ const GenericLogo = ({
   alt,
   className,
   hoverScale,
+  showSmoke,
 }) => {
   const { theme } = useTheme();
 
@@ -24,6 +25,14 @@ const GenericLogo = ({
         className={`generic-logo ${className || ""}`.trim()}
         style={{ width, "--hover-scale": `${hoverScale}` }}
       />
+      {showSmoke && (
+        <div className="smoke-container">
+          <div className="smoke"></div>
+          <div className="smoke"></div>
+          <div className="smoke"></div>
+          <div className="smoke"></div>
+        </div>
+      )}
     </div>
   );
 };
@@ -36,6 +45,7 @@ GenericLogo.propTypes = {
   alt: PropTypes.string,
   className: PropTypes.string,
   hoverScale: PropTypes.number,
+  showSmoke: PropTypes.bool,
 };
 
 GenericLogo.defaultProps = {
@@ -43,6 +53,7 @@ GenericLogo.defaultProps = {
   alt: "logo",
   className: "",
   hoverScale: 1.2,
+  showSmoke: false,
 };
 
 export default GenericLogo;
