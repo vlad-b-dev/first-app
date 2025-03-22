@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import PropTypes from "prop-types";
 import "./PointsBar.scss";
-import { v4 as uuidv4 } from "uuid";
 
 const PointsBar = ({
   orientation = "horizontal",
@@ -13,50 +12,40 @@ const PointsBar = ({
   const [animatedPercentage, setAnimatedPercentage] = useState(50);
 
   useEffect(() => {
-    if (activePoint !== null && points > 1) {
-      const targetPercentage = (activePoint / (points - 1)) * 100;
-      let animationFrame;
+    if (activePoint === null || points <= 1) return;
+    const targetPercentage = (activePoint / (points - 1)) * 100;
+    let animationFrame;
 
-      const animate = () => {
-        setAnimatedPercentage((prev) => {
-          const diff = targetPercentage - prev;
-          return Math.abs(diff) < 1 ? targetPercentage : prev + diff * 0.3;
-        });
-
-        animationFrame = requestAnimationFrame(animate);
-      };
-
+    const animate = () => {
+      setAnimatedPercentage((prev) => {
+        const diff = targetPercentage - prev;
+        return Math.abs(diff) < 1 ? targetPercentage : prev + diff * 0.3;
+      });
       animationFrame = requestAnimationFrame(animate);
+    };
 
-      return () => cancelAnimationFrame(animationFrame);
-    }
+    animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
   }, [activePoint, points]);
 
   const offset = 30;
   const innerOffset = offset / 3;
+  const gradientDirection =
+    orientation === "horizontal" ? "to right" : "to bottom";
+  const gradient = `linear-gradient(${gradientDirection}, var(--main-color) 0%, var(--main-color) ${
+    animatedPercentage - offset
+  }%, var(--highlight-color) ${
+    animatedPercentage - innerOffset
+  }%, var(--highlight-color) ${
+    animatedPercentage + innerOffset
+  }%, var(--main-color) ${
+    animatedPercentage + offset
+  }%, var(--main-color) 100%)`;
 
-  const gradient =
-    orientation === "horizontal"
-      ? `linear-gradient(
-          to right,
-          var(--main-color) 0%,
-          var(--main-color) ${animatedPercentage - offset}%,
-          var(--highlight-color) ${animatedPercentage - innerOffset}%,
-          var(--highlight-color) ${animatedPercentage + innerOffset}%,
-          var(--main-color) ${animatedPercentage + offset}%,
-          var(--main-color) 100%
-        )`
-      : `linear-gradient(
-          to bottom,
-          var(--main-color) 0%,
-          var(--main-color) ${animatedPercentage - offset}%,
-          var(--highlight-color) ${animatedPercentage - innerOffset}%,
-          var(--highlight-color) ${animatedPercentage + innerOffset}%,
-          var(--main-color) ${animatedPercentage + offset}%,
-          var(--main-color) 100%
-        )`;
-
-  const circles = Array.from({ length: points }, () => uuidv4());
+  const circleKeys = useMemo(
+    () => Array.from({ length: points }, (_, index) => index),
+    [points]
+  );
 
   return (
     <div className="center-content">
@@ -64,20 +53,24 @@ const PointsBar = ({
         className={`points-bar ${orientation} ${className}`.trim()}
         style={{ background: gradient }}
       >
-        {circles.map((id, index) => {
-          const extraStyle = {};
-          if (index === 0)
-            extraStyle[
-              orientation === "horizontal" ? "marginLeft" : "marginTop"
-            ] = edgeGap;
-          if (index === circles.length - 1)
-            extraStyle[
+        {circleKeys.map((key, index) => {
+          const style = {};
+          if (index === 0) {
+            style[orientation === "horizontal" ? "marginLeft" : "marginTop"] =
+              edgeGap;
+          }
+          if (index === points - 1) {
+            style[
               orientation === "horizontal" ? "marginRight" : "marginBottom"
             ] = edgeGap;
-
-          const pointClass = index === activePoint ? "point active" : "point";
-
-          return <div key={id} className={pointClass} style={extraStyle} />;
+          }
+          return (
+            <div
+              key={key}
+              className={index === activePoint ? "point active" : "point"}
+              style={style}
+            />
+          );
         })}
       </div>
     </div>
