@@ -4,9 +4,9 @@ import "./SkillsList.scss";
 import LevelIndicator from "../../widgets/LevelIndicator/LevelIndicator";
 
 const SkillsList = ({ skills = [] }) => {
-  const skillLevelIndicatorWidth = "1.4vw";
-  const skillLevelIndicatorHeight = "0.7vh";
-  const skillLevelIndicatorGap = "0.3vw";
+  const skillLevelIndicatorWidth = "1.3vw";
+  const skillLevelIndicatorHeight = "0.6vh";
+  const skillLevelIndicatorGap = "0.25vw";
   return (
     <div className="skills-list">
       <ul>

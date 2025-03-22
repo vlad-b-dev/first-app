@@ -6,7 +6,7 @@
     columns: 2;
     -webkit-columns: 2;
     -moz-columns: 2;
-    column-gap: 1.2%;
+    column-gap: 0.5%;
   }
 
   li {
@@ -14,5 +14,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    white-space: nowrap;
   }
 }

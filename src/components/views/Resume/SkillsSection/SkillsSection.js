@@ -20,7 +20,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./SkillsSection.scss";
 
-const AheadSection = forwardRef(({}, ref) => {
+const SkillsSection = forwardRef((props, ref) => {
   const { t } = useTranslation();
   const frontendSkills = [
     { text: "React", level: 5 },
@@ -33,7 +33,7 @@ const AheadSection = forwardRef(({}, ref) => {
     { text: "Responsive layout", level: 4 },
     { text: "Framer Motion", level: 4 },
     { text: "Primeng/MUI", level: 4 },
-    { text: "SX/Bootstrap (classes)", level: 3 },
+    { text: "SX/Bootstrap", level: 3 },
     { text: "Flex/Grid", level: 3 },
     { text: "Three.js", level: 2 },
     { text: "Cookies", level: 2 },
@@ -83,12 +83,12 @@ const AheadSection = forwardRef(({}, ref) => {
   ];
   const codeSkills = [
     { text: "Algoritmos", level: 5 },
+    { text: "P.Orientada a objetos", level: 5 },
     { text: "JSON", level: 5 },
     { text: "Documentación", level: 5 },
     { text: "Clean Code", level: 4 },
     { text: "Naming", level: 4 },
     { text: "Refactoring", level: 4 },
-    { text: "BigData", level: 4 },
     { text: "Datasets", level: 4 },
     { text: "Unit Testing", level: 4 },
     { text: "Eficiencia - O(n)", level: 3 },
@@ -120,7 +120,7 @@ const AheadSection = forwardRef(({}, ref) => {
   return (
     <ContentSection
       ref={ref}
-      startExpanded={true}
+      startExpanded={false}
       title={t("resumePage.skillsSectionTitle")}
     >
       <div className="skills-section">
@@ -277,8 +277,8 @@ const AheadSection = forwardRef(({}, ref) => {
     </ContentSection>
   );
 });
-AheadSection.propTypes = {
+SkillsSection.propTypes = {
   scrollToRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };
 
-export default AheadSection;
+export default SkillsSection;

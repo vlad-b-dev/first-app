@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import MainPageHeader from "../../ui/menus/MainPageHeader/MainPageHeader";
 import PdfViewer from "../../ui/mediaViewers/PdfViewer/PdfViewer";
-import { useTranslation } from "react-i18next";
 import ExperienceSection from "./ExperienceSection/ExperienceSection";
 import SkillsSection from "./SkillsSection/SkillsSection";
 import PersonalSection from "./PersonalSection/PersonalSection";
@@ -9,8 +8,6 @@ import AheadSection from "./AheadSection/AheadSection";
 import "./Resume.scss";
 
 const Resume = () => {
-  const { t } = useTranslation();
-
   const skillsSectionRef = useRef(null);
 
   return (

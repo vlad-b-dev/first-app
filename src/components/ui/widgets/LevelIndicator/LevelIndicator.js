@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import PropTypes from "prop-types";
 import Tooltip from "@mui/material/Tooltip";
@@ -23,11 +23,16 @@ const LevelIndicator = ({
 }) => {
   const totalBars = 5;
   const [hoverLevel, setHoverLevel] = useState(level);
-  const handleMouseOver = (index) => {
-    if (isExplanation) {
-      setHoverLevel(index + 1);
-    }
-  };
+
+  const handleMouseOver = useCallback(
+    (index) => {
+      if (isExplanation) {
+        setHoverLevel(index + 1);
+      }
+    },
+    [isExplanation]
+  );
+
   const currentLevel = isExplanation ? hoverLevel : level;
 
   return (
@@ -44,18 +49,18 @@ const LevelIndicator = ({
             arrow
           >
             <InfoRoundedIcon className="pb-1 mr-1" />
-            {explanationTexts[hoverLevel - 1] || ""}{" "}
+            {explanationTexts[hoverLevel - 1] || ""}
           </Tooltip>
         </div>
       )}
-      <div className={`level-indicator`} style={{ gap }}>
+      <div className="level-indicator" style={{ gap }}>
         {[...Array(totalBars)].map((_, index) => (
           <div
             key={index}
             className={`bar ${index < currentLevel ? "on" : "off"}`}
             style={{ width, height }}
             onMouseOver={() => handleMouseOver(index)}
-          ></div>
+          />
         ))}
       </div>
     </div>
@@ -71,4 +76,4 @@ LevelIndicator.propTypes = {
   isExplanation: PropTypes.bool,
 };
 
-export default LevelIndicator;
+export default React.memo(LevelIndicator);

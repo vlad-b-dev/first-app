@@ -12,7 +12,7 @@ const PersonalSection = () => {
 
   return (
     <ContentSection
-      startExpanded={true}
+      startExpanded={false}
       title={t("resumePage.personalSectionTitle")}
     >
       Esta sección es más personal, no esta de mas conocer un poco con quien vas

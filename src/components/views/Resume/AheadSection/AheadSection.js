@@ -12,7 +12,7 @@ const AheadSection = () => {
 
   return (
     <ContentSection
-      startExpanded={true}
+      startExpanded={false}
       title={t("resumePage.strategySectionTitle")}
     >
       Ahora que nos conocemos algo mejor, toca hablar del presente y sobre todo,

@@ -28,7 +28,9 @@ a:active {
 body {
   color: var(--main-text-color) !important;
   background-color: var(--main-background-color);
+  content-visibility: auto;
 }
+
 body.light-mode {
   cursor: var(--cursor-light) !important;
   background-color: var(--main-background-color);
@@ -59,21 +61,26 @@ a,
   background-color: var(--main-background-color) !important;
   overflow-y: auto;
   overflow-x: hidden;
+  content-visibility: auto;
+  will-change: contents;
 }
 
 ::-webkit-scrollbar {
   width: 0.7vw !important;
   height: 1vh !important;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--secondary-background-color) !important;
   border: 0.1vw solid var(--main-color);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--main-color) !important;
   border-radius: 50px;
   border: 0.1vw solid var(--main-hover-color) !important;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: var(--main-hover-color) !important;
 }
@@ -88,6 +95,7 @@ a,
   box-shadow: 0.9vw 1.7vh 3rem 1rem rgba(0, 0, 0, 0.8);
   text-align: justify;
   min-width: 30vw;
+  content-visibility: auto;
 }
 
 .MuiTooltip-arrow {
