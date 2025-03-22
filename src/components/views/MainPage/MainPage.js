@@ -45,7 +45,7 @@ const MainPage = () => {
         title={t("resumePage.generalSection.title")}
         startExpanded={true}
         textColor={"var(--general-resume-text)"}
-        minBodyHeight={"70vh"}
+        minBodyHeight={"69vh"}
       >
         <div className="row mt-2">
           <div className="col-3">

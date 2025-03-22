@@ -1,0 +1,42 @@
+.skills-section {
+  svg {
+    color: var(--main-hover-color);
+    path:nth-of-type(2) {
+      fill: var(--main-color);
+    }
+  }
+}
+.reverse-two-tone-icons {
+  svg {
+    color: var(--main-color) !important;
+    path:nth-of-type(2) {
+      fill: var(--main-hover-color) !important;
+    }
+  }
+}
+.skills-title {
+  display: inline-block;
+  padding-top: 2vh;
+  margin-left: -1.5vw !important;
+
+  svg {
+    margin-bottom: 1vh !important;
+    margin-right: 0.5vw;
+    display: inline-block;
+    font-size: 3rem;
+  }
+}
+.soft-skills-list {
+  margin-left: 1vw;
+  li {
+    margin-bottom: 1vh;
+  }
+}
+.ml-pc-1 {
+  margin-bottom: 1vh !important;
+  margin-left: 1% !important;
+}
+.ml-pc-neg-1 {
+  margin-bottom: 1vh !important;
+  margin-left: -1% !important;
+}
