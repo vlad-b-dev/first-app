@@ -62,7 +62,7 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
   }, [isMobile]);
 
   return (
-    <div className={`row ${className || ""}`} ref={ref}>
+    <div className={`row mb-3 ${className || ""}`} ref={ref}>
       <div className="container pdf-viewer">
         <div className="row pdf-viewer-header">
           <div className="col-3 d-flex">

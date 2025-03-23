@@ -3,8 +3,7 @@
     "resume": "Resume",
     "thisWebsite": "This website",
     "design": "Design",
-    "contact": "Contact",
-    "playground": "Wanna try?"
+    "contact": "Contact"
   },
   "preferences": {
     "preferences": "Preferences",
@@ -24,7 +23,7 @@
     "experienceSectionTitle": "Professional Background",
     "skillsSectionTitle": "Skills",
     "strategySectionTitle": "Ahead",
-    "personalSectionTitle": "Deeper",
+    "personalSectionTitle": "Personal",
     "generalSection": {
       "title": "General",
       "nameText": "Hi! My name is Vladyslav Boychuk (Vlad)",
@@ -49,8 +48,5 @@
   },
   "contactPage": {
     "pageTitle": "Contact"
-  },
-  "playgroundPage": {
-    "pageTitle": "Wanna try?"
   }
 }

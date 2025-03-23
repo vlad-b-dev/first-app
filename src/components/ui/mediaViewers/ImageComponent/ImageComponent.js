@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useTheme } from "../../../../styles/ThemeContext";
-import "./GenericLogo.scss";
+import "./ImageComponent.scss";
 
-const GenericLogo = ({
+const ImageComponent = ({
   width,
   logo,
   logoDark,
@@ -18,11 +18,11 @@ const GenericLogo = ({
   const logoSrc = logo || (theme === "dark" ? logoDark : logoLight);
 
   return (
-    <div className="generic-logo-wrapper">
+    <div className="image-component-wrapper">
       <img
         src={logoSrc}
         alt={alt || "logo"}
-        className={`generic-logo ${className || ""}`.trim()}
+        className={`image-component ${className || ""}`.trim()}
         style={{ width, "--hover-scale": `${hoverScale}` }}
       />
       {showSmoke && (
@@ -37,7 +37,7 @@ const GenericLogo = ({
   );
 };
 
-GenericLogo.propTypes = {
+ImageComponent.propTypes = {
   width: PropTypes.string,
   logo: PropTypes.string,
   logoDark: PropTypes.string,
@@ -48,7 +48,7 @@ GenericLogo.propTypes = {
   showSmoke: PropTypes.bool,
 };
 
-GenericLogo.defaultProps = {
+ImageComponent.defaultProps = {
   width: "15vw",
   alt: "logo",
   className: "",
@@ -56,4 +56,4 @@ GenericLogo.defaultProps = {
   showSmoke: false,
 };
 
-export default GenericLogo;
+export default ImageComponent;

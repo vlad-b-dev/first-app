@@ -12,6 +12,7 @@ const AheadSection = () => {
 
   return (
     <ContentSection
+      className="mb-2"
       startExpanded={false}
       title={t("resumePage.strategySectionTitle")}
     >

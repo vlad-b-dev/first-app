@@ -10,7 +10,7 @@ import UpnaLogoLight from "../../../../resources/images/contentPhotos/experience
 import ZeoLogoDark from "../../../../resources/images/contentPhotos/experience/zeoLogo/zeoLogoDark.webp";
 import ZeoLogoLight from "../../../../resources/images/contentPhotos/experience/zeoLogo/zeoLogoLight.webp";
 import MinimalLogoNeutral from "../../../../resources/images/contentPhotos/experience/minimalLogoNeutral.webp";
-import GenericLogo from "../../../ui/mediaViewers/GenericLogo/GenericLogo";
+import ImageComponent from "../../../ui/mediaViewers/ImageComponent/ImageComponent";
 import GenericButton from "../../../ui/buttons/GenericButton/GenericButton";
 import { useNavigate } from "react-router-dom";
 
@@ -77,7 +77,7 @@ const ExperienceSection = ({ scrollToRef }) => {
 
   return (
     <ContentSection
-      className="mb-3 text-center"
+      className="mb-2 text-center"
       minBodyHeight={"70vh"}
       onToggle={handleContentToggle}
       startExpanded={true}
@@ -144,7 +144,7 @@ const ExperienceSection = ({ scrollToRef }) => {
           <div className="slide ">
             <div className="row mt-4">
               <div className="col-3 mt-3">
-                <GenericLogo
+                <ImageComponent
                   logoLight={UpnaLogoLight}
                   logoDark={UpnaLogoDark}
                   width={"14vw"}
@@ -176,7 +176,7 @@ const ExperienceSection = ({ scrollToRef }) => {
           <div className="slide">
             <div className="row mt-2 mb-1">
               <div className="col-3 mt-5">
-                <GenericLogo
+                <ImageComponent
                   logoLight={ZeoLogoLight}
                   logoDark={ZeoLogoDark}
                   width={"22vw"}
@@ -235,7 +235,7 @@ const ExperienceSection = ({ scrollToRef }) => {
           <div className="slide">
             <div className="row mt-4">
               <div className="col-3 mt-3">
-                <GenericLogo logo={MinimalLogoNeutral} width={"14vw"} />
+                <ImageComponent logo={MinimalLogoNeutral} width={"14vw"} />
               </div>
               <div className="col-9 mt-2 text-start">
                 <h3> All-In Website</h3>

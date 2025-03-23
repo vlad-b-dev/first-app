@@ -119,6 +119,7 @@ const SkillsSection = forwardRef((props, ref) => {
   ];
   return (
     <ContentSection
+      className="mb-2"
       ref={ref}
       startExpanded={false}
       title={t("resumePage.skillsSectionTitle")}

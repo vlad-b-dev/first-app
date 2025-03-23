@@ -20,7 +20,7 @@ import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import { useTranslation } from "react-i18next";
 import VladProfileDark from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileDark.webp";
 import VladProfileLight from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileLight.webp";
-import GenericLogo from "../../ui/mediaViewers/GenericLogo/GenericLogo";
+import ImageComponent from "../../ui/mediaViewers/ImageComponent/ImageComponent";
 
 import "./MainPage.scss";
 
@@ -49,7 +49,7 @@ const MainPage = () => {
       >
         <div className="row mt-2">
           <div className="col-3">
-            <GenericLogo
+            <ImageComponent
               logoLight={VladProfileLight}
               logoDark={VladProfileDark}
               width={"20vw"}

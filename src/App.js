@@ -11,7 +11,6 @@ import Resume from "./components/views/Resume/Resume";
 import ThisWebsite from "./components/views/ThisWebsite/ThisWebsite";
 import Design from "./components/views/Design/Design";
 import Contact from "./components/views/Contact/Contact";
-import Playground from "./components/views/Playground/Playground";
 import {
   ThemeProvider as CustomThemeProvider,
   useTheme,
@@ -66,7 +65,6 @@ const DynamicTitle = () => {
       "/this-website": ` ${appName} - ${t("thisWebsitePage.pageTitle")}`,
       "/design": ` ${appName} - ${t("designPage.pageTitle")}`,
       "/contact": ` ${appName} - ${t("contactPage.pageTitle")}`,
-      "/playground": ` ${appName} - ${t("playgroundPage.pageTitle")}`,
     };
 
     document.title = pageTitles[location.pathname] || appName;
@@ -99,7 +97,6 @@ export default function MainApp() {
             <Route path="/this-website" element={<ThisWebsite />} />
             <Route path="/design" element={<Design />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/playground" element={<Playground />} />
           </Routes>
         </Router>
       </ThemeProvider>

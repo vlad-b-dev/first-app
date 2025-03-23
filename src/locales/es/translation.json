@@ -3,8 +3,7 @@
     "resume": "Curriculum",
     "thisWebsite": "Este sitio web",
     "design": "Diseño",
-    "contact": "Contacto",
-    "playground": "¿Quieres probar?"
+    "contact": "Contacto"
   },
   "preferences": {
     "preferences": "Preferencias",
@@ -24,7 +23,7 @@
     "experienceSectionTitle": "Trayectoria Profesional",
     "killsSectionTitle": "Skills",
     "strategySectionTitle": "Enfoque y objetivos",
-    "personalSectionTitle": "A nivel personal",
+    "personalSectionTitle": "Personal",
     "generalSection": {
       "title": "General",
       "nameText": "¡Hola! Me llamo Vladyslav Boychuk (Vlad)",
@@ -49,8 +48,5 @@
   },
   "contactPage": {
     "pageTitle": "Contacto"
-  },
-  "playgroundPage": {
-    "pageTitle": "¿Quieres probar?"
   }
 }

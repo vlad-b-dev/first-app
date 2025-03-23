@@ -104,6 +104,12 @@ const MainPageHeader = () => {
         </div>
         <div className="col d-none d-md-flex align-items-center justify-content-center">
           <HeaderButton
+            label={"Main"}
+            onClick={() => handleNavigationClick("/main")}
+          />
+        </div>
+        <div className="col d-none d-md-flex align-items-center justify-content-center">
+          <HeaderButton
             label={t("headerButtons.resume")}
             onClick={() => handleNavigationClick("/resume")}
           />
@@ -120,18 +126,13 @@ const MainPageHeader = () => {
             onClick={() => handleNavigationClick("/design")}
           />
         </div>
-        <div className="col d-none d-md-flex align-items-center justify-content-center">
+        <div className="col d-none d-md-flex align-items-center justify-content-end">
           <HeaderButton
             label={t("headerButtons.contact")}
             onClick={() => handleNavigationClick("/contact")}
           />
         </div>
-        <div className="col d-none d-md-flex align-items-center justify-content-end">
-          <HeaderButton
-            label={t("headerButtons.playground")}
-            onClick={() => handleNavigationClick("/playground")}
-          />
-        </div>
+
         <div className="col d-flex justify-content-end">
           <Preferences />
         </div>

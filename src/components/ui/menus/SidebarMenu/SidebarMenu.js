@@ -107,6 +107,15 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
                 <div className="sidebar-menu-button-wrapper">
                   <HeaderButton
                     className="sidebar-menu-button"
+                    label={"Main"}
+                    onClick={() => handleNavigationClick("/main")}
+                  />
+                </div>
+              </motion.div>
+              <motion.div variants={sidebarMenuButtonAnimation}>
+                <div className="sidebar-menu-button-wrapper">
+                  <HeaderButton
+                    className="sidebar-menu-button"
                     label={t("headerButtons.resume")}
                     onClick={() => handleNavigationClick("/resume")}
                   />
@@ -136,15 +145,6 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
                     className="sidebar-menu-button"
                     label={t("headerButtons.contact")}
                     onClick={() => handleNavigationClick("/contact")}
-                  />
-                </div>
-              </motion.div>
-              <motion.div variants={sidebarMenuButtonAnimation}>
-                <div className="sidebar-menu-button-wrapper">
-                  <HeaderButton
-                    className="sidebar-menu-button"
-                    label={t("headerButtons.playground")}
-                    onClick={() => handleNavigationClick("/playground")}
                   />
                 </div>
               </motion.div>
