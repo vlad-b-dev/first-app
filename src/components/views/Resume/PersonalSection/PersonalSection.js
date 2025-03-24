@@ -18,75 +18,88 @@ const PersonalSection = () => {
 
   return (
     <ContentSection
-      className="mb-2"
+      className="mb-2 personal-section"
       startExpanded={false}
       title={t("resumePage.personalSectionTitle")}
     >
       <div className="row mt-3">
-        No esta de mas conocer un poco con quien vas a pasar unas 40h a la
-        semana, por ello esta sección es un poquito más personal. Nacido en
-        Ucrania y ciado en un pueblo del sur de Navarra, actualmente convivo con
-        mi gecko leopardo (Menta) y una docena de peces amazónicos en Pamplona.
-      </div>
-      <div className="row ">
         <div className="col-6">
+          <div className="row mt-4">
+            <p>
+              No esta de mas conocer un poco con quien vas a interactuar casi
+              todos los días... por ello esta sección es más personal:
+              <br />
+              <br />
+              Nacido en Ucrania y criado en un pueblo del sur de Navarra, tengo
+              un poco de los dos mundos. Ahora convivo con un gecko leopardo y
+              una docena de peces amazónicos en Pamplona.
+            </p>
+          </div>
+
+          <div className="row text-center">
+            <ImageComponent logo={Pets} width={"45vw"} hoverScale={1} />
+          </div>
+        </div>
+        <div className="col-6 text-start">
           <ImageComponent
             className="align-europe-map"
             logoDark={EuropeMapDark}
             logoLight={EuropeMapLight}
-            width={"46vw"}
-            hoverScale={1}
-          />
-        </div>
-        <div className="col-6 text-end">
-          <ImageComponent
-            className={"mt-5"}
-            logo={Pets}
-            width={"45vw"}
+            width={"42vw"}
             hoverScale={1}
           />
         </div>
       </div>
       <div className="row">
-        <div className="col-6 text-start">
-          <div className="row">
-            Soy una persona con dos facetas diferenciadas: una intensa,
-            despreocupada y enérgica, otra responsable, comprometida y
-            profesional. Lo importante es saber cuál toca sacar en cada momento.
-            <br />
-            <br />
-            Al mismo tiempo gusta lo tradicional y también lo moderno, natural y
-            urbano, tranquilo e intenso, exacto y creativo...
-            <br />
-            ¿Bangkok o los Pirineos? ¿Programación o diseño? ¿En casa con los
-            colegas o de fiesta a Budapest? ¿Meditación o motocross?
-            <br />
-            Siempre hay algun proyecto para hacer: desarrollo, diseño,
-            reparaciones, botánica, impresión 3D, pintura... Crecer y aprender
-            es importante. Mención especial al mundo del motor: mecánica,
-            coches, motos...
-            <br />
-            <br />
-            Siempre he tenido una manera muy única de hacer las cosas, y aprendí
-            a sacarle provecho. Todos tenemos temporadas buenas y otras no tan
-            buenas, nunca hay que perder la perspectiva y dejar de pensar a lo
-            grande. Solo se vive una vez.
-            <br />
-            <br />
-            Podemos hablar de otros temas más filosóficos con un par de cervezas
-            tras alguna cena corporativa; el networking es importante.
+        <div className="col-6">
+          <div className="row text-start">
+            <p>
+              Soy una persona con dos facetas: una intensa, despreocupada y
+              enérgica, otra responsable, comprometida y profesional. Lo
+              importante es saber cuál toca sacar en cada momento.
+              <br />
+              <br />
+              Al mismo tiempo gusta lo tradicional y también lo moderno, natural
+              y urbano, tranquilo e intenso, calculador y creativo...
+              <br />
+              <br />
+              ¿Bangkok o los Pirineos? ¿Programación o diseño? ¿En casa con los
+              colegas o de fiesta a Budapest? ¿Paseo por el monte o motocross?
+              <br />
+              <br />
+              Siempre hay algun proyecto para hacer: desarrollo, diseño,
+              reparaciones, botánica, impresión 3D, pintura... Crecer y aprender
+              es importante. Mención especial al mundo del motor: mecánica,
+              coches, motos...
+              <br />
+              <br />
+              Siempre he tenido una manera muy única de hacer las cosas, y
+              aprendí a sacarle provecho. Todos tenemos temporadas buenas y
+              otras no tan buenas, nunca hay que perder la perspectiva y dejar
+              de pensar a lo grande. Solo se vive una vez.
+              <br />
+              <br />
+              Podemos hablar de otros temas más filosóficos con un par de
+              cervezas tras alguna cena corporativa; el networking es
+              importante.
+            </p>
           </div>
           <div className="row">
             <ImageComponent
-              className="align-personal-photos-left"
+              className="align-personal-photos-right"
               logo={PersonalPhotos2}
-              width={"50vw"}
+              width={"54vw"}
               hoverScale={1}
             />
           </div>
         </div>
-        <div className="col-6 text-center align-personal-photos-right">
-          <ImageComponent logo={PersonalPhotos} width={"40vw"} hoverScale={1} />
+        <div className="col-6 text-center">
+          <ImageComponent
+            className="align-personal-photos-left"
+            logo={PersonalPhotos}
+            width={"47vw"}
+            hoverScale={1}
+          />
         </div>
       </div>
     </ContentSection>
