@@ -1,0 +1,50 @@
+.level-up-icon-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 18vh;
+}
+
+.level-up-icon {
+  width: 50vw !important;
+  margin: -12vh;
+  font-size: 17vw !important;
+  display: block;
+  color: var(--main-text-color);
+  text-shadow: 4px 4px 6px rgba(0, 0, 0, 1), 6px 6px 10px rgba(0, 0, 0, 1),
+    8px 8px 14px rgba(0, 0, 0, 1);
+  filter: drop-shadow(6px 6px 12px rgba(0, 0, 0, 1));
+  animation: levelUpBlink 3s infinite ease-in-out,
+    upDown 3s infinite ease-in-out;
+
+  &:nth-child(1) {
+    animation-delay: 2s, 0s;
+  }
+  &:nth-child(2) {
+    animation-delay: 1s, 0s;
+  }
+  &:nth-child(3) {
+    animation-delay: 0s, 0s;
+  }
+}
+
+@keyframes levelUpBlink {
+  0%,
+  100% {
+    color: var(--main-color);
+  }
+  50% {
+    color: var(--highlight-color);
+  }
+}
+
+@keyframes upDown {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4vh);
+  }
+}

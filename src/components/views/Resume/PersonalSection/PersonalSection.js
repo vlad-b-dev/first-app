@@ -86,7 +86,7 @@ const PersonalSection = () => {
           </div>
           <div className="row">
             <ImageComponent
-              className="align-personal-photos-right"
+              className="align-personal-photos-2"
               logo={PersonalPhotos2}
               width={"54vw"}
               hoverScale={1}
@@ -95,7 +95,7 @@ const PersonalSection = () => {
         </div>
         <div className="col-6 text-center">
           <ImageComponent
-            className="align-personal-photos-left"
+            className="align-personal-photos"
             logo={PersonalPhotos}
             width={"47vw"}
             hoverScale={1}

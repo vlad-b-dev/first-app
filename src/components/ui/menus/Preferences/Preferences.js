@@ -87,7 +87,10 @@ const Preferences = () => {
       </Button>
       <AnimatePresence>
         {showPreferences && (
-          <motion.div className="preferences-window" {...preferencesAnimation}>
+          <motion.div
+            className="preferences-window visible"
+            {...preferencesAnimation}
+          >
             <div style={{ position: "absolute", top: 0, right: -10 }}>
               <Button
                 className="preferences-close-button"

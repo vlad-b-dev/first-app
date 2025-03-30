@@ -253,6 +253,7 @@ const ExperienceSection = ({ scrollToRef }) => {
                   <GenericButton
                     className="this-website-button"
                     label="¡Más detalles aquí!"
+                    width="13vw"
                     onClick={() => handleNavigationClick("/this-website")}
                   />
                 </p>

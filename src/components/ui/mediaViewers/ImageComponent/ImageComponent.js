@@ -12,6 +12,7 @@ const ImageComponent = ({
   className,
   hoverScale,
   showSmoke,
+  smokeClassName,
 }) => {
   const { theme } = useTheme();
 
@@ -26,7 +27,7 @@ const ImageComponent = ({
         style={{ width, "--hover-scale": `${hoverScale}` }}
       />
       {showSmoke && (
-        <div className="smoke-container">
+        <div className={`smoke-container ${smokeClassName || ""}`.trim()}>
           <div className="smoke"></div>
           <div className="smoke"></div>
           <div className="smoke"></div>
@@ -46,6 +47,7 @@ ImageComponent.propTypes = {
   className: PropTypes.string,
   hoverScale: PropTypes.number,
   showSmoke: PropTypes.bool,
+  smokeClassName: PropTypes.string,
 };
 
 ImageComponent.defaultProps = {
@@ -54,6 +56,7 @@ ImageComponent.defaultProps = {
   className: "",
   hoverScale: 1.2,
   showSmoke: false,
+  smokeClassName: "",
 };
 
 export default ImageComponent;
