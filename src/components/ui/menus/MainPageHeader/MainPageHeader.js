@@ -120,12 +120,6 @@ const MainPageHeader = () => {
             onClick={() => handleNavigationClick("/this-website")}
           />
         </div>
-        <div className="col d-none d-md-flex align-items-center justify-content-center">
-          <HeaderButton
-            label={t("headerButtons.design")}
-            onClick={() => handleNavigationClick("/design")}
-          />
-        </div>
         <div className="col d-none d-md-flex align-items-center justify-content-end">
           <HeaderButton
             label={t("headerButtons.contact")}

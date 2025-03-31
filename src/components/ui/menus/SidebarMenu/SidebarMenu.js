@@ -134,15 +134,6 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
                 <div className="sidebar-menu-button-wrapper">
                   <HeaderButton
                     className="sidebar-menu-button"
-                    label={t("headerButtons.design")}
-                    onClick={() => handleNavigationClick("/design")}
-                  />
-                </div>
-              </motion.div>
-              <motion.div variants={sidebarMenuButtonAnimation}>
-                <div className="sidebar-menu-button-wrapper">
-                  <HeaderButton
-                    className="sidebar-menu-button"
                     label={t("headerButtons.contact")}
                     onClick={() => handleNavigationClick("/contact")}
                   />

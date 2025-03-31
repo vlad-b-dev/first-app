@@ -182,7 +182,7 @@ const ExperienceSection = ({ scrollToRef }) => {
                   width={"22vw"}
                 />
               </div>
-              <div className="col-9 text-start mb-0 pr-2">
+              <div className="col-9 text-start mb-0 pr-1">
                 <h3>Zeo Technology</h3>
                 <p>
                   Empresa dedicada a Industria 4.0, con reconocimiento

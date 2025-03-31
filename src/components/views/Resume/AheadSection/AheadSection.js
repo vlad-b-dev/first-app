@@ -7,7 +7,6 @@ import LevelUpDark from "../../../../resources/images/contentPhotos/ahead/levelU
 import LevelUpLight from "../../../../resources/images/contentPhotos/ahead/levelUp/levelUpLight.webp";
 import LevelUpChevron from "../../../ui/widgets/LevelUpChevron/LevelUpChevron";
 import GenericButton from "../../../ui/buttons/GenericButton/GenericButton";
-import { useNavigate } from "react-router-dom";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -15,8 +14,8 @@ import "./AheadSection.scss";
 
 const AheadSection = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const handleNavigationClick = (route) => navigate(route);
+  const handleNavigationClick = () =>
+    window.open("https://maps.app.goo.gl/M3E99XCCPRqSHpYd6", "_blank");
   return (
     <ContentSection
       className="mb-2"

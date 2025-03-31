@@ -2,6 +2,7 @@ $transition-duration: 0.4s;
 $border-radius: 0.6em;
 
 .generic-button {
+  z-index: 900;
   position: relative;
   display: inline-block;
   text-align: center;

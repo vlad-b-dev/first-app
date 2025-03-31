@@ -4,7 +4,8 @@
   z-index: 1000;
 
   color: var(--main-text-color);
-  background-color: var(--secondary-background-color);
+  background-color: var(--secondary-background-color-translucent);
+  backdrop-filter: blur(9px);
   align-items: center;
   width: 100vw;
   margin-bottom: 2vh;

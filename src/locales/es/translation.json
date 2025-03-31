@@ -2,7 +2,6 @@
   "headerButtons": {
     "resume": "Curriculum",
     "thisWebsite": "Este sitio web",
-    "design": "Diseño",
     "contact": "Contacto"
   },
   "preferences": {
@@ -42,9 +41,6 @@
   },
   "thisWebsitePage": {
     "pageTitle": "Este sitio web"
-  },
-  "designPage": {
-    "pageTitle": "Diseño"
   },
   "contactPage": {
     "pageTitle": "Contacto"

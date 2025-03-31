@@ -9,7 +9,6 @@ import { WelcomePage } from "./components/views/WelcomePage/WelcomePage";
 import MainPage from "./components/views/MainPage/MainPage";
 import Resume from "./components/views/Resume/Resume";
 import ThisWebsite from "./components/views/ThisWebsite/ThisWebsite";
-import Design from "./components/views/Design/Design";
 import Contact from "./components/views/Contact/Contact";
 import {
   ThemeProvider as CustomThemeProvider,
@@ -63,7 +62,6 @@ const DynamicTitle = () => {
       "/main": ` ${appName} - ${t("mainPage.pageTitle")}`,
       "/resume": ` ${appName} - ${t("resumePage.pageTitle")}`,
       "/this-website": ` ${appName} - ${t("thisWebsitePage.pageTitle")}`,
-      "/design": ` ${appName} - ${t("designPage.pageTitle")}`,
       "/contact": ` ${appName} - ${t("contactPage.pageTitle")}`,
     };
 
@@ -95,7 +93,6 @@ export default function MainApp() {
             <Route path="/main" element={<MainPage />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/this-website" element={<ThisWebsite />} />
-            <Route path="/design" element={<Design />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </Router>

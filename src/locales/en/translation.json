@@ -2,7 +2,6 @@
   "headerButtons": {
     "resume": "Resume",
     "thisWebsite": "This website",
-    "design": "Design",
     "contact": "Contact"
   },
   "preferences": {
@@ -42,9 +41,6 @@
   },
   "thisWebsitePage": {
     "pageTitle": "This website"
-  },
-  "designPage": {
-    "pageTitle": "Design"
   },
   "contactPage": {
     "pageTitle": "Contact"
