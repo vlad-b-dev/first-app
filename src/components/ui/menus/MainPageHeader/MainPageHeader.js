@@ -1,28 +1,43 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAnimation, motion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useTheme } from "../../../../styles/ThemeContext";
 import mainWebsiteLogoDark from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.webp";
 import mainWebsiteLogoMinimalDark from "../../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoDark.webp";
 import mainWebsiteLogoLight from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
 import mainWebsiteMinimalLogoLight from "../../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoLight.webp";
 import HeaderButton from "../../buttons/HeaderButton/HeaderButton";
-import { useTranslation } from "react-i18next";
 import Preferences from "../Preferences/Preferences";
-import { useTheme } from "../../../../styles/ThemeContext";
 import HamburgerButton from "../../buttons/HamburgerButton/HamburgerButton";
 import SidebarMenu from "../SidebarMenu/SidebarMenu";
-import { useNavigate } from "react-router-dom";
 import "./MainPageHeader.scss";
 
 const MainPageHeader = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const { theme } = useTheme();
   const [showSidebarMenu, setShowSidebarMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const controls = useAnimation();
+  const [indicatorProps, setIndicatorProps] = useState(() => {
+    const storedLeft = localStorage.getItem("indicatorLeft");
+    const storedWidth = localStorage.getItem("indicatorWidth");
+    return storedLeft && storedWidth
+      ? { left: parseFloat(storedLeft), width: parseFloat(storedWidth) }
+      : { left: 0, width: 0 };
+  });
+  const previousIndicatorProps = useRef(indicatorProps);
+  const indicatorControls = useAnimation();
+  const buttonRefs = useRef({});
 
-  const toggleDropdown = () => setShowSidebarMenu((prevState) => !prevState);
-  const handleSidebarClose = () => setShowSidebarMenu(false);
+  const menuItems = [
+    { label: "Main", route: "/main" },
+    { label: t("headerButtons.resume"), route: "/resume" },
+    { label: t("headerButtons.thisWebsite"), route: "/this-website" },
+    { label: t("headerButtons.contact"), route: "/contact" },
+  ];
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 767);
@@ -32,10 +47,9 @@ const MainPageHeader = () => {
 
   useEffect(() => {
     const scrollableElement = document.querySelector(".page-background");
+    if (!scrollableElement) return;
     let lastScrollY = 0;
     let ticking = false;
-
-    if (!scrollableElement) return;
 
     const handleScroll = () => {
       if (!ticking) {
@@ -43,9 +57,7 @@ const MainPageHeader = () => {
           const scrollableHeight =
             scrollableElement.scrollHeight - scrollableElement.clientHeight;
           const currentScrollY = scrollableElement.scrollTop;
-
           const scrollPercentage = (currentScrollY / scrollableHeight) * 100;
-
           const threshold = 10;
 
           if (scrollPercentage >= threshold) {
@@ -61,11 +73,9 @@ const MainPageHeader = () => {
               });
             }
           }
-
           lastScrollY = currentScrollY;
           ticking = false;
         });
-
         ticking = true;
       }
     };
@@ -73,6 +83,38 @@ const MainPageHeader = () => {
     scrollableElement.addEventListener("scroll", handleScroll);
     return () => scrollableElement.removeEventListener("scroll", handleScroll);
   }, [controls]);
+
+  useEffect(() => {
+    const updateIndicatorPosition = () => {
+      const activeButton = buttonRefs.current[location.pathname];
+      if (activeButton) {
+        const { offsetLeft, offsetWidth } = activeButton;
+        const newIndicatorProps = { left: offsetLeft, width: offsetWidth };
+
+        indicatorControls.start({
+          left: [previousIndicatorProps.current.left, newIndicatorProps.left],
+          width: [
+            previousIndicatorProps.current.width,
+            newIndicatorProps.width,
+          ],
+          transition: { type: "spring", stiffness: 200, damping: 20 },
+        });
+
+        previousIndicatorProps.current = newIndicatorProps;
+        setIndicatorProps(newIndicatorProps);
+        localStorage.setItem("indicatorLeft", offsetLeft);
+        localStorage.setItem("indicatorWidth", offsetWidth);
+      }
+    };
+
+    updateIndicatorPosition();
+    window.addEventListener("resize", updateIndicatorPosition);
+    return () => window.removeEventListener("resize", updateIndicatorPosition);
+  }, [location.pathname, indicatorControls]);
+
+  useEffect(() => {
+    previousIndicatorProps.current = indicatorProps;
+  }, [indicatorProps]);
 
   let logo;
   if (theme === "dark") {
@@ -92,48 +134,47 @@ const MainPageHeader = () => {
     >
       <div className="row m-0 mb-1 align-items-center">
         <div className="col d-flex d-md-none justify-content-start hamburger-button">
-          <HamburgerButton onClick={toggleDropdown} />
+          <HamburgerButton
+            onClick={() => setShowSidebarMenu(!showSidebarMenu)}
+          />
         </div>
         <div className="col d-flex justify-content-center">
           <button
             className="main-page-header-logo-button"
             onClick={() => handleNavigationClick("/main")}
+            ref={(el) => (buttonRefs.current["/main"] = el)}
           >
             <img src={logo} className="main-page-header-logo" alt="Logo" />
           </button>
         </div>
-        <div className="col d-none d-md-flex align-items-center justify-content-center">
-          <HeaderButton
-            label={"Main"}
-            onClick={() => handleNavigationClick("/main")}
-          />
-        </div>
-        <div className="col d-none d-md-flex align-items-center justify-content-center">
-          <HeaderButton
-            label={t("headerButtons.resume")}
-            onClick={() => handleNavigationClick("/resume")}
-          />
-        </div>
-        <div className="col d-none d-md-flex align-items-center justify-content-start">
-          <HeaderButton
-            label={t("headerButtons.thisWebsite")}
-            onClick={() => handleNavigationClick("/this-website")}
-          />
-        </div>
-        <div className="col d-none d-md-flex align-items-center justify-content-end">
-          <HeaderButton
-            label={t("headerButtons.contact")}
-            onClick={() => handleNavigationClick("/contact")}
-          />
-        </div>
-
+        {menuItems.map((item) => (
+          <div
+            key={item.route}
+            className="col d-none d-md-flex align-items-center justify-content-center"
+            ref={(el) => (buttonRefs.current[item.route] = el)}
+          >
+            <HeaderButton
+              label={item.label}
+              onClick={() => handleNavigationClick(item.route)}
+            />
+          </div>
+        ))}
         <div className="col d-flex justify-content-end">
           <Preferences />
         </div>
       </div>
+      <motion.div
+        className="header-indicator"
+        style={{
+          left: indicatorProps.left,
+          width: indicatorProps.width,
+        }}
+        animate={indicatorControls}
+      />
+
       <SidebarMenu
         showSidebarMenu={showSidebarMenu}
-        onClose={handleSidebarClose}
+        onClose={() => setShowSidebarMenu(false)}
       />
     </motion.div>
   );
