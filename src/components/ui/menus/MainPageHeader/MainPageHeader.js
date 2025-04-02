@@ -21,14 +21,11 @@ const MainPageHeader = () => {
   const [showSidebarMenu, setShowSidebarMenu] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const controls = useAnimation();
+
   const [indicatorProps, setIndicatorProps] = useState(() => {
     const storedLeft = localStorage.getItem("indicatorLeft");
-    const storedWidth = localStorage.getItem("indicatorWidth");
-    return storedLeft && storedWidth
-      ? { left: parseFloat(storedLeft), width: parseFloat(storedWidth) }
-      : { left: 0, width: 0 };
+    return { left: storedLeft ? parseFloat(storedLeft) : 0 };
   });
-  const previousIndicatorProps = useRef(indicatorProps);
   const indicatorControls = useAnimation();
   const buttonRefs = useRef({});
 
@@ -88,22 +85,20 @@ const MainPageHeader = () => {
     const updateIndicatorPosition = () => {
       const activeButton = buttonRefs.current[location.pathname];
       if (activeButton) {
-        const { offsetLeft, offsetWidth } = activeButton;
-        const newIndicatorProps = { left: offsetLeft, width: offsetWidth };
+        const { offsetLeft } = activeButton;
+        const newIndicatorProps = { left: offsetLeft };
 
         indicatorControls.start({
-          left: [previousIndicatorProps.current.left, newIndicatorProps.left],
-          width: [
-            previousIndicatorProps.current.width,
-            newIndicatorProps.width,
-          ],
-          transition: { type: "spring", stiffness: 200, damping: 20 },
+          left: newIndicatorProps.left,
+          transition: {
+            type: "spring",
+            stiffness: 100,
+            damping: 15,
+          },
         });
 
-        previousIndicatorProps.current = newIndicatorProps;
         setIndicatorProps(newIndicatorProps);
         localStorage.setItem("indicatorLeft", offsetLeft);
-        localStorage.setItem("indicatorWidth", offsetWidth);
       }
     };
 
@@ -111,10 +106,6 @@ const MainPageHeader = () => {
     window.addEventListener("resize", updateIndicatorPosition);
     return () => window.removeEventListener("resize", updateIndicatorPosition);
   }, [location.pathname, indicatorControls]);
-
-  useEffect(() => {
-    previousIndicatorProps.current = indicatorProps;
-  }, [indicatorProps]);
 
   let logo;
   if (theme === "dark") {
@@ -167,7 +158,6 @@ const MainPageHeader = () => {
         className="header-indicator"
         style={{
           left: indicatorProps.left,
-          width: indicatorProps.width,
         }}
         animate={indicatorControls}
       />
