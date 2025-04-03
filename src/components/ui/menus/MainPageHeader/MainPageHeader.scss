@@ -12,19 +12,17 @@
 
   @media (min-width: 768px) {
     border-bottom: 0.8vh solid var(--main-color);
-
-    // Neon glow effect added via pseudo-element for header
     &::after {
       content: "";
       position: absolute;
-      bottom: 0; /* aligns with the bottom border */
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 1vh; /* adjust height for desired glow length */
+      height: 1.5vh;
       background: linear-gradient(to top, var(--main-color), transparent);
-      filter: blur(4px);
+      filter: blur(7px);
       pointer-events: none;
-      z-index: -1; /* ensures the glow sits behind the header content */
+      z-index: -1;
     }
 
     .main-page-header-logo {
@@ -47,15 +45,13 @@
   @media (max-width: 767px) {
     border-bottom: 1vh solid var(--main-color);
     height: 12vh;
-
-    // Neon glow effect added via pseudo-element for mobile header
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 2vh; /* adjust as needed for mobile glow */
+      height: 2vh;
       background: linear-gradient(to top, var(--main-color), transparent);
       filter: blur(5px);
       pointer-events: none;
@@ -117,23 +113,20 @@
   background-color: var(--main-color);
   z-index: -1;
   border-radius: 100%;
-
-  // Neon glow effect for header-indicator
   &::after {
     content: "";
     position: absolute;
-    bottom: 1vh; /* aligns with the bottom of the indicator */
+    bottom: 1.4vh;
     margin-left: -1.5vw;
-    width: 120%;
-    height: 300%; /* glow covers the full height of the indicator */
+    width: 125%;
+    height: 500%;
     background: linear-gradient(to top, var(--main-color), transparent);
-    filter: blur(10px);
+    filter: blur(18px);
     pointer-events: none;
     z-index: -1;
+    border-radius: 100%;
   }
 }
-
-// Hide header-indicator on mobile
 @media (max-width: 767px) {
   .header-indicator {
     display: none;

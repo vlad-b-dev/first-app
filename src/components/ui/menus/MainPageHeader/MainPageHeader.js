@@ -92,8 +92,9 @@ const MainPageHeader = () => {
           left: newIndicatorProps.left,
           transition: {
             type: "spring",
-            stiffness: 100,
-            damping: 15,
+            stiffness: 150,
+            damping: 40,
+            mass: 8,
           },
         });
 
