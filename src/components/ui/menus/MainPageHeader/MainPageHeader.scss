@@ -107,8 +107,8 @@
 .header-indicator {
   position: absolute;
   margin-left: 1.2vw;
-  bottom: -1.3vh;
-  height: 11%;
+  bottom: -1.1vh;
+  height: 9%;
   width: 15vw;
   background-color: var(--main-color);
   z-index: -1;
@@ -116,12 +116,12 @@
   &::after {
     content: "";
     position: absolute;
-    bottom: 0.2vh;
+    bottom: 0.5vh;
     margin-left: -1.5vw;
     width: 125%;
-    height: 500%;
+    height: 440%;
     background: linear-gradient(to top, var(--main-color), transparent);
-    filter: blur(12px);
+    filter: blur(14px);
     pointer-events: none;
     z-index: -1;
     border-radius: 100%;

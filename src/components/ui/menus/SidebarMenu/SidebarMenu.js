@@ -4,7 +4,7 @@ import mainWebsiteLogoLight from "../../../../resources/images/logos/mainLogo/or
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
-import HeaderButton from "../../buttons/HeaderButton/HeaderButton";
+import GenericButton from "../../buttons/GenericButton/GenericButton";
 import { useTheme } from "../../../../styles/ThemeContext";
 import { useNavigate } from "react-router-dom";
 
@@ -104,40 +104,32 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
                 <img src={logo} className="sidebar-menu-logo" alt="Logo" />
               </motion.div>
               <motion.div variants={sidebarMenuButtonAnimation}>
-                <div className="sidebar-menu-button-wrapper">
-                  <HeaderButton
-                    className="sidebar-menu-button"
-                    label={"Main"}
-                    onClick={() => handleNavigationClick("/main")}
-                  />
-                </div>
+                <GenericButton
+                  sidebarButton={true}
+                  label={"Main"}
+                  onClick={() => handleNavigationClick("/main")}
+                />
               </motion.div>
               <motion.div variants={sidebarMenuButtonAnimation}>
-                <div className="sidebar-menu-button-wrapper">
-                  <HeaderButton
-                    className="sidebar-menu-button"
-                    label={t("headerButtons.resume")}
-                    onClick={() => handleNavigationClick("/resume")}
-                  />
-                </div>
+                <GenericButton
+                  sidebarButton={true}
+                  label={t("headerButtons.resume")}
+                  onClick={() => handleNavigationClick("/resume")}
+                />
               </motion.div>
               <motion.div variants={sidebarMenuButtonAnimation}>
-                <div className="sidebar-menu-button-wrapper">
-                  <HeaderButton
-                    className="sidebar-menu-button"
-                    label={t("headerButtons.thisWebsite")}
-                    onClick={() => handleNavigationClick("/this-website")}
-                  />
-                </div>
+                <GenericButton
+                  sidebarButton={true}
+                  label={t("headerButtons.thisWebsite")}
+                  onClick={() => handleNavigationClick("/this-website")}
+                />
               </motion.div>
               <motion.div variants={sidebarMenuButtonAnimation}>
-                <div className="sidebar-menu-button-wrapper">
-                  <HeaderButton
-                    className="sidebar-menu-button"
-                    label={t("headerButtons.contact")}
-                    onClick={() => handleNavigationClick("/contact")}
-                  />
-                </div>
+                <GenericButton
+                  sidebarButton={true}
+                  label={t("headerButtons.contact")}
+                  onClick={() => handleNavigationClick("/contact")}
+                />
               </motion.div>
             </div>
           </motion.div>

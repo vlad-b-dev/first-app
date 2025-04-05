@@ -7,7 +7,7 @@ import mainWebsiteLogoDark from "../../../../resources/images/logos/mainLogo/ori
 import mainWebsiteLogoMinimalDark from "../../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoDark.webp";
 import mainWebsiteLogoLight from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
 import mainWebsiteMinimalLogoLight from "../../../../resources/images/logos/mainLogo/minimal/mainWebsiteLogoLight.webp";
-import HeaderButton from "../../buttons/HeaderButton/HeaderButton";
+import GenericButton from "../../buttons/GenericButton/GenericButton";
 import Preferences from "../Preferences/Preferences";
 import HamburgerButton from "../../buttons/HamburgerButton/HamburgerButton";
 import SidebarMenu from "../SidebarMenu/SidebarMenu";
@@ -83,18 +83,22 @@ const MainPageHeader = () => {
 
   useEffect(() => {
     const updateIndicatorPosition = () => {
-      const activeButton = buttonRefs.current[location.pathname];
+      let activeButton = buttonRefs.current[location.pathname];
+      if (location.pathname === "/") {
+        activeButton = buttonRefs.current["/main"];
+      }
       if (activeButton) {
-        const { offsetLeft } = activeButton;
+        const offsetLeft = activeButton.offsetLeft;
+
         const newIndicatorProps = { left: offsetLeft };
 
         indicatorControls.start({
           left: newIndicatorProps.left,
           transition: {
             type: "spring",
-            stiffness: 190,
+            stiffness: 240,
             damping: 55,
-            mass: 9,
+            mass: 6.5,
           },
         });
 
@@ -145,7 +149,8 @@ const MainPageHeader = () => {
             className="col d-none d-md-flex align-items-center justify-content-center"
             ref={(el) => (buttonRefs.current[item.route] = el)}
           >
-            <HeaderButton
+            <GenericButton
+              headerButton={true}
               label={item.label}
               onClick={() => handleNavigationClick(item.route)}
             />

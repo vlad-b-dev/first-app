@@ -2,10 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./GenericButton.scss";
 
-const GenericButton = ({ label, onClick, className = "", width = "100%" }) => {
+const GenericButton = ({
+  headerButton = false,
+  sidebarButton = false,
+  label,
+  onClick,
+  className = "",
+  width = "100%",
+}) => {
+  const baseClass = headerButton
+    ? "header-button"
+    : sidebarButton
+    ? "sidebar-button"
+    : "generic-button";
+
   return (
     <button
-      className={`generic-button ${className}`}
+      className={`${baseClass} ${className}`}
       onClick={onClick}
       style={{ width }}
     >
@@ -15,6 +28,8 @@ const GenericButton = ({ label, onClick, className = "", width = "100%" }) => {
 };
 
 GenericButton.propTypes = {
+  headerButton: PropTypes.bool,
+  sidebarButton: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
