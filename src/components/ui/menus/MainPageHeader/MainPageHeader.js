@@ -140,6 +140,7 @@ const MainPageHeader = () => {
             onClick={() => handleNavigationClick("/main")}
             ref={(el) => (buttonRefs.current["/main"] = el)}
           >
+            <div className="logo-triangle" />
             <img src={logo} className="main-page-header-logo" alt="Logo" />
           </button>
         </div>

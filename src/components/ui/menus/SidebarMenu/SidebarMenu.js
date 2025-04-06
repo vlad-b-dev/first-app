@@ -101,7 +101,12 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
                 variants={sidebarMenuLogoAnimation}
                 className="col d-flex justify-content-center sidebar-menu-logo-wrapper"
               >
-                <img src={logo} className="sidebar-menu-logo" alt="Logo" />
+                <img
+                  src={logo}
+                  onClick={() => handleNavigationClick("/main")}
+                  className="sidebar-menu-logo"
+                  alt="Logo"
+                />
               </motion.div>
               <motion.div variants={sidebarMenuButtonAnimation}>
                 <GenericButton
