@@ -58,11 +58,11 @@ const DynamicTitle = () => {
 
   useEffect(() => {
     const pageTitles = {
-      "/": ` ${appName} - ${t("welcomePage.pageTitle")}`,
-      "/main": ` ${appName} - ${t("mainPage.pageTitle")}`,
-      "/resume": ` ${appName} - ${t("resumePage.pageTitle")}`,
-      "/this-website": ` ${appName} - ${t("thisWebsitePage.pageTitle")}`,
-      "/contact": ` ${appName} - ${t("contactPage.pageTitle")}`,
+      "/": `${appName} - ${t("welcomePage.pageTitle")}`,
+      "/main": `${appName} - ${t("mainPage.pageTitle")}`,
+      "/resume": `${appName} - ${t("resumePage.pageTitle")}`,
+      "/this-website": `${appName} - ${t("thisWebsitePage.pageTitle")}`,
+      "/contact": `${appName} - ${t("contactPage.pageTitle")}`,
     };
 
     document.title = pageTitles[location.pathname] || appName;

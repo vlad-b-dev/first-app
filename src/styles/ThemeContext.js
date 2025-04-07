@@ -4,7 +4,16 @@ const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "dark";
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme) return storedTheme;
+    // Check user's system preference
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: light)").matches
+    ) {
+      return "light";
+    }
+    return "dark";
   });
 
   useEffect(() => {
@@ -14,8 +23,10 @@ export const ThemeProvider = ({ children }) => {
 
   const toggleTheme = (newTheme) => setTheme(newTheme);
 
+  const contextValue = React.useMemo(() => ({ theme, toggleTheme }), [theme]);
+
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={contextValue}>
       {children}
     </ThemeContext.Provider>
   );
