@@ -20,8 +20,8 @@ import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import { useTranslation } from "react-i18next";
 import VladProfileDark from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileDark.webp";
 import VladProfileLight from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileLight.webp";
-import PamplonaSkylineDark from "../../../resources/images/backgrounds/footer/pamplonaSkyline/pamplonaSkylineDark.webp";
 import ImageComponent from "../../ui/mediaViewers/ImageComponent/ImageComponent";
+import MainFooter from "../../ui/menus/MainFooter/MainFooter";
 
 import "./MainPage.scss";
 
@@ -169,13 +169,7 @@ const MainPage = () => {
           </div>
         </div>
       </ContentSection>
-      {/* <ImageComponent
-        logoDark={PamplonaSkylineDark}
-        width={"100vw"}
-        hoverScale={1}
-        className={"mt-2"}
-        showSmoke={true}
-      /> */}
+      <MainFooter />
     </div>
   );
 };
