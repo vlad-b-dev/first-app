@@ -5,9 +5,9 @@ import "./ImageComponent.scss";
 
 const ImageComponent = ({
   width,
-  logo,
-  logoDark,
-  logoLight,
+  image,
+  imageDark,
+  imageLight,
   alt,
   className,
   hoverScale,
@@ -16,13 +16,13 @@ const ImageComponent = ({
 }) => {
   const { theme } = useTheme();
 
-  const logoSrc = logo || (theme === "dark" ? logoDark : logoLight);
+  const imageSrc = image || (theme === "dark" ? imageDark : imageLight);
 
   return (
     <div className="image-component-wrapper">
       <img
-        src={logoSrc}
-        alt={alt || "logo"}
+        src={imageSrc}
+        alt={alt || "image"}
         className={`image-component ${className || ""}`.trim()}
         style={{ width, "--hover-scale": `${hoverScale}` }}
       />
@@ -40,9 +40,9 @@ const ImageComponent = ({
 
 ImageComponent.propTypes = {
   width: PropTypes.string,
-  logo: PropTypes.string,
-  logoDark: PropTypes.string,
-  logoLight: PropTypes.string,
+  image: PropTypes.string,
+  imageDark: PropTypes.string,
+  imageLight: PropTypes.string,
   alt: PropTypes.string,
   className: PropTypes.string,
   hoverScale: PropTypes.number,
@@ -52,7 +52,7 @@ ImageComponent.propTypes = {
 
 ImageComponent.defaultProps = {
   width: "15vw",
-  alt: "logo",
+  alt: "image",
   className: "",
   hoverScale: 1.2,
   showSmoke: false,

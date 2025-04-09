@@ -145,8 +145,8 @@ const ExperienceSection = ({ scrollToRef }) => {
             <div className="row mt-4">
               <div className="col-3 mt-3">
                 <ImageComponent
-                  logoLight={UpnaLogoLight}
-                  logoDark={UpnaLogoDark}
+                  imageLight={UpnaLogoLight}
+                  imageDark={UpnaLogoDark}
                   width={"14vw"}
                 />
               </div>
@@ -177,8 +177,8 @@ const ExperienceSection = ({ scrollToRef }) => {
             <div className="row mt-2 mb-1">
               <div className="col-3 mt-5">
                 <ImageComponent
-                  logoLight={ZeoLogoLight}
-                  logoDark={ZeoLogoDark}
+                  imageLight={ZeoLogoLight}
+                  imageDark={ZeoLogoDark}
                   width={"22vw"}
                 />
               </div>
@@ -235,7 +235,7 @@ const ExperienceSection = ({ scrollToRef }) => {
           <div className="slide">
             <div className="row mt-4">
               <div className="col-3 mt-3">
-                <ImageComponent logo={MinimalLogoNeutral} width={"14vw"} />
+                <ImageComponent image={MinimalLogoNeutral} width={"14vw"} />
               </div>
               <div className="col-9 mt-2 text-start">
                 <h3> All-In Website</h3>

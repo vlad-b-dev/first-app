@@ -51,8 +51,8 @@ const MainPage = () => {
         <div className="row mt-2">
           <div className="col-3">
             <ImageComponent
-              logoLight={VladProfileLight}
-              logoDark={VladProfileDark}
+              imageLight={VladProfileLight}
+              imageDark={VladProfileDark}
               width={"20vw"}
               hoverScale={1.1}
               className={"mt-2"}

@@ -37,14 +37,14 @@ const PersonalSection = () => {
           </div>
 
           <div className="row text-center">
-            <ImageComponent logo={Pets} width={"45vw"} hoverScale={1} />
+            <ImageComponent image={Pets} width={"45vw"} hoverScale={1} />
           </div>
         </div>
         <div className="col-6 text-start">
           <ImageComponent
             className="align-europe-map"
-            logoDark={EuropeMapDark}
-            logoLight={EuropeMapLight}
+            imageDark={EuropeMapDark}
+            imageLight={EuropeMapLight}
             width={"42vw"}
             hoverScale={1}
           />
@@ -87,7 +87,7 @@ const PersonalSection = () => {
           <div className="row">
             <ImageComponent
               className="align-personal-photos-2"
-              logo={PersonalPhotos2}
+              image={PersonalPhotos2}
               width={"54vw"}
               hoverScale={1}
             />
@@ -96,7 +96,7 @@ const PersonalSection = () => {
         <div className="col-6 text-center">
           <ImageComponent
             className="align-personal-photos"
-            logo={PersonalPhotos}
+            image={PersonalPhotos}
             width={"47vw"}
             hoverScale={1}
           />

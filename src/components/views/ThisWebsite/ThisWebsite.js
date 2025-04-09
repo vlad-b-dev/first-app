@@ -14,7 +14,7 @@ import ImageComponent from "../../ui/mediaViewers/ImageComponent/ImageComponent"
 import GenericButton from "../../ui/buttons/GenericButton/GenericButton";
 import KnowledgeDark from "../../../resources/images/contentPhotos/thisWebsite/knowledge/knowledgeDark.webp";
 import KnowledgeLight from "../../../resources/images/contentPhotos/thisWebsite/knowledge/knowledgeLight.webp";
-
+import MainFooter from "../../ui/menus/MainFooter/MainFooter";
 import "./ThisWebsite.scss";
 
 const ThisWebsite = () => {
@@ -28,8 +28,8 @@ const ThisWebsite = () => {
         <div className="row mb-5">
           <div className="col-4">
             <ImageComponent
-              logoDark={AllInVBDark}
-              logoLight={AllInVBLight}
+              imageDark={AllInVBDark}
+              imageLight={AllInVBLight}
               width={"32vw"}
               hoverScale={1.05}
               showSmoke={false}
@@ -66,8 +66,8 @@ const ThisWebsite = () => {
           <div className="col-4">
             <ImageComponent
               className={"knowledge-image"}
-              logoDark={KnowledgeDark}
-              logoLight={KnowledgeLight}
+              imageDark={KnowledgeDark}
+              imageLight={KnowledgeLight}
               width={"25vw"}
               hoverScale={1.1}
             />
@@ -95,8 +95,8 @@ const ThisWebsite = () => {
         <div className="row text-center mb-2">
           <div className="col-4 pt-1">
             <ImageComponent
-              logoDark={CodeFrequencyDark}
-              logoLight={CodeFrequencyLight}
+              imageDark={CodeFrequencyDark}
+              imageLight={CodeFrequencyLight}
               width={"31vw"}
               hoverScale={1}
             />
@@ -104,8 +104,8 @@ const ThisWebsite = () => {
           <div className="col-4">
             <div className="row">
               <ImageComponent
-                logoDark={GithubDark}
-                logoLight={GithubLight}
+                imageDark={GithubDark}
+                imageLight={GithubLight}
                 width={"18vw"}
                 WWWW
                 hoverScale={1.1}
@@ -123,8 +123,8 @@ const ThisWebsite = () => {
           </div>
           <div className="col-4 pt-1">
             <ImageComponent
-              logoDark={CommitsDark}
-              logoLight={CommitsLight}
+              imageDark={CommitsDark}
+              imageLight={CommitsLight}
               width={"31vw"}
               hoverScale={1}
             />
@@ -167,8 +167,8 @@ const ThisWebsite = () => {
           </div>
           <div className="col-6 pt-1">
             <ImageComponent
-              logoDark={UnderConstructionDark}
-              logoLight={UnderConstructionLight}
+              imageDark={UnderConstructionDark}
+              imageLight={UnderConstructionLight}
               width={"42vw"}
               hoverScale={1}
               showSmoke={true}
@@ -177,6 +177,7 @@ const ThisWebsite = () => {
           </div>
         </div>
       </div>
+      <MainFooter />
     </div>
   );
 };

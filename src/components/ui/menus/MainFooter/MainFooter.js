@@ -1,7 +1,5 @@
 import React from "react";
-import PamplonaSkylineDark from "../../../../resources/images/backgrounds/footer/pamplonaSkyline/pamplonaSkylineDark.webp";
-import PamplonaSkylineLight from "../../../../resources/images/backgrounds/footer/pamplonaSkyline/pamplonaSkylineLight.webp";
-import ImageComponent from "../../mediaViewers/ImageComponent/ImageComponent";
+import FooterImage from "./FooterImage/FooterImage";
 /* import "./MainFooter.scss";
  */ const MainFooter = () => {
   /*   const { t } = useTranslation();
@@ -16,24 +14,7 @@ import ImageComponent from "../../mediaViewers/ImageComponent/ImageComponent";
     return () => window.removeEventListener("resize", handleResize);
   }, []); */
 
-  return (
-    /*     <motion.div
-      className="main-page-header"
-      animate={controls}
-      initial={{ y: "0%" }}
-      transition={{ type: "tween", duration: 0.3 }}
-    > */
-    <ImageComponent
-      logoDark={PamplonaSkylineDark}
-      logoLight={PamplonaSkylineLight}
-      width={"100vw"}
-      hoverScale={1}
-      className={"mt-2"}
-      showSmoke={true}
-    />
-    /*     </motion.div>
-     */
-  );
+  return <FooterImage />;
 };
 
 export default MainFooter;
