@@ -65,8 +65,8 @@ const AheadSection = () => {
         </div>
         <div className="col-8">
           <ImageComponent
-            logoDark={LevelUpDark}
-            logoLight={LevelUpLight}
+            imageDark={LevelUpDark}
+            imageLight={LevelUpLight}
             width={"60vw"}
             hoverScale={1}
             showSmoke={true}
