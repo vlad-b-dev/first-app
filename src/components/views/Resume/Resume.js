@@ -19,7 +19,7 @@ const Resume = () => {
       <PersonalSection />
       <AheadSection />
       <PdfViewer />
-      /*<MainFooter />*/
+    {/*<MainFooter />*/}
     </div>
   );
 };
