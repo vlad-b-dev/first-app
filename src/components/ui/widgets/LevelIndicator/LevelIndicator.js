@@ -9,7 +9,7 @@ const explanationTexts = [
   "Nivel 1: Conocimiento mínimo",
   "Nivel 2: Conocimiento y manejo básico",
   "Nivel 3: Intermedio, estoy cómodo usando esta tecnología",
-  "Nivel 4: Canocimiento avanzado, mejor que el promedio",
+  "Nivel 4: Conocimiento avanzado, mejor que el promedio",
   "Nivel 5: Alto, me desenvuelvo muy bien",
 ];
 
@@ -48,11 +48,14 @@ const LevelIndicator = ({
             placement="top"
             arrow
           >
-            <InfoRoundedIcon className="pb-1 mr-1" />
-            {explanationTexts[hoverLevel - 1] || ""}
+            <span className="info-label">
+              <InfoRoundedIcon className="pb-1 mr-1" />
+              {explanationTexts[hoverLevel - 1] || ""}
+            </span>
           </Tooltip>
         </div>
       )}
+
       <div className="level-indicator" style={{ gap }}>
         {[...Array(totalBars)].map((_, index) => (
           <div

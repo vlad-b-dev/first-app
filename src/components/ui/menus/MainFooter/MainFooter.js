@@ -1,16 +1,12 @@
 import React from "react";
 import FooterImage from "./FooterImage/FooterImage";
 import FooterLogo from "../../../../resources/images/logos/footerLogo/footerLogo.webp";
-import ImageComponent from "../../mediaViewers/ImageComponent/ImageComponent";
 import LocalAirportTwoToneIcon from "@mui/icons-material/LocalAirportTwoTone";
+import Orbit from "../../animations/Orbit/Orbit";
 import "./MainFooter.scss";
 
 const MainFooter = () => {
   const scrollToTop = () => {
-    console.log(
-      "Scroll to top button clicked!",
-      document.querySelector(".page-background")
-    );
     const scrollableContainer = document.querySelector(".page-background");
     if (scrollableContainer) {
       scrollableContainer.scrollTo({
@@ -37,12 +33,11 @@ const MainFooter = () => {
               </button>
               <p>
                 Wow! You almost scrolled into the dark web — let me help you get
-                back!
+                out of here!
               </p>
             </div>
             <div className="row text-center">
-              <ImageComponent image={FooterLogo} hoverScale={1} width="15vw" />
-
+              <Orbit logoSrc={FooterLogo} width={35} height={35} />
               <p>©Copyright by Owete | 2025 | All-In | All Rights Reserved</p>
               <p>Eclater server version: 1.0.0-BETA</p>
               <p>

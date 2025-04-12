@@ -89,21 +89,21 @@ const ExperienceSection = ({ scrollToRef }) => {
             currentSlide === 0 ? "active-text" : "inactive-text"
           }`}
         >
-          <date>2018-2023</date>
+          <div>2018-2023</div>
         </h5>
         <h5
           className={`col-6 ${
             currentSlide === 1 ? "active-text" : "inactive-text"
           }`}
         >
-          <date>2022-PRESENT</date>
+          <div>2022-PRESENT</div>
         </h5>
         <h5
           className={`col-3 ${
             currentSlide === 2 ? "active-text" : "inactive-text"
           }`}
         >
-          <date>2024-2025</date>
+          <div>2024-2025</div>
         </h5>
       </div>
       <div className="row mt-0 mb-2">
@@ -184,7 +184,7 @@ const ExperienceSection = ({ scrollToRef }) => {
               </div>
               <div className="col-9 text-start mb-0 pr-1">
                 <h3>Zeo Technology</h3>
-                <p>
+                <div className="mt-1">
                   Empresa dedicada a Industria 4.0, con reconocimiento
                   internacionalmente en el sector (España, México, Alemania,
                   Brasil...). Su producto principal es un sistema MES. Tras de 1
@@ -227,7 +227,7 @@ const ExperienceSection = ({ scrollToRef }) => {
                       aplicación
                     </li>
                   </ul>
-                </p>
+                </div>
               </div>
             </div>
           </div>

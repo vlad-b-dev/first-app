@@ -4,15 +4,15 @@ import { useTheme } from "../../../../styles/ThemeContext";
 import "./ImageComponent.scss";
 
 const ImageComponent = ({
-  width,
+  width = "15vw",
   image,
   imageDark,
   imageLight,
-  alt,
-  className,
-  hoverScale,
-  showSmoke,
-  smokeClassName,
+  alt = "image",
+  className = "",
+  hoverScale = 1.2,
+  showSmoke = false,
+  smokeClassName = "",
 }) => {
   const { theme } = useTheme();
 
@@ -22,12 +22,12 @@ const ImageComponent = ({
     <div className="image-component-wrapper">
       <img
         src={imageSrc}
-        alt={alt || "image"}
-        className={`image-component ${className || ""}`.trim()}
+        alt={alt}
+        className={`image-component ${className}`.trim()}
         style={{ width, "--hover-scale": `${hoverScale}` }}
       />
       {showSmoke && (
-        <div className={`smoke-container ${smokeClassName || ""}`.trim()}>
+        <div className={`smoke-container ${smokeClassName}`.trim()}>
           <div className="smoke"></div>
           <div className="smoke"></div>
           <div className="smoke"></div>
@@ -48,15 +48,6 @@ ImageComponent.propTypes = {
   hoverScale: PropTypes.number,
   showSmoke: PropTypes.bool,
   smokeClassName: PropTypes.string,
-};
-
-ImageComponent.defaultProps = {
-  width: "15vw",
-  alt: "image",
-  className: "",
-  hoverScale: 1.2,
-  showSmoke: false,
-  smokeClassName: "",
 };
 
 export default ImageComponent;
