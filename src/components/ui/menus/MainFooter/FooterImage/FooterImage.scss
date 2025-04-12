@@ -5,9 +5,8 @@
   height: 35vw;
   overflow: hidden;
   background: none;
+  z-index: -1000;
 }
-
-// This element now uses a radial gradient to mimic a sunrise
 .sunrise-gradient {
   position: absolute;
   bottom: 0;
@@ -16,22 +15,22 @@
   background: radial-gradient(
     ellipse at center bottom,
     var(--main-color) 0%,
-    rgba(255, 100, 0, 0) 80%
+    rgba(255, 100, 0, 0) 100%
   );
   mask-image: radial-gradient(
     ellipse 170% 80% at center bottom,
     #ffffff 0%,
-    #ffffff 60%,
-    transparent 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 170% 80% at center bottom,
-    #ffffff 0%,
-    #ffffff 60%,
+    #ffffff 50%,
     transparent 100%
   );
   z-index: 1;
   pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+.sunrise-gradient.visible {
+  opacity: 1;
 }
 
 .footer-top-image {
@@ -41,6 +40,6 @@
   transform: translateX(-50%);
   width: 100vw;
   height: auto;
-  z-index: 2; // ensure the skyline image is above the sunrise
+  z-index: 2;
   display: block;
 }
