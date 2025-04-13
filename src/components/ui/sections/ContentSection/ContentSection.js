@@ -33,9 +33,18 @@ const ContentSection = forwardRef(
     return (
       <div className={`row ${className || ""}`} ref={ref}>
         <div className="content-section">
-          <div className="row content-section-header">
+          <div
+            className="row content-section-header"
+            onClick={clickExpandContent}
+          >
             <div className="d-flex">
-              <Button onClick={clickExpandContent} sx={expandButton(isMobile)}>
+              <Button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  clickExpandContent();
+                }}
+                sx={expandButton(isMobile)}
+              >
                 <motion.div
                   animate={{ rotate: expandContent ? 540 : 0 }}
                   transition={{ type: "spring", stiffness: 100, damping: 5 }}

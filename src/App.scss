@@ -66,23 +66,24 @@ a,
 }
 
 ::-webkit-scrollbar {
-  width: 0.7vw !important;
+  width: 0.8vw !important;
   height: 1vh !important;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--secondary-background-color) !important;
-  border: 0.1vw solid var(--main-color);
+  border: 0.12vw solid var(--main-color);
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--main-color) !important;
   border-radius: 50px;
-  border: 0.2vw solid var(--secondary-background-color) !important;
+  border: 0.25vw solid var(--secondary-background-color) !important;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--main-hover-color) !important;
+  background: var(--highlight-color) !important;
+  border: 0.25vw solid var(--main-hover-color) !important;
 }
 
 .MuiTooltip-tooltip {

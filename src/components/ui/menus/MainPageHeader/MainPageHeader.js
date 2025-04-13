@@ -55,21 +55,31 @@ const MainPageHeader = () => {
             scrollableElement.scrollHeight - scrollableElement.clientHeight;
           const currentScrollY = scrollableElement.scrollTop;
           const scrollPercentage = (currentScrollY / scrollableHeight) * 100;
-          const threshold = 10;
-
-          if (scrollPercentage >= threshold) {
+          const threshold = 8;
+          const bufferThreshold = 5;
+          if (scrollPercentage >= threshold + bufferThreshold) {
             if (currentScrollY > lastScrollY) {
               controls.start({
                 y: "-200%",
                 transition: { duration: 0.4, ease: "easeOut" },
               });
-            } else {
+            } else if (
+              currentScrollY < lastScrollY &&
+              currentScrollY > bufferThreshold
+            ) {
               controls.start({
                 y: "0%",
                 transition: { duration: 0.3, ease: "easeOut" },
               });
             }
           }
+          if (currentScrollY <= bufferThreshold) {
+            controls.start({
+              y: "0%",
+              transition: { duration: 0.3, ease: "easeOut" },
+            });
+          }
+
           lastScrollY = currentScrollY;
           ticking = false;
         });

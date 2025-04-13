@@ -33,7 +33,7 @@ const MainFooter = () => {
               </button>
               <p>
                 Wow! You almost scrolled into the dark web — let me help you get
-                out of here!
+                out of here! Click on the plane
               </p>
             </div>
             <div className="row text-center">

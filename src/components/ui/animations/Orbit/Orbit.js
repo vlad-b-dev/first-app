@@ -95,13 +95,13 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
     let angle = Math.random() * Math.PI * 2;
     const radius = 1.8;
     const verticalAmplitude = 0.6;
-    const angleVariation = 0.02;
+    const angleVariation = 0.015;
 
     const animate = () => {
       angle += angleVariation + (Math.random() * 0.01 - 0.01);
       moon.position.x = radius * Math.cos(angle);
       moon.position.y = verticalAmplitude * Math.sin(angle);
-      moon.position.z = 0.5 * Math.sin(angle);
+      moon.position.z = 1 * Math.sin(angle);
 
       renderer.render(scene, camera);
       animationFrameRef.current = requestAnimationFrame(animate);
