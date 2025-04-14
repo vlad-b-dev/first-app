@@ -24,33 +24,29 @@ const MainFooter = () => {
   };
 
   return (
-    <div className="footer-background">
-      <div className="footer-container">
-        <div className="footer-content">
-          <FooterImage />
-          <div className="footer-body">
-            <div className="row text-center">
-              <button onClick={scrollToTop} className="scroll-to-top-button">
-                <LocalAirportTwoToneIcon className="custom-airport-icon" />
-              </button>
-              <p>
-                <Trans i18nKey="footerText.goToTop" />
-              </p>
-            </div>
-            <div className="row text-center">
-              <Orbit logoSrc={FooterLogo} width={35} height={35} />
-              <p>
-                <Trans i18nKey="footerText.allInApp" />
-              </p>
-              <p>
-                <Trans i18nKey="footerText.clientVersion" />
-                1.0.0-BETA
-              </p>
-              <p>
-                <Trans i18nKey="footerText.copyright" />
-              </p>
-            </div>
-          </div>
+    <div className="mt-5">
+      <FooterImage />
+      <div className="footer-body">
+        <div className="row text-center">
+          <button onClick={scrollToTop} className="scroll-to-top-button">
+            <LocalAirportTwoToneIcon className="custom-airport-icon" />
+          </button>
+          <p>
+            <Trans i18nKey="footerText.goToTop" />
+          </p>
+        </div>
+        <div className="row text-center">
+          <Orbit logoSrc={FooterLogo} width={35} height={35} />
+          <p>
+            <Trans i18nKey="footerText.allInApp" />
+          </p>
+          <p>
+            <Trans i18nKey="footerText.clientVersion" />
+            1.0.0-BETA
+          </p>
+          <p>
+            <Trans i18nKey="footerText.copyright" />
+          </p>
         </div>
       </div>
     </div>

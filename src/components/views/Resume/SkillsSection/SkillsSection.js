@@ -188,7 +188,7 @@ const SkillsSection = forwardRef((props, ref) => {
                 className="ml-pc-1"
                 minBodyHeight={"30.5vh"}
                 showHeader={true}
-                title={"Diseño e interfaz"}
+                title={t("resumePage.skillsSection.hardSkillsTitles.design")}
                 icon={ArchitectureTwoToneIcon}
               >
                 <SkillsList skills={designSkills} />

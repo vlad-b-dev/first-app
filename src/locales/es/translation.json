@@ -31,7 +31,6 @@
     "strategySectionTitle": "Hoja de ruta",
     "personalSectionTitle": "Personal",
     "generalSection": {
-      "title": "Introducción",
       "welcomeTextMorning": "¡Buenos días!",
       "welcomeTextAfternoon": "¡Buenas tardes!",
       "welcomeTextEvening": "¡Buenas noches!",
@@ -113,7 +112,40 @@
     }
   },
   "thisWebsitePage": {
-    "pageTitle": "Este sitio web"
+    "pageTitle": "Este sitio web",
+    "description": {
+      "title": "All-in (\"Con todo\") refleja la amplitud de los objetivos:",
+      "objetive1": "<strong>Aprender nuevas tecnologías y habilidades</strong> de forma autónoma",
+      "objetive2": "Desarrollar un <strong>proyecto totalmente personal</strong>, desde el diseño al despliegue",
+      "objetive3": "<strong>Mostrar conocimientos de forma tangible</strong>, nada de plantillas o código pre-cocinado",
+      "objetive4": "Probar y <strong>aplicar nuevas ideas</strong>",
+      "objetive5": "Generar una <strong>plataforma para compartir contenido</strong>"
+    },
+    "learning": {
+      "title": "Gracias a la documentación/tutoriales que hay disponibles en línea y el apoyo de IA, <strong>formarme en diversas destrezas ha sido relativamente sencillo</strong>. Algunas de ellas son:",
+      "animations": "Animaciones",
+      "performance": "Rendimiento",
+      "visualContent": "Creacion de contenido visual",
+      "theme": "Tema claro|oscuro"
+    },
+    "conclusion": {
+      "description": "Para desarrollar el proyecto <strong>se han empleado estándares profesionales</strong>, desde la creación del repositorio hasta el uso de buenas prácticas de código.<br/> La perspectiva es <strong>seguir evolucionando el proyecto</strong>, pero estoy contento con el resultado. <strong>he aprendido mucho y el rendimiento es bueno</strong> en distintas pruebas de velocidad. Todo <strong>el código está disponible en el repositorio:</strong>",
+      "diagrams": "Como muestran los diagramas, los dos primeros meses se generó mucho código, para poner la base del proyecto y realizar pruebas y entrenamientos. Tras una pausa, los dos últimos meses es donde más ha avanzado el desarrollo"
+    },
+    "ahead": {
+      "title": "El objetivo es <strong>seguir aprendiendo y incrementando el proyecto</strong>, aplicando nuevas ideas y tecnologías",
+      "subtitle": "De todas formas, aun hay mucho espacio para mejorar. Algunas de las expansiones planeadas son:",
+      "expansion1": "Mejorar el rendimiento",
+      "expansion2": "Asistente IA",
+      "expansion3": "Elementos 3D interactivos y minijuegos con ThreeJs",
+      "expansion4": "Portal de contenido",
+      "expansion5": "Mejora del SEO",
+      "expansion6": "Sistema de login con roles de usuario",
+      "expansion7": "Elementos e-commerce",
+      "expansion8": "Testing automatizado usando Jasmine",
+      "expansion9": "Automatización del desarrollo usando IA",
+      "expansion10": "Explorar aplicaciones reales de IA, para aportar valor tangible para los usuarios"
+    }
   },
   "contactPage": {
     "pageTitle": "Contacto"
@@ -128,6 +160,7 @@
     "moreDetails": "¡Más detalles aquí!"
   },
   "levelExplanation": {
+    "tooltip": "Ponga el ratón sobre cualquier nivel para ver la descripción",
     "1": "Nivel 1: Conocimiento mínimo",
     "2": "Nivel 2: Conocimiento y manejo básico",
     "3": "Nivel 3: Intermedio, estoy cómodo usando esta habilidiad",

@@ -1,6 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
 import MainPageHeader from "../../ui/menus/MainPageHeader/MainPageHeader";
-import ContentSection from "../../ui/sections/ContentSection/ContentSection";
 import ContentSubSection from "../../ui/sections/ContentSubSection/ContentSubSection";
 import PublicRoundedIcon from "@mui/icons-material/PublicRounded";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
@@ -59,11 +59,11 @@ const MainPage = () => {
   return (
     <div className="page-background">
       <MainPageHeader />
-      <ContentSection
-        className="mb-3"
-        title={t("resumePage.generalSection.title")}
-        startExpanded={true}
-        minBodyHeight={"69vh"}
+      <motion.div
+        className="main-section-container"
+        initial={{ y: -400, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 17, damping: 7 }}
       >
         <div className="row mt-2">
           <div className="col-3">
@@ -210,8 +210,7 @@ const MainPage = () => {
             </ContentSubSection>
           </div>
         </div>
-      </ContentSection>
-
+      </motion.div>
       <MainFooter />
     </div>
   );

@@ -81,3 +81,11 @@
     }
   }
 }
+
+.main-section-container {
+  padding: 2%;
+  border-top: 0.3vh solid var(--main-color);
+  border-bottom: 0.3vh solid var(--main-color);
+  box-shadow: 0 3vh 3vh 0 rgba(0, 0, 0, 1);
+  background-color: var(--secondary-background-color);
+}

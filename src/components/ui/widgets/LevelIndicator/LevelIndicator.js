@@ -51,11 +51,7 @@ const LevelIndicator = ({
     >
       {isExplanation && (
         <div className="level-indicator-label">
-          <Tooltip
-            title="Ponga el ratón sobre cualquier nivel para ver la explicación"
-            placement="top"
-            arrow
-          >
+          <Tooltip title={t("levelExplanation.tooltip")} placement="top" arrow>
             <span className="info-label">
               <InfoRoundedIcon className="pb-1 mr-1" />
               {explanationTexts[hoverLevel - 1] || ""}

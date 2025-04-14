@@ -45,7 +45,8 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
   const zoomIn = () => setScale((prev) => Math.min(prev + 0.2, 3));
   const zoomOut = () => setScale((prev) => Math.max(prev - 0.2, 0.6));
   const resetScale = () => setScale(isMobile ? 0.6 : 1);
-  const clickExpandPdf = () => setExpandPdf((prev) => !prev);
+
+  const toggleExpandPdf = () => setExpandPdf((prev) => !prev);
 
   const handleLanguageChange = (event, newLanguage) => {
     if (newLanguage) setLanguage(newLanguage);
@@ -61,23 +62,19 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
     setScale(isMobile ? 0.6 : 1);
   }, [isMobile]);
 
-  const handleHeaderClick = (e) => {
-    if (
-      e.target.closest(".language-buttons") ||
-      e.target.closest(".zoom-controls") ||
-      e.target.closest(".action-buttons")
-    ) {
-      return;
-    }
-    clickExpandPdf();
-  };
-
   return (
     <div className={`row mb-3 ${className || ""}`} ref={ref}>
       <div className="container pdf-viewer">
-        <div className="row pdf-viewer-header" onClick={handleHeaderClick}>
+        <div className="row pdf-viewer-header" onClick={toggleExpandPdf}>
           <div className="col-3 d-flex">
-            <Button onClick={clickExpandPdf} sx={expandButton(isMobile)}>
+            <Button
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleExpandPdf();
+              }}
+              sx={expandButton(isMobile)}
+              aria-label="Expandir o contraer PDF"
+            >
               <motion.div
                 animate={{ rotate: expandPdf ? 540 : 0 }}
                 transition={{ type: "spring", stiffness: 100, damping: 5 }}
@@ -90,8 +87,11 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
               sx={toggleButtonGroup}
               exclusive
               value={language}
-              onChange={handleLanguageChange}
-              className="language-buttons"
+              onChange={(e, val) => {
+                e.stopPropagation();
+                handleLanguageChange(e, val);
+              }}
+              aria-label="Seleccionar idioma"
             >
               <ToggleButton
                 value="en"
@@ -99,8 +99,9 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
                   ...toggleButtonStyles,
                   ...toggleButtonStylesSize(isMobile),
                 }}
+                aria-label="Inglés"
               >
-                <img src={ukFlag} className="flag-icon" alt="English" />
+                <img src={ukFlag} className="flag-icon" alt="Inglés" />
               </ToggleButton>
               <ToggleButton
                 value="es"
@@ -108,36 +109,59 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
                   ...toggleButtonStyles,
                   ...toggleButtonStylesSize(isMobile),
                 }}
+                aria-label="Español"
               >
-                <img src={spainFlag} className="flag-icon" alt="Spanish" />
+                <img src={spainFlag} className="flag-icon" alt="Español" />
               </ToggleButton>
             </ToggleButtonGroup>
           </div>
+
           <div className="col-6 d-flex justify-content-center mt-2">
             <AnimatePresence>
               {expandPdf && (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0 }}
-                  className="zoom-controls"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                 >
-                  <Button onClick={zoomOut} sx={zoomOutButton(isMobile)}>
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      zoomOut();
+                    }}
+                    sx={zoomOutButton(isMobile)}
+                    aria-label="Disminuir zoom"
+                  >
                     <RemoveRoundedIcon sx={zoomIcon(isMobile)} />
                   </Button>
                   {!isMobile && (
                     <span className="scale-indicator">{scale.toFixed(1)}x</span>
                   )}
-                  <Button onClick={zoomIn} sx={zoomInButton(isMobile)}>
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      zoomIn();
+                    }}
+                    sx={zoomInButton(isMobile)}
+                    aria-label="Aumentar zoom"
+                  >
                     <AddRoundedIcon sx={zoomIcon(isMobile)} />
                   </Button>
-                  <Button onClick={resetScale} sx={resetButton(isMobile)}>
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      resetScale();
+                    }}
+                    sx={resetButton(isMobile)}
+                    aria-label="Reiniciar zoom"
+                  >
                     <ResetIcon />
                   </Button>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
+
           <div className="col-3 d-flex justify-content-end">
             {!isMobile && (
               <Button
@@ -145,7 +169,8 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={actionButton(isMobile)}
-                className="action-buttons"
+                onClick={(e) => e.stopPropagation()}
+                aria-label="Abrir en nueva pestaña"
               >
                 <OpenInNewRoundedIcon />
               </Button>
@@ -154,18 +179,20 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
               href={resumeFile}
               download={`Resume_${language}.pdf`}
               sx={actionButton(isMobile)}
-              className="action-buttons"
+              onClick={(e) => e.stopPropagation()}
+              aria-label="Descargar currículum"
             >
               <FileDownloadRoundedIcon />
             </Button>
           </div>
         </div>
+
         <AnimatePresence>
           {expandPdf && (
             <motion.div
-              initial={{ height: 0, opacity: 0, scaleY: 0.8 }}
-              animate={{ height: "auto", opacity: 1, scaleY: 1 }}
-              exit={{ height: 0, opacity: 0, scaleY: 0.8 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
             >
               <div className="row justify-content-center">
                 <div className="col-md-10 d-flex justify-content-center">
