@@ -24,6 +24,7 @@ const GenericButton = ({
       className={`${baseClass} ${className}`}
       onClick={onClick}
       style={{ width }}
+      aria-label={label}
     >
       {label}
     </button>
