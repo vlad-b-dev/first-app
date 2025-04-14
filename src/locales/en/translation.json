@@ -111,9 +111,7 @@
       "aheadText8": "Evolution of the average developer at Zeo:"
     }
   },
-  "thisWebsitePage": {
-    "pageTitle": "This website"
-  },
+
   "thisWebsitePage": {
     "pageTitle": "This Website",
     "description": {
@@ -132,6 +130,7 @@
       "theme": "Light|dark theme"
     },
     "conclusion": {
+      "repoButton": "Open repository",
       "description": "To develop the project, <strong>professional standards have been employed</strong>, from creating the repository to applying good coding practices. The goal is to <strong>keep evolving the project</strong>, but I'm happy with the result. <strong>I've learned a lot and the performance is good</strong> across various speed tests. All <strong>the code is available in the repository:</strong>",
       "diagrams": "As the diagrams show, a lot of code was generated during the first two months to lay the foundation of the project and carry out tests and training. After a pause, the last two months saw the most progress in development."
     },

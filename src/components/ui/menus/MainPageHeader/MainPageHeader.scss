@@ -45,7 +45,7 @@
   }
 
   @media (max-width: 767px) {
-    border-bottom: 1vh solid var(--main-color);
+    border-bottom: 0.7vh solid var(--main-color);
     height: 12vh;
     .main-page-header .row {
       display: flex;
@@ -57,7 +57,7 @@
     .dropdown-toggle-btn {
       position: absolute;
       padding-left: 1vw;
-      padding-top: 2vh;
+
       transform: translateY(-50%);
       background-color: var(--secondary-background-color);
       color: var(--main-color);
@@ -65,9 +65,12 @@
       border-radius: 5px;
     }
     .main-page-header-logo {
-      height: 14vh;
+      margin-right: 1.5vw !important;
+      height: 9vh;
       width: auto;
-      padding-bottom: 5vh;
+      margin-bottom: -5vh !important;
+      margin-top: -4vh !important;
+      padding-top: -5vh !important;
     }
   }
 }

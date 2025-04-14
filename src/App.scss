@@ -57,6 +57,10 @@ a,
 ::-webkit-scrollbar {
   width: 0.8vw !important;
   height: 1vh !important;
+  @media (max-width: 768px) {
+    width: 2vw !important;
+    height: 2vh !important;
+  }
 }
 
 ::-webkit-scrollbar-track {

@@ -20,7 +20,16 @@
   border-bottom: 0.3vh solid var(--main-color);
   box-shadow: 0 3vh 3vh 0 rgba(0, 0, 0, 1);
   background-color: var(--main-background-color);
+  @media (max-width: 768px) {
+    padding: 3%;
+  }
 }
 .secondary-background {
   background-color: var(--secondary-background-color);
+}
+.phone-github-image-smoke {
+  margin-left: 11vw;
+}
+.phone-under-construction-smoke {
+  height: 50%;
 }

@@ -4,7 +4,9 @@
   margin-right: 7vw;
   margin-bottom: 5.5vw;
   @media (max-width: 767px) {
-    margin-bottom: 7.5vh;
+    margin-top: 1vh;
+    margin-bottom: 6.3vh;
+    right: 4vw;
   }
 }
 
@@ -17,7 +19,8 @@
   transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 0;
   @media (max-width: 767px) {
-    height: 4.5vh;
+    margin-top: 0.7vh;
+    height: 5vh;
     width: auto;
   }
 }

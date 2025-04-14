@@ -10,6 +10,9 @@ const GenericButton = ({
   onClick,
   className = "",
   width = "100%",
+  height = "auto",
+  mobileWidth = null,
+  mobileHeight = null,
 }) => {
   const baseClass = headerButton
     ? "header-button"
@@ -19,11 +22,18 @@ const GenericButton = ({
     ? "text-button"
     : "generic-button";
 
+  const buttonStyle = {
+    width,
+    height,
+    "--mobile-width": mobileWidth,
+    "--mobile-height": mobileHeight,
+  };
+
   return (
     <button
       className={`${baseClass} ${className}`}
       onClick={onClick}
-      style={{ width }}
+      style={buttonStyle}
       aria-label={label}
     >
       {label}
@@ -39,6 +49,9 @@ GenericButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
   width: PropTypes.string,
+  height: PropTypes.string,
+  mobileWidth: PropTypes.string,
+  mobileHeight: PropTypes.string,
 };
 
 export default GenericButton;

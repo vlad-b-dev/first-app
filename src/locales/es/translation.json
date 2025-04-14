@@ -129,6 +129,7 @@
       "theme": "Tema claro|oscuro"
     },
     "conclusion": {
+      "repoButton": "Abrir repositorio",
       "description": "Para desarrollar el proyecto <strong>se han empleado estándares profesionales</strong>, desde la creación del repositorio hasta el uso de buenas prácticas de código.<br/> La perspectiva es <strong>seguir evolucionando el proyecto</strong>, pero estoy contento con el resultado. <strong>he aprendido mucho y el rendimiento es bueno</strong> en distintas pruebas de velocidad. Todo <strong>el código está disponible en el repositorio:</strong>",
       "diagrams": "Como muestran los diagramas, los dos primeros meses se generó mucho código, para poner la base del proyecto y realizar pruebas y entrenamientos. Tras una pausa, los dos últimos meses es donde más ha avanzado el desarrollo"
     },
