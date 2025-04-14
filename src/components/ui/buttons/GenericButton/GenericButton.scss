@@ -114,6 +114,11 @@ $border-radius: 0.6em;
   }
 }
 
+.text-button {
+  @extend .header-button;
+  border: 0.02em solid var(--main-hover-color);
+}
+
 @keyframes neonFlicker {
   0% {
     opacity: 0.8;

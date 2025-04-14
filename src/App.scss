@@ -8,11 +8,6 @@
     pointer;
 }
 
-::selection {
-  background-color: var(--main-hover-color);
-  color: var(--secondary-background-color);
-}
-
 button:hover,
 a:hover {
   background-color: var(--main-hover-color);
@@ -23,12 +18,6 @@ button:active,
 a:active {
   background-color: var(--main-hover-color);
   color: var(--secondary-background-color);
-}
-
-body {
-  color: var(--main-text-color) !important;
-  background-color: var(--main-background-color);
-  content-visibility: auto;
 }
 
 body.light-mode {
@@ -97,8 +86,13 @@ a,
   text-align: justify;
   min-width: 30vw;
   content-visibility: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease !important;
 }
 
+.MuiTooltip-tooltip[data-popper-reference-hidden="false"] {
+  opacity: 1;
+}
 .MuiTooltip-arrow {
   color: var(--main-text-color) !important;
 }

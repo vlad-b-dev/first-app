@@ -1,8 +1,15 @@
 {
   "headerButtons": {
+    "main": "Inicio",
     "resume": "Curriculum",
     "thisWebsite": "Este sitio web",
     "contact": "Contacto"
+  },
+  "footerText": {
+    "goToTop": "¡Vaya! Bajaste casi hasta la deep web — ¡déjame ayudarte a salir de aquí! Haz clic en el avión",
+    "allInApp": "All-In App | Diseñada, desarrollada y desplegada por Vladyslav Boychuk",
+    "clientVersion": "Versión cliente Eclater: ",
+    "copyright": "©Copyright by Owete | 2025 | All-In | Todos los derechos reservados"
   },
   "preferences": {
     "preferences": "Preferencias",
@@ -13,7 +20,7 @@
     "pageTitle": "Bienvenido"
   },
   "mainPage": {
-    "pageTitle": "Principal",
+    "pageTitle": "Inicio",
     "hiText": "¡Hola y bienvenido!",
     "thanksText": "Antes de nada, me alegra mucho que estés por aquí"
   },
@@ -21,22 +28,88 @@
     "pageTitle": "Curriculum",
     "experienceSectionTitle": "Trayectoria Profesional",
     "killsSectionTitle": "Skills",
-    "strategySectionTitle": "Enfoque y objetivos",
+    "strategySectionTitle": "Hoja de ruta",
     "personalSectionTitle": "Personal",
     "generalSection": {
-      "title": "General",
-      "nameText": "¡Hola! Me llamo Vladyslav Boychuk (Vlad)",
-      "descriptionP1": "Desarrollador profesional con años de experiencia en la creación de soluciones software para industria 4.0 e ingeniero por vocación en todos los ámbitos.",
-      "descriptionP2": "En el balance está la virtud. Por ello, aunque tengo conocimientos tanto a nivel de backend, como de frontend, prefiero centrarme en este último. De esta forma, puedo complementar mis dos facetas, aparentemente opuestas, para ofrecer soluciones creativas tanto en diseño como en el apartado técnico.",
+      "title": "Introducción",
+      "welcomeTextMorning": "¡Buenos días!",
+      "welcomeTextAfternoon": "¡Buenas tardes!",
+      "welcomeTextEvening": "¡Buenas noches!",
+      "welcomeTextNight": "¡Buenas noches!",
+      "nameText": "Me llamo <strong>Vladyslav Boychuk | Vlad</strong>",
+      "descriptionP1": "<strong>Desarrollador full-stack profesional, experto UX/UI, diseñador gráfico e ingeniero por vocación con años de experiencia</strong> en la creación de soluciones software para industria 4.0.",
+      "descriptionP2": "En el balance está la virtud, soy capaz complementar mis dos facetas, aparentemente opuestas, para ofrecer soluciones creativas tanto en diseño como en el apartado técnico.",
       "descriptionP3": "Un buen producto no debe limitarse a funcionar correctamente, sino que lo tiene que hacer de una forma agradable y sencilla para la persona que va a utilizarlo.",
       "languages": "Idiomas",
       "spanish": "Español: Nativo",
       "russian": "Ruso: Nativo",
       "english": "Inglés: Fluido",
-      "englishTooltip": "Oficialmente, mi nivel es B2 (EOIDNA), pero me siento muy cómodo comunicándome en inglés. Muchos de mis amigos no hablan ninguno de mis idiomas nativos y llevamos años comunicándonos en inglés. Además, realizo la mayoría de búsquedas y formaciones relacionadas con tecnología en inglés, lo que me permite acceder a más información, aprender nuevo vocabulario y ganar práctica",
+      "englishTooltip": "Oficialmente, mi nivel es B2 (EOIDNA), pero me comunico perfectamente en inglés. Llevo años hablando con amigos extranjeros en inglés. Realizo la mayoría de búsquedas y formaciones tecnológicas en inglés, para acceder a más información, aprender nuevo vocabulario y prácticar",
       "ukrainian": "Ucraniano: Bajo",
       "contact": "Contacto",
       "location": "Pamplona, Navarra, España"
+    },
+    "experienceSection": {
+      "upna": {
+        "title": "Graduado en Ingeniería Informática (2023)",
+        "description": "Realicé múltiples proyectos complejos que me permitieron aprender y dar mis primeros pasos en el mundo laboral. Durante último año de carrera, llevé a cabo mis <strong>prácticas en Zeo Technology realizando mi trabajo fin de grado, el Report Wizard</strong>. Este sigue siendo mi principal proyecto: <strong>una herramienta que permite a los usuarios generar y editar informes de manera intuitiva</strong>. Implementando una interfaz con multitud de opciones, con un diseño simplificado que incluye fácilidades como drag and drop. Adaptándose a usuarios de distintos niveles. Es un proyecto vivo y en evolución a día de hoy."
+      },
+      "zeo": {
+        "description": "Empresa dedicada a la <strong>Industria 4.0, con reconocimiento internacional en el sector (España, China, México, Alemania, Brasil...)</strong>. Cuyo producto principal es un sistema MES. Tras de 1 año de prácticas, empece a trabajar como desarrollador full-stack.<br /> Principales proyectos y tareas:<br />",
+        "reportWizard": "<strong>Report Wizard</strong>, bien recibido por clientes de todo el mundo, en constante mejora y expansión, con funcionalidades como gráficos personalizables",
+        "visor": "<strong>Sistema de visualización de informes</strong>",
+        "components": "<strong>Librería de componentes modificables</strong>, basados en PrimeNg, adaptados a la estética y funcionalidad de la empresa",
+        "filters": "<strong>Sistema de filtros dinámicos</strong>, que se pueden editar desde la aplicación, basados en los componentes del punto anterior",
+        "planner": "<strong>Envío automático y programado de informes por email</strong>, configurable por el usuario mediante una sencilla interfaz",
+        "general": "Creación, modificación, testing, documentación y mantenimiento de otros <strong>apartados generales de la aplicación</strong>"
+      },
+      "allIn": {
+        "description": "El diseño, UX/UI y el front-end siempre me han llamado la atención. A pesar de que trabajo como desarrollador full-stack usando Angular a diario, sentía que necesitaba profundizar más en estas áreas. <br /> <br /> All in es <strong>mi web personal</strong>, que también he utilizado para <strong>aprender React y el resto de destrezas que siempre me han interesado, relacionadas con diseño y UX/UI</strong>, empleando recursos de internet para formarme. <br />"
+      }
+    },
+    "skillsSection": {
+      "animations": "Animaciones",
+      "aiImages": "Imágenes IA",
+      "colorPalette": "Paleta de colores",
+      "userFlow": "Flujo de uso",
+      "rolesProfiles": "Roles/Perfiles",
+      "transactions": "Transacciones",
+      "versionControl": "Control de versiones",
+      "conflictsManagement": "Gestión de conflictos",
+      "algorithms": "Algoritmos",
+      "po": "P.Orientada a objetos",
+      "documentation": "Documentación",
+      "unitTesting": "Tests unitarios",
+      "performance": "Rendimiento O(n)",
+      "extensions": "Extensiones",
+      "softSkills": {
+        "analisis": "<strong>Análisis:</strong> Capacidad analítica para comprender requerimientos, lógica de negocio y problemas complejos",
+        "appStructure": "<strong>Estructura de aplicaciones:</strong> Capacidad para diseñar la estructura completa de una app y gestionar la arquitectura empresarial",
+        "collaboration": "<strong>Colaboración y Comunicación:</strong> Trabajo en equipo, coordinación y comunicación eficaz",
+        "scrum": "<strong>Scrum & Métodos Ágiles:</strong> Experiencia en metodologías ágiles, planificación de sprints, kanban y gestión de proyectos",
+        "errorManagement": "<strong>Gestión de errores:</strong> Identificación, manejo y resolución de problemas"
+      },
+      "hardSkillsTitles": {
+        "designAndInterface": "Diseño e interfaz",
+        "dataBases": "Bases de datos",
+        "codingAndGoodPractices": "Código y buenas prácticas",
+        "tools": "Herramientas",
+        "corporate": "Corporativo"
+      }
+    },
+    "personalSection": {
+      "personalText1": "<strong>Siempre está bien conocer con quién vas a trabajar todos los días...</strong><br />Por eso, esta sección es más personal:<br /><br />Nacido en Ucrania y criado en el sur de Navarra, tengo un poco de los dos mundos. Ahora convivo con un gecko leopardo y una docena de peces amazónicos en Pamplona.",
+      "personalText2": "<strong>Tengo dos facetas: una intensa, despreocupada y enérgica, otra responsable, comprometida y profesional</strong>. Lo importante es saber cuál toca en cada momento.<br /><br />Disfruto lo tradicional y también lo moderno, natural y urbano, tranquilo e intenso, técnico y creativo...<br /><br />¿Madrid o los Pirineos? ¿Programación o diseño? ¿En casa o de fiesta a Budapest? ¿Paseo por el monte o motocross?<br /><br />Siempre hay algún proyecto para hacer: desarrollo, diseño, reparaciones, botánica, impresión 3D, pintura... Crecer y aprender es importante. Mención especial al motor: mecánica, coches, motos...<br /><br />Tengo una <strong>manera única de abordar las cosas</strong>, y aprendí a sacarle provecho. Me gusta <strong>pensar a lo grande y actuar con perspectiva.</strong><br /><br />Hay muchos más temas filosóficos que podemos tratar en algún evento corporativo; el networking es importante."
+    },
+    "aheadSection": {
+      "aheadText1": "Ahora que nos conocemos algo mejor, toca hablar del presente y sobre todo, del futuro",
+      "aheadText2": "Hay que decir que estoy muy contento por haber hecho mis practicas y comenzar mi trayectoría profesional en Zeo Technology. Un gran equipo, con un compañerismo notable y metodologías punteras. Me gustan los proyectos que se desarrollan y las tecnologías que se usan. La gran mayoría de mis conocimientos y habilidades los he adquirido aquí.",
+      "aheadText3": "Pero...",
+      "aheadText4": "Por desgracia, hay dos puntos importantes que me hacen plantearme un cambio:",
+      "aheadText5": "Por un lado, <strong>lo que más me gusta del mundo IT es mezclar la parte creativa con la técnica. En una empresa centrada en datos y clientes industriales, la parte creativa se queda en un segundo plano</strong>, centrandose en el manejo de grandes cantidades de datos y la eficiencia.",
+      "aheadText6": "Por otro lado, muchos de <strong>mis planes futuros, requieren de tiempo y movilidad</strong>. Aunque aquí hay posibilidad de teletrabajo, la verdad es que es muy limitada. No estoy en contra de pasar por la oficina, pero quiero hacerlo con liberad de elección, por lo que <strong>busco algo en modalidad hibrida o remota</strong>.",
+      "aheadText7": "Un poco de \"humor\"...",
+      "aheadText8": "Evolución del desarrollador promedio en Zeo:"
     }
   },
   "thisWebsitePage": {
@@ -44,5 +117,21 @@
   },
   "contactPage": {
     "pageTitle": "Contacto"
+  },
+  "genericTranslations": {
+    "continue": "Continuar",
+    "present": "ACTUALIDAD",
+    "month": "mes",
+    "months": "meses",
+    "year": "año",
+    "years": "años",
+    "moreDetails": "¡Más detalles aquí!"
+  },
+  "levelExplanation": {
+    "1": "Nivel 1: Conocimiento mínimo",
+    "2": "Nivel 2: Conocimiento y manejo básico",
+    "3": "Nivel 3: Intermedio, estoy cómodo usando esta habilidiad",
+    "4": "Nivel 4: Conocimiento avanzado",
+    "5": "Nivel 5: Nivel alto"
   }
 }

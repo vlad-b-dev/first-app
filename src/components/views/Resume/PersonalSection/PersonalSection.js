@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ContentSection from "../../../ui/sections/ContentSection/ContentSection";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import ImageComponent from "../../../ui/mediaViewers/ImageComponent/ImageComponent";
 import EuropeMapLight from "../../../../resources/images/contentPhotos/personal/europeMap/europeMapLight.webp";
 import EuropeMapDark from "../../../../resources/images/contentPhotos/personal/europeMap/europeMapDark.webp";
@@ -26,13 +26,7 @@ const PersonalSection = () => {
         <div className="col-6">
           <div className="row mt-4">
             <p>
-              No esta de mas conocer un poco con quien vas a interactuar casi
-              todos los días... por ello esta sección es más personal:
-              <br />
-              <br />
-              Nacido en Ucrania y criado en un pueblo del sur de Navarra, tengo
-              un poco de los dos mundos. Ahora convivo con un gecko leopardo y
-              una docena de peces amazónicos en Pamplona.
+              <Trans i18nKey="resumePage.personalSection.personalText1" />
             </p>
           </div>
 
@@ -52,36 +46,9 @@ const PersonalSection = () => {
       </div>
       <div className="row">
         <div className="col-6">
-          <div className="row text-start">
+          <div className="row text-start mt-5">
             <p>
-              Soy una persona con dos facetas: una intensa, despreocupada y
-              enérgica, otra responsable, comprometida y profesional. Lo
-              importante es saber cuál toca sacar en cada momento.
-              <br />
-              <br />
-              Al mismo tiempo gusta lo tradicional y también lo moderno, natural
-              y urbano, tranquilo e intenso, calculador y creativo...
-              <br />
-              <br />
-              ¿Bangkok o los Pirineos? ¿Programación o diseño? ¿En casa con los
-              colegas o de fiesta a Budapest? ¿Paseo por el monte o motocross?
-              <br />
-              <br />
-              Siempre hay algun proyecto para hacer: desarrollo, diseño,
-              reparaciones, botánica, impresión 3D, pintura... Crecer y aprender
-              es importante. Mención especial al mundo del motor: mecánica,
-              coches, motos...
-              <br />
-              <br />
-              Siempre he tenido una manera muy única de hacer las cosas, y
-              aprendí a sacarle provecho. Todos tenemos temporadas buenas y
-              otras no tan buenas, nunca hay que perder la perspectiva y dejar
-              de pensar a lo grande. Solo se vive una vez.
-              <br />
-              <br />
-              Podemos hablar de otros temas más filosóficos con un par de
-              cervezas tras alguna cena corporativa; el networking es
-              importante.
+              <Trans i18nKey="resumePage.personalSection.personalText2" />
             </p>
           </div>
           <div className="row">

@@ -1,17 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import PropTypes from "prop-types";
 import Tooltip from "@mui/material/Tooltip";
+import { useTranslation } from "react-i18next";
 
 import "./LevelIndicator.scss";
-
-const explanationTexts = [
-  "Nivel 1: Conocimiento mínimo",
-  "Nivel 2: Conocimiento y manejo básico",
-  "Nivel 3: Intermedio, estoy cómodo usando esta tecnología",
-  "Nivel 4: Conocimiento avanzado, mejor que el promedio",
-  "Nivel 5: Alto, me desenvuelvo muy bien",
-];
 
 const LevelIndicator = ({
   level = 0,
@@ -21,24 +14,39 @@ const LevelIndicator = ({
   className = "",
   isExplanation = false,
 }) => {
-  const totalBars = 5;
-  const [hoverLevel, setHoverLevel] = useState(level);
+  const { t } = useTranslation();
 
-  const handleMouseOver = useCallback(
-    (index) => {
-      if (isExplanation) {
-        setHoverLevel(index + 1);
-      }
-    },
-    [isExplanation]
+  const totalBars = 5;
+  const [hoverLevel, setHoverLevel] = useState(level || 1);
+  const [autoRotate, setAutoRotate] = useState(true);
+
+  const explanationTexts = Array.from({ length: totalBars }, (_, i) =>
+    t(`levelExplanation.${i + 1}`)
   );
 
+  const handleUserInteraction = useCallback((index) => {
+    setAutoRotate(false);
+    setHoverLevel(index + 1);
+  }, []);
+
   const currentLevel = isExplanation ? hoverLevel : level;
+
+  useEffect(() => {
+    if (!isExplanation || !autoRotate) return;
+    const timer = setInterval(() => {
+      setHoverLevel((prev) => (prev % totalBars) + 1);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isExplanation, autoRotate, totalBars]);
+
+  const handleContainerLeave = useCallback(() => {
+    setAutoRotate(true);
+  }, []);
 
   return (
     <div
       className={`level-indicator-wrapper ${
-        isExplanation ? "mt-1 pt-4" : ""
+        isExplanation ? "mt-1 pt-4 explanation-container" : ""
       } ${className}`}
     >
       {isExplanation && (
@@ -56,13 +64,26 @@ const LevelIndicator = ({
         </div>
       )}
 
-      <div className="level-indicator" style={{ gap }}>
+      <div
+        className="level-indicator"
+        style={{ gap }}
+        onMouseLeave={handleContainerLeave}
+      >
         {[...Array(totalBars)].map((_, index) => (
           <div
             key={index}
+            role="button"
+            tabIndex={0}
             className={`bar ${index < currentLevel ? "on" : "off"}`}
             style={{ width, height }}
-            onMouseOver={() => handleMouseOver(index)}
+            onMouseOver={() => handleUserInteraction(index)}
+            onFocus={() => handleUserInteraction(index)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                handleUserInteraction(index);
+              }
+            }}
+            onBlur={handleContainerLeave}
           />
         ))}
       </div>

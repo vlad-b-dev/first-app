@@ -5,6 +5,7 @@ import "./GenericButton.scss";
 const GenericButton = ({
   headerButton = false,
   sidebarButton = false,
+  textButton = false,
   label,
   onClick,
   className = "",
@@ -14,6 +15,8 @@ const GenericButton = ({
     ? "header-button"
     : sidebarButton
     ? "sidebar-button"
+    : textButton
+    ? "text-button"
     : "generic-button";
 
   return (
@@ -30,6 +33,7 @@ const GenericButton = ({
 GenericButton.propTypes = {
   headerButton: PropTypes.bool,
   sidebarButton: PropTypes.bool,
+  textButton: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,

@@ -30,7 +30,7 @@ const MainPageHeader = () => {
   const buttonRefs = useRef({});
 
   const menuItems = [
-    { label: "Main", route: "/main" },
+    { label: t("headerButtons.main"), route: "/home" },
     { label: t("headerButtons.resume"), route: "/resume" },
     { label: t("headerButtons.thisWebsite"), route: "/this-website" },
     { label: t("headerButtons.contact"), route: "/contact" },
@@ -95,7 +95,7 @@ const MainPageHeader = () => {
     const updateIndicatorPosition = () => {
       let activeButton = buttonRefs.current[location.pathname];
       if (location.pathname === "/") {
-        activeButton = buttonRefs.current["/main"];
+        activeButton = buttonRefs.current["/home"];
       }
       if (activeButton) {
         const offsetLeft = activeButton.offsetLeft;
@@ -147,8 +147,8 @@ const MainPageHeader = () => {
         <div className="col d-flex justify-content-center">
           <button
             className="main-page-header-logo-button"
-            onClick={() => handleNavigationClick("/main")}
-            ref={(el) => (buttonRefs.current["/main"] = el)}
+            onClick={() => handleNavigationClick("/home")}
+            ref={(el) => (buttonRefs.current["/home"] = el)}
           >
             <div className="logo-triangle" />
             <img src={logo} className="main-page-header-logo" alt="Logo" />

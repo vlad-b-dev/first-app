@@ -61,10 +61,21 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
     setScale(isMobile ? 0.6 : 1);
   }, [isMobile]);
 
+  const handleHeaderClick = (e) => {
+    if (
+      e.target.closest(".language-buttons") ||
+      e.target.closest(".zoom-controls") ||
+      e.target.closest(".action-buttons")
+    ) {
+      return;
+    }
+    clickExpandPdf();
+  };
+
   return (
     <div className={`row mb-3 ${className || ""}`} ref={ref}>
       <div className="container pdf-viewer">
-        <div className="row pdf-viewer-header">
+        <div className="row pdf-viewer-header" onClick={handleHeaderClick}>
           <div className="col-3 d-flex">
             <Button onClick={clickExpandPdf} sx={expandButton(isMobile)}>
               <motion.div
@@ -80,6 +91,7 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
               exclusive
               value={language}
               onChange={handleLanguageChange}
+              className="language-buttons"
             >
               <ToggleButton
                 value="en"
@@ -108,6 +120,7 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0 }}
+                  className="zoom-controls"
                 >
                   <Button onClick={zoomOut} sx={zoomOutButton(isMobile)}>
                     <RemoveRoundedIcon sx={zoomIcon(isMobile)} />
@@ -132,6 +145,7 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={actionButton(isMobile)}
+                className="action-buttons"
               >
                 <OpenInNewRoundedIcon />
               </Button>
@@ -140,6 +154,7 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
               href={resumeFile}
               download={`Resume_${language}.pdf`}
               sx={actionButton(isMobile)}
+              className="action-buttons"
             >
               <FileDownloadRoundedIcon />
             </Button>
@@ -179,6 +194,7 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
     </div>
   );
 });
+
 PdfViewer.propTypes = {
   className: PropTypes.string,
 };

@@ -24,8 +24,8 @@
   border-radius: 300px !important;
   box-shadow: 0 0 8px var(--main-color), 0 0 16px var(--main-color),
     0 0 12px var(--main-hover-color), 0 0 24px var(--main-hover-color);
-  transition: 0.3s ease-in-out;
-  animation: neonBlink 10s infinite;
+  transition: 3s ease-in-out;
+  animation: neonBlink 7s infinite;
 
   &.horizontal {
     width: 100%;

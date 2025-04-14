@@ -145,7 +145,7 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
         pointerEvents: "none",
         padding: "0",
         display: "block",
-        margin: "-7vh auto 0 auto",
+        margin: "-5vh auto -5vh auto",
       }}
     />
   );

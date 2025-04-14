@@ -14,7 +14,7 @@ import ConstructionTwoToneIcon from "@mui/icons-material/ConstructionTwoTone";
 import NextWeekTwoToneIcon from "@mui/icons-material/NextWeekTwoTone";
 import SkillsList from "../../../ui/sections/SkillsList/SkillsList";
 import LevelIndicator from "../../../ui/widgets/LevelIndicator/LevelIndicator";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -29,26 +29,26 @@ const SkillsSection = forwardRef((props, ref) => {
     { text: "CSS/SCSS", level: 5 },
     { text: "JavaScript/TypeScript", level: 5 },
     { text: "i18n", level: 5 },
-    { text: "Animations", level: 4 },
+    { text: t("resumePage.skillsSection.animations"), level: 5 },
+    { text: "Routing", level: 5 },
+    { text: "Three.js", level: 4 },
     { text: "Responsive layout", level: 4 },
     { text: "Framer Motion", level: 4 },
     { text: "Primeng/MUI", level: 4 },
-    { text: "SX/Bootstrap", level: 3 },
+    { text: "Bootstrap/SX", level: 3 },
     { text: "Flex/Grid", level: 3 },
-    { text: "Three.js", level: 2 },
-    { text: "Cookies", level: 2 },
   ];
   const designSkills = [
     { text: "UX/UI", level: 5 },
     { text: "Mockup", level: 5 },
     { text: "JPG/PNG/WEBP/SVG", level: 5 },
     { text: "Canva", level: 5 },
+    { text: t("resumePage.skillsSection.userFlow"), level: 5 },
     { text: "Inkscape", level: 4 },
-    { text: "Imágenes IA", level: 4 },
-    { text: "Paleta de colores", level: 4 },
-    { text: "Flujo de uso", level: 4 },
+    { text: t("resumePage.skillsSection.aiImages"), level: 4 },
+    { text: t("resumePage.skillsSection.colorPalette"), level: 4 },
     { text: "Gimp/Photoshop", level: 3 },
-    { text: "Roles/Perfiles", level: 3 },
+    { text: t("resumePage.skillsSection.rolesProfiles"), level: 3 },
   ];
   const backendSkills = [
     { text: "API/Rest", level: 5 },
@@ -58,14 +58,14 @@ const SkillsSection = forwardRef((props, ref) => {
     { text: "Mockito", level: 4 },
     { text: "Hibernate", level: 3 },
     { text: "JPA", level: 3 },
-    { text: "Transacciones", level: 2 },
+    { text: t("resumePage.skillsSection.transactions"), level: 2 },
   ];
   const databaseSkills = [
     { text: "SQL", level: 5 },
     { text: "HQL", level: 4 },
     { text: "PostgreSQL", level: 4 },
     { text: "PgAdmin", level: 4 },
-    { text: "Control de versiones", level: 3 },
+    { text: t("resumePage.skillsSection.versionControl"), level: 4 },
     { text: "Mappers", level: 3 },
     { text: "Triggers", level: 3 },
     { text: "DBeaver", level: 3 },
@@ -73,45 +73,47 @@ const SkillsSection = forwardRef((props, ref) => {
   const gitSkills = [
     { text: "Sourcetree", level: 5 },
     { text: "GitCracken", level: 5 },
+    { text: "GitLens", level: 5 },
     { text: "Merge/Rebase", level: 5 },
     { text: "Branching", level: 5 },
     { text: "Pull Requests", level: 5 },
     { text: "Stash", level: 5 },
-    { text: "Conflicts managing", level: 4 },
-    { text: "KDiff", level: 3 },
+    { text: t("resumePage.skillsSection.conflictsManagement"), level: 5 },
+    { text: "KDiff", level: 4 },
     { text: "Tags", level: 3 },
   ];
   const codeSkills = [
-    { text: "Algoritmos", level: 5 },
-    { text: "P.Orientada a objetos", level: 5 },
+    { text: t("resumePage.skillsSection.algorithms"), level: 5 },
+    { text: t("resumePage.skillsSection.po"), level: 5 },
     { text: "JSON", level: 5 },
-    { text: "Documentación", level: 5 },
-    { text: "Clean Code", level: 4 },
-    { text: "Naming", level: 4 },
-    { text: "Refactoring", level: 4 },
+    { text: t("resumePage.skillsSection.documentation"), level: 5 },
+    { text: "Clean Code/Naming", level: 5 },
+    { text: "Refactoring", level: 5 },
+    { text: "SonarQube", level: 4 },
     { text: "Datasets", level: 4 },
-    { text: "Unit Testing", level: 4 },
-    { text: "Eficiencia - O(n)", level: 3 },
+    { text: t("resumePage.skillsSection.unitTesting"), level: 4 },
+    { text: t("resumePage.skillsSection.performance"), level: 3 },
   ];
   const toolsSkills = [
     { text: "Chrome DevTools", level: 5 },
     { text: "Visual Studio Code", level: 5 },
+    { text: "Lighthouse", level: 5 },
+    { text: "PageSpeed Insights", level: 5 },
     { text: "Debugging", level: 5 },
-    { text: "ChatGPT", level: 5 },
+    { text: "ChatGPT/Gemini", level: 5 },
     { text: "IntelliJ", level: 5 },
-    { text: "Supermaven", level: 4 },
-    { text: "Prettier", level: 4 },
-    { text: "Extensions", level: 3 },
-    { text: "Gemini", level: 3 },
-    { text: "Copilot", level: 2 },
+    { text: "Supermaven", level: 5 },
+    { text: "Prettier", level: 5 },
+    { text: t("resumePage.skillsSection.extensions"), level: 4 },
+    { text: "Copilot", level: 3 },
     { text: "Visual Studio", level: 2 },
   ];
   const corporativeSkills = [
     { text: "Agile", level: 5 },
     { text: "Scrum", level: 5 },
     { text: "Kanban", level: 5 },
-    { text: "Teams", level: 5 },
     { text: "Sprints", level: 5 },
+    { text: "Teams", level: 5 },
     { text: "Microsoft Office", level: 4 },
     { text: "Keepass", level: 4 },
     { text: "Jira", level: 4 },
@@ -132,27 +134,20 @@ const SkillsSection = forwardRef((props, ref) => {
           </h1>
           <ul className="soft-skills-list">
             <li>
-              <strong>Análisis:</strong> Capacidad analítica para comprender
-              requerimientos, lógica de negocio y problemas complejos
+              <Trans i18nKey="resumePage.skillsSection.softSkills.analisis" />
             </li>
             <li>
-              <strong>Estructura de aplicaciones:</strong> Capacidad para
-              diseñar la estructura completa de una app y gestionar la
-              arquitectura empresarial
+              <Trans i18nKey="resumePage.skillsSection.softSkills.appStructure" />
             </li>
             <li>
-              <strong>Colaboración y Comunicación:</strong> Trabajo en equipo,
-              coordinación y comunicación eficaz
+              <Trans i18nKey="resumePage.skillsSection.softSkills.collaboration" />
             </li>
 
             <li>
-              <strong>Scrum & Métodos Ágiles:</strong> Experiencia en
-              metodologías ágiles, planificación de sprints, kanban y gestión de
-              proyectos
+              <Trans i18nKey="resumePage.skillsSection.softSkills.scrum" />
             </li>
             <li>
-              <strong>Gestión de errores:</strong> Identificación, manejo y
-              resolución de problemas
+              <Trans i18nKey="resumePage.skillsSection.softSkills.errorManagement" />
             </li>
           </ul>
         </div>
@@ -170,7 +165,7 @@ const SkillsSection = forwardRef((props, ref) => {
                 className="skills-level-explanation"
                 level={2}
                 width="8.5vw"
-                height="1.2vh"
+                height="2vh"
                 gap="0.5vw"
               />
             </div>
@@ -217,7 +212,7 @@ const SkillsSection = forwardRef((props, ref) => {
                 className="ml-pc-1"
                 minBodyHeight={"19vh"}
                 showHeader={true}
-                title={"Base de Datos"}
+                title={t("resumePage.skillsSection.hardSkillsTitles.dataBases")}
                 icon={JoinRightTwoToneIcon}
               >
                 <SkillsList skills={databaseSkills} />
@@ -241,7 +236,9 @@ const SkillsSection = forwardRef((props, ref) => {
                 className="ml-pc-1"
                 minBodyHeight={"23vh"}
                 showHeader={true}
-                title={"Código y Buenas Prácticas"}
+                title={t(
+                  "resumePage.skillsSection.hardSkillsTitles.codingAndGoodPractices"
+                )}
                 icon={TerminalTwoToneIcon}
               >
                 <SkillsList skills={codeSkills} />
@@ -255,7 +252,7 @@ const SkillsSection = forwardRef((props, ref) => {
                 className="ml-pc-neg-1"
                 minBodyHeight={"26vh"}
                 showHeader={true}
-                title={"Herramientas"}
+                title={t("resumePage.skillsSection.hardSkillsTitles.tools")}
                 icon={ConstructionTwoToneIcon}
               >
                 <SkillsList skills={toolsSkills} />
@@ -266,7 +263,7 @@ const SkillsSection = forwardRef((props, ref) => {
                 className="ml-pc-1"
                 minBodyHeight={"26vh"}
                 showHeader={true}
-                title={"Corporativo"}
+                title={t("resumePage.skillsSection.hardSkillsTitles.corporate")}
                 icon={NextWeekTwoToneIcon}
               >
                 <SkillsList skills={corporativeSkills} />

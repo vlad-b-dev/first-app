@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ContentSection from "../../../ui/sections/ContentSection/ContentSection";
 import ContinueButton from "../../../ui/buttons/ContinueButton/ContinueButton";
 import PointsBar from "../../../ui/widgets/PointsBar/PointsBar";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import RwLogo from "../../../ui/mediaViewers/RwLogo/RwLogo";
 import UpnaLogoDark from "../../../../resources/images/contentPhotos/experience/upnaLogo/upnaLogoDark.webp";
 import UpnaLogoLight from "../../../../resources/images/contentPhotos/experience/upnaLogo/upnaLogoLight.webp";
@@ -45,12 +45,23 @@ const ExperienceSection = ({ scrollToRef }) => {
       diffMonths += 12;
     }
 
-    let yearText =
-      diffYears > 0 ? diffYears + (diffYears > 1 ? " years" : " year") : "";
-    let monthText =
-      diffMonths > 0
-        ? diffMonths + (diffMonths > 1 ? " months" : " month")
-        : "";
+    let yearText = "";
+    if (diffYears > 0) {
+      yearText =
+        diffYears +
+        (diffYears > 1
+          ? ` ${t("genericTranslations.years")}`
+          : ` ${t("genericTranslations.year")}`);
+    }
+
+    let monthText = "";
+    if (diffMonths > 0) {
+      monthText =
+        diffMonths +
+        (diffMonths > 1
+          ? ` ${t("genericTranslations.months")}`
+          : ` ${t("genericTranslations.month")}`);
+    }
 
     return yearText && monthText
       ? `${yearText}, ${monthText}`
@@ -96,14 +107,20 @@ const ExperienceSection = ({ scrollToRef }) => {
             currentSlide === 1 ? "active-text" : "inactive-text"
           }`}
         >
-          <div>2022-PRESENT</div>
+          <div>
+            2022-
+            <Trans i18nKey="genericTranslations.present" />
+          </div>
         </h5>
         <h5
           className={`col-3 ${
             currentSlide === 2 ? "active-text" : "inactive-text"
           }`}
         >
-          <div>2024-2025</div>
+          <div>
+            2024-
+            <Trans i18nKey="genericTranslations.present" />
+          </div>
         </h5>
       </div>
       <div className="row mt-0 mb-2">
@@ -121,7 +138,8 @@ const ExperienceSection = ({ scrollToRef }) => {
             currentSlide === 0 ? "active-text" : "inactive-text"
           }`}
         >
-          4 years, 6 months
+          4 <Trans i18nKey="genericTranslations.years" />, 6{" "}
+          <Trans i18nKey="genericTranslations.months" />
         </h3>
         <h3
           className={`col-6 ${
@@ -152,19 +170,11 @@ const ExperienceSection = ({ scrollToRef }) => {
               </div>
 
               <div className="col-6 text-start mt-1">
-                <h3>Graduado en Ingeniería Informática (2023)</h3>
+                <h3>
+                  <Trans i18nKey="resumePage.experienceSection.upna.title" />
+                </h3>
                 <p>
-                  Durante mis estudios realicé varios proyectos interesantes que
-                  me permitieron aprender y dar el primer paso en el mundo
-                  laboral. En el último año, llevé a cabo mis prácticas en Zeo
-                  Technology, donde desarrollé mi trabajo fin de grado, el
-                  Report Wizard. Actualmente sigue siendo mi principal proyecto:
-                  una herramienta que permite a los usuarios generar y editar
-                  informes de manera sencilla. Implementando una interfaz con
-                  multitud de opciones, pero con un diseño simplificado que
-                  incluye fácilidades como drag and drop. Adaptándose a usuarios
-                  de distintos niveles. Es un proyecto vivo y en evolución a día
-                  de hoy.
+                  <Trans i18nKey="resumePage.experienceSection.upna.description" />
                 </p>
               </div>
               <div className="col-3 mt-2">
@@ -185,46 +195,25 @@ const ExperienceSection = ({ scrollToRef }) => {
               <div className="col-9 text-start mb-0 pr-1">
                 <h3>Zeo Technology</h3>
                 <div className="mt-1">
-                  Empresa dedicada a Industria 4.0, con reconocimiento
-                  internacionalmente en el sector (España, México, Alemania,
-                  Brasil...). Su producto principal es un sistema MES. Tras de 1
-                  año de prácticas, fui contratado como desarrollador
-                  full-stack.
-                  <br /> Principales proyectos y tareas:
-                  <br />
+                  <Trans i18nKey="resumePage.experienceSection.zeo.description" />
                   <ul>
                     <li>
-                      <strong>Report Wizard</strong>, hay que volver a
-                      mencionarlo por ser mi principal proyecto. Esta siendo
-                      bien recibido por clientes de todo el mundo, sigue en
-                      constante mejora y expansión, con funcionalidades como
-                      gráficos personalizados
+                      <Trans i18nKey="resumePage.experienceSection.zeo.reportWizard" />
                     </li>
                     <li>
-                      <strong>Sistema de visualización de informes</strong>
+                      <Trans i18nKey="resumePage.experienceSection.zeo.visor" />
                     </li>
                     <li>
-                      <strong>Librería de componentes personalizables</strong>,
-                      basados en PrimNg adaptados a la estética y funcionalidad
-                      de la empresa
+                      <Trans i18nKey="resumePage.experienceSection.zeo.components" />
                     </li>
                     <li>
-                      <strong>Sistema de configurables</strong>
-                      desde la aplicación, basados en los componentes del punto
-                      anterior
+                      <Trans i18nKey="resumePage.experienceSection.zeo.filters" />
                     </li>
                     <li>
-                      Proyecto de
-                      <strong>
-                        envío automático y programado de informes por email
-                      </strong>
-                      , configurable por el usuario mediante una sencilla
-                      interfaz
+                      <Trans i18nKey="resumePage.experienceSection.zeo.planner" />
                     </li>
                     <li>
-                      Creación, modificación, testing, documentación y
-                      mantenimiento de otros apartados generales de la
-                      aplicación
+                      <Trans i18nKey="resumePage.experienceSection.zeo.general" />
                     </li>
                   </ul>
                 </div>
@@ -238,22 +227,13 @@ const ExperienceSection = ({ scrollToRef }) => {
                 <ImageComponent image={MinimalLogoNeutral} width={"14vw"} />
               </div>
               <div className="col-9 mt-2 text-start">
-                <h3> All-In Website</h3>
+                <h3> All-In App</h3>
                 <p>
-                  El diseño, UX/UI y el front-end siempre me han llamado la
-                  atención. A pesar de que trabajo como desarrollador full-stack
-                  usando Angular a diario, sentía que necesitaba profundizar más
-                  en estas áreas. <br />
-                  <br />
-                  Aprovechando mi habilidad de autoaprendizaje decidí
-                  desarrollar mi web personal empleando en React y el resto de
-                  destrezas que siempre quise aprender. Ahora me desenvuelvo con
-                  la misma soltura en React que Angular.
-                  <br />
+                  <Trans i18nKey="resumePage.experienceSection.allIn.description" />
                   <GenericButton
                     className="this-website-button"
-                    label="¡Más detalles aquí!"
-                    width="13vw"
+                    label={t("genericTranslations.moreDetails")}
+                    width="15vw"
                     onClick={() => handleNavigationClick("/this-website")}
                   />
                 </p>

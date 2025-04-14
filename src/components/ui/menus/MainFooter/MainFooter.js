@@ -2,7 +2,9 @@ import React from "react";
 import FooterImage from "./FooterImage/FooterImage";
 import FooterLogo from "../../../../resources/images/logos/footerLogo/footerLogo.webp";
 import LocalAirportTwoToneIcon from "@mui/icons-material/LocalAirportTwoTone";
-import Orbit from "../../animations/Orbit/Orbit";
+import Orbit from "../../3d/Orbit/Orbit";
+import { Trans } from "react-i18next";
+
 import "./MainFooter.scss";
 
 const MainFooter = () => {
@@ -32,17 +34,20 @@ const MainFooter = () => {
                 <LocalAirportTwoToneIcon className="custom-airport-icon" />
               </button>
               <p>
-                Wow! You almost scrolled into the dark web — let me help you get
-                out of here! Click on the plane
+                <Trans i18nKey="footerText.goToTop" />
               </p>
             </div>
             <div className="row text-center">
               <Orbit logoSrc={FooterLogo} width={35} height={35} />
-              <p>©Copyright by Owete | 2025 | All-In | All Rights Reserved</p>
-              <p>Eclater server version: 1.0.0-BETA</p>
               <p>
-                All-In App | Designed, developed and deployed by Vladyslav
-                Boychuk
+                <Trans i18nKey="footerText.allInApp" />
+              </p>
+              <p>
+                <Trans i18nKey="footerText.clientVersion" />
+                1.0.0-BETA
+              </p>
+              <p>
+                <Trans i18nKey="footerText.copyright" />
               </p>
             </div>
           </div>

@@ -195,7 +195,10 @@ $triangle-color: var(--alternative-hover-color);
       drop-shadow(0 0 1vw $triangle-color);
   }
 }
-
+body.light-mode .header-indicator {
+  height: 11%;
+  bottom: -1.4vh;
+}
 body.light-mode .main-page-header::after,
 body.light-mode .header-indicator::after {
   display: none;

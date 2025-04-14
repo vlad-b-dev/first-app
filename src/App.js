@@ -59,7 +59,7 @@ const DynamicTitle = () => {
   useEffect(() => {
     const pageTitles = {
       "/": `${appName} - ${t("welcomePage.pageTitle")}`,
-      "/main": `${appName} - ${t("mainPage.pageTitle")}`,
+      "/home": `${appName} - ${t("mainPage.pageTitle")}`,
       "/resume": `${appName} - ${t("resumePage.pageTitle")}`,
       "/this-website": `${appName} - ${t("thisWebsitePage.pageTitle")}`,
       "/contact": `${appName} - ${t("contactPage.pageTitle")}`,
@@ -90,7 +90,7 @@ export default function MainApp() {
           <DynamicTitle />
           <Routes>
             <Route path="/" element={<WelcomeOrMain />} />
-            <Route path="/main" element={<MainPage />} />
+            <Route path="/home" element={<MainPage />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/this-website" element={<ThisWebsite />} />
             <Route path="/contact" element={<Contact />} />

@@ -15,6 +15,7 @@ import GenericButton from "../../ui/buttons/GenericButton/GenericButton";
 import KnowledgeDark from "../../../resources/images/contentPhotos/thisWebsite/knowledge/knowledgeDark.webp";
 import KnowledgeLight from "../../../resources/images/contentPhotos/thisWebsite/knowledge/knowledgeLight.webp";
 import MainFooter from "../../ui/menus/MainFooter/MainFooter";
+import MainNavigationBackground from "../../ui/3d/MainNavigationBackground/MainNavigationBackground";
 import "./ThisWebsite.scss";
 
 const ThisWebsite = () => {
@@ -24,6 +25,8 @@ const ThisWebsite = () => {
   return (
     <div className="page-background">
       <MainPageHeader />
+      <MainNavigationBackground />
+
       <div className="this-website-container">
         <div className="row mb-5">
           <div className="col-4">

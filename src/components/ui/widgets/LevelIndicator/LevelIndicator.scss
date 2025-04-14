@@ -4,6 +4,7 @@
   margin-left: 1vw;
   margin-right: 1vw;
 }
+
 .level-indicator {
   display: flex;
   margin-top: 1.5vh;
@@ -12,6 +13,8 @@
   .bar {
     background-color: var(--inactive-element-color);
     transition: background-color 0.3s ease-in-out;
+    cursor: pointer; // indicate interactive element
+    outline: none; // allow browser to show focus outline or customize as needed
   }
 
   .bar.on {
@@ -64,4 +67,7 @@
   &:hover {
     color: var(--main-hover-color);
   }
+}
+.explanation-container {
+  bottom: -1.5vh;
 }

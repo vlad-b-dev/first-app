@@ -1,8 +1,15 @@
 {
   "headerButtons": {
+    "main": "Home",
     "resume": "Resume",
     "thisWebsite": "This website",
     "contact": "Contact"
+  },
+  "footerText": {
+    "goToTop": "Wow! You almost scrolled into the dark web — let me help you get out of here! Click on the plane",
+    "allInApp": "All-In App | Designed, developed and deployed by Vladyslav Boychuk",
+    "clientVersion": "Eclater client version: ",
+    "copyright": "©Copyright by Owete | 2025 | All-In | All Rights Reserved"
   },
   "preferences": {
     "preferences": "Preferences",
@@ -13,7 +20,7 @@
     "pageTitle": "Welcome"
   },
   "mainPage": {
-    "pageTitle": "Main",
+    "pageTitle": "Home",
     "hiText": "Hi, dear visitor!",
     "thanksText": "First of all, I'm really glad to have you here"
   },
@@ -21,22 +28,88 @@
     "pageTitle": "Resume",
     "experienceSectionTitle": "Professional Background",
     "skillsSectionTitle": "Skills",
-    "strategySectionTitle": "Ahead",
+    "strategySectionTitle": "Roadmap",
     "personalSectionTitle": "Personal",
     "generalSection": {
-      "title": "General",
-      "nameText": "Hi! My name is Vladyslav Boychuk (Vlad)",
-      "descriptionP1": "Professional developer with years of experience crafting software solutions for Industry 4.0 and an engineer at heart, no matter the field.",
-      "descriptionP2": "Balance is the key. That's why, even though I have experience in both backend and frontend development, I choose to focus on the latter. This allows me to blend two seemingly opposite skill sets, combining technical expertise with creative design to deliver well-rounded, innovative solutions.",
-      "descriptionP3": "A good product shouldn't just work—it should feel intuitive and enjoyable for the person using it.",
+      "title": "Introduction",
+      "welcomeTextMorning": "Good morning!",
+      "welcomeTextAfternoon": "Good afternoon!",
+      "welcomeTextEvening": "Good evening!",
+      "welcomeTextNight": "Good night!",
+      "nameText": "I'm <strong>Vladyslav Boychuk | Vlad </strong>",
+      "descriptionP1": "<strong>Professional full-stack developer, UX/UI expert, graphic designer, and an engineer at heart</strong> with years of experience crafting software solutions for Industry 4.0.",
+      "descriptionP2": "Balance is key. I blend two seemingly opposite skill sets—technical expertise and creative design—to deliver well-rounded, innovative solutions.",
+      "descriptionP3": "A good product shouldn't just work—it should feel intuitive and enjoyable to use.",
       "languages": "Languages",
       "spanish": "Spanish: Native",
       "russian": "Russian: Native",
       "english": "English: Fluent",
-      "englishTooltip": "Officially, my level is B2, but I feel very comfortable communicating in English. Many of my friends don’t speak any of my native languages, so we've been using English for years. Plus, I handle most of my tech-related searches and training in English, which gives me access to more information, helps me learn new vocabulary, and lets me get plenty of practice",
+      "englishTooltip": "Officially, my level is B2, but I feel very comfortable communicating in English. I've been using English to talk with international friends for years. I also rely on it for most of my tech research and learning—to access more information, discover new vocabulary, and keep practicing consistently",
       "ukrainian": "Ukrainian: Low",
       "contact": "Contact",
       "location": "Pamplona, Navarre, Spain"
+    },
+    "experienceSection": {
+      "upna": {
+        "title": "Graduated in Software Engineering (2023)",
+        "description": "I carried out multiple complex projects that allowed me to learn and take my first steps into the professional world. During my final year of university, I completed my <strong>internship at Zeo Technology while working on my final degree project, the Report Wizard</strong>. This remains my main project: <strong>a tool that allows users to generate and edit reports intuitively</strong>. It features an interface with a wide range of options and a simplified design that includes conveniences like drag and drop. It adapts to users of different skill levels. It is a living and evolving project to this day."
+      },
+      "zeo": {
+        "description": "Company dedicated to <strong>Industry 4.0, with international recognition in the sector (Spain, China, Mexico, Germany, Brazil...)</strong>. Its main product is an MES system. After 1 year of internship, I began working as a full-stack developer.<br /> Main projects and tasks:<br />",
+        "reportWizard": "<strong>Report Wizard</strong>, well received by clients worldwide, constantly improving and expanding, with features such as customizable charts",
+        "visor": "<strong>Report visualization system</strong>",
+        "components": "<strong>Library of editable components</strong>, based on PrimeNg, adapted to the company's aesthetics and functionality",
+        "filters": "<strong>Dynamic filtering system</strong>, editable from the application, based on the components from the previous point",
+        "planner": "<strong>Automatic and scheduled email report sending</strong>, configurable by the user via a simple interface",
+        "general": "Creation, modification, testing, documentation, and maintenance of other <strong>general sections of the application</strong>"
+      },
+      "allIn": {
+        "description": "Design, UX/UI, and front-end development have always caught my attention. Although I work as a full-stack developer using Angular daily, I felt the need to dive deeper into these areas. <br /> <br /> All in is <strong>my personal website</strong>, which I have also used to <strong>learn React and the other skills I’ve always been interested in, related to design and UX/UI</strong>, using online resources to train myself. <br />"
+      }
+    },
+    "skillsSection": {
+      "animations": "Animations",
+      "aiImages": "AI Images",
+      "colorPalette": "Color Palette",
+      "userFlow": "User flow",
+      "rolesProfiles": "Roles/Profiles",
+      "transactions": "Transactions",
+      "versionControl": "Version control",
+      "conflictsManagement": "Conflicts management",
+      "algorithms": "Algorithms",
+      "po": "PO (Object-Oriented)",
+      "documentation": "Documentation",
+      "unitTesting": "Unit testing",
+      "performance": "Performance O(n)",
+      "extensions": "Extensions",
+      "softSkills": {
+        "analisis": "<strong>Analysis:</strong> Analytical skills to understand requirements, business logic and complex problems",
+        "appStructure": "<strong>Application structure:</strong> Capability to design the complete structure of an app and manage the corporate architecture",
+        "collaboration": "<strong>Collaboration and Communication:</strong> Work in teams, coordination and effective communication",
+        "scrum": "<strong>Scrum & Agile methods:</strong> Experience in agile methodologies, sprint planning, kanban and project management",
+        "errorManagement": "<strong>Error management:</strong> Identification, handling and resolution of problems"
+      },
+      "hardSkillsTitles": {
+        "designAndInterface": "Design and interface",
+        "dataBases": "Data bases",
+        "codingAndGoodPractices": "Coding and good practices",
+        "tools": "Tools",
+        "corporate": "Corporate"
+      }
+    },
+    "personalSection": {
+      "personalText1": "<strong>It's always good to know who you're working with...</strong><br />So, this section is more personal:<br /><br />Made in Ukraine and raised in the south of Navarre, I have a bit of both worlds. Now I live with a leopard gecko and a dozen Amazonian fish in Pamplona.",
+      "personalText2": "<strong>I have two sides: one intense, carefree, and energetic; the other responsible, committed, and professional</strong>. The key is knowing which one to bring out at the right time.<br /><br />At the same time, I enjoy both the traditional and the modern, the natural and the urban, the calm and the intense, the technical and the creative...<br /><br />Madrid or the Pyrenees? Programming or design? At home or partying in Budapest? A walk in the mountains or motocross?<br /><br />There's always some project to work on: development, design, repairs, botany, 3D printing, painting... Growing and learning matter. Special mention to motor-related: mechanics, cars, motorcycles...<br /><br />I have a <strong>unique way of approaching things</strong>, and I’ve learned to make the most of it. I like to <strong>think big and act with perspective.</strong><br /><br />There are many more philosophical topics we can discuss at some corporate event; networking matters."
+    },
+    "aheadSection": {
+      "aheadText1": "Now that we know each other a bit better, it's time to talk about the present and, above all, the future",
+      "aheadText2": "I have to say that I am very happy to have done my internship and started my professional career at Zeo Technology. A great team, with remarkable camaraderie and cutting-edge methodologies. I enjoy the projects that are developed and the technologies that are used. The vast majority of my knowledge and skills I have acquired here.",
+      "aheadText3": "But...",
+      "aheadText4": "Unfortunately, there are two important points that make me consider a change:",
+      "aheadText5": "On one hand, <strong>what I love most about the IT world is mixing the creative side with the technical side. In a company focused on data and industrial clients, the creative aspect takes a backseat</strong>, focusing on handling large amounts of data and efficiency.",
+      "aheadText6": "On the other hand, many of <strong>my future plans require time and mobility</strong>. Although there is an option for remote work here, the truth is that it is very limited. I am not against going to the office, but I want to do so with the freedom of choice, so <strong>I am looking for something in a hybrid or remote model</strong>.",
+      "aheadText7": "A little bit of 'humor'...",
+      "aheadText8": "Evolution of the average developer at Zeo:"
     }
   },
   "thisWebsitePage": {
@@ -44,5 +117,21 @@
   },
   "contactPage": {
     "pageTitle": "Contact"
+  },
+  "genericTranslations": {
+    "continue": "Continue",
+    "present": "PRESENT",
+    "month": "month",
+    "months": "months",
+    "year": "year",
+    "years": "years",
+    "moreDetails": "Click for more details!"
+  },
+  "levelExplanation": {
+    "1": "Level 1: Minimum knowledge",
+    "2": "Level 2: Basic understanding",
+    "3": "Level 3: Mid-level, I'm comfortable using this skill",
+    "4": "Level 4: Advanced knowledge",
+    "5": "Level 5: High level"
   }
 }

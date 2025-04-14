@@ -103,7 +103,7 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
               >
                 <img
                   src={logo}
-                  onClick={() => handleNavigationClick("/main")}
+                  onClick={() => handleNavigationClick("/home")}
                   className="sidebar-menu-logo"
                   alt="Logo"
                 />
@@ -112,7 +112,7 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
                 <GenericButton
                   sidebarButton={true}
                   label={"Main"}
-                  onClick={() => handleNavigationClick("/main")}
+                  onClick={() => handleNavigationClick("/home")}
                 />
               </motion.div>
               <motion.div variants={sidebarMenuButtonAnimation}>

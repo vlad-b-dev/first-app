@@ -17,16 +17,32 @@ import CopyToClipboardButton from "../../ui/buttons/CopyToClipboardButton/CopyTo
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import Tooltip from "@mui/material/Tooltip";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import VladProfileDark from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileDark.webp";
 import VladProfileLight from "../../../resources/images/contentPhotos/general/vladProfile/vladProfileLight.webp";
 import ImageComponent from "../../ui/mediaViewers/ImageComponent/ImageComponent";
 import MainFooter from "../../ui/menus/MainFooter/MainFooter";
+import Fade from "@mui/material/Fade";
+import GenericButton from "../../ui/buttons/GenericButton/GenericButton";
+import { useNavigate } from "react-router-dom";
 
 import "./MainPage.scss";
 
 const MainPage = () => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour >= 6 && hour <= 13) {
+      return t("resumePage.generalSection.welcomeTextMorning");
+    } else if (hour >= 14 && hour <= 19) {
+      return t("resumePage.generalSection.welcomeTextAfternoon");
+    } else if (hour >= 20 && hour <= 23) {
+      return t("resumePage.generalSection.welcomeTextEvening");
+    } else {
+      return t("resumePage.generalSection.welcomeTextNight");
+    }
+  };
 
   const openLinkedInProfile = () => {
     window.open(
@@ -38,6 +54,8 @@ const MainPage = () => {
     window.open("https://maps.app.goo.gl/M3E99XCCPRqSHpYd6", "_blank");
   };
 
+  const handleNavigationClick = (route) => navigate(route);
+
   return (
     <div className="page-background">
       <MainPageHeader />
@@ -45,7 +63,6 @@ const MainPage = () => {
         className="mb-3"
         title={t("resumePage.generalSection.title")}
         startExpanded={true}
-        textColor={"var(--general-resume-text)"}
         minBodyHeight={"69vh"}
       >
         <div className="row mt-2">
@@ -60,19 +77,25 @@ const MainPage = () => {
             />
           </div>
           <div className="col-6 general-text-column">
+            <h2 className="welcome-text">{getGreeting()}</h2>
             <h1 className="name-text">
-              {t("resumePage.generalSection.nameText")}
+              <Trans i18nKey="resumePage.generalSection.nameText" />
             </h1>
-            <br />
             <div className="description-text">
               <p className="mb-3">
-                {t("resumePage.generalSection.descriptionP1")}
+                <Trans i18nKey="resumePage.generalSection.descriptionP1" />
               </p>
               <p className="mb-3">
                 {t("resumePage.generalSection.descriptionP2")}
               </p>
               <p>{t("resumePage.generalSection.descriptionP3")}</p>
             </div>
+            <GenericButton
+              label={t("genericTranslations.continue")}
+              onClick={() => handleNavigationClick("/resume")}
+              width="10vw"
+              textButton={true}
+            />
           </div>
           <div className="col-3 general-data-column">
             <ContentSubSection
@@ -102,6 +125,25 @@ const MainPage = () => {
                       title={t("resumePage.generalSection.englishTooltip")}
                       placement="left"
                       arrow
+                      keepMounted
+                      slots={{
+                        transition: Fade,
+                      }}
+                      slotProps={{
+                        transition: { timeout: 300 },
+                        popper: {
+                          modifiers: [
+                            {
+                              name: "preventOverflow",
+                              enabled: false,
+                            },
+                            {
+                              name: "flip",
+                              enabled: false,
+                            },
+                          ],
+                        },
+                      }}
                     >
                       <InfoRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
                     </Tooltip>
@@ -169,6 +211,7 @@ const MainPage = () => {
           </div>
         </div>
       </ContentSection>
+
       <MainFooter />
     </div>
   );
