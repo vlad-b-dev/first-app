@@ -69,7 +69,7 @@ const AheadSection = () => {
       <div className="w-100 text-center">
         <GenericButton
           className="continue-button"
-          label="Continuar"
+          label={t("resumePage.aheadSection.continueButton")}
           width="8vw"
           onClick={() => handleNavigationClick("/this-website")}
         />

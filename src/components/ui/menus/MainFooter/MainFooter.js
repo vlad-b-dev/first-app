@@ -45,6 +45,8 @@ const MainFooter = () => {
             1.0.0-BETA
           </p>
           <p className="copyright-text">
+            ©Copyright by Owete | 2025 | All-In
+            <br />
             <Trans i18nKey="footerText.copyright" />
           </p>
         </div>

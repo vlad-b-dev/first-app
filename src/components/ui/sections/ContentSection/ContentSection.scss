@@ -15,6 +15,9 @@
   padding-top: 1.2vh;
   padding-bottom: 1.2vh;
   border-bottom: 0.2rem solid var(--main-color);
+  @media (max-width: 767px) {
+    padding-top: 0vh;
+  }
 }
 
 .content-section-title {
@@ -26,7 +29,7 @@
 
   @media (max-width: 767px) {
     font-size: 1rem;
-    margin-top: 0.6rem;
+    margin-top: 0.1rem;
     margin-left: -1rem;
   }
   @media (min-width: 768px) {

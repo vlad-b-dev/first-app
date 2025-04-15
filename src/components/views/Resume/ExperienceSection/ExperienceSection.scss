@@ -24,6 +24,10 @@
   position: absolute;
   top: 5%;
   z-index: 1;
+  @media (max-width: 767px) {
+    margin-right: 3% !important;
+    top: 2% !important;
+  }
 }
 
 .slick-prev {
@@ -42,6 +46,9 @@
 .slick-next:before {
   font-size: 2.5rem;
   color: var(--main-hover-color) !important;
+  @media (max-width: 767px) {
+    font-size: 2rem !important;
+  }
 }
 
 .inactive-text {
@@ -63,4 +70,22 @@
 .this-website-button {
   margin-top: 3vh;
   margin-left: 13.2vw;
+  width: 60%;
+}
+
+@media (max-width: 767px) {
+  .slick-slide {
+    min-height: 155vh !important;
+    padding: 3vw !important;
+    overflow: hidden !important;
+    align-self: center;
+    text-align: center !important;
+  }
+  .this-website-button {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+.text-justify {
+  text-align: justify !important;
 }

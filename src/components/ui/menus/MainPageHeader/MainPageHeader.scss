@@ -25,7 +25,7 @@
   }
 
   @media (min-width: 768px) {
-    border-bottom: 0.8vh solid var(--main-color);
+    border-bottom: 1vh solid var(--main-color);
     .main-page-header-logo {
       padding-left: 1vw;
     }
@@ -64,7 +64,7 @@
       border-radius: 5px;
     }
     .main-page-header-logo {
-      margin-right: 1.1vw !important;
+      margin-left: 0.8vw !important;
       height: 9vh;
       width: auto;
       margin-bottom: -5vh !important;

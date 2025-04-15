@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import ContentSection from "../../../ui/sections/ContentSection/ContentSection";
 import ContinueButton from "../../../ui/buttons/ContinueButton/ContinueButton";
@@ -25,6 +25,13 @@ const ExperienceSection = ({ scrollToRef }) => {
   const handleNavigationClick = (route) => navigate(route);
   const initialSlide = 1;
   const [currentSlide, setCurrentSlide] = useState(initialSlide);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleContinueClick = () => {
     if (scrollToRef?.current) {
@@ -71,6 +78,7 @@ const ExperienceSection = ({ scrollToRef }) => {
   const handleBeforeChange = (oldIndex, newIndex) => {
     setCurrentSlide(newIndex);
   };
+
   const sliderSettings = {
     className: "center",
     centerMode: true,
@@ -159,86 +167,191 @@ const ExperienceSection = ({ scrollToRef }) => {
 
       <div className="slider-container mt-2">
         <Slider {...sliderSettings}>
-          <div className="slide ">
-            <div className="row mt-4">
-              <div className="col-3 mt-3">
-                <ImageComponent
-                  imageLight={UpnaLogoLight}
-                  imageDark={UpnaLogoDark}
-                  width={"14vw"}
-                />
-              </div>
-
-              <div className="col-6 text-start mt-1">
-                <h3>
-                  <Trans i18nKey="resumePage.experienceSection.upna.title" />
-                </h3>
-                <p>
-                  <Trans i18nKey="resumePage.experienceSection.upna.description" />
-                </p>
-              </div>
-              <div className="col-3 mt-2">
-                <RwLogo width="13.5vw" />
-              </div>
-            </div>
-          </div>
-
+          {/* Slide 1 – Software Engineering */}
           <div className="slide">
-            <div className="row mt-2 mb-1">
-              <div className="col-3 mt-5">
-                <ImageComponent
-                  imageLight={ZeoLogoLight}
-                  imageDark={ZeoLogoDark}
-                  width={"22vw"}
-                />
-              </div>
-              <div className="col-9 text-start mb-0 pr-1">
-                <h3>Zeo Technology</h3>
-                <div className="mt-1">
-                  <Trans i18nKey="resumePage.experienceSection.zeo.description" />
-                  <ul>
-                    <li>
-                      <Trans i18nKey="resumePage.experienceSection.zeo.reportWizard" />
-                    </li>
-                    <li>
-                      <Trans i18nKey="resumePage.experienceSection.zeo.visor" />
-                    </li>
-                    <li>
-                      <Trans i18nKey="resumePage.experienceSection.zeo.components" />
-                    </li>
-                    <li>
-                      <Trans i18nKey="resumePage.experienceSection.zeo.filters" />
-                    </li>
-                    <li>
-                      <Trans i18nKey="resumePage.experienceSection.zeo.planner" />
-                    </li>
-                    <li>
-                      <Trans i18nKey="resumePage.experienceSection.zeo.general" />
-                    </li>
-                  </ul>
+            {isMobile ? (
+              <>
+                <div className="row">
+                  <div className="col-6 mt-1 text-center">
+                    <ImageComponent
+                      imageLight={UpnaLogoLight}
+                      imageDark={UpnaLogoDark}
+                      width={"27vw"}
+                    />
+                  </div>
+                  <div className="col-6 mt-1">
+                    <RwLogo width="27vw" />
+                  </div>
+                </div>
+                <div className="row mt-2">
+                  <div className="col-12">
+                    <h3 className="text-center">
+                      <Trans i18nKey="resumePage.experienceSection.upna.title" />
+                    </h3>
+                    <p className="text-justify">
+                      <Trans i18nKey="resumePage.experienceSection.upna.description" />
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="row mt-4">
+                <div className="col-3 mt-3">
+                  <ImageComponent
+                    imageLight={UpnaLogoLight}
+                    imageDark={UpnaLogoDark}
+                    width={"14vw"}
+                  />
+                </div>
+                <div className="col-6 text-start mt-1">
+                  <h3>
+                    <Trans i18nKey="resumePage.experienceSection.upna.title" />
+                  </h3>
+                  <p>
+                    <Trans i18nKey="resumePage.experienceSection.upna.description" />
+                  </p>
+                </div>
+                <div className="col-3 mt-2">
+                  <RwLogo width="13.5vw" />
                 </div>
               </div>
-            </div>
+            )}
           </div>
 
+          {/* Slide 2 – Zeo Technology */}
           <div className="slide">
-            <div className="row mt-4">
-              <div className="col-3 mt-3">
-                <ImageComponent image={MinimalLogoNeutral} width={"14vw"} />
-              </div>
-              <div className="col-9 mt-2 text-start">
-                <h3> All-In App</h3>
-                <p>
-                  <Trans i18nKey="resumePage.experienceSection.allIn.description" />
-                  <GenericButton
-                    className="this-website-button"
-                    label={t("genericTranslations.moreDetails")}
-                    width="15vw"
-                    onClick={() => handleNavigationClick("/this-website")}
+            {isMobile ? (
+              <>
+                <div className="row mt-1">
+                  <div className="col-12 text-center">
+                    <ImageComponent
+                      imageLight={ZeoLogoLight}
+                      imageDark={ZeoLogoDark}
+                      width={"55vw"}
+                    />
+                  </div>
+                </div>
+                <div className="row mt-3">
+                  <div className="col-12 text-center">
+                    <h3 className="mb-4">Zeo Technology</h3>
+                    <div className="mt-3 pt-2">
+                      <p className="text-justify">
+                        <Trans i18nKey="resumePage.experienceSection.zeo.description" />
+                      </p>
+
+                      <ul className="text-start">
+                        <li>
+                          <Trans i18nKey="resumePage.experienceSection.zeo.reportWizard" />
+                        </li>
+                        <li>
+                          <Trans i18nKey="resumePage.experienceSection.zeo.visor" />
+                        </li>
+                        <li>
+                          <Trans i18nKey="resumePage.experienceSection.zeo.components" />
+                        </li>
+                        <li>
+                          <Trans i18nKey="resumePage.experienceSection.zeo.filters" />
+                        </li>
+                        <li>
+                          <Trans i18nKey="resumePage.experienceSection.zeo.planner" />
+                        </li>
+                        <li>
+                          <Trans i18nKey="resumePage.experienceSection.zeo.general" />
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="row mt-2 mb-1">
+                <div className="col-3 mt-5">
+                  <ImageComponent
+                    imageLight={ZeoLogoLight}
+                    imageDark={ZeoLogoDark}
+                    width={"22vw"}
                   />
-                </p>
+                </div>
+                <div className="col-9 text-start mb-0 pr-1">
+                  <h3>Zeo Technology</h3>
+                  <div className="mt-1">
+                    <Trans i18nKey="resumePage.experienceSection.zeo.description" />
+                    <ul>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.reportWizard" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.visor" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.components" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.filters" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.planner" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.general" />
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
+          </div>
+
+          {/* Slide 3 – All-In App */}
+          <div className="slide">
+            {isMobile ? (
+              <>
+                <div className="row mt-2 mb-4">
+                  <div className="col-12 text-center">
+                    <ImageComponent image={MinimalLogoNeutral} width={"27vw"} />
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-12 text-center mt-2">
+                    <h3>All-In App</h3>
+                  </div>
+                </div>
+                <div className="row mt-4">
+                  <div className="col-12 text-justify">
+                    <p>
+                      <Trans i18nKey="resumePage.experienceSection.allIn.description" />
+                    </p>
+                  </div>
+                </div>
+                <div className="row mt-2">
+                  <div className="col-12 text-center">
+                    <GenericButton
+                      className="this-website-button"
+                      label={t("genericTranslations.moreDetails")}
+                      onClick={() => handleNavigationClick("/this-website")}
+                    />
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="row mt-4">
+                <div className="col-3 mt-3">
+                  <ImageComponent image={MinimalLogoNeutral} width={"14vw"} />
+                </div>
+                <div className="col-9 mt-2 text-start">
+                  <h3>All-In App</h3>
+                  <p>
+                    <Trans i18nKey="resumePage.experienceSection.allIn.description" />
+                    <GenericButton
+                      className="this-website-button"
+                      label={t("genericTranslations.moreDetails")}
+                      width="15vw"
+                      onClick={() => handleNavigationClick("/this-website")}
+                    />
+                  </p>
+                </div>
+              </div>
+            )}
           </div>
         </Slider>
         <div className="continue-button-container">
@@ -248,6 +361,7 @@ const ExperienceSection = ({ scrollToRef }) => {
     </ContentSection>
   );
 };
+
 ExperienceSection.propTypes = {
   scrollToRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };
