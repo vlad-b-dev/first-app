@@ -2,7 +2,6 @@
   margin-left: -2vw;
   text-align: center;
 }
-
 .welcome-text {
   margin-top: 4vh;
   font-size: 2vw;
@@ -12,7 +11,6 @@
   font-size: 2.4vw;
   text-align: center;
 }
-
 .description-text {
   margin-top: 3.2vh;
   font-size: 1.2vw;
@@ -31,7 +29,6 @@
   padding-right: 1vw;
   list-style: none;
 }
-
 .general-data-list li {
   display: flex;
   justify-content: space-between;
@@ -48,44 +45,84 @@
     color: var(--main-text-color) !important;
   }
 }
-
 .language-sub-section {
   margin-bottom: 0.9vw;
 }
 .general-data-list-icon-interactive {
   transition: color 0.3s ease, transform 0.3s ease;
-
   &:hover {
     transform: scale(1.2);
     color: var(--main-color) !important;
   }
 }
-
 .general-data-action-button {
   background: none;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-
   .MuiSvgIcon-root {
     transition: color 0.3s ease, transform 0.3s ease;
   }
-
   &:hover {
     background-color: var(--secondary-background-color);
     transform: scale(1.2);
-
     .MuiSvgIcon-root {
       color: var(--main-color);
       transform: scale(1.2);
     }
   }
+  @media (max-width: 767px) {
+    margin-right: -1.5vw !important;
+  }
 }
-
 .main-section-container {
   padding: 2%;
   border-top: 0.3vh solid var(--main-color);
   border-bottom: 0.3vh solid var(--main-color);
   box-shadow: 0 3vh 3vh 0 rgba(0, 0, 0, 1);
   background-color: var(--secondary-background-color);
+}
+@media screen and (max-width: 767px) {
+  .mobile-main-section-container {
+    border-top: 0.1vh solid var(--main-color);
+    border-bottom: 0.1vh solid var(--main-color);
+    padding: 5%;
+  }
+  .general-text-column {
+    margin-left: 0;
+    margin-bottom: 3vh;
+  }
+  .welcome-text {
+    font-size: 5vw;
+    margin-top: 2vh;
+  }
+  .name-text {
+    font-size: 5.3vw;
+  }
+  .description-text {
+    font-size: 4vw;
+    margin-top: 0.5vh;
+    text-align: justify;
+  }
+  .general-data-column {
+    margin-left: 0;
+    padding-top: 2vh;
+  }
+  .general-data-list {
+    font-size: 4vw;
+    padding-left: 4vw;
+  }
+  .general-data-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 4vw;
+    padding: 1vh 0;
+  }
+  .general-data-list-icon {
+    font-size: 5vw !important;
+    margin-bottom: 0;
+    margin-right: 2vw;
+    margin-left: 0;
+  }
 }

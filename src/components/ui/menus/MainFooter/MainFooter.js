@@ -44,7 +44,7 @@ const MainFooter = () => {
             <Trans i18nKey="footerText.clientVersion" />
             1.0.0-BETA
           </p>
-          <p className="copyright-text-container">
+          <p className="copyright-text">
             <Trans i18nKey="footerText.copyright" />
           </p>
         </div>

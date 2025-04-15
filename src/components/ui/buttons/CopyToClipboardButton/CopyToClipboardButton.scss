@@ -41,5 +41,9 @@
   .MuiSvgIcon-root {
     font-size: 1.3vw !important;
     margin: 0.2vw 0.5vw 0.2vw 0.1vw;
+    @media (max-width: 767px) {
+      font-size: 4em !important;
+      margin: 0.2vw 0.3vw 0.2vw 0.1vw;
+    }
   }
 }

@@ -4,6 +4,8 @@
   color: var(--footer-text-color);
   @media (max-width: 767px) {
     padding: 3%;
+    padding-top: 15% !important;
+    padding-bottom: 25% !important;
   }
 }
 .scroll-to-top-button {

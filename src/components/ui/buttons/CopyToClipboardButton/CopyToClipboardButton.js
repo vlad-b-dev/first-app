@@ -4,25 +4,43 @@ import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import ReportGmailerrorredRoundedIcon from "@mui/icons-material/ReportGmailerrorredRounded";
 
 import "./CopyToClipboardButton.scss";
+import PropTypes from "prop-types";
 
 const CopyToClipboardButton = ({ content }) => {
   const [icon, setIcon] = useState(<ContentCopyRoundedIcon />);
   const [iconColor, setIconColor] = useState("");
 
+  const performCopyToClipboard = () => {
+    navigator.clipboard
+      .writeText(content)
+      .then(() => {
+        setIcon(<CheckRoundedIcon />);
+        setIconColor("success");
+        resetIconAfterDelay();
+      })
+      .catch(() => {
+        setIcon(<ReportGmailerrorredRoundedIcon />);
+        setIconColor("error");
+        resetIconAfterDelay();
+      });
+  };
+
   const copyToClipboard = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard
-        .writeText(content)
-        .then(() => {
-          setIcon(<CheckRoundedIcon />);
-          setIconColor("success");
-          resetIconAfterDelay();
+    if (navigator?.permissions?.query) {
+      navigator.permissions
+        .query({ name: "clipboard-write" })
+        .then((result) => {
+          if (result.state === "granted" || result.state === "prompt") {
+            performCopyToClipboard();
+          } else {
+            console.error("Clipboard permissions not granted");
+          }
         })
         .catch(() => {
-          setIcon(<ReportGmailerrorredRoundedIcon />);
-          setIconColor("error");
-          resetIconAfterDelay();
+          performCopyToClipboard();
         });
+    } else if (navigator.clipboard) {
+      performCopyToClipboard();
     }
   };
 
@@ -36,6 +54,7 @@ const CopyToClipboardButton = ({ content }) => {
   return (
     <button
       onClick={copyToClipboard}
+      onTouchStart={copyToClipboard}
       className="copy-to-clipboard-button"
       aria-label="Copy content to clipboard"
     >
@@ -46,6 +65,9 @@ const CopyToClipboardButton = ({ content }) => {
       </span>
     </button>
   );
+};
+CopyToClipboardButton.propTypes = {
+  content: PropTypes.string.isRequired,
 };
 
 export default CopyToClipboardButton;

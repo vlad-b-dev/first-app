@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import MainPageHeader from "../../ui/menus/MainPageHeader/MainPageHeader";
 import ContentSubSection from "../../ui/sections/ContentSubSection/ContentSubSection";
@@ -25,12 +25,19 @@ import MainFooter from "../../ui/menus/MainFooter/MainFooter";
 import Fade from "@mui/material/Fade";
 import GenericButton from "../../ui/buttons/GenericButton/GenericButton";
 import { useNavigate } from "react-router-dom";
-
 import "./MainPage.scss";
 
 const MainPage = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const getGreeting = () => {
     const hour = new Date().getHours();
     if (hour >= 6 && hour <= 13) {
@@ -50,169 +57,323 @@ const MainPage = () => {
       "_blank"
     );
   };
+
   const openLocation = () => {
     window.open("https://maps.app.goo.gl/M3E99XCCPRqSHpYd6", "_blank");
   };
 
   const handleNavigationClick = (route) => navigate(route);
 
-  return (
-    <div className="page-background">
-      <MainPageHeader />
-      <motion.div
-        className="main-section-container"
-        initial={{ y: -400, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 17, damping: 7 }}
-      >
-        <div className="row mt-2">
-          <div className="col-3">
-            <ImageComponent
-              imageLight={VladProfileLight}
-              imageDark={VladProfileDark}
-              width={"20vw"}
-              hoverScale={1.1}
-              className={"mt-2"}
-              showSmoke={true}
-            />
-          </div>
-          <div className="col-6 general-text-column">
-            <h2 className="welcome-text">{getGreeting()}</h2>
-            <h1 className="name-text">
-              <Trans i18nKey="resumePage.generalSection.nameText" />
-            </h1>
-            <div className="description-text">
-              <p className="mb-3">
-                <Trans i18nKey="resumePage.generalSection.descriptionP1" />
-              </p>
-              <p className="mb-3">
-                {t("resumePage.generalSection.descriptionP2")}
-              </p>
-              <p>{t("resumePage.generalSection.descriptionP3")}</p>
+  if (isMobile) {
+    return (
+      <div className="page-background">
+        <MainPageHeader />
+        <motion.div
+          className="main-section-container mobile-main-section-container"
+          initial={{ y: -400, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 17, damping: 7 }}
+        >
+          <div className="row mt-2">
+            <div className="col-12 general-text-column">
+              <h2 className="welcome-text">{getGreeting()}</h2>
+              <h1 className="name-text">
+                <Trans i18nKey="resumePage.generalSection.nameText" />
+              </h1>
             </div>
-            <GenericButton
-              label={t("genericTranslations.continue")}
-              onClick={() => handleNavigationClick("/resume")}
-              width="10vw"
-              textButton={true}
-            />
-          </div>
-          <div className="col-3 general-data-column">
-            <ContentSubSection
-              className="language-sub-section"
-              showHeader={true}
-              title={t("resumePage.generalSection.languages")}
-              icon={PublicRoundedIcon}
-            >
-              <ul className="general-data-list">
-                <li>
-                  <div>
-                    <LanguageRoundedIcon className="general-data-list-icon" />
-                    {t("resumePage.generalSection.spanish")}
-                  </div>
-                  <SignalCellularAltRoundedIcon className="general-data-list-icon " />
-                </li>
-                <li>
-                  <div>
-                    <LanguageRoundedIcon className="general-data-list-icon" />
-                    {t("resumePage.generalSection.russian")}
-                  </div>
-                  <SignalCellularAltRoundedIcon className="general-data-list-icon" />
-                </li>
-                <li>
-                  <div>
-                    <Tooltip
-                      title={t("resumePage.generalSection.englishTooltip")}
-                      placement="left"
-                      arrow
-                      slots={{
-                        transition: Fade,
-                      }}
-                      slotProps={{
-                        transition: { timeout: 300 },
-                        popper: {
-                          modifiers: [
-                            {
-                              name: "preventOverflow",
-                              enabled: false,
-                            },
-                            {
-                              name: "flip",
-                              enabled: false,
-                            },
-                          ],
-                        },
-                      }}
+            <div className="col-12 general-text-column">
+              <div className="description-text">
+                <p className="mb-3">
+                  <Trans i18nKey="resumePage.generalSection.descriptionP1" />
+                </p>
+              </div>
+            </div>
+            <div className="col-12 text-center">
+              <ImageComponent
+                imageLight={VladProfileLight}
+                imageDark={VladProfileDark}
+                width={"70%"}
+                hoverScale={1.1}
+                showSmoke={true}
+              />
+            </div>
+            <div className="col-12 general-text-column">
+              <div className="description-text">
+                <p className="mb-3">
+                  {t("resumePage.generalSection.descriptionP2")}
+                </p>
+                <p>{t("resumePage.generalSection.descriptionP3")}</p>
+              </div>
+            </div>
+            <div className="col-12">
+              <ContentSubSection
+                className="language-sub-section"
+                showHeader={true}
+                title={t("resumePage.generalSection.languages")}
+                icon={PublicRoundedIcon}
+              >
+                <ul className="general-data-list">
+                  <li>
+                    <div>
+                      <LanguageRoundedIcon className="general-data-list-icon" />
+                      {t("resumePage.generalSection.spanish")}
+                    </div>
+                    <SignalCellularAltRoundedIcon className="general-data-list-icon" />
+                  </li>
+                  <li>
+                    <div>
+                      <LanguageRoundedIcon className="general-data-list-icon" />
+                      {t("resumePage.generalSection.russian")}
+                    </div>
+                    <SignalCellularAltRoundedIcon className="general-data-list-icon" />
+                  </li>
+                  <li>
+                    <div>
+                      <Tooltip
+                        title={t("resumePage.generalSection.englishTooltip")}
+                        placement="left"
+                        arrow
+                        slots={{ transition: Fade }}
+                        slotProps={{
+                          transition: { timeout: 300 },
+                          popper: {
+                            modifiers: [
+                              { name: "preventOverflow", enabled: false },
+                              { name: "flip", enabled: false },
+                            ],
+                          },
+                        }}
+                      >
+                        <InfoRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
+                      </Tooltip>
+                      {t("resumePage.generalSection.english")}
+                    </div>
+                    <SignalCellularAlt2BarRoundedIcon className="general-data-list-icon" />
+                  </li>
+                  <li>
+                    <div>
+                      <LanguageRoundedIcon className="general-data-list-icon" />
+                      {t("resumePage.generalSection.ukrainian")}
+                    </div>
+                    <SignalCellularAlt1BarRoundedIcon className="general-data-list-icon" />
+                  </li>
+                </ul>
+              </ContentSubSection>
+            </div>
+            <div className="col-12">
+              <ContentSubSection
+                showHeader={true}
+                title={t("resumePage.generalSection.contact")}
+                icon={AlternateEmailRoundedIcon}
+              >
+                <ul className="general-data-list">
+                  <li>
+                    <div>
+                      <EmailRoundedIcon className="general-data-list-icon" />
+                      vboychuk1122@gmail.com
+                    </div>
+                    <CopyToClipboardButton content="vboychuk1122@gmail.com" />
+                  </li>
+                  <li>
+                    <div>
+                      <PermPhoneMsgRoundedIcon className="general-data-list-icon" />
+                      673399221
+                    </div>
+                    <CopyToClipboardButton content="673399221" />
+                  </li>
+                  <li>
+                    <div className="mb-1">
+                      <LinkedInIcon className="general-data-list-icon" />
+                      vladyslav-boychuk-developer
+                    </div>
+                    <button
+                      onClick={() => openLinkedInProfile()}
+                      className="general-data-action-button"
+                      aria-label="Open LinkedIn profile"
                     >
-                      <InfoRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
-                    </Tooltip>
-                    {t("resumePage.generalSection.english")}
-                  </div>
-                  <SignalCellularAlt2BarRoundedIcon className="general-data-list-icon" />
-                </li>
-                <li>
-                  <div>
-                    <LanguageRoundedIcon className="general-data-list-icon" />
-                    {t("resumePage.generalSection.ukrainian")}
-                  </div>
-                  <SignalCellularAlt1BarRoundedIcon className="general-data-list-icon" />
-                </li>
-              </ul>
-            </ContentSubSection>
-            <ContentSubSection
-              showHeader={true}
-              title={t("resumePage.generalSection.contact")}
-              icon={AlternateEmailRoundedIcon}
-            >
-              <ul className="general-data-list">
-                <li>
-                  <div>
-                    <EmailRoundedIcon className="general-data-list-icon" />
-                    vboychuk1122@gmail.com
-                  </div>
-                  <CopyToClipboardButton content="vboychuk1122@gmail.com" />
-                </li>
-                <li>
-                  <div>
-                    <PermPhoneMsgRoundedIcon className="general-data-list-icon" />
-                    673399221
-                  </div>
-                  <CopyToClipboardButton content="673399221" />
-                </li>
-                <li>
-                  <div className="mb-1">
-                    <LinkedInIcon className="general-data-list-icon" />
-                    vladyslav-boychuk-developer
-                  </div>
-                  <button
-                    onClick={() => openLinkedInProfile()}
-                    className="general-data-action-button"
-                    aria-label="Open LinkedIn profile"
-                  >
-                    <OpenInNewRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
-                  </button>
-                </li>
-                <li>
-                  <div>
-                    <LocationOnRoundedIcon className="general-data-list-icon" />
-                    {t("resumePage.generalSection.location")}
-                  </div>
-                  <button
-                    onClick={() => openLocation()}
-                    className="general-data-action-button"
-                    aria-label="Open LinkedIn profile"
-                  >
-                    <MyLocationRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
-                  </button>
-                </li>
-              </ul>
-            </ContentSubSection>
+                      <OpenInNewRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
+                    </button>
+                  </li>
+                  <li>
+                    <div>
+                      <LocationOnRoundedIcon className="general-data-list-icon" />
+                      {t("resumePage.generalSection.location")}
+                    </div>
+                    <button
+                      onClick={() => openLocation()}
+                      className="general-data-action-button"
+                      aria-label="Open location"
+                    >
+                      <MyLocationRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
+                    </button>
+                  </li>
+                </ul>
+              </ContentSubSection>
+            </div>
+            <div className="col-12 text-center mt-5">
+              <GenericButton
+                label={t("genericTranslations.continue")}
+                onClick={() => handleNavigationClick("/resume")}
+                width="50%"
+                textButton={true}
+              />
+            </div>
           </div>
-        </div>
-      </motion.div>
-      <MainFooter />
-    </div>
-  );
+        </motion.div>
+        <MainFooter />
+      </div>
+    );
+  } else {
+    return (
+      <div className="page-background">
+        <MainPageHeader />
+        <motion.div
+          className="main-section-container"
+          initial={{ y: -400, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 17, damping: 7 }}
+        >
+          <div className="row mt-2">
+            <div className="col-3">
+              <ImageComponent
+                imageLight={VladProfileLight}
+                imageDark={VladProfileDark}
+                width={"20vw"}
+                hoverScale={1.1}
+                className={"mt-2"}
+                showSmoke={true}
+              />
+            </div>
+            <div className="col-6 general-text-column">
+              <h2 className="welcome-text">{getGreeting()}</h2>
+              <h1 className="name-text">
+                <Trans i18nKey="resumePage.generalSection.nameText" />
+              </h1>
+              <div className="description-text">
+                <p className="mb-3">
+                  <Trans i18nKey="resumePage.generalSection.descriptionP1" />
+                </p>
+                <p className="mb-3">
+                  {t("resumePage.generalSection.descriptionP2")}
+                </p>
+                <p>{t("resumePage.generalSection.descriptionP3")}</p>
+              </div>
+              <GenericButton
+                label={t("genericTranslations.continue")}
+                onClick={() => handleNavigationClick("/resume")}
+                width="10vw"
+                textButton={true}
+              />
+            </div>
+            <div className="col-3 general-data-column">
+              <ContentSubSection
+                className="language-sub-section"
+                showHeader={true}
+                title={t("resumePage.generalSection.languages")}
+                icon={PublicRoundedIcon}
+              >
+                <ul className="general-data-list">
+                  <li>
+                    <div>
+                      <LanguageRoundedIcon className="general-data-list-icon" />
+                      {t("resumePage.generalSection.spanish")}
+                    </div>
+                    <SignalCellularAltRoundedIcon className="general-data-list-icon " />
+                  </li>
+                  <li>
+                    <div>
+                      <LanguageRoundedIcon className="general-data-list-icon" />
+                      {t("resumePage.generalSection.russian")}
+                    </div>
+                    <SignalCellularAltRoundedIcon className="general-data-list-icon" />
+                  </li>
+                  <li>
+                    <div>
+                      <Tooltip
+                        title={t("resumePage.generalSection.englishTooltip")}
+                        placement="left"
+                        arrow
+                        slots={{ transition: Fade }}
+                        slotProps={{
+                          transition: { timeout: 300 },
+                          popper: {
+                            modifiers: [
+                              { name: "preventOverflow", enabled: false },
+                              { name: "flip", enabled: false },
+                            ],
+                          },
+                        }}
+                      >
+                        <InfoRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
+                      </Tooltip>
+                      {t("resumePage.generalSection.english")}
+                    </div>
+                    <SignalCellularAlt2BarRoundedIcon className="general-data-list-icon" />
+                  </li>
+                  <li>
+                    <div>
+                      <LanguageRoundedIcon className="general-data-list-icon" />
+                      {t("resumePage.generalSection.ukrainian")}
+                    </div>
+                    <SignalCellularAlt1BarRoundedIcon className="general-data-list-icon" />
+                  </li>
+                </ul>
+              </ContentSubSection>
+              <ContentSubSection
+                showHeader={true}
+                title={t("resumePage.generalSection.contact")}
+                icon={AlternateEmailRoundedIcon}
+              >
+                <ul className="general-data-list">
+                  <li>
+                    <div>
+                      <EmailRoundedIcon className="general-data-list-icon" />
+                      vboychuk1122@gmail.com
+                    </div>
+                    <CopyToClipboardButton content="vboychuk1122@gmail.com" />
+                  </li>
+                  <li>
+                    <div>
+                      <PermPhoneMsgRoundedIcon className="general-data-list-icon" />
+                      673399221
+                    </div>
+                    <CopyToClipboardButton content="673399221" />
+                  </li>
+                  <li>
+                    <div className="mb-1">
+                      <LinkedInIcon className="general-data-list-icon" />
+                      vladyslav-boychuk-developer
+                    </div>
+                    <button
+                      onClick={() => openLinkedInProfile()}
+                      className="general-data-action-button"
+                      aria-label="Open LinkedIn profile"
+                    >
+                      <OpenInNewRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
+                    </button>
+                  </li>
+                  <li>
+                    <div>
+                      <LocationOnRoundedIcon className="general-data-list-icon" />
+                      {t("resumePage.generalSection.location")}
+                    </div>
+                    <button
+                      onClick={() => openLocation()}
+                      className="general-data-action-button"
+                      aria-label="Open location"
+                    >
+                      <MyLocationRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
+                    </button>
+                  </li>
+                </ul>
+              </ContentSubSection>
+            </div>
+          </div>
+        </motion.div>
+        <MainFooter />
+      </div>
+    );
+  }
 };
 
 export default MainPage;

@@ -166,6 +166,8 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
     computedHeight = typeof height === "number" ? height : parseFloat(height);
   }
 
+  const moonPositionOffset = isMobile ? 0.02 : 0;
+
   return (
     <div
       className="orbit"
@@ -177,6 +179,7 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
         padding: "0",
         display: "block",
         margin: isMobile ? "0 0 0 5vw" : "-5vh auto -5vh auto",
+        transform: `translateX(${moonPositionOffset * 100}%)`,
       }}
     />
   );
