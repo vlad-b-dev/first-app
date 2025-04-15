@@ -10,26 +10,51 @@ const CopyToClipboardButton = ({ content }) => {
   const [icon, setIcon] = useState(<ContentCopyRoundedIcon />);
   const [iconColor, setIconColor] = useState("");
 
-  const performCopyToClipboard = () => {
-    navigator.clipboard
-      .writeText(content)
-      .then(() => {
+  // Fallback copy method using a temporary textarea and execCommand.
+  const performFallbackCopy = () => {
+    const textArea = document.createElement("textarea");
+    textArea.value = content;
+    // Move element off-screen to avoid scrolling
+    textArea.style.position = "fixed";
+    textArea.style.top = "-9999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+
+    try {
+      const successful = document.execCommand("copy");
+      if (successful) {
         setIcon(<CheckRoundedIcon />);
         setIconColor("success");
-        resetIconAfterDelay();
-      })
-      .catch(() => {
+      } else {
         setIcon(<ReportGmailerrorredRoundedIcon />);
         setIconColor("error");
-        resetIconAfterDelay();
-      });
+      }
+    } catch (err) {
+      setIcon(<ReportGmailerrorredRoundedIcon />);
+      setIconColor("error");
+    }
+    document.body.removeChild(textArea);
+    resetIconAfterDelay();
   };
 
+  // Copy function: Try the clipboard API first (if not on iOS) then fallback.
   const copyToClipboard = () => {
-    if (navigator.clipboard) {
-      performCopyToClipboard();
+    if (navigator.clipboard && !isIOS()) {
+      navigator.clipboard
+        .writeText(content)
+        .then(() => {
+          setIcon(<CheckRoundedIcon />);
+          setIconColor("success");
+          resetIconAfterDelay();
+        })
+        .catch(() => {
+          // If the clipboard API fails (or triggers a permission request), use fallback.
+          performFallbackCopy();
+        });
     } else {
-      console.error("Clipboard API not available");
+      // For iOS or if clipboard API is unavailable, use fallback.
+      performFallbackCopy();
     }
   };
 
@@ -38,6 +63,11 @@ const CopyToClipboardButton = ({ content }) => {
       setIcon(<ContentCopyRoundedIcon />);
       setIconColor("");
     }, 2000);
+  };
+
+  // Helper function to detect iOS devices.
+  const isIOS = () => {
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   };
 
   return (
