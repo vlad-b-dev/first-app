@@ -96,7 +96,7 @@ const ThisWebsite = () => {
                 showSmoke={false}
               />
             </div>
-            <div className="mobile-text pt-5">
+            <div className="mobile-text pt-3">
               <h4>
                 <Trans i18nKey="thisWebsitePage.description.title" />
               </h4>

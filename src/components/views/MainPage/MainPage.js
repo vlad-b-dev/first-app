@@ -125,7 +125,6 @@ const MainPage = () => {
                       title={t("resumePage.generalSection.englishTooltip")}
                       placement="left"
                       arrow
-                      keepMounted
                       slots={{
                         transition: Fade,
                       }}

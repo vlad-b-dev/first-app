@@ -45,8 +45,8 @@
   }
 
   @media (max-width: 767px) {
-    border-bottom: 0.7vh solid var(--main-color);
-    height: 12vh;
+    border-bottom: 0.5vh solid var(--main-color);
+    height: 11vh;
     .main-page-header .row {
       display: flex;
       justify-content: space-between;
@@ -57,7 +57,6 @@
     .dropdown-toggle-btn {
       position: absolute;
       padding-left: 1vw;
-
       transform: translateY(-50%);
       background-color: var(--secondary-background-color);
       color: var(--main-color);
@@ -65,7 +64,7 @@
       border-radius: 5px;
     }
     .main-page-header-logo {
-      margin-right: 1.5vw !important;
+      margin-right: 1.1vw !important;
       height: 9vh;
       width: auto;
       margin-bottom: -5vh !important;
@@ -77,6 +76,7 @@
 
 .main-page-header-logo {
   width: 10vw;
+  max-width: 150px;
   height: auto;
   margin: -1.5vh 0 !important;
 }
@@ -132,6 +132,7 @@ $triangle-color: var(--alternative-hover-color);
 .main-page-header-logo-button {
   all: unset;
   display: inline-block;
+  background: transparent !important;
 
   @media (min-width: 768px) {
     &:hover .logo-triangle {
@@ -144,7 +145,7 @@ $triangle-color: var(--alternative-hover-color);
   &:hover,
   &:focus,
   &:active {
-    background: none;
+    background: transparent !important;
     box-shadow: none;
     outline: none;
     filter: none;
