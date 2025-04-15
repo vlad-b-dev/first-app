@@ -8,7 +8,7 @@
   "footerText": {
     "goToTop": "¡Vaya! Bajaste casi hasta la deep web — ¡déjame ayudarte a salir de aquí! Haz clic en el avión",
     "allInApp": "All-In App | Diseñada, desarrollada y desplegada por Vladyslav Boychuk",
-    "clientVersion": "Versión cliente Eclater: ",
+    "clientVersion": "Versión-Eclater: ",
     "copyright": "©Copyright by Owete | 2025 | All-In | Todos los derechos reservados"
   },
   "preferences": {
@@ -114,7 +114,7 @@
   "thisWebsitePage": {
     "pageTitle": "Este sitio web",
     "description": {
-      "title": "All-in (\"Con todo\") refleja la amplitud de los objetivos:",
+      "title": "All-in (\"A por todas\") refleja la amplitud de los objetivos:",
       "objetive1": "<strong>Aprender nuevas tecnologías y habilidades</strong> de forma autónoma",
       "objetive2": "Desarrollar un <strong>proyecto totalmente personal</strong>, desde el diseño al despliegue",
       "objetive3": "<strong>Mostrar conocimientos de forma tangible</strong>, nada de plantillas o código pre-cocinado",

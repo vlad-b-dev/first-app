@@ -1,10 +1,23 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import * as THREE from "three";
+
+import "./Orbit.scss";
 
 const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
   const mountRef = useRef(null);
   const textureRef = useRef(null);
   const animationFrameRef = useRef(null);
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     if (!logoSrc || typeof logoSrc !== "string") {
@@ -16,13 +29,20 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
     const parsedHeight =
       typeof height === "string" ? parseFloat(height) : height;
 
+    const scaleFactor = isMobile ? 0.3 : 1;
+
     THREE.Cache.enabled = true;
 
     const scene = new THREE.Scene();
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
 
-    const w = window.innerWidth * (parsedWidth / 100);
-    const h = window.innerHeight * (parsedHeight / 100);
+    const w = isMobile
+      ? window.innerWidth * 0.9
+      : window.innerWidth * (parsedWidth / 100);
+    const h = isMobile
+      ? window.innerHeight * 0.9
+      : window.innerHeight * (parsedHeight / 100);
+
     renderer.setSize(w, h);
     renderer.setClearColor(0x000000, 0);
 
@@ -33,11 +53,10 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
     const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
     camera.position.z = 3;
 
-    const moonGeometry = new THREE.SphereGeometry(0.15, 32, 32);
+    const moonGeometry = new THREE.SphereGeometry(0.15 * scaleFactor, 32, 32);
     const moonMaterial = new THREE.MeshStandardMaterial({
       color: new THREE.Color("#6a6a6a"),
     });
-
     const moon = new THREE.Mesh(moonGeometry, moonMaterial);
     scene.add(moon);
 
@@ -47,23 +66,20 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
 
     const createLogoMesh = (logoTexture) => {
       const img = logoTexture.image;
-      if (!img || !img.complete) {
+      if (!img?.complete) {
         img.onload = () => createLogoMesh(logoTexture);
         return;
       }
-
       const aspect =
         (img.naturalWidth || img.width) / (img.naturalHeight || img.height);
-      const planeHeight = 2;
+      const planeHeight = 2 * scaleFactor;
       const planeWidth = planeHeight * aspect;
-
       const geometry = new THREE.PlaneGeometry(planeWidth, planeHeight);
       const material = new THREE.MeshBasicMaterial({
         map: logoTexture,
         transparent: true,
         opacity: 1,
       });
-
       const mesh = new THREE.Mesh(geometry, material);
       scene.add(mesh);
     };
@@ -92,9 +108,10 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
     };
 
     loadTexture();
+
     let angle = Math.random() * Math.PI * 2;
-    const radius = 1.8;
-    const verticalAmplitude = 0.6;
+    const radius = 1.8 * scaleFactor;
+    const verticalAmplitude = 0.6 * scaleFactor;
     const angleVariation = 0.015;
 
     const animate = () => {
@@ -102,24 +119,27 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
       moon.position.x = radius * Math.cos(angle);
       moon.position.y = verticalAmplitude * Math.sin(angle);
       moon.position.z = 1 * Math.sin(angle);
-
       renderer.render(scene, camera);
       animationFrameRef.current = requestAnimationFrame(animate);
     };
     animate();
 
-    const handleResize = () => {
-      const newW = window.innerWidth * (parsedWidth / 100);
-      const newH = window.innerHeight * (parsedHeight / 100);
+    const handleResizeCanvas = () => {
+      const newW = isMobile
+        ? window.innerWidth * 0.9
+        : window.innerWidth * (parsedWidth / 100);
+      const newH = isMobile
+        ? window.innerHeight * 0.9
+        : window.innerHeight * (parsedHeight / 100);
       renderer.setSize(newW, newH);
       camera.aspect = newW / newH;
       camera.updateProjectionMatrix();
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResizeCanvas);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResizeCanvas);
       cancelAnimationFrame(animationFrameRef.current);
       THREE.Cache.clear();
       renderer.dispose();
@@ -134,21 +154,38 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
         currentMount.removeChild(renderer.domElement);
       }
     };
-  }, [logoSrc, width, height]);
+  }, [logoSrc, width, height, isMobile]);
+
+  let computedWidth = 90;
+  if (!isMobile) {
+    computedWidth = typeof width === "number" ? width : parseFloat(width);
+  }
+
+  let computedHeight = 90;
+  if (!isMobile) {
+    computedHeight = typeof height === "number" ? height : parseFloat(height);
+  }
 
   return (
     <div
+      className="orbit"
       ref={mountRef}
       style={{
-        width: `${typeof width === "number" ? width : parseFloat(width)}vw`,
-        height: `${typeof height === "number" ? height : parseFloat(height)}vh`,
+        width: `${computedWidth}vw`,
+        height: `${computedHeight}vh`,
         pointerEvents: "none",
         padding: "0",
         display: "block",
-        margin: "-5vh auto -5vh auto",
+        margin: isMobile ? "0 0 0 5vw" : "-5vh auto -5vh auto",
       }}
     />
   );
 });
+
+Orbit.propTypes = {
+  logoSrc: PropTypes.string.isRequired,
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+};
 
 export default Orbit;
