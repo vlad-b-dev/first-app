@@ -13,6 +13,7 @@
   position: relative;
   transition: transform 0.3s ease-in-out;
   z-index: 2;
+
   &:hover {
     transform: scale(var(--hover-scale, 1.2));
   }
@@ -31,7 +32,6 @@ $num-smoke-puffs: 55;
   overflow: visible;
   transition: transform 0.3s ease-in-out;
   z-index: 1;
-
   transform-origin: center center;
 }
 
@@ -58,14 +58,26 @@ $num-smoke-puffs: 55;
 
   @for $i from 1 through $num-smoke-puffs {
     &:nth-child(#{$i}) {
-      --x: #{random(5) - 6}vw; //spread
+      --x: #{random(5) - 6}vw;
       --y: #{random(5) - 6}vh;
       animation-duration: $animation-duration + (random(3) * 1s);
       animation-delay: (random(3) * -1s);
       background: nth($smoke-colors, random(2));
-      width: #{random(4) + 8}vw; //smoke puff size larger
-      height: #{random(4) + 11}vh; //smoke puff size larger
+      width: #{random(4) + 8}vw;
+      height: #{random(4) + 11}vh;
       opacity: #{random(3) * 0.25 + 0.4};
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .smoke-container {
+    transform: scaleX(1.84) scaleY(0.8);
+    left: 46%;
+    top: 56%;
+  }
+
+  .image-component-wrapper:hover .smoke-container {
+    transform: scaleX(1.84) scaleY(0.8);
   }
 }

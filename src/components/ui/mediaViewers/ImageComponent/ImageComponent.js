@@ -15,7 +15,6 @@ const ImageComponent = ({
   smokeClassName = "",
 }) => {
   const { theme } = useTheme();
-
   const imageSrc = image || (theme === "dark" ? imageDark : imageLight);
 
   return (

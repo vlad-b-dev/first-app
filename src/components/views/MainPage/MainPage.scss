@@ -46,7 +46,10 @@
   }
 }
 .language-sub-section {
-  margin-bottom: 0.9vw;
+  margin-bottom: 0.9vh;
+  @media (max-width: 767px) {
+    margin-bottom: 2vh;
+  }
 }
 .general-data-list-icon-interactive {
   transition: color 0.3s ease, transform 0.3s ease;
@@ -82,10 +85,11 @@
   box-shadow: 0 3vh 3vh 0 rgba(0, 0, 0, 1);
   background-color: var(--secondary-background-color);
 }
-@media screen and (max-width: 767px) {
+@media (max-width: 767px) {
   .mobile-main-section-container {
     border-top: 0.1vh solid var(--main-color);
     border-bottom: 0.1vh solid var(--main-color);
+    margin-top: -5%;
     padding: 5%;
   }
   .general-text-column {

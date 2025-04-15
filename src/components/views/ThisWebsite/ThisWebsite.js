@@ -259,7 +259,6 @@ const ThisWebsite = () => {
                   width="70%"
                   hoverScale={1.1}
                   showSmoke={true}
-                  smokeClassName="phone-github-image-smoke"
                 />
               </div>
               <div className="col-12 mt-3 github-button-container">
@@ -358,7 +357,7 @@ const ThisWebsite = () => {
                   imageLight={UnderConstructionLight}
                   width="100%"
                   hoverScale={1}
-                  showSmoke={false}
+                  showSmoke={true}
                 />
               </div>
             </div>

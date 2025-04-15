@@ -10,11 +10,9 @@ const CopyToClipboardButton = ({ content }) => {
   const [icon, setIcon] = useState(<ContentCopyRoundedIcon />);
   const [iconColor, setIconColor] = useState("");
 
-  // Fallback copy method using a temporary textarea and execCommand.
   const performFallbackCopy = () => {
     const textArea = document.createElement("textarea");
     textArea.value = content;
-    // Move element off-screen to avoid scrolling
     textArea.style.position = "fixed";
     textArea.style.top = "-9999px";
     document.body.appendChild(textArea);
@@ -38,7 +36,6 @@ const CopyToClipboardButton = ({ content }) => {
     resetIconAfterDelay();
   };
 
-  // Copy function: Try the clipboard API first (if not on iOS) then fallback.
   const copyToClipboard = () => {
     if (navigator.clipboard && !isIOS()) {
       navigator.clipboard
@@ -49,11 +46,9 @@ const CopyToClipboardButton = ({ content }) => {
           resetIconAfterDelay();
         })
         .catch(() => {
-          // If the clipboard API fails (or triggers a permission request), use fallback.
           performFallbackCopy();
         });
     } else {
-      // For iOS or if clipboard API is unavailable, use fallback.
       performFallbackCopy();
     }
   };
@@ -65,7 +60,6 @@ const CopyToClipboardButton = ({ content }) => {
     }, 2000);
   };
 
-  // Helper function to detect iOS devices.
   const isIOS = () => {
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   };
