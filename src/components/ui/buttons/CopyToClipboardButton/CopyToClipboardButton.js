@@ -26,21 +26,10 @@ const CopyToClipboardButton = ({ content }) => {
   };
 
   const copyToClipboard = () => {
-    if (navigator?.permissions?.query) {
-      navigator.permissions
-        .query({ name: "clipboard-write" })
-        .then((result) => {
-          if (result.state === "granted" || result.state === "prompt") {
-            performCopyToClipboard();
-          } else {
-            console.error("Clipboard permissions not granted");
-          }
-        })
-        .catch(() => {
-          performCopyToClipboard();
-        });
-    } else if (navigator.clipboard) {
+    if (navigator.clipboard) {
       performCopyToClipboard();
+    } else {
+      console.error("Clipboard API not available");
     }
   };
 
@@ -66,6 +55,7 @@ const CopyToClipboardButton = ({ content }) => {
     </button>
   );
 };
+
 CopyToClipboardButton.propTypes = {
   content: PropTypes.string.isRequired,
 };
