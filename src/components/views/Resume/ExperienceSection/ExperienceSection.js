@@ -188,7 +188,7 @@ const ExperienceSection = ({ scrollToRef }) => {
         </div>
         <div className="row mt-1 mb-3">
           <PointsBar
-            edgeGap="5.5vw"
+            edgeGap="5.7vw"
             activePoint={currentSlide}
             orientation="horizontal"
             points={3}
@@ -364,7 +364,7 @@ const ExperienceSection = ({ scrollToRef }) => {
         </div>
         <div className="row mt-0 mb-2">
           <PointsBar
-            edgeGap="10.2vw"
+            edgeGap="10.3vw"
             activePoint={currentSlide}
             orientation="horizontal"
             points={3}

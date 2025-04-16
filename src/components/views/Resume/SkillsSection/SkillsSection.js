@@ -172,7 +172,7 @@ const SkillsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12">
+              <div className="col-12 reverse-two-tone-icons">
                 <LevelIndicator
                   isExplanation={true}
                   className="skills-level-explanation mb-2"
@@ -185,122 +185,148 @@ const SkillsSection = forwardRef((props, ref) => {
             </div>
             <div className="row">
               <div className="col-12 mb-3">
-                <SideRender direction="right">
-                  <ContentSubSection
-                    minBodyHeight={"30.5vh"}
-                    showHeader={true}
-                    title={"Frontend"}
-                    icon={CodeTwoToneIcon}
-                  >
-                    <SkillsList skills={frontendSkills} />
-                  </ContentSubSection>
-                </SideRender>
+                <div className="hardskill-wrapper">
+                  <div className="underlay-number">8</div>
+                  <SideRender direction="right">
+                    <ContentSubSection
+                      minBodyHeight={"30.5vh"}
+                      showHeader={true}
+                      title={"Frontend"}
+                      icon={CodeTwoToneIcon}
+                    >
+                      <SkillsList skills={frontendSkills} />
+                    </ContentSubSection>
+                  </SideRender>
+                </div>
               </div>
             </div>
             <div className="row">
               <div className="col-12 mb-3">
-                <SideRender direction="left">
-                  <ContentSubSection
-                    minBodyHeight={"30.5vh"}
-                    showHeader={true}
-                    title={t(
-                      "resumePage.skillsSection.hardSkillsTitles.designAndInterface"
-                    )}
-                    icon={ArchitectureTwoToneIcon}
-                  >
-                    <SkillsList skills={designSkills} />
-                  </ContentSubSection>
-                </SideRender>
+                <div className="hardskill-wrapper">
+                  <div className="underlay-number">7</div>
+                  <SideRender direction="left">
+                    <ContentSubSection
+                      minBodyHeight={"30.5vh"}
+                      showHeader={true}
+                      title={t(
+                        "resumePage.skillsSection.hardSkillsTitles.designAndInterface"
+                      )}
+                      icon={ArchitectureTwoToneIcon}
+                    >
+                      <SkillsList skills={designSkills} />
+                    </ContentSubSection>
+                  </SideRender>
+                </div>
               </div>
             </div>
             <div className="row">
               <div className="col-12 mb-3">
-                <SideRender direction="right">
-                  <ContentSubSection
-                    minBodyHeight={"19vh"}
-                    showHeader={true}
-                    title={"Backend"}
-                    icon={SettingsSuggestTwoToneIcon}
-                  >
-                    <SkillsList skills={backendSkills} />
-                  </ContentSubSection>
-                </SideRender>
+                <div className="hardskill-wrapper reverse-two-tone-icons">
+                  <div className="underlay-number">6</div>
+                  <SideRender direction="right">
+                    <ContentSubSection
+                      minBodyHeight={"19vh"}
+                      showHeader={true}
+                      title={"Backend"}
+                      icon={SettingsSuggestTwoToneIcon}
+                    >
+                      <SkillsList skills={backendSkills} />
+                    </ContentSubSection>
+                  </SideRender>
+                </div>
               </div>
             </div>
             <div className="row">
               <div className="col-12 mb-3">
-                <SideRender direction="left">
-                  <ContentSubSection
-                    minBodyHeight={"19vh"}
-                    showHeader={true}
-                    title={t(
-                      "resumePage.skillsSection.hardSkillsTitles.dataBases"
-                    )}
-                    icon={JoinRightTwoToneIcon}
-                  >
-                    <SkillsList skills={databaseSkills} />
-                  </ContentSubSection>
-                </SideRender>
+                <div className="hardskill-wrapper">
+                  <div className="underlay-number">5</div>
+                  <SideRender direction="left">
+                    <ContentSubSection
+                      minBodyHeight={"19vh"}
+                      showHeader={true}
+                      title={t(
+                        "resumePage.skillsSection.hardSkillsTitles.dataBases"
+                      )}
+                      icon={JoinRightTwoToneIcon}
+                    >
+                      <SkillsList skills={databaseSkills} />
+                    </ContentSubSection>
+                  </SideRender>
+                </div>
               </div>
             </div>
             <div className="row">
               <div className="col-12 mb-3">
-                <SideRender direction="right">
-                  <ContentSubSection
-                    minBodyHeight={"23vh"}
-                    showHeader={true}
-                    title={"Git"}
-                    icon={PolylineTwoToneIcon}
-                  >
-                    <SkillsList skills={gitSkills} />
-                  </ContentSubSection>
-                </SideRender>
+                <div className="hardskill-wrapper reverse-two-tone-icons">
+                  <div className="underlay-number">4</div>
+                  <SideRender direction="right">
+                    <ContentSubSection
+                      minBodyHeight={"23vh"}
+                      showHeader={true}
+                      title={"Git"}
+                      icon={PolylineTwoToneIcon}
+                    >
+                      <SkillsList skills={gitSkills} />
+                    </ContentSubSection>
+                  </SideRender>
+                </div>
               </div>
             </div>
             <div className="row">
               <div className="col-12 mb-3">
-                <SideRender direction="left">
-                  <ContentSubSection
-                    minBodyHeight={"23vh"}
-                    showHeader={true}
-                    title={t(
-                      "resumePage.skillsSection.hardSkillsTitles.codingAndGoodPractices"
-                    )}
-                    icon={TerminalTwoToneIcon}
-                  >
-                    <SkillsList skills={codeSkills} />
-                  </ContentSubSection>
-                </SideRender>
+                <div className="hardskill-wrapper">
+                  <div className="underlay-number">3</div>
+                  <SideRender direction="left">
+                    <ContentSubSection
+                      minBodyHeight={"23vh"}
+                      showHeader={true}
+                      title={t(
+                        "resumePage.skillsSection.hardSkillsTitles.codingAndGoodPractices"
+                      )}
+                      icon={TerminalTwoToneIcon}
+                    >
+                      <SkillsList skills={codeSkills} />
+                    </ContentSubSection>
+                  </SideRender>
+                </div>
               </div>
             </div>
             <div className="row">
               <div className="col-12 mb-3">
-                <SideRender direction="right">
-                  <ContentSubSection
-                    minBodyHeight={"26vh"}
-                    showHeader={true}
-                    title={t("resumePage.skillsSection.hardSkillsTitles.tools")}
-                    icon={ConstructionTwoToneIcon}
-                  >
-                    <SkillsList skills={toolsSkills} />
-                  </ContentSubSection>
-                </SideRender>
+                <div className="hardskill-wrapper">
+                  <div className="underlay-number">2</div>
+                  <SideRender direction="right">
+                    <ContentSubSection
+                      minBodyHeight={"26vh"}
+                      showHeader={true}
+                      title={t(
+                        "resumePage.skillsSection.hardSkillsTitles.tools"
+                      )}
+                      icon={ConstructionTwoToneIcon}
+                    >
+                      <SkillsList skills={toolsSkills} />
+                    </ContentSubSection>
+                  </SideRender>
+                </div>
               </div>
             </div>
             <div className="row">
               <div className="col-12 mb-3">
-                <SideRender direction="left">
-                  <ContentSubSection
-                    minBodyHeight={"26vh"}
-                    showHeader={true}
-                    title={t(
-                      "resumePage.skillsSection.hardSkillsTitles.corporate"
-                    )}
-                    icon={NextWeekTwoToneIcon}
-                  >
-                    <SkillsList skills={corporativeSkills} />
-                  </ContentSubSection>
-                </SideRender>
+                <div className="hardskill-wrapper reverse-two-tone-icons">
+                  <div className="underlay-number">1</div>
+                  <SideRender direction="left">
+                    <ContentSubSection
+                      minBodyHeight={"26vh"}
+                      showHeader={true}
+                      title={t(
+                        "resumePage.skillsSection.hardSkillsTitles.corporate"
+                      )}
+                      icon={NextWeekTwoToneIcon}
+                    >
+                      <SkillsList skills={corporativeSkills} />
+                    </ContentSubSection>
+                  </SideRender>
+                </div>
               </div>
             </div>
           </div>

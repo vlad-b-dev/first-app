@@ -42,9 +42,7 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
 
     if (parentShowSidebarMenu) {
       document.addEventListener("mousedown", handleSidebarMenuClickOutside);
-
       if (scrollableElement) {
-        scrollableElement.style.overflow = "hidden";
         scrollableElement.addEventListener("wheel", preventScroll, {
           passive: false,
         });
@@ -54,7 +52,6 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
       }
 
       if (sidebarElement) {
-        sidebarElement.style.overflow = "hidden";
         sidebarElement.addEventListener("wheel", preventScroll, {
           passive: false,
         });
@@ -66,13 +63,11 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
       document.removeEventListener("mousedown", handleSidebarMenuClickOutside);
 
       if (scrollableElement) {
-        scrollableElement.style.overflow = "";
         scrollableElement.removeEventListener("wheel", preventScroll);
         scrollableElement.removeEventListener("touchmove", preventScroll);
       }
 
       if (sidebarElement) {
-        sidebarElement.style.overflow = "";
         sidebarElement.removeEventListener("wheel", preventScroll);
         sidebarElement.removeEventListener("touchmove", preventScroll);
       }
@@ -148,7 +143,7 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
   return (
     <AnimatePresence>
       {parentShowSidebarMenu && (
-        <div>
+        <div className="sidebar-menu-container">
           <motion.div
             className="sidebar-menu"
             variants={sidebarMenuAnimation}
@@ -208,5 +203,4 @@ SidebarMenu.propTypes = {
   showSidebarMenu: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
-
 export default SidebarMenu;

@@ -40,3 +40,20 @@
   margin-bottom: 1vh !important;
   margin-left: -1% !important;
 }
+
+.hardskill-wrapper {
+  position: relative;
+}
+.underlay-number {
+  position: absolute;
+  top: 10vh;
+  text-align: center !important;
+  font-size: 10rem;
+  color: var(--inactive-element-color);
+  z-index: 0;
+}
+.hardskill-wrapper > .SideRender,
+.hardskill-wrapper > .SideRender * {
+  position: relative;
+  z-index: 1;
+}

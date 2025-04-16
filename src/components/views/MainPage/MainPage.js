@@ -322,6 +322,7 @@ const MainPage = () => {
                 </ul>
               </ContentSubSection>
               <ContentSubSection
+                className="mt-3"
                 showHeader={true}
                 title={t("resumePage.generalSection.contact")}
                 icon={AlternateEmailRoundedIcon}
