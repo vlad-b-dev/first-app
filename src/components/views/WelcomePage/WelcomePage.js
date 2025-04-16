@@ -1,182 +1,166 @@
-import React, { useEffect, useRef, useState } from "react";
-import * as THREE from "three";
+import React, { useState, useEffect, useRef } from "react";
 import "./WelcomePage.scss";
+import * as THREE from "three";
 
 export const WelcomePage = () => {
-  const mountRef = useRef(null);
   const welcomeMessage = "Welcome!";
   const [showWelcomeMessage, setShowWelcomeMessage] = useState(true);
+  const canvasRef = useRef();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowWelcomeMessage(false);
-    }, 4500);
-    return () => clearTimeout(timer);
-  }, []);
+    if (!canvasRef.current) return;
 
-  useEffect(() => {
     let width = window.innerWidth;
     let height = window.innerHeight;
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.z = 100;
+    const camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
+    camera.position.z = 150;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(width, height);
-    mountRef.current.appendChild(renderer.domElement);
+    canvasRef.current.appendChild(renderer.domElement);
 
-    const POINT_COUNT = 120;
-    const DOT_COLOR = 0xff00ff;
-    const LINE_COLOR = 0x00ffff;
-    const dots = [];
+    const PARTICLE_COUNT = 150; // Same particle count to maintain density
+    const particles = [];
+    const group = new THREE.Group();
 
-    const triangleHeight = 100;
-    const triangleBase = 160;
+    const DEAD_ZONE_RADIUS = 50;
+    const TRIANGLE_HEIGHT = 200;
+    const TRIANGLE_BASE = 260;
 
-    // Triangle vertices
-    const topLeft = new THREE.Vector3(-triangleBase / 2, triangleHeight / 2, 0);
-    const topRight = new THREE.Vector3(triangleBase / 2, triangleHeight / 2, 0);
-    const bottom = new THREE.Vector3(0, -triangleHeight / 2, 0);
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      let x, y;
+      let retries = 0;
+      do {
+        y = Math.random() * TRIANGLE_HEIGHT;
+        const maxX = ((y / TRIANGLE_HEIGHT) * TRIANGLE_BASE) / 2;
+        x = (Math.random() - 0.5) * 2 * maxX;
+        y = y - TRIANGLE_HEIGHT / 2;
+        retries++;
+      } while (Math.sqrt(x * x + y * y) < DEAD_ZONE_RADIUS && retries < 10);
 
-    // Generate more points along the triangle edges and random inside
-    const generateTrianglePoint = () => {
-      const r = Math.random();
-      const s = Math.random();
-      if (r + s > 1) {
-        return generateTrianglePoint();
-      }
-      const p = new THREE.Vector3()
-        .addScaledVector(topLeft, 1 - r - s)
-        .addScaledVector(topRight, r)
-        .addScaledVector(bottom, s);
-      return p;
-    };
+      // Increase spacing by making random distances larger
+      const z = (Math.random() - 0.5) * 40;
 
-    for (let i = 0; i < POINT_COUNT; i++) {
-      const pos = generateTrianglePoint();
-      if (Math.abs(pos.x) < 25 && Math.abs(pos.y) < 25) continue; // avoid center
-      dots.push({
-        position: pos,
+      const geometry = new THREE.CircleGeometry(1.5, 3);
+      const material = new THREE.MeshBasicMaterial({ color: "#ae00ff" });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(x, y, z);
+      mesh.rotation.z = Math.PI;
+
+      mesh.userData = {
         velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.15,
-          (Math.random() - 0.5) * 0.15,
-          0
+          (Math.random() - 0.5) * 0.02,
+          (Math.random() - 0.5) * 0.02,
+          (Math.random() - 0.5) * 0.01
         ),
-      });
+      };
+
+      group.add(mesh);
+      particles.push(mesh);
     }
 
-    const dotGeometry = new THREE.BufferGeometry();
-    const dotMaterial = new THREE.PointsMaterial({
-      color: DOT_COLOR,
-      size: 1.5,
-    });
+    scene.add(group);
 
-    const dotPositions = new Float32Array(dots.length * 3);
-    dotGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(dotPositions, 3)
-    );
+    const MAX_LINE_COUNT = PARTICLE_COUNT * 3;
+    const linePositions = new Float32Array(MAX_LINE_COUNT * 6);
+    const lineColors = new Float32Array(MAX_LINE_COUNT * 6);
 
-    const dotMesh = new THREE.Points(dotGeometry, dotMaterial);
-    scene.add(dotMesh);
-
-    const lineMaterial = new THREE.LineBasicMaterial({ color: LINE_COLOR });
     const lineGeometry = new THREE.BufferGeometry();
-    const maxConnections = 6;
-    const linePositions = new Float32Array(
-      dots.length * maxConnections * 3 * 2
-    );
     lineGeometry.setAttribute(
       "position",
       new THREE.BufferAttribute(linePositions, 3)
     );
-    const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
-    scene.add(lineMesh);
+    lineGeometry.setAttribute(
+      "color",
+      new THREE.BufferAttribute(lineColors, 3)
+    );
 
-    const animate = () => {
-      for (let i = 0; i < dots.length; i++) {
-        const p = dots[i].position;
-        const v = dots[i].velocity;
+    const lineMaterial = new THREE.LineBasicMaterial({
+      vertexColors: true,
+      transparent: true,
+    });
 
-        p.add(v);
+    const lineSegments = new THREE.LineSegments(lineGeometry, lineMaterial);
+    scene.add(lineSegments);
 
-        // keep within triangle bounds
-        if (!isInsideTriangle(p)) {
-          v.multiplyScalar(-1);
-          p.add(v);
-        }
+    function animate() {
+      let ptr = 0;
+      let cptr = 0;
 
-        dotPositions[i * 3] = p.x;
-        dotPositions[i * 3 + 1] = p.y;
-        dotPositions[i * 3 + 2] = p.z;
-      }
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const p = particles[i];
+        const v = p.userData.velocity;
+        p.position.add(v);
 
-      // Update lines
-      let lineIndex = 0;
-      for (let i = 0; i < dots.length; i++) {
-        let connections = 0;
-        for (
-          let j = i + 1;
-          j < dots.length && connections < maxConnections;
-          j++
-        ) {
-          const dist = dots[i].position.distanceTo(dots[j].position);
-          if (dist < 28) {
-            linePositions[lineIndex++] = dots[i].position.x;
-            linePositions[lineIndex++] = dots[i].position.y;
-            linePositions[lineIndex++] = dots[i].position.z;
-            linePositions[lineIndex++] = dots[j].position.x;
-            linePositions[lineIndex++] = dots[j].position.y;
-            linePositions[lineIndex++] = dots[j].position.z;
-            connections++;
+        ["x", "y", "z"].forEach((axis) => {
+          if (Math.abs(p.position[axis]) > 200) v[axis] = -v[axis];
+        });
+
+        for (let j = i + 1; j < PARTICLE_COUNT; j++) {
+          const p2 = particles[j];
+          const dist = p.position.distanceTo(p2.position);
+
+          // Shorten the lines by limiting their distance to avoid overlap with text
+          const MAX_DIST = 80; // Maximum distance for lines to prevent overlap
+          if (dist < MAX_DIST) {
+            // Ensure smooth connections without randomization
+            const opacity = 1 - dist / MAX_DIST;
+
+            linePositions[ptr++] = p.position.x;
+            linePositions[ptr++] = p.position.y;
+            linePositions[ptr++] = p.position.z;
+            linePositions[ptr++] = p2.position.x;
+            linePositions[ptr++] = p2.position.y;
+            linePositions[ptr++] = p2.position.z;
+
+            for (let k = 0; k < 2; k++) {
+              lineColors[cptr++] = 1.0 * opacity;
+              lineColors[cptr++] = 1.0 * opacity;
+              lineColors[cptr++] = 1.0 * opacity;
+            }
           }
         }
       }
-      lineGeometry.setDrawRange(0, lineIndex / 3);
-      dotGeometry.attributes.position.needsUpdate = true;
+
+      lineGeometry.setDrawRange(0, ptr / 3);
       lineGeometry.attributes.position.needsUpdate = true;
+      lineGeometry.attributes.color.needsUpdate = true;
 
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
-    };
+    }
 
     animate();
 
-    function isInsideTriangle(p) {
-      const A = topLeft,
-        B = topRight,
-        C = bottom;
-      const v0 = new THREE.Vector3().subVectors(C, A);
-      const v1 = new THREE.Vector3().subVectors(B, A);
-      const v2 = new THREE.Vector3().subVectors(p, A);
+    const handleResize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    };
 
-      const dot00 = v0.dot(v0);
-      const dot01 = v0.dot(v1);
-      const dot02 = v0.dot(v2);
-      const dot11 = v1.dot(v1);
-      const dot12 = v1.dot(v2);
-
-      const denom = dot00 * dot11 - dot01 * dot01;
-      if (denom === 0) return false;
-
-      const u = (dot11 * dot02 - dot01 * dot12) / denom;
-      const v = (dot00 * dot12 - dot01 * dot02) / denom;
-
-      return u >= 0 && v >= 0 && u + v <= 1;
-    }
-
+    window.addEventListener("resize", handleResize);
     return () => {
-      mountRef.current.removeChild(renderer.domElement);
+      window.removeEventListener("resize", handleResize);
+      if (canvasRef.current) {
+        canvasRef.current.removeChild(renderer.domElement);
+      }
     };
   }, []);
 
   return (
-    <div className="welcome-page-background">
-      <div ref={mountRef} className="threejs-background" />
-      <div className="welcome-page-foreground">
-        {showWelcomeMessage && <h1 className="cool-text">{welcomeMessage}</h1>}
-      </div>
-    </div>
+    <>
+      {showWelcomeMessage && (
+        <div className="welcome-page-background">
+          <div className="threejs-background" ref={canvasRef} />
+          <div className="welcome-page-foreground">
+            <h1 className="cool-text">{welcomeMessage}</h1>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
