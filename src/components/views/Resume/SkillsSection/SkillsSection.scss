@@ -46,9 +46,9 @@
 }
 .underlay-number {
   position: absolute;
-  top: 10vh;
   text-align: center !important;
-  font-size: 10rem;
+  margin-top: -8vh;
+  font-size: 12rem;
   color: var(--inactive-element-color);
   z-index: 0;
 }

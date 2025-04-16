@@ -184,7 +184,7 @@ const SkillsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 mb-3">
+              <div className="col-12 mb-5">
                 <div className="hardskill-wrapper">
                   <div className="underlay-number">8</div>
                   <SideRender direction="right">
@@ -201,7 +201,7 @@ const SkillsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 mb-3">
+              <div className="col-12 mb-5">
                 <div className="hardskill-wrapper">
                   <div className="underlay-number">7</div>
                   <SideRender direction="left">
@@ -220,7 +220,7 @@ const SkillsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 mb-3">
+              <div className="col-12 mb-5">
                 <div className="hardskill-wrapper reverse-two-tone-icons">
                   <div className="underlay-number">6</div>
                   <SideRender direction="right">
@@ -237,7 +237,7 @@ const SkillsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 mb-3">
+              <div className="col-12 mb-5">
                 <div className="hardskill-wrapper">
                   <div className="underlay-number">5</div>
                   <SideRender direction="left">
@@ -256,7 +256,7 @@ const SkillsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 mb-3">
+              <div className="col-12 mb-5">
                 <div className="hardskill-wrapper reverse-two-tone-icons">
                   <div className="underlay-number">4</div>
                   <SideRender direction="right">
@@ -273,7 +273,7 @@ const SkillsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 mb-3">
+              <div className="col-12 mb-5">
                 <div className="hardskill-wrapper">
                   <div className="underlay-number">3</div>
                   <SideRender direction="left">
@@ -292,7 +292,7 @@ const SkillsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 mb-3">
+              <div className="col-12 mb-5">
                 <div className="hardskill-wrapper">
                   <div className="underlay-number">2</div>
                   <SideRender direction="right">
@@ -311,7 +311,7 @@ const SkillsSection = forwardRef((props, ref) => {
               </div>
             </div>
             <div className="row">
-              <div className="col-12 mb-3">
+              <div className="col-12 mb-5">
                 <div className="hardskill-wrapper reverse-two-tone-icons">
                   <div className="underlay-number">1</div>
                   <SideRender direction="left">

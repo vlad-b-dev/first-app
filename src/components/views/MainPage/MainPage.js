@@ -83,7 +83,7 @@ const MainPage = () => {
             </div>
             <div className="col-12 general-text-column">
               <div className="description-text">
-                <p className="mb-3">
+                <p>
                   <Trans i18nKey="resumePage.generalSection.descriptionP1" />
                 </p>
               </div>

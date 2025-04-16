@@ -60,7 +60,7 @@ const MainPageHeader = () => {
           if (scrollPercentage >= threshold + bufferThreshold) {
             if (currentScrollY > lastScrollY) {
               controls.start({
-                y: "-200%",
+                y: "-250%",
                 transition: { duration: 0.4, ease: "easeOut" },
               });
             } else if (

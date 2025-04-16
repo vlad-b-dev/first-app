@@ -1,166 +1,234 @@
-import React, { useState, useEffect, useRef } from "react";
-import "./WelcomePage.scss";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import Delaunator from "delaunator";
+import "./WelcomePage.scss";
 
 export const WelcomePage = () => {
-  const welcomeMessage = "Welcome!";
-  const [showWelcomeMessage, setShowWelcomeMessage] = useState(true);
   const canvasRef = useRef();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
 
   useEffect(() => {
-    if (!canvasRef.current) return;
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const canvasContainer = canvasRef.current;
+    if (!canvasContainer) return;
 
     let width = window.innerWidth;
     let height = window.innerHeight;
 
+    const styles = getComputedStyle(document.documentElement);
+    const dotColor =
+      styles.getPropertyValue("--main-hover-color").trim() || "#ffffaa";
+    const lineColor =
+      styles.getPropertyValue("--main-color").trim() || "#000011";
+
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, width / height, 1, 1000);
-    camera.position.z = 150;
+    const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
+    camera.position.set(0, -50, 250);
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(width, height);
-    canvasRef.current.appendChild(renderer.domElement);
+    canvasContainer.appendChild(renderer.domElement);
 
-    const PARTICLE_COUNT = 150; // Same particle count to maintain density
-    const particles = [];
-    const group = new THREE.Group();
+    // Triangle base vertices
+    const BASE = 260;
+    const HEIGHT = (Math.sqrt(3) / 2) * BASE;
+    const A = new THREE.Vector3(-BASE / 2, HEIGHT / 2, 0);
+    const B = new THREE.Vector3(BASE / 2, HEIGHT / 2, 0);
+    const C = new THREE.Vector3(0, -HEIGHT / 2, 0);
 
-    const DEAD_ZONE_RADIUS = 50;
-    const TRIANGLE_HEIGHT = 200;
-    const TRIANGLE_BASE = 260;
+    // Compute centroid and inner hole vertices
+    const centroid = new THREE.Vector3()
+      .addVectors(A, B)
+      .add(C)
+      .divideScalar(3);
+    const HOLE_SCALE = 0.5;
+    const H0 = new THREE.Vector3()
+      .copy(A)
+      .sub(centroid)
+      .multiplyScalar(HOLE_SCALE)
+      .add(centroid);
+    const H1 = new THREE.Vector3()
+      .copy(B)
+      .sub(centroid)
+      .multiplyScalar(HOLE_SCALE)
+      .add(centroid);
+    const H2 = new THREE.Vector3()
+      .copy(C)
+      .sub(centroid)
+      .multiplyScalar(HOLE_SCALE)
+      .add(centroid);
 
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      let x, y;
-      let retries = 0;
-      do {
-        y = Math.random() * TRIANGLE_HEIGHT;
-        const maxX = ((y / TRIANGLE_HEIGHT) * TRIANGLE_BASE) / 2;
-        x = (Math.random() - 0.5) * 2 * maxX;
-        y = y - TRIANGLE_HEIGHT / 2;
-        retries++;
-      } while (Math.sqrt(x * x + y * y) < DEAD_ZONE_RADIUS && retries < 10);
+    // Point-in-triangle test
+    const inTri = (P, V0, V1, V2) => {
+      const v0 = { x: V2.x - V0.x, y: V2.y - V0.y };
+      const v1 = { x: V1.x - V0.x, y: V1.y - V0.y };
+      const v2 = { x: P.x - V0.x, y: P.y - V0.y };
+      const dot00 = v0.x * v0.x + v0.y * v0.y;
+      const dot01 = v0.x * v1.x + v0.y * v1.y;
+      const dot02 = v0.x * v2.x + v0.y * v2.y;
+      const dot11 = v1.x * v1.x + v1.y * v1.y;
+      const dot12 = v1.x * v2.x + v1.y * v2.y;
+      const invDen = 1 / (dot00 * dot11 - dot01 * dot01);
+      const u = (dot11 * dot02 - dot01 * dot12) * invDen;
+      const v = (dot00 * dot12 - dot01 * dot02) * invDen;
+      return u >= 0 && v >= 0 && u + v <= 1;
+    };
 
-      // Increase spacing by making random distances larger
-      const z = (Math.random() - 0.5) * 40;
+    // Generate random dots outside the hole
+    const COUNT = 80;
+    const meshes = [];
+    let attempts = 0;
+    while (meshes.length < COUNT && attempts < COUNT * 10) {
+      attempts++;
+      let u = Math.random(),
+        v = Math.random();
+      if (u + v > 1) {
+        u = 1 - u;
+        v = 1 - v;
+      }
 
-      const geometry = new THREE.CircleGeometry(1.5, 3);
-      const material = new THREE.MeshBasicMaterial({ color: "#ae00ff" });
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.set(x, y, z);
-      mesh.rotation.z = Math.PI;
+      const P = new THREE.Vector3()
+        .addScaledVector(A, 1 - u - v)
+        .addScaledVector(B, u)
+        .addScaledVector(C, v);
+      P.x += (Math.random() - 0.5) * 6;
+      P.y += (Math.random() - 0.5) * 6;
+      P.z = (Math.random() - 0.5) * 80;
 
-      mesh.userData = {
-        velocity: new THREE.Vector3(
-          (Math.random() - 0.5) * 0.02,
-          (Math.random() - 0.5) * 0.02,
-          (Math.random() - 0.5) * 0.01
-        ),
-      };
+      if (inTri(P, H0, H1, H2)) continue;
 
-      group.add(mesh);
-      particles.push(mesh);
+      const circleGeo = new THREE.CircleGeometry(2, 6);
+      const circleMat = new THREE.MeshBasicMaterial({ color: dotColor });
+      const dot = new THREE.Mesh(circleGeo, circleMat);
+      dot.position.copy(P);
+      dot.userData.velocity = new THREE.Vector3(
+        (Math.random() - 0.5) * 0.2,
+        (Math.random() - 0.5) * 0.2,
+        (Math.random() - 0.5) * 0.1
+      );
+
+      scene.add(dot);
+      meshes.push(dot);
     }
 
-    scene.add(group);
+    const root = new THREE.Group();
+    root.position.y = isMobile ? -50 : -60;
+    meshes.forEach((m) => root.add(m));
+    scene.add(root);
 
-    const MAX_LINE_COUNT = PARTICLE_COUNT * 3;
-    const linePositions = new Float32Array(MAX_LINE_COUNT * 6);
-    const lineColors = new Float32Array(MAX_LINE_COUNT * 6);
-
-    const lineGeometry = new THREE.BufferGeometry();
-    lineGeometry.setAttribute(
-      "position",
-      new THREE.BufferAttribute(linePositions, 3)
-    );
-    lineGeometry.setAttribute(
-      "color",
-      new THREE.BufferAttribute(lineColors, 3)
-    );
-
-    const lineMaterial = new THREE.LineBasicMaterial({
+    const lineGeo = new THREE.BufferGeometry();
+    const lineMat = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
     });
+    const lines = new THREE.LineSegments(lineGeo, lineMat);
+    root.add(lines);
 
-    const lineSegments = new THREE.LineSegments(lineGeometry, lineMaterial);
-    scene.add(lineSegments);
+    const THRESH = 70;
+    const SPEED = 1;
+    let lastTime = performance.now();
 
-    function animate() {
-      let ptr = 0;
-      let cptr = 0;
+    // Animation loop
+    const animate = (time) => {
+      const delta = (time - lastTime) * 0.001 * SPEED;
+      lastTime = time;
 
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const p = particles[i];
-        const v = p.userData.velocity;
-        p.position.add(v);
+      meshes.forEach((m) => {
+        m.position.addScaledVector(m.userData.velocity, delta);
+        if (m.position.x > BASE / 2 || m.position.x < -BASE / 2)
+          m.userData.velocity.x *= -1;
+        if (m.position.y > HEIGHT / 2 || m.position.y < -HEIGHT / 2)
+          m.userData.velocity.y *= -1;
+        if (m.position.z > 100 || m.position.z < -100)
+          m.userData.velocity.z *= -1;
+      });
 
-        ["x", "y", "z"].forEach((axis) => {
-          if (Math.abs(p.position[axis]) > 200) v[axis] = -v[axis];
-        });
+      const coords = meshes.map((m) => [m.position.x, m.position.y]);
+      const delaunay = Delaunator.from(coords);
+      const tri = delaunay.triangles;
 
-        for (let j = i + 1; j < PARTICLE_COUNT; j++) {
-          const p2 = particles[j];
-          const dist = p.position.distanceTo(p2.position);
+      const positions = [];
+      const colors = [];
+      const c = new THREE.Color(lineColor);
 
-          // Shorten the lines by limiting their distance to avoid overlap with text
-          const MAX_DIST = 80; // Maximum distance for lines to prevent overlap
-          if (dist < MAX_DIST) {
-            // Ensure smooth connections without randomization
-            const opacity = 1 - dist / MAX_DIST;
+      for (let i = 0; i < tri.length; i += 3) {
+        const [i0, i1, i2] = [tri[i], tri[i + 1], tri[i + 2]];
+        const P0 = meshes[i0].position;
+        const P1 = meshes[i1].position;
+        const P2 = meshes[i2].position;
 
-            linePositions[ptr++] = p.position.x;
-            linePositions[ptr++] = p.position.y;
-            linePositions[ptr++] = p.position.z;
-            linePositions[ptr++] = p2.position.x;
-            linePositions[ptr++] = p2.position.y;
-            linePositions[ptr++] = p2.position.z;
+        // Skip triangles whose centroid is inside the hole
+        const cx = (P0.x + P1.x + P2.x) / 3;
+        const cy = (P0.y + P1.y + P2.y) / 3;
+        if (inTri({ x: cx, y: cy }, H0, H1, H2)) continue;
 
-            for (let k = 0; k < 2; k++) {
-              lineColors[cptr++] = 1.0 * opacity;
-              lineColors[cptr++] = 1.0 * opacity;
-              lineColors[cptr++] = 1.0 * opacity;
-            }
+        [
+          [P0, P1],
+          [P1, P2],
+          [P2, P0],
+        ].forEach(([u, v]) => {
+          const d = u.distanceTo(v);
+          if (d < THRESH) {
+            const alpha = 1 - d / THRESH;
+            positions.push(u.x, u.y, u.z, v.x, v.y, v.z);
+            for (let j = 0; j < 2; j++)
+              colors.push(c.r * alpha, c.g * alpha, c.b * alpha);
           }
-        }
+        });
       }
 
-      lineGeometry.setDrawRange(0, ptr / 3);
-      lineGeometry.attributes.position.needsUpdate = true;
-      lineGeometry.attributes.color.needsUpdate = true;
+      // Update line geometry
+      lines.geometry.dispose();
+      const newGeo = new THREE.BufferGeometry();
+      newGeo.setAttribute(
+        "position",
+        new THREE.BufferAttribute(new Float32Array(positions), 3)
+      );
+      newGeo.setAttribute(
+        "color",
+        new THREE.BufferAttribute(new Float32Array(colors), 3)
+      );
+      lines.geometry = newGeo;
+
+      root.rotation.x += 0.001;
+      root.rotation.y += 0.0012;
 
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
-    }
+    };
+    requestAnimationFrame(animate);
 
-    animate();
-
-    const handleResize = () => {
+    // Handle window resize events
+    const onWindowResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
     };
+    window.addEventListener("resize", onWindowResize);
 
-    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize);
-      if (canvasRef.current) {
-        canvasRef.current.removeChild(renderer.domElement);
+      window.removeEventListener("resize", onWindowResize);
+      if (canvasContainer.contains(renderer.domElement)) {
+        canvasContainer.removeChild(renderer.domElement);
       }
     };
-  }, []);
+  }, [isMobile]);
 
   return (
-    <>
-      {showWelcomeMessage && (
-        <div className="welcome-page-background">
-          <div className="threejs-background" ref={canvasRef} />
-          <div className="welcome-page-foreground">
-            <h1 className="cool-text">{welcomeMessage}</h1>
-          </div>
-        </div>
-      )}
-    </>
+    <div className="welcome-page-background">
+      <div className="threejs-background" ref={canvasRef} />
+      <div className="welcome-page-foreground">
+        <h1 className="cool-text text-start">Welcome to All-in!</h1>
+      </div>
+    </div>
   );
 };
