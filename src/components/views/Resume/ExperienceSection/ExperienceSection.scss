@@ -55,10 +55,16 @@
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
   scale: 0.8;
   color: var(--inactive-element-color) !important;
+  @media (max-width: 767px) {
+    font-size: 1rem;
+  }
 }
 .active-text {
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
   color: inherit;
+  @media (max-width: 767px) {
+    font-size: 1rem;
+  }
 }
 
 .period-row {
@@ -88,4 +94,36 @@
 }
 .text-justify {
   text-align: justify !important;
+}
+.time-start-row {
+  @media (max-width: 767px) {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: -1vh !important;
+    padding-right: 6.7vw !important;
+  }
+}
+.time-division-row {
+  @media (max-width: 767px) {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: -1vh !important;
+    padding-right: 6.5vw !important;
+  }
+}
+.time-end-row {
+  @media (max-width: 767px) {
+    margin: 0 !important;
+    padding: 0 !important;
+    margin-top: -1vh !important;
+    padding-right: 7.7vw !important;
+  }
+}
+
+.align-zeo-list {
+  li {
+    @media (max-width: 767px) {
+      margin-left: -4vw !important;
+    }
+  }
 }

@@ -90,6 +90,7 @@ const MainPage = () => {
             </div>
             <div className="col-12 text-center">
               <ImageComponent
+                className="general-align"
                 imageLight={VladProfileLight}
                 imageDark={VladProfileDark}
                 width={"70%"}
@@ -107,7 +108,7 @@ const MainPage = () => {
             </div>
             <div className="col-12">
               <ContentSubSection
-                className="language-sub-section"
+                className="language-sub-section general-align"
                 showHeader={true}
                 title={t("resumePage.generalSection.languages")}
                 icon={PublicRoundedIcon}
@@ -144,7 +145,7 @@ const MainPage = () => {
                           },
                         }}
                       >
-                        <InfoRoundedIcon className="general-data-list-icon general-data-list-icon-interactive" />
+                        <LanguageRoundedIcon className="general-data-list-icon" />
                       </Tooltip>
                       {t("resumePage.generalSection.english")}
                     </div>
@@ -162,6 +163,7 @@ const MainPage = () => {
             </div>
             <div className="col-12">
               <ContentSubSection
+                className="general-align"
                 showHeader={true}
                 title={t("resumePage.generalSection.contact")}
                 icon={AlternateEmailRoundedIcon}

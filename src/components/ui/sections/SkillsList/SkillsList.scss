@@ -16,4 +16,23 @@
     align-items: center;
     white-space: nowrap;
   }
+
+  @media (max-width: 767px) {
+    margin: 0;
+    margin-left: -3vw;
+    margin-right: -3vw;
+
+    ul {
+      columns: 1;
+      -webkit-columns: 1;
+      -moz-columns: 1;
+      column-gap: 0;
+    }
+
+    li {
+      & > :last-child {
+        font-size: 1rem;
+      }
+    }
+  }
 }

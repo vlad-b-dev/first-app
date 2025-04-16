@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { Trans } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import MainPageHeader from "../../../components/ui/menus/MainPageHeader/MainPageHeader";
 import MainFooter from "../../ui/menus/MainFooter/MainFooter";
 import MainNavigationBackground from "../../ui/3d/MainNavigationBackground/MainNavigationBackground";
 import ImageComponent from "../../ui/mediaViewers/ImageComponent/ImageComponent";
 import GenericButton from "../../ui/buttons/GenericButton/GenericButton";
-
 import AllInVBDark from "../../../resources/images/contentPhotos/thisWebsite/allInVB/allInVBDark.webp";
 import AllInVBLight from "../../../resources/images/contentPhotos/thisWebsite/allInVB/allInVBLight.webp";
 import UnderConstructionDark from "../../../resources/images/contentPhotos/thisWebsite/underConstruction/underConstructionDark.webp";
@@ -19,43 +17,9 @@ import CommitsDark from "../../../resources/images/contentPhotos/thisWebsite/com
 import CommitsLight from "../../../resources/images/contentPhotos/thisWebsite/commits/commitsLight.webp";
 import KnowledgeDark from "../../../resources/images/contentPhotos/thisWebsite/knowledge/knowledgeDark.webp";
 import KnowledgeLight from "../../../resources/images/contentPhotos/thisWebsite/knowledge/knowledgeLight.webp";
-import PropTypes from "prop-types";
-import { useTranslation } from "react-i18next";
+import SideRender from "../../ui/widgets/SideRender/SideRender";
 
 import "./ThisWebsite.scss";
-
-const AnimatedContainer = ({
-  children,
-  direction = "right",
-  className = "",
-}) => {
-  const variants = {
-    hidden: { opacity: 0, x: direction === "right" ? 200 : -200 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { type: "spring", stiffness: 30, damping: 8 },
-    },
-  };
-
-  return (
-    <motion.div
-      className={className}
-      variants={variants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-AnimatedContainer.propTypes = {
-  children: PropTypes.node.isRequired,
-  direction: PropTypes.oneOf(["left", "right"]),
-  className: PropTypes.string,
-};
 
 const ThisWebsite = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
@@ -76,8 +40,7 @@ const ThisWebsite = () => {
       <MainPageHeader />
       <MainNavigationBackground />
 
-      {/* Description Sectio*/}
-      <AnimatedContainer
+      <SideRender
         className={
           isMobile
             ? "sub-section-container mobile"
@@ -154,10 +117,10 @@ const ThisWebsite = () => {
             </div>
           </>
         )}
-      </AnimatedContainer>
+      </SideRender>
 
       {/* Learning Section */}
-      <AnimatedContainer
+      <SideRender
         className="sub-section-container secondary-background"
         direction="left"
       >
@@ -242,10 +205,10 @@ const ThisWebsite = () => {
             </div>
           </>
         )}
-      </AnimatedContainer>
+      </SideRender>
 
       {/* Conclusion Section */}
-      <AnimatedContainer className="sub-section-container" direction="right">
+      <SideRender className="sub-section-container" direction="right">
         {isMobile ? (
           <>
             <p className="mb-5 mt-2">
@@ -341,10 +304,10 @@ const ThisWebsite = () => {
         <h5 className="pt-4 pb-5">
           <Trans i18nKey="thisWebsitePage.conclusion.diagrams" />
         </h5>
-      </AnimatedContainer>
+      </SideRender>
 
       {/* Ahead Section */}
-      <AnimatedContainer
+      <SideRender
         className="sub-section-container secondary-background"
         direction="left"
       >
@@ -462,7 +425,7 @@ const ThisWebsite = () => {
             </div>
           </>
         )}
-      </AnimatedContainer>
+      </SideRender>
 
       <MainFooter />
     </div>

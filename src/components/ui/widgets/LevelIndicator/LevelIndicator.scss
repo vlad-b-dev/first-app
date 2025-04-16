@@ -13,8 +13,8 @@
   .bar {
     background-color: var(--inactive-element-color);
     transition: background-color 0.3s ease-in-out;
-    cursor: pointer; // indicate interactive element
-    outline: none; // allow browser to show focus outline or customize as needed
+    cursor: pointer;
+    outline: none;
   }
 
   .bar.on {
@@ -67,7 +67,14 @@
   &:hover {
     color: var(--main-hover-color);
   }
+  @media (max-width: 767px) {
+    font-size: 1rem;
+    width: 110%;
+  }
 }
 .explanation-container {
   bottom: -1.5vh;
+  @media screen {
+    bottom: 0;
+  }
 }

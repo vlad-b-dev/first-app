@@ -14,6 +14,8 @@ const LevelIndicator = ({
   className = "",
   isExplanation = false,
 }) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
   const { t } = useTranslation();
 
   const totalBars = 5;
@@ -23,6 +25,12 @@ const LevelIndicator = ({
   const explanationTexts = Array.from({ length: totalBars }, (_, i) =>
     t(`levelExplanation.${i + 1}`)
   );
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleUserInteraction = useCallback((index) => {
     setAutoRotate(false);
@@ -53,7 +61,7 @@ const LevelIndicator = ({
         <div className="level-indicator-label">
           <Tooltip title={t("levelExplanation.tooltip")} placement="top" arrow>
             <span className="info-label">
-              <InfoRoundedIcon className="pb-1 mr-1" />
+              {!isMobile ? <InfoRoundedIcon className="pb-1 mr-1" /> : <></>}
               {explanationTexts[hoverLevel - 1] || ""}
             </span>
           </Tooltip>

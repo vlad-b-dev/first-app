@@ -34,6 +34,6 @@ export const actionButton = (isMobile) => ({
 
 export const toggleButtonStylesSize = (isMobile) => ({
   borderRadius: "12px",
-  width: isMobile ? "3rem" : "5rem",
+  width: isMobile ? "1.8rem" : "5rem",
   height: "auto",
 });

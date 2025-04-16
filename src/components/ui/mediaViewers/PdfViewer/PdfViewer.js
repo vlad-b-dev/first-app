@@ -125,6 +125,7 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
                   exit={{ opacity: 0 }}
                 >
                   <Button
+                    className="pdf-button"
                     onClick={(e) => {
                       e.stopPropagation();
                       zoomOut();
@@ -138,6 +139,7 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
                     <span className="scale-indicator">{scale.toFixed(1)}x</span>
                   )}
                   <Button
+                    className="pdf-button"
                     onClick={(e) => {
                       e.stopPropagation();
                       zoomIn();
@@ -148,6 +150,7 @@ const PdfViewer = forwardRef(({ className, ...props }, ref) => {
                     <AddRoundedIcon sx={zoomIcon(isMobile)} />
                   </Button>
                   <Button
+                    className="pdf-button"
                     onClick={(e) => {
                       e.stopPropagation();
                       resetScale();

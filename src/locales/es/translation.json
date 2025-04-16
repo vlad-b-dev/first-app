@@ -97,8 +97,10 @@
       }
     },
     "personalSection": {
-      "personalText1": "<strong>Siempre está bien conocer con quién vas a trabajar todos los días...</strong><br />Por eso, esta sección es más personal:<br /><br />Nacido en Ucrania y criado en el sur de Navarra, tengo un poco de los dos mundos. Ahora convivo con un gecko leopardo y una docena de peces amazónicos en Pamplona.",
-      "personalText2": "<strong>Tengo dos facetas: una intensa, despreocupada y enérgica, otra responsable, comprometida y profesional</strong>. Lo importante es saber cuál toca en cada momento.<br /><br />Disfruto lo tradicional y también lo moderno, natural y urbano, tranquilo e intenso, técnico y creativo...<br /><br />¿Madrid o los Pirineos? ¿Programación o diseño? ¿En casa o de fiesta a Budapest? ¿Paseo por el monte o motocross?<br /><br />Siempre hay algún proyecto para hacer: desarrollo, diseño, reparaciones, botánica, impresión 3D, pintura... Crecer y aprender es importante. Mención especial al motor: mecánica, coches, motos...<br /><br />Tengo una <strong>manera única de abordar las cosas</strong>, y aprendí a sacarle provecho. Me gusta <strong>pensar a lo grande y actuar con perspectiva.</strong><br /><br />Hay muchos más temas filosóficos que podemos tratar en algún evento corporativo; el networking es importante."
+      "personalText1": "<strong>Siempre está bien conocer con quién vas a trabajar todos los días...</strong><br />Por eso, esta sección es más personal:<br />",
+      "personalText2": "<br />Nacido en Ucrania y criado en el sur de Navarra, tengo un poco de los dos mundos. Ahora convivo con un gecko leopardo y una docena de peces amazónicos en Pamplona.",
+      "personalText3": "<strong>Tengo dos facetas: una intensa, despreocupada y enérgica, otra responsable, comprometida y profesional</strong>. Lo importante es saber cuál toca en cada momento.<br /><br />Disfruto lo tradicional y también lo moderno, natural y urbano, tranquilo e intenso, técnico y creativo...<br /><br />¿Madrid o los Pirineos? ¿Programación o diseño? ¿En casa o de fiesta a Budapest? ¿Paseo por el monte o motocross?<br /",
+      "personalText4": "<br />Siempre hay algún proyecto para hacer: desarrollo, diseño, reparaciones, botánica, impresión 3D, pintura... Crecer y aprender es importante. Mención especial al motor: mecánica, coches, motos...<br /><br />Tengo una <strong>manera única de abordar las cosas</strong>, y aprendí a sacarle provecho. Me gusta <strong>pensar a lo grande y actuar con perspectiva.</strong><br /><br />Hay muchos más temas filosóficos que podemos tratar en algún evento corporativo; el networking es importante."
     },
     "aheadSection": {
       "aheadText1": "Ahora que nos conocemos algo mejor, toca hablar del presente y sobre todo, del futuro",
@@ -164,7 +166,7 @@
     "tooltip": "Ponga el ratón sobre cualquier nivel para ver la descripción",
     "1": "Nivel 1: Conocimiento mínimo",
     "2": "Nivel 2: Conocimiento y manejo básico",
-    "3": "Nivel 3: Intermedio, estoy cómodo usando esta habilidiad",
+    "3": "Nivel 3: Estoy habituado a esta habilidiad",
     "4": "Nivel 4: Conocimiento avanzado",
     "5": "Nivel 5: Nivel alto"
   }

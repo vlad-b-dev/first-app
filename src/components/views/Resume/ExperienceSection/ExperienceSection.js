@@ -70,9 +70,19 @@ const ExperienceSection = ({ scrollToRef }) => {
           : ` ${t("genericTranslations.month")}`);
     }
 
-    return yearText && monthText
-      ? `${yearText}, ${monthText}`
-      : yearText || monthText;
+    if (yearText && monthText) {
+      return isMobile ? (
+        <>
+          {yearText}
+          <br />
+          {monthText}
+        </>
+      ) : (
+        `${yearText}, ${monthText}`
+      );
+    } else {
+      return yearText || monthText;
+    }
   };
 
   const handleBeforeChange = (oldIndex, newIndex) => {
@@ -94,107 +104,301 @@ const ExperienceSection = ({ scrollToRef }) => {
     setCurrentSlide(initialSlide);
   };
 
-  return (
-    <ContentSection
-      className="mb-2 text-center"
-      minBodyHeight={"70vh"}
-      onToggle={handleContentToggle}
-      startExpanded={true}
-      title={t("resumePage.experienceSectionTitle")}
-    >
-      <div className="row mt-2 mb-0 pb-0">
-        <h5
-          className={`col-3 ${
-            currentSlide === 0 ? "active-text" : "inactive-text"
-          }`}
-        >
-          <div>2018-2023</div>
-        </h5>
-        <h5
-          className={`col-6 ${
-            currentSlide === 1 ? "active-text" : "inactive-text"
-          }`}
-        >
-          <div>
-            2022-
-            <Trans i18nKey="genericTranslations.present" />
-          </div>
-        </h5>
-        <h5
-          className={`col-3 ${
-            currentSlide === 2 ? "active-text" : "inactive-text"
-          }`}
-        >
-          <div>
-            2024-
-            <Trans i18nKey="genericTranslations.present" />
-          </div>
-        </h5>
-      </div>
-      <div className="row mt-0 mb-2">
-        <PointsBar
-          edgeGap="10.2vw"
-          activePoint={currentSlide}
-          orientation="horizontal"
-          points={3}
-          className="time-points-bar"
-        />
-      </div>
-      <div className="row mt-1 ">
-        <h3
-          className={`col-3 ${
-            currentSlide === 0 ? "active-text" : "inactive-text"
-          }`}
-        >
-          4 <Trans i18nKey="genericTranslations.years" />, 6{" "}
-          <Trans i18nKey="genericTranslations.months" />
-        </h3>
-        <h3
-          className={`col-6 ${
-            currentSlide === 1 ? "active-text" : "inactive-text"
-          }`}
-        >
-          {calculateDuration("01-02-2022")}
-        </h3>
-        <h3
-          className={`col-3 ${
-            currentSlide === 2 ? "active-text" : "inactive-text"
-          }`}
-        >
-          {calculateDuration("01-09-2024")}
-        </h3>
-      </div>
+  if (isMobile) {
+    return (
+      <ContentSection
+        className="mb-2 text-center"
+        minBodyHeight={"70vh"}
+        onToggle={handleContentToggle}
+        startExpanded={true}
+        title={t("resumePage.experienceSectionTitle")}
+      >
+        <div className="row time-start-row mt-2 mb-0 pb-0">
+          <h5
+            className={`col-3 ${
+              currentSlide === 0 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>2018</div>
+          </h5>
+          <h5
+            className={`col-6 ${
+              currentSlide === 1 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>2022</div>
+          </h5>
+          <h5
+            className={`col-3 ${
+              currentSlide === 2 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>2024</div>
+          </h5>
+        </div>
+        <div className="row time-division-row mb-0 pb-0">
+          <h5
+            className={`col-3 ${
+              currentSlide === 0 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>-</div>
+          </h5>
+          <h5
+            className={`col-6 ${
+              currentSlide === 1 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>-</div>
+          </h5>
+          <h5
+            className={`col-3 ${
+              currentSlide === 2 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>-</div>
+          </h5>
+        </div>
+        <div className="row time-end-row mb-0 pb-0">
+          <h5
+            className={`col-3 ${
+              currentSlide === 0 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>2023</div>
+          </h5>
+          <h5
+            className={`col-6 ${
+              currentSlide === 1 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>
+              <Trans i18nKey="genericTranslations.present" />
+            </div>
+          </h5>
+          <h5
+            className={`col-3 ${
+              currentSlide === 2 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>
+              <Trans i18nKey="genericTranslations.present" />
+            </div>
+          </h5>
+        </div>
+        <div className="row mt-1 mb-3">
+          <PointsBar
+            edgeGap="5.5vw"
+            activePoint={currentSlide}
+            orientation="horizontal"
+            points={3}
+            className="time-points-bar"
+          />
+        </div>
+        <div className="row mt-1">
+          <h3
+            className={`col-3 ${
+              currentSlide === 0 ? "active-text" : "inactive-text"
+            }`}
+          >
+            4 <Trans i18nKey="genericTranslations.years" />
+            <br /> 6 <Trans i18nKey="genericTranslations.months" />
+          </h3>
+          <h3
+            className={`col-6 ${
+              currentSlide === 1 ? "active-text" : "inactive-text"
+            }`}
+          >
+            {calculateDuration("01-02-2022")}
+          </h3>
+          <h3
+            className={`col-3 ${
+              currentSlide === 2 ? "active-text" : "inactive-text"
+            }`}
+          >
+            {calculateDuration("01-09-2024")}
+          </h3>
+        </div>
 
-      <div className="slider-container mt-2">
-        <Slider {...sliderSettings}>
-          {/* Slide 1 – Software Engineering */}
-          <div className="slide">
-            {isMobile ? (
-              <>
-                <div className="row">
-                  <div className="col-6 mt-1 text-center">
-                    <ImageComponent
-                      imageLight={UpnaLogoLight}
-                      imageDark={UpnaLogoDark}
-                      width={"27vw"}
-                    />
-                  </div>
-                  <div className="col-6 mt-1">
-                    <RwLogo width="27vw" />
-                  </div>
+        <div className="slider-container mt-2">
+          <Slider {...sliderSettings}>
+            {/* Slide 1 – Software Engineering (Mobile) */}
+            <div className="slide">
+              <div className="row">
+                <div className="col-6 mt-1 text-center">
+                  <ImageComponent
+                    imageLight={UpnaLogoLight}
+                    imageDark={UpnaLogoDark}
+                    width={"27vw"}
+                  />
                 </div>
-                <div className="row mt-2">
-                  <div className="col-12">
-                    <h3 className="text-center">
-                      <Trans i18nKey="resumePage.experienceSection.upna.title" />
-                    </h3>
+                <div className="col-6 mt-1">
+                  <RwLogo width="27vw" />
+                </div>
+              </div>
+              <div className="row mt-2">
+                <div className="col-12">
+                  <h3 className="text-center">
+                    <Trans i18nKey="resumePage.experienceSection.upna.title" />
+                  </h3>
+                  <p className="text-justify">
+                    <Trans i18nKey="resumePage.experienceSection.upna.description" />
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Slide 2 – Zeo Technology (Mobile) */}
+            <div className="slide">
+              <div className="row mt-1">
+                <div className="col-12 text-center">
+                  <ImageComponent
+                    imageLight={ZeoLogoLight}
+                    imageDark={ZeoLogoDark}
+                    width={"55vw"}
+                  />
+                </div>
+              </div>
+              <div className="row mt-3">
+                <div className="col-12 text-center">
+                  <h3 className="mb-4">Zeo Technology</h3>
+                  <div className="mt-3 pt-2">
                     <p className="text-justify">
-                      <Trans i18nKey="resumePage.experienceSection.upna.description" />
+                      <Trans i18nKey="resumePage.experienceSection.zeo.description" />
                     </p>
+                    <ul className="text-start align-zeo-list">
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.reportWizard" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.visor" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.components" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.filters" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.planner" />
+                      </li>
+                      <li>
+                        <Trans i18nKey="resumePage.experienceSection.zeo.general" />
+                      </li>
+                    </ul>
                   </div>
                 </div>
-              </>
-            ) : (
+              </div>
+            </div>
+
+            {/* Slide 3 – All-In App (Mobile) */}
+            <div className="slide">
+              <div className="row mt-2 mb-4">
+                <div className="col-12 text-center">
+                  <ImageComponent image={MinimalLogoNeutral} width={"27vw"} />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-12 text-center mt-2">
+                  <h3>All-In App</h3>
+                </div>
+              </div>
+              <div className="row mt-4">
+                <div className="col-12 text-justify">
+                  <p>
+                    <Trans i18nKey="resumePage.experienceSection.allIn.description" />
+                  </p>
+                </div>
+              </div>
+              <div className="row mt-2">
+                <div className="col-12 text-center">
+                  <GenericButton
+                    className="this-website-button"
+                    label={t("genericTranslations.moreDetails")}
+                    onClick={() => handleNavigationClick("/this-website")}
+                  />
+                </div>
+              </div>
+            </div>
+          </Slider>
+        </div>
+      </ContentSection>
+    );
+  } else {
+    return (
+      <ContentSection
+        className="mb-2 text-center"
+        minBodyHeight={"70vh"}
+        onToggle={handleContentToggle}
+        startExpanded={true}
+        title={t("resumePage.experienceSectionTitle")}
+      >
+        <div className="row mt-2 mb-0 pb-0">
+          <h5
+            className={`col-3 ${
+              currentSlide === 0 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>2018-2023</div>
+          </h5>
+          <h5
+            className={`col-6 ${
+              currentSlide === 1 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>
+              2022-
+              <Trans i18nKey="genericTranslations.present" />
+            </div>
+          </h5>
+          <h5
+            className={`col-3 ${
+              currentSlide === 2 ? "active-text" : "inactive-text"
+            }`}
+          >
+            <div>
+              2024-
+              <Trans i18nKey="genericTranslations.present" />
+            </div>
+          </h5>
+        </div>
+        <div className="row mt-0 mb-2">
+          <PointsBar
+            edgeGap="10.2vw"
+            activePoint={currentSlide}
+            orientation="horizontal"
+            points={3}
+            className="time-points-bar"
+          />
+        </div>
+        <div className="row mt-1">
+          <h3
+            className={`col-3 ${
+              currentSlide === 0 ? "active-text" : "inactive-text"
+            }`}
+          >
+            4 <Trans i18nKey="genericTranslations.years" />, 6{" "}
+            <Trans i18nKey="genericTranslations.months" />
+          </h3>
+          <h3
+            className={`col-6 ${
+              currentSlide === 1 ? "active-text" : "inactive-text"
+            }`}
+          >
+            {calculateDuration("01-02-2022")}
+          </h3>
+          <h3
+            className={`col-3 ${
+              currentSlide === 2 ? "active-text" : "inactive-text"
+            }`}
+          >
+            {calculateDuration("01-09-2024")}
+          </h3>
+        </div>
+        <div className="slider-container mt-2">
+          <Slider {...sliderSettings}>
+            {/* Slide 1 – Software Engineering (Desktop) */}
+            <div className="slide">
               <div className="row mt-4">
                 <div className="col-3 mt-3">
                   <ImageComponent
@@ -215,55 +419,10 @@ const ExperienceSection = ({ scrollToRef }) => {
                   <RwLogo width="13.5vw" />
                 </div>
               </div>
-            )}
-          </div>
+            </div>
 
-          {/* Slide 2 – Zeo Technology */}
-          <div className="slide">
-            {isMobile ? (
-              <>
-                <div className="row mt-1">
-                  <div className="col-12 text-center">
-                    <ImageComponent
-                      imageLight={ZeoLogoLight}
-                      imageDark={ZeoLogoDark}
-                      width={"55vw"}
-                    />
-                  </div>
-                </div>
-                <div className="row mt-3">
-                  <div className="col-12 text-center">
-                    <h3 className="mb-4">Zeo Technology</h3>
-                    <div className="mt-3 pt-2">
-                      <p className="text-justify">
-                        <Trans i18nKey="resumePage.experienceSection.zeo.description" />
-                      </p>
-
-                      <ul className="text-start">
-                        <li>
-                          <Trans i18nKey="resumePage.experienceSection.zeo.reportWizard" />
-                        </li>
-                        <li>
-                          <Trans i18nKey="resumePage.experienceSection.zeo.visor" />
-                        </li>
-                        <li>
-                          <Trans i18nKey="resumePage.experienceSection.zeo.components" />
-                        </li>
-                        <li>
-                          <Trans i18nKey="resumePage.experienceSection.zeo.filters" />
-                        </li>
-                        <li>
-                          <Trans i18nKey="resumePage.experienceSection.zeo.planner" />
-                        </li>
-                        <li>
-                          <Trans i18nKey="resumePage.experienceSection.zeo.general" />
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </>
-            ) : (
+            {/* Slide 2 – Zeo Technology (Desktop) */}
+            <div className="slide">
               <div className="row mt-2 mb-1">
                 <div className="col-3 mt-5">
                   <ImageComponent
@@ -299,41 +458,10 @@ const ExperienceSection = ({ scrollToRef }) => {
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
 
-          {/* Slide 3 – All-In App */}
-          <div className="slide">
-            {isMobile ? (
-              <>
-                <div className="row mt-2 mb-4">
-                  <div className="col-12 text-center">
-                    <ImageComponent image={MinimalLogoNeutral} width={"27vw"} />
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-12 text-center mt-2">
-                    <h3>All-In App</h3>
-                  </div>
-                </div>
-                <div className="row mt-4">
-                  <div className="col-12 text-justify">
-                    <p>
-                      <Trans i18nKey="resumePage.experienceSection.allIn.description" />
-                    </p>
-                  </div>
-                </div>
-                <div className="row mt-2">
-                  <div className="col-12 text-center">
-                    <GenericButton
-                      className="this-website-button"
-                      label={t("genericTranslations.moreDetails")}
-                      onClick={() => handleNavigationClick("/this-website")}
-                    />
-                  </div>
-                </div>
-              </>
-            ) : (
+            {/* Slide 3 – All-In App (Desktop) */}
+            <div className="slide">
               <div className="row mt-4">
                 <div className="col-3 mt-3">
                   <ImageComponent image={MinimalLogoNeutral} width={"14vw"} />
@@ -351,15 +479,15 @@ const ExperienceSection = ({ scrollToRef }) => {
                   </p>
                 </div>
               </div>
-            )}
+            </div>
+          </Slider>
+          <div className="continue-button-container">
+            <ContinueButton onClick={handleContinueClick} />
           </div>
-        </Slider>
-        <div className="continue-button-container">
-          <ContinueButton onClick={handleContinueClick} />
         </div>
-      </div>
-    </ContentSection>
-  );
+      </ContentSection>
+    );
+  }
 };
 
 ExperienceSection.propTypes = {

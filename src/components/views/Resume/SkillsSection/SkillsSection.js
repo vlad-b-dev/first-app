@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import ContentSection from "../../../ui/sections/ContentSection/ContentSection";
 import ContentSubSection from "../../../ui/sections/ContentSubSection/ContentSubSection";
@@ -15,6 +15,7 @@ import NextWeekTwoToneIcon from "@mui/icons-material/NextWeekTwoTone";
 import SkillsList from "../../../ui/sections/SkillsList/SkillsList";
 import LevelIndicator from "../../../ui/widgets/LevelIndicator/LevelIndicator";
 import { useTranslation, Trans } from "react-i18next";
+import SideRender from "../../../ui/widgets/SideRender/SideRender";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,6 +23,14 @@ import "./SkillsSection.scss";
 
 const SkillsSection = forwardRef((props, ref) => {
   const { t } = useTranslation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const frontendSkills = [
     { text: "React", level: 5 },
     { text: "Angular", level: 5 },
@@ -119,162 +128,365 @@ const SkillsSection = forwardRef((props, ref) => {
     { text: "Jira", level: 4 },
     { text: "Factorial", level: 3 },
   ];
-  return (
-    <ContentSection
-      className="mb-2"
-      ref={ref}
-      startExpanded={false}
-      title={t("resumePage.skillsSectionTitle")}
-    >
-      <div className="skills-section">
-        <div className="row m-0 p-0">
-          <h1 className="skills-title reverse-two-tone-icons">
-            <Diversity1TwoToneIcon />
-            Soft Skills
-          </h1>
-          <ul className="soft-skills-list">
-            <li>
-              <Trans i18nKey="resumePage.skillsSection.softSkills.analisis" />
-            </li>
-            <li>
-              <Trans i18nKey="resumePage.skillsSection.softSkills.appStructure" />
-            </li>
-            <li>
-              <Trans i18nKey="resumePage.skillsSection.softSkills.collaboration" />
-            </li>
 
-            <li>
-              <Trans i18nKey="resumePage.skillsSection.softSkills.scrum" />
-            </li>
-            <li>
-              <Trans i18nKey="resumePage.skillsSection.softSkills.errorManagement" />
-            </li>
-          </ul>
+  if (isMobile) {
+    return (
+      <ContentSection
+        className="mb-2"
+        ref={ref}
+        startExpanded={false}
+        title={t("resumePage.skillsSectionTitle")}
+      >
+        <div className="skills-section">
+          <div className="row m-0 p-0">
+            <h1 className="skills-title reverse-two-tone-icons">
+              <Diversity1TwoToneIcon />
+              Soft Skills
+            </h1>
+            <ul className="soft-skills-list">
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.analisis" />
+              </li>
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.appStructure" />
+              </li>
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.collaboration" />
+              </li>
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.scrum" />
+              </li>
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.errorManagement" />
+              </li>
+            </ul>
+          </div>
+
+          <div className="row m-0 p-0" style={{ marginTop: "2vh" }}>
+            <div className="row">
+              <div className="col-12">
+                <h1 className="skills-title reverse-two-tone-icons">
+                  <BookmarkAddedTwoToneIcon />
+                  Hard Skills
+                </h1>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12">
+                <LevelIndicator
+                  isExplanation={true}
+                  className="skills-level-explanation mb-2"
+                  level={2}
+                  width="14vw"
+                  height="0.7vh"
+                  gap="2vw"
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 mb-3">
+                <SideRender direction="right">
+                  <ContentSubSection
+                    minBodyHeight={"30.5vh"}
+                    showHeader={true}
+                    title={"Frontend"}
+                    icon={CodeTwoToneIcon}
+                  >
+                    <SkillsList skills={frontendSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 mb-3">
+                <SideRender direction="left">
+                  <ContentSubSection
+                    minBodyHeight={"30.5vh"}
+                    showHeader={true}
+                    title={t(
+                      "resumePage.skillsSection.hardSkillsTitles.designAndInterface"
+                    )}
+                    icon={ArchitectureTwoToneIcon}
+                  >
+                    <SkillsList skills={designSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 mb-3">
+                <SideRender direction="right">
+                  <ContentSubSection
+                    minBodyHeight={"19vh"}
+                    showHeader={true}
+                    title={"Backend"}
+                    icon={SettingsSuggestTwoToneIcon}
+                  >
+                    <SkillsList skills={backendSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 mb-3">
+                <SideRender direction="left">
+                  <ContentSubSection
+                    minBodyHeight={"19vh"}
+                    showHeader={true}
+                    title={t(
+                      "resumePage.skillsSection.hardSkillsTitles.dataBases"
+                    )}
+                    icon={JoinRightTwoToneIcon}
+                  >
+                    <SkillsList skills={databaseSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 mb-3">
+                <SideRender direction="right">
+                  <ContentSubSection
+                    minBodyHeight={"23vh"}
+                    showHeader={true}
+                    title={"Git"}
+                    icon={PolylineTwoToneIcon}
+                  >
+                    <SkillsList skills={gitSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 mb-3">
+                <SideRender direction="left">
+                  <ContentSubSection
+                    minBodyHeight={"23vh"}
+                    showHeader={true}
+                    title={t(
+                      "resumePage.skillsSection.hardSkillsTitles.codingAndGoodPractices"
+                    )}
+                    icon={TerminalTwoToneIcon}
+                  >
+                    <SkillsList skills={codeSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 mb-3">
+                <SideRender direction="right">
+                  <ContentSubSection
+                    minBodyHeight={"26vh"}
+                    showHeader={true}
+                    title={t("resumePage.skillsSection.hardSkillsTitles.tools")}
+                    icon={ConstructionTwoToneIcon}
+                  >
+                    <SkillsList skills={toolsSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-12 mb-3">
+                <SideRender direction="left">
+                  <ContentSubSection
+                    minBodyHeight={"26vh"}
+                    showHeader={true}
+                    title={t(
+                      "resumePage.skillsSection.hardSkillsTitles.corporate"
+                    )}
+                    icon={NextWeekTwoToneIcon}
+                  >
+                    <SkillsList skills={corporativeSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="row m-0 p-0">
-          <div className="row">
-            <div className="col-6">
-              <h1 className="skills-title reverse-two-tone-icons">
-                <BookmarkAddedTwoToneIcon />
-                Hard Skills
-              </h1>
-            </div>
-            <div className="col-6 reverse-two-tone-icons">
-              <LevelIndicator
-                isExplanation={true}
-                className="skills-level-explanation"
-                level={2}
-                width="8.5vw"
-                height="2vh"
-                gap="0.5vw"
-              />
-            </div>
+      </ContentSection>
+    );
+  } else {
+    return (
+      <ContentSection
+        className="mb-2"
+        ref={ref}
+        startExpanded={false}
+        title={t("resumePage.skillsSectionTitle")}
+      >
+        <div className="skills-section">
+          <div className="row m-0 p-0">
+            <h1 className="skills-title reverse-two-tone-icons">
+              <Diversity1TwoToneIcon />
+              Soft Skills
+            </h1>
+            <ul className="soft-skills-list">
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.analisis" />
+              </li>
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.appStructure" />
+              </li>
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.collaboration" />
+              </li>
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.scrum" />
+              </li>
+              <li>
+                <Trans i18nKey="resumePage.skillsSection.softSkills.errorManagement" />
+              </li>
+            </ul>
           </div>
+          <div className="row m-0 p-0">
+            <div className="row">
+              <div className="col-6">
+                <h1 className="skills-title reverse-two-tone-icons">
+                  <BookmarkAddedTwoToneIcon />
+                  Hard Skills
+                </h1>
+              </div>
+              <div className="col-6 reverse-two-tone-icons">
+                <LevelIndicator
+                  isExplanation={true}
+                  className="skills-level-explanation"
+                  level={2}
+                  width="8.5vw"
+                  height="2vh"
+                  gap="0.5vw"
+                />
+              </div>
+            </div>
 
-          <div className="row">
-            <div className="col-6">
-              <ContentSubSection
-                className="ml-pc-neg-1"
-                minBodyHeight={"30.5vh"}
-                showHeader={true}
-                title={"Frontend"}
-                icon={CodeTwoToneIcon}
-              >
-                <SkillsList skills={frontendSkills} />
-              </ContentSubSection>
+            <div className="row">
+              <div className="col-6">
+                <SideRender direction="left">
+                  <ContentSubSection
+                    className="ml-pc-neg-1"
+                    minBodyHeight={"34.5vh"}
+                    showHeader={true}
+                    title={"Frontend"}
+                    icon={CodeTwoToneIcon}
+                  >
+                    <SkillsList skills={frontendSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+              <div className="col-6">
+                <SideRender direction="right">
+                  <ContentSubSection
+                    className="ml-pc-1"
+                    minBodyHeight={"34.5vh"}
+                    showHeader={true}
+                    title={t(
+                      "resumePage.skillsSection.hardSkillsTitles.designAndInterface"
+                    )}
+                    icon={ArchitectureTwoToneIcon}
+                  >
+                    <SkillsList skills={designSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
             </div>
-            <div className="col-6">
-              <ContentSubSection
-                className="ml-pc-1"
-                minBodyHeight={"30.5vh"}
-                showHeader={true}
-                title={t("resumePage.skillsSection.hardSkillsTitles.design")}
-                icon={ArchitectureTwoToneIcon}
-              >
-                <SkillsList skills={designSkills} />
-              </ContentSubSection>
+            <div className="row">
+              <div className="col-6 reverse-two-tone-icons">
+                <SideRender direction="left">
+                  <ContentSubSection
+                    className="ml-pc-neg-1"
+                    minBodyHeight={"19vh"}
+                    showHeader={true}
+                    title={"Backend"}
+                    icon={SettingsSuggestTwoToneIcon}
+                  >
+                    <SkillsList skills={backendSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+              <div className="col-6">
+                <SideRender direction="right">
+                  <ContentSubSection
+                    className="ml-pc-1"
+                    minBodyHeight={"19vh"}
+                    showHeader={true}
+                    title={t(
+                      "resumePage.skillsSection.hardSkillsTitles.dataBases"
+                    )}
+                    icon={JoinRightTwoToneIcon}
+                  >
+                    <SkillsList skills={databaseSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-6 reverse-two-tone-icons">
-              <ContentSubSection
-                className="ml-pc-neg-1"
-                minBodyHeight={"19vh"}
-                showHeader={true}
-                title={"Backend"}
-                icon={SettingsSuggestTwoToneIcon}
-              >
-                <SkillsList skills={backendSkills} />
-              </ContentSubSection>
+            <div className="row">
+              <div className="col-6 reverse-two-tone-icons">
+                <SideRender direction="left">
+                  <ContentSubSection
+                    className="ml-pc-neg-1"
+                    minBodyHeight={"23vh"}
+                    showHeader={true}
+                    title={"Git"}
+                    icon={PolylineTwoToneIcon}
+                  >
+                    <SkillsList skills={gitSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+              <div className="col-6">
+                <SideRender direction="right">
+                  <ContentSubSection
+                    className="ml-pc-1"
+                    minBodyHeight={"23vh"}
+                    showHeader={true}
+                    title={t(
+                      "resumePage.skillsSection.hardSkillsTitles.codingAndGoodPractices"
+                    )}
+                    icon={TerminalTwoToneIcon}
+                  >
+                    <SkillsList skills={codeSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
             </div>
-            <div className="col-6">
-              <ContentSubSection
-                className="ml-pc-1"
-                minBodyHeight={"19vh"}
-                showHeader={true}
-                title={t("resumePage.skillsSection.hardSkillsTitles.dataBases")}
-                icon={JoinRightTwoToneIcon}
-              >
-                <SkillsList skills={databaseSkills} />
-              </ContentSubSection>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-6 reverse-two-tone-icons">
-              <ContentSubSection
-                className="ml-pc-neg-1"
-                minBodyHeight={"23vh"}
-                showHeader={true}
-                title={"Git"}
-                icon={PolylineTwoToneIcon}
-              >
-                <SkillsList skills={gitSkills} />
-              </ContentSubSection>
-            </div>
-            <div className="col-6">
-              <ContentSubSection
-                className="ml-pc-1"
-                minBodyHeight={"23vh"}
-                showHeader={true}
-                title={t(
-                  "resumePage.skillsSection.hardSkillsTitles.codingAndGoodPractices"
-                )}
-                icon={TerminalTwoToneIcon}
-              >
-                <SkillsList skills={codeSkills} />
-              </ContentSubSection>
-            </div>
-          </div>
 
-          <div className="row">
-            <div className="col-6">
-              <ContentSubSection
-                className="ml-pc-neg-1"
-                minBodyHeight={"26vh"}
-                showHeader={true}
-                title={t("resumePage.skillsSection.hardSkillsTitles.tools")}
-                icon={ConstructionTwoToneIcon}
-              >
-                <SkillsList skills={toolsSkills} />
-              </ContentSubSection>
-            </div>
-            <div className="col-6 reverse-two-tone-icons">
-              <ContentSubSection
-                className="ml-pc-1"
-                minBodyHeight={"26vh"}
-                showHeader={true}
-                title={t("resumePage.skillsSection.hardSkillsTitles.corporate")}
-                icon={NextWeekTwoToneIcon}
-              >
-                <SkillsList skills={corporativeSkills} />
-              </ContentSubSection>
+            <div className="row">
+              <div className="col-6">
+                <SideRender direction="left">
+                  <ContentSubSection
+                    className="ml-pc-neg-1"
+                    minBodyHeight={"30vh"}
+                    showHeader={true}
+                    title={t("resumePage.skillsSection.hardSkillsTitles.tools")}
+                    icon={ConstructionTwoToneIcon}
+                  >
+                    <SkillsList skills={toolsSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
+              <div className="col-6 reverse-two-tone-icons">
+                <SideRender direction="right">
+                  <ContentSubSection
+                    className="ml-pc-1"
+                    minBodyHeight={"30vh"}
+                    showHeader={true}
+                    title={t(
+                      "resumePage.skillsSection.hardSkillsTitles.corporate"
+                    )}
+                    icon={NextWeekTwoToneIcon}
+                  >
+                    <SkillsList skills={corporativeSkills} />
+                  </ContentSubSection>
+                </SideRender>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </ContentSection>
-  );
+      </ContentSection>
+    );
+  }
 });
+
 SkillsSection.propTypes = {
   scrollToRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };

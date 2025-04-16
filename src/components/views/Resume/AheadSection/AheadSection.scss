@@ -1,10 +1,26 @@
 .level-up-smoke {
-  margin-top: 3.5vh;
-  margin-left: 5vw;
+  @media (min-width: 768px) {
+    margin-top: 3.5vh;
+    margin-left: 5vw;
+  }
+  @media (max-width: 767px) {
+    margin-top: -2vh;
+  }
 }
 
 .continue-button {
   margin: 2vh;
   margin-left: 0;
   margin-right: 3vw;
+  @media (max-width: 767px) {
+    margin-top: 0 !important;
+    margin-bottom: 2vh !important;
+    font-size: 0.7rem !important;
+  }
+}
+
+.level-up-align {
+  @media (max-width: 767px) {
+    margin-left: -1vw;
+  }
 }

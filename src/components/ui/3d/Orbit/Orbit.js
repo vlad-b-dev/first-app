@@ -29,7 +29,7 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
     const parsedHeight =
       typeof height === "string" ? parseFloat(height) : height;
 
-    const scaleFactor = isMobile ? 0.3 : 1;
+    const scaleFactor = (isMobile ? 0.3 : 1) * 0.8;
 
     THREE.Cache.enabled = true;
 
@@ -112,7 +112,7 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
     let angle = Math.random() * Math.PI * 2;
     const radius = 1.8 * scaleFactor;
     const verticalAmplitude = 0.6 * scaleFactor;
-    const angleVariation = 0.015;
+    const angleVariation = 0.02;
 
     const animate = () => {
       angle += angleVariation + (Math.random() * 0.01 - 0.01);
@@ -160,13 +160,13 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
   if (!isMobile) {
     computedWidth = typeof width === "number" ? width : parseFloat(width);
   }
+  computedWidth = computedWidth * 0.8;
 
   let computedHeight = 90;
   if (!isMobile) {
     computedHeight = typeof height === "number" ? height : parseFloat(height);
   }
-
-  const moonPositionOffset = isMobile ? 0.02 : 0;
+  computedHeight = computedHeight * 0.8;
 
   return (
     <div
@@ -178,8 +178,8 @@ const Orbit = React.memo(({ logoSrc, width = 50, height = 50 }) => {
         pointerEvents: "none",
         padding: "0",
         display: "block",
-        margin: isMobile ? "0 0 0 5vw" : "-5vh auto -5vh auto",
-        transform: `translateX(${moonPositionOffset * 100}%)`,
+        margin: isMobile ? "0 0 0 5vw" : "-10vh auto -10vh auto",
+        transform: `translate(-2%, -5%)`,
       }}
     />
   );

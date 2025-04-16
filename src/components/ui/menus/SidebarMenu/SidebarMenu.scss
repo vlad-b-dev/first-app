@@ -27,11 +27,47 @@
   width: auto;
   padding-top: 1vh;
   padding-bottom: 2vh;
+  cursor: pointer;
 }
 
 .sidebar-menu-logo-wrapper {
   padding-left: 1vw;
   background-color: var(--secondary-background-color);
-  border-bottom: 1.5vh solid var(--main-color);
+  border-bottom: 0.7vh solid var(--main-color);
   box-shadow: 0 3vh 30px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes neonFlicker {
+  0% {
+    box-shadow: -6px 0 12px var(--main-color), 0 -6px 12px var(--main-color),
+      0 6px 12px var(--main-color);
+  }
+  25% {
+    box-shadow: -7px 0 14px var(--main-color), 0 -7px 14px var(--main-color),
+      0 7px 14px var(--main-color);
+  }
+  50% {
+    box-shadow: -8px 0 16px var(--main-color), 0 -8px 16px var(--main-color),
+      0 8px 16px var(--main-color);
+  }
+  75% {
+    box-shadow: -7px 0 14px var(--main-color), 0 -7px 14px var(--main-color),
+      0 7px 14px var(--main-color);
+  }
+  100% {
+    box-shadow: -6px 0 12px var(--main-color), 0 -6px 12px var(--main-color),
+      0 6px 12px var(--main-color);
+  }
+}
+
+.sidebar-button.active-neon {
+  animation: neonFlicker 1.8s infinite alternate;
+}
+
+.orbit-container {
+  z-index: 1050 !important;
+  position: relative !important;
+  scale: 0.75 !important;
+  top: 60vh;
+  right: 19vw;
 }

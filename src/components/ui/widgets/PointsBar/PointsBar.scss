@@ -65,6 +65,11 @@
   box-shadow: inset 0 0 0 0.2vw var(--main-hover-color),
     0px 10px 15px var(--main-color);
   border-radius: 50%;
+  @media (max-width: 767px) {
+    box-shadow: inset 0 0 0 0.8vw var(--main-hover-color),
+      0px 10px 15px var(--main-color);
+    border-radius: 50%;
+  }
 
   &.active {
     background-color: var(--highlight-color);
@@ -72,6 +77,11 @@
     box-shadow: inset 0 0 0 0.2vw var(--secondary-background-color),
       0px 12px 20px var(--highlight-color), 0 0 15px var(--highlight-color),
       0 0 30px var(--highlight-color);
+    @media (max-width: 767px) {
+      box-shadow: inset 0 0 0 0.5vw var(--secondary-background-color),
+        0px 12px 20px var(--highlight-color), 0 0 15px var(--highlight-color),
+        0 0 30px var(--highlight-color);
+    }
   }
 
   &.active::after {

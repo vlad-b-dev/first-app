@@ -97,8 +97,10 @@
       }
     },
     "personalSection": {
-      "personalText1": "<strong>It's always good to know who you're working with...</strong><br />So, this section is more personal:<br /><br />Made in Ukraine and raised in the south of Navarre, I have a bit of both worlds. Now I live with a leopard gecko and a dozen Amazonian fish in Pamplona.",
-      "personalText2": "<strong>I have two sides: one intense, carefree, and energetic; the other responsible, committed, and professional</strong>. The key is knowing which one to bring out at the right time.<br /><br />At the same time, I enjoy both the traditional and the modern, the natural and the urban, the calm and the intense, the technical and the creative...<br /><br />Madrid or the Pyrenees? Programming or design? At home or partying in Budapest? A walk in the mountains or motocross?<br /><br />There's always some project to work on: development, design, repairs, botany, 3D printing, painting... Growing and learning matter. Special mention to motor-related: mechanics, cars, motorcycles...<br /><br />I have a <strong>unique way of approaching things</strong>, and I’ve learned to make the most of it. I like to <strong>think big and act strategically.</strong><br /><br />There are many more philosophical topics we can discuss at some corporate event; networking matters."
+      "personalText1": "<strong>It's always good to know who you're working with...</strong><br />So, this section is more personal:<br />",
+      "personalText2": "<br />Made in Ukraine and raised in the south of Navarre, I have a bit of both worlds. Now I live with a leopard gecko and a dozen Amazonian fish in Pamplona.",
+      "personalText3": "<strong>I have two sides: one intense, carefree, and energetic; the other responsible, committed, and professional</strong>. The key is knowing which one to bring out at the right time.<br /><br />At the same time, I enjoy both the traditional and the modern, the natural and the urban, the calm and the intense, the technical and the creative...<br /><br />Madrid or the Pyrenees? Programming or design? At home or partying in Budapest? A walk in the mountains or motocross?<br />",
+      "personalText4": "<br />There's always some project to work on: development, design, repairs, botany, 3D printing, painting... Growing and learning matter. Special mention to motor-related: mechanics, cars, motorcycles...<br /><br />I have a <strong>unique way of approaching things</strong>, and I’ve learned to make the most of it. I like to <strong>think big and act strategically.</strong><br /><br />There are many more philosophical topics we can discuss at some corporate event; networking matters."
     },
     "aheadSection": {
       "aheadText1": "Now that we know each other a bit better, it's time to talk about the present and, above all, the future",
@@ -165,7 +167,7 @@
     "tooltip": "Hover to see each level of knowledge description",
     "1": "Level 1: Minimal knowledge",
     "2": "Level 2: Basic understanding",
-    "3": "Level 3: Mid-level, I'm comfortable using this skill",
+    "3": "Level 3: I'm habituated to this skill",
     "4": "Level 4: Advanced knowledge",
     "5": "Level 5: High level"
   }

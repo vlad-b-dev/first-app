@@ -1,29 +1,24 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import mainWebsiteLogoDark from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoDark.webp";
 import mainWebsiteLogoLight from "../../../../resources/images/logos/mainLogo/original/mainWebsiteLogoLight.webp";
-import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "framer-motion";
 import GenericButton from "../../buttons/GenericButton/GenericButton";
 import { useTheme } from "../../../../styles/ThemeContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import Orbit from "../../3d/Orbit/Orbit";
+import FooterLogo from "../../../../resources/images/logos/footerLogo/footerLogo.webp";
+import PropTypes from "prop-types";
 
 import "./SidebarMenu.scss";
 
 const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
   const { theme } = useTheme();
-
-  let logo;
-  if (theme === "dark") {
-    logo = mainWebsiteLogoDark;
-  } else {
-    logo = mainWebsiteLogoLight;
-  }
+  const logo = theme === "dark" ? mainWebsiteLogoDark : mainWebsiteLogoLight;
 
   const navigate = useNavigate();
-
+  const location = useLocation();
   const sidebarMenuRef = useRef(null);
-
   const { t } = useTranslation();
 
   const handleSidebarMenuClickOutside = useCallback(
@@ -39,13 +34,60 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
   );
 
   useEffect(() => {
+    const scrollableElement = document.querySelector(".page-background");
+    const sidebarElement = sidebarMenuRef.current;
+    const preventScroll = (e) => {
+      e.preventDefault();
+    };
+
     if (parentShowSidebarMenu) {
       document.addEventListener("mousedown", handleSidebarMenuClickOutside);
+
+      if (scrollableElement) {
+        scrollableElement.style.overflow = "hidden";
+        scrollableElement.addEventListener("wheel", preventScroll, {
+          passive: false,
+        });
+        scrollableElement.addEventListener("touchmove", preventScroll, {
+          passive: false,
+        });
+      }
+
+      if (sidebarElement) {
+        sidebarElement.style.overflow = "hidden";
+        sidebarElement.addEventListener("wheel", preventScroll, {
+          passive: false,
+        });
+        sidebarElement.addEventListener("touchmove", preventScroll, {
+          passive: false,
+        });
+      }
     } else {
       document.removeEventListener("mousedown", handleSidebarMenuClickOutside);
+
+      if (scrollableElement) {
+        scrollableElement.style.overflow = "";
+        scrollableElement.removeEventListener("wheel", preventScroll);
+        scrollableElement.removeEventListener("touchmove", preventScroll);
+      }
+
+      if (sidebarElement) {
+        sidebarElement.style.overflow = "";
+        sidebarElement.removeEventListener("wheel", preventScroll);
+        sidebarElement.removeEventListener("touchmove", preventScroll);
+      }
     }
+
     return () => {
       document.removeEventListener("mousedown", handleSidebarMenuClickOutside);
+      if (scrollableElement) {
+        scrollableElement.removeEventListener("wheel", preventScroll);
+        scrollableElement.removeEventListener("touchmove", preventScroll);
+      }
+      if (sidebarElement) {
+        sidebarElement.removeEventListener("wheel", preventScroll);
+        sidebarElement.removeEventListener("touchmove", preventScroll);
+      }
     };
   }, [parentShowSidebarMenu, handleSidebarMenuClickOutside]);
 
@@ -64,6 +106,7 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
     },
     exit: { x: "-100%", opacity: 0 },
   };
+
   const sidebarMenuLogoAnimation = {
     initial: { y: "-100%", opacity: 0 },
     animate: {
@@ -81,8 +124,25 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
     animate: { x: 0, opacity: 1 },
     exit: { x: "-50%", opacity: 0 },
   };
-  const handleNavigationClick = (route) => {
-    navigate(route);
+
+  const menuItems = [
+    { label: "Main", route: "/home" },
+    { label: t("headerButtons.resume"), route: "/resume" },
+    { label: t("headerButtons.thisWebsite"), route: "/this-website" },
+    { label: t("headerButtons.contact"), route: "/contact" },
+  ];
+
+  const getActiveRoute = () => {
+    if (!location.pathname || location.pathname === "/") {
+      return "/home";
+    }
+    return location.pathname;
+  };
+
+  const orbitAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 0.3, delay: 0.3 } },
+    exit: { opacity: 0, transition: { duration: 0.3 } },
   };
 
   return (
@@ -103,39 +163,24 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
               >
                 <img
                   src={logo}
-                  onClick={() => handleNavigationClick("/home")}
+                  onClick={() => navigate("/home")}
                   className="sidebar-menu-logo"
                   alt="Logo"
                 />
               </motion.div>
-              <motion.div variants={sidebarMenuButtonAnimation}>
-                <GenericButton
-                  sidebarButton={true}
-                  label={"Main"}
-                  onClick={() => handleNavigationClick("/home")}
-                />
-              </motion.div>
-              <motion.div variants={sidebarMenuButtonAnimation}>
-                <GenericButton
-                  sidebarButton={true}
-                  label={t("headerButtons.resume")}
-                  onClick={() => handleNavigationClick("/resume")}
-                />
-              </motion.div>
-              <motion.div variants={sidebarMenuButtonAnimation}>
-                <GenericButton
-                  sidebarButton={true}
-                  label={t("headerButtons.thisWebsite")}
-                  onClick={() => handleNavigationClick("/this-website")}
-                />
-              </motion.div>
-              <motion.div variants={sidebarMenuButtonAnimation}>
-                <GenericButton
-                  sidebarButton={true}
-                  label={t("headerButtons.contact")}
-                  onClick={() => handleNavigationClick("/contact")}
-                />
-              </motion.div>
+
+              {menuItems.map(({ label, route }, index) => (
+                <motion.div key={index} variants={sidebarMenuButtonAnimation}>
+                  <GenericButton
+                    sidebarButton={true}
+                    label={label}
+                    onClick={() => navigate(route)}
+                    className={`sidebar-button ${
+                      getActiveRoute() === route ? "active-neon" : ""
+                    }`}
+                  />
+                </motion.div>
+              ))}
             </div>
           </motion.div>
           <motion.div
@@ -144,6 +189,15 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           />
+          <motion.div
+            className="orbit-container"
+            variants={orbitAnimation}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <Orbit logoSrc={FooterLogo} width={5} height={5} />
+          </motion.div>
         </div>
       )}
     </AnimatePresence>

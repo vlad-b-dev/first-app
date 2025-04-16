@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ContentSection from "../../../ui/sections/ContentSection/ContentSection";
 import { Trans, useTranslation } from "react-i18next";
@@ -15,6 +15,13 @@ import "./PersonalSection.scss";
 
 const PersonalSection = () => {
   const { t } = useTranslation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <ContentSection
@@ -22,56 +29,114 @@ const PersonalSection = () => {
       startExpanded={false}
       title={t("resumePage.personalSectionTitle")}
     >
-      <div className="row mt-3">
-        <div className="col-6">
-          <div className="row mt-4">
-            <p>
+      {isMobile ? (
+        <div className="row mt-3">
+          <div className="col-12 mt-4">
+            <p className="text-justify">
               <Trans i18nKey="resumePage.personalSection.personalText1" />
             </p>
           </div>
-
-          <div className="row text-center">
-            <ImageComponent image={Pets} width={"45vw"} hoverScale={1} />
+          <div className="col-12 text-center">
+            <ImageComponent
+              className="align-europe-map"
+              imageDark={EuropeMapDark}
+              imageLight={EuropeMapLight}
+              width={"90vw"}
+              hoverScale={1}
+            />
           </div>
-        </div>
-        <div className="col-6 text-start">
-          <ImageComponent
-            className="align-europe-map"
-            imageDark={EuropeMapDark}
-            imageLight={EuropeMapLight}
-            width={"42vw"}
-            hoverScale={1}
-          />
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-6">
-          <div className="row text-start mt-5">
-            <p>
+          <div className="col-12 mt-1">
+            <p className="text-justify">
               <Trans i18nKey="resumePage.personalSection.personalText2" />
             </p>
           </div>
-          <div className="row">
+          <div className="col-12 text-center mt-4">
+            <ImageComponent image={Pets} width={"90vw"} hoverScale={1} />
+          </div>
+          <div className="col-12 mt-5">
+            <p className="text-justify">
+              <Trans i18nKey="resumePage.personalSection.personalText3" />
+            </p>
+          </div>
+          <div className="col-12 text-center mt-3">
             <ImageComponent
               className="align-personal-photos-2"
               image={PersonalPhotos2}
-              width={"54vw"}
+              width={"90vw"}
+              hoverScale={1}
+            />
+          </div>
+          <div className="col-12 mt-1">
+            <p className="text-justify">
+              <Trans i18nKey="resumePage.personalSection.personalText4" />
+            </p>
+          </div>
+          <div className="col-12 text-center mt-3">
+            <ImageComponent
+              className="align-personal-photos"
+              image={PersonalPhotos}
+              width={"90vw"}
               hoverScale={1}
             />
           </div>
         </div>
-        <div className="col-6 text-center">
-          <ImageComponent
-            className="align-personal-photos"
-            image={PersonalPhotos}
-            width={"47vw"}
-            hoverScale={1}
-          />
-        </div>
-      </div>
+      ) : (
+        <>
+          <div className="row mt-3">
+            <div className="col-6">
+              <div className="row mt-4">
+                <p>
+                  <Trans i18nKey="resumePage.personalSection.personalText1" />
+                  <Trans i18nKey="resumePage.personalSection.personalText2" />
+                </p>
+              </div>
+
+              <div className="row text-center">
+                <ImageComponent image={Pets} width={"45vw"} hoverScale={1} />
+              </div>
+            </div>
+            <div className="col-6 text-start">
+              <ImageComponent
+                className="align-europe-map"
+                imageDark={EuropeMapDark}
+                imageLight={EuropeMapLight}
+                width={"42vw"}
+                hoverScale={1}
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-6">
+              <div className="row text-start mt-5">
+                <p>
+                  <Trans i18nKey="resumePage.personalSection.personalText3" />
+                  <Trans i18nKey="resumePage.personalSection.personalText4" />
+                </p>
+              </div>
+              <div className="row">
+                <ImageComponent
+                  className="align-personal-photos-2"
+                  image={PersonalPhotos2}
+                  width={"54vw"}
+                  hoverScale={1}
+                />
+              </div>
+            </div>
+            <div className="col-6 text-center">
+              <ImageComponent
+                className="align-personal-photos"
+                image={PersonalPhotos}
+                width={"47vw"}
+                hoverScale={1}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </ContentSection>
   );
 };
+
 PersonalSection.propTypes = {
   scrollToRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };

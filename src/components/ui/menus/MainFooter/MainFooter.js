@@ -35,7 +35,7 @@ const MainFooter = () => {
             <Trans i18nKey="footerText.goToTop" />
           </p>
         </div>
-        <div className="row text-center orbit-container">
+        <div className="row text-center">
           <Orbit logoSrc={FooterLogo} width={35} height={35} />
           <p>
             <Trans i18nKey="footerText.allInApp" />

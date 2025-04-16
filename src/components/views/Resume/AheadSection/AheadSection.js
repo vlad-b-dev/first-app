@@ -15,6 +15,7 @@ const AheadSection = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const handleNavigationClick = (route) => navigate(route);
+  const isMobile = window.innerWidth <= 768;
 
   return (
     <ContentSection
@@ -49,34 +50,35 @@ const AheadSection = () => {
         <Trans i18nKey="resumePage.aheadSection.aheadText8" />{" "}
       </h5>
       <div className="row text-center">
-        <div className="col-2">
+        <div className="col-2 d-none d-md-block">
           <LevelUpChevron onClick={() => {}} />
         </div>
-        <div className="col-8">
+        <div className="col-12 col-md-8 level-up-align">
           <ImageComponent
             imageDark={LevelUpDark}
             imageLight={LevelUpLight}
-            width={"60vw"}
+            width={isMobile ? "90vw" : "60vw"}
             hoverScale={1}
             showSmoke={true}
             smokeClassName={"level-up-smoke"}
           />
         </div>
-        <div className="col-2">
-          <LevelUpChevron onClick={() => {}} />
+        <div className="col-2 d-none d-md-block">
+          <LevelUpChevron />
         </div>
       </div>
       <div className="w-100 text-center">
         <GenericButton
-          className="continue-button"
-          label={t("resumePage.aheadSection.continueButton")}
-          width="8vw"
+          className="continue-button responsive-button"
+          label={t("genericTranslations.continue")}
+          width={isMobile ? "25vw" : "14vw"}
           onClick={() => handleNavigationClick("/this-website")}
         />
       </div>
     </ContentSection>
   );
 };
+
 AheadSection.propTypes = {
   scrollToRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };

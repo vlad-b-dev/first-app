@@ -52,7 +52,7 @@
 
 .flag-icon {
   @media (max-width: 767px) {
-    width: 1rem;
+    width: 0.8rem;
     height: auto;
   }
   @media (min-width: 768px) {
@@ -68,11 +68,18 @@
 
   @media (max-width: 767px) {
     font-size: 1rem;
-    margin-top: 0.6rem;
+    margin-top: 0.45rem;
     margin-left: -1rem;
   }
   @media (min-width: 768px) {
     font-size: 1.2vw;
     margin-top: 0.5rem;
+  }
+}
+.pdf-button {
+  @media (max-width: 767px) {
+    scale: 0.9 !important;
+    margin-top: -4vh !important;
+    margin-bottom: -3vh !important;
   }
 }

@@ -12,13 +12,21 @@
 
 .preferences-gear {
   position: absolute;
-  top: 0.1vh;
-  left: 3vw;
+
+  top: 0.2vh;
+  left: 0;
+  width: 5.7vw;
+  height: auto;
+
   transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 0;
-  margin-top: 0.7vh;
-  height: 5vh;
-  width: auto;
+
+  @media (max-width: 767px) {
+    margin-top: 0.7vh;
+    left: 3vw;
+    height: 5vh;
+    width: auto;
+  }
 }
 
 .preferences-gear.visible {
