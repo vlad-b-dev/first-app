@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import MainPageHeader from "../../../components/ui/menus/MainPageHeader/MainPageHeader";
 import MainFooter from "../../ui/menus/MainFooter/MainFooter";
-import MainNavigationBackground from "../../ui/3d/MainNavigationBackground/MainNavigationBackground";
 import ImageComponent from "../../ui/mediaViewers/ImageComponent/ImageComponent";
 import GenericButton from "../../ui/buttons/GenericButton/GenericButton";
 import AllInVBDark from "../../../resources/images/contentPhotos/thisWebsite/allInVB/allInVBDark.webp";
@@ -38,8 +37,6 @@ const ThisWebsite = () => {
   return (
     <div className="page-background">
       <MainPageHeader />
-      <MainNavigationBackground />
-
       <SideRender
         className={
           isMobile
