@@ -37,7 +37,7 @@
   box-shadow: 0 3vh 30px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes neonFlicker {
+@keyframes sidebarNeonFlicker {
   0% {
     box-shadow: -6px 0 12px var(--main-color), 0 -6px 12px var(--main-color),
       0 6px 12px var(--main-color);
@@ -61,7 +61,7 @@
 }
 
 .sidebar-button.active-neon {
-  animation: neonFlicker 1.8s infinite alternate;
+  animation: sidebarNeonFlicker 1.5s infinite alternate;
 }
 
 .orbit-container {

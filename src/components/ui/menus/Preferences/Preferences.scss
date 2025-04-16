@@ -57,6 +57,9 @@
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
+  @media (max-width: 767px) {
+    margin-right: 2vw !important;
+  }
 }
 
 .preferences-window.visible {
@@ -77,4 +80,8 @@
 
 .preferences-close-icon {
   color: var(--main-color);
+  @media (max-width: 767px) {
+    font-size: 1.4rem !important;
+    margin-left: 1rem !important;
+  }
 }
