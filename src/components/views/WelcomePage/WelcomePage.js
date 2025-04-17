@@ -207,7 +207,7 @@ export const WelcomePage = ({ theme }) => {
     <div className="welcome-page-background">
       <div className="threejs-background" ref={canvasRef} />
       <div className="welcome-page-foreground">
-        <h1 className="cool-text text-start">Welcome to All-in!</h1>
+        <h1 className="cool-text text-start">Welcome to All-in</h1>
       </div>
     </div>
   );
