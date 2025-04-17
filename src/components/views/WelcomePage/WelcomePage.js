@@ -24,9 +24,9 @@ export const WelcomePage = () => {
 
     const styles = getComputedStyle(document.documentElement);
     const dotColor =
-      styles.getPropertyValue("--main-hover-color").trim() || "#ffffaa";
+      styles.getPropertyValue("--main-hover-color").trim() || "#00ffff";
     const lineColor =
-      styles.getPropertyValue("--main-color").trim() || "#000011";
+      styles.getPropertyValue("--main-color").trim() || "#af53ff";
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
