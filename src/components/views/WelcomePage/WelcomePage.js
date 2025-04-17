@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import Delaunator from "delaunator";
+import { useTheme } from "../../../styles/ThemeContext";
 import "./WelcomePage.scss";
 
 export const WelcomePage = () => {
   const canvasRef = useRef();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
+  const { theme } = useTheme();
 
+  // Handle viewport resize for mobile detection
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 767);
@@ -22,12 +25,14 @@ export const WelcomePage = () => {
     let width = window.innerWidth;
     let height = window.innerHeight;
 
-    const styles = getComputedStyle(document.documentElement);
+    // Read CSS variables from <body> where dark/light mode classes apply
+    const styles = getComputedStyle(document.body);
     const dotColor =
       styles.getPropertyValue("--main-hover-color").trim() || "#00ffff";
     const lineColor =
       styles.getPropertyValue("--main-color").trim() || "#af53ff";
 
+    // THREE.js scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
     camera.position.set(0, -50, 250);
@@ -36,14 +41,14 @@ export const WelcomePage = () => {
     renderer.setSize(width, height);
     canvasContainer.appendChild(renderer.domElement);
 
-    // Triangle base vertices
+    // Base triangle vertices
     const BASE = 260;
     const HEIGHT = (Math.sqrt(3) / 2) * BASE;
     const A = new THREE.Vector3(-BASE / 2, HEIGHT / 2, 0);
     const B = new THREE.Vector3(BASE / 2, HEIGHT / 2, 0);
     const C = new THREE.Vector3(0, -HEIGHT / 2, 0);
 
-    // Compute centroid and inner hole vertices
+    // Centroid and inner hole
     const centroid = new THREE.Vector3()
       .addVectors(A, B)
       .add(C)
@@ -81,7 +86,7 @@ export const WelcomePage = () => {
       return u >= 0 && v >= 0 && u + v <= 1;
     };
 
-    // Generate random dots outside the hole
+    // Create random dots outside the inner hole
     const COUNT = 80;
     const meshes = [];
     let attempts = 0;
@@ -104,9 +109,10 @@ export const WelcomePage = () => {
 
       if (inTri(P, H0, H1, H2)) continue;
 
-      const circleGeo = new THREE.CircleGeometry(2, 6);
-      const circleMat = new THREE.MeshBasicMaterial({ color: dotColor });
-      const dot = new THREE.Mesh(circleGeo, circleMat);
+      const dot = new THREE.Mesh(
+        new THREE.CircleGeometry(2, 6),
+        new THREE.MeshBasicMaterial({ color: dotColor })
+      );
       dot.position.copy(P);
       dot.userData.velocity = new THREE.Vector3(
         (Math.random() - 0.5) * 0.2,
@@ -123,19 +129,17 @@ export const WelcomePage = () => {
     meshes.forEach((m) => root.add(m));
     scene.add(root);
 
-    const lineGeo = new THREE.BufferGeometry();
     const lineMat = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
     });
-    const lines = new THREE.LineSegments(lineGeo, lineMat);
+    const lines = new THREE.LineSegments(new THREE.BufferGeometry(), lineMat);
     root.add(lines);
 
     const THRESH = 70;
     const SPEED = 1;
     let lastTime = performance.now();
 
-    // Animation loop
     const animate = (time) => {
       const delta = (time - lastTime) * 0.001 * SPEED;
       lastTime = time;
@@ -150,25 +154,22 @@ export const WelcomePage = () => {
           m.userData.velocity.z *= -1;
       });
 
+      // Recompute connections via Delaunay
       const coords = meshes.map((m) => [m.position.x, m.position.y]);
       const delaunay = Delaunator.from(coords);
       const tri = delaunay.triangles;
-
       const positions = [];
       const colors = [];
-      const c = new THREE.Color(lineColor);
+      const color = new THREE.Color(lineColor);
 
       for (let i = 0; i < tri.length; i += 3) {
         const [i0, i1, i2] = [tri[i], tri[i + 1], tri[i + 2]];
         const P0 = meshes[i0].position;
         const P1 = meshes[i1].position;
         const P2 = meshes[i2].position;
-
-        // Skip triangles whose centroid is inside the hole
         const cx = (P0.x + P1.x + P2.x) / 3;
         const cy = (P0.y + P1.y + P2.y) / 3;
         if (inTri({ x: cx, y: cy }, H0, H1, H2)) continue;
-
         [
           [P0, P1],
           [P1, P2],
@@ -179,12 +180,12 @@ export const WelcomePage = () => {
             const alpha = 1 - d / THRESH;
             positions.push(u.x, u.y, u.z, v.x, v.y, v.z);
             for (let j = 0; j < 2; j++)
-              colors.push(c.r * alpha, c.g * alpha, c.b * alpha);
+              colors.push(color.r * alpha, color.g * alpha, color.b * alpha);
           }
         });
       }
 
-      // Update line geometry
+      // Update geometry
       lines.geometry.dispose();
       const newGeo = new THREE.BufferGeometry();
       newGeo.setAttribute(
@@ -205,7 +206,7 @@ export const WelcomePage = () => {
     };
     requestAnimationFrame(animate);
 
-    // Handle window resize events
+    // Handle canvas resizing
     const onWindowResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
@@ -217,11 +218,12 @@ export const WelcomePage = () => {
 
     return () => {
       window.removeEventListener("resize", onWindowResize);
+      renderer.dispose();
       if (canvasContainer.contains(renderer.domElement)) {
         canvasContainer.removeChild(renderer.domElement);
       }
     };
-  }, [isMobile]);
+  }, [isMobile, theme]);
 
   return (
     <div className="welcome-page-background">
