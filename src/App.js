@@ -103,6 +103,7 @@ export default function MainApp() {
 
 function WelcomeOrMain() {
   const [isWelcomeVisible, setIsWelcomeVisible] = React.useState(true);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -113,7 +114,7 @@ function WelcomeOrMain() {
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      {isWelcomeVisible ? <WelcomePage /> : <MainPage />}
+      {isWelcomeVisible ? <WelcomePage theme={theme} /> : <MainPage />}
     </div>
   );
 }

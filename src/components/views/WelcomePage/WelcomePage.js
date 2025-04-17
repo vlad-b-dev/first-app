@@ -1,27 +1,22 @@
 import React, { useLayoutEffect, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import Delaunator from "delaunator";
-import { useTheme } from "../../../styles/ThemeContext";
 import "./WelcomePage.scss";
 
-export const WelcomePage = () => {
+export const WelcomePage = ({ theme }) => {
   const canvasRef = useRef();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
-  const { theme } = useTheme();
 
-  // Handle viewport resize for mobile detection
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 767);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Initialize or re-initialize Three.js when mobile or theme changes
   useLayoutEffect(() => {
     const canvasContainer = canvasRef.current;
     if (!canvasContainer) return;
 
-    // Clear any previous canvas
     while (canvasContainer.firstChild) {
       canvasContainer.removeChild(canvasContainer.firstChild);
     }
@@ -29,14 +24,9 @@ export const WelcomePage = () => {
     let width = window.innerWidth;
     let height = window.innerHeight;
 
-    // Read CSS variables from the actual container (inherits from body)
-    const styles = getComputedStyle(canvasContainer);
-    const dotColor =
-      styles.getPropertyValue("--main-hover-color").trim() || "#00ffff";
-    const lineColor =
-      styles.getPropertyValue("--main-color").trim() || "#af53ff";
+    const dotColor = theme === "dark" ? "#00ffff" : "#181818";
+    const lineColor = theme === "dark" ? "#af53ff" : "#efc847";
 
-    // THREE.js setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
     camera.position.set(0, -50, 250);
@@ -44,7 +34,6 @@ export const WelcomePage = () => {
     renderer.setSize(width, height);
     canvasContainer.appendChild(renderer.domElement);
 
-    // Geometry preparation
     const BASE = 260;
     const HEIGHT = (Math.sqrt(3) / 2) * BASE;
     const A = new THREE.Vector3(-BASE / 2, HEIGHT / 2, 0);
@@ -71,7 +60,6 @@ export const WelcomePage = () => {
       .multiplyScalar(HOLE_SCALE)
       .add(centroid);
 
-    // Helper: point-in-triangle
     const inTri = (P, V0, V1, V2) => {
       const v0 = { x: V2.x - V0.x, y: V2.y - V0.y };
       const v1 = { x: V1.x - V0.x, y: V1.y - V0.y };
@@ -87,7 +75,6 @@ export const WelcomePage = () => {
       return u >= 0 && v >= 0 && u + v <= 1;
     };
 
-    // Create random dots
     const COUNT = 80;
     const meshes = [];
     let attempts = 0;
@@ -133,7 +120,6 @@ export const WelcomePage = () => {
     );
     root.add(lines);
 
-    // Animation
     const THRESH = 70;
     const SPEED = 1;
     let lastTime = performance.now();
@@ -150,7 +136,6 @@ export const WelcomePage = () => {
           m.userData.velocity.z *= -1;
       });
 
-      // Recompute Delaunay
       const coords = meshes.map((m) => [m.position.x, m.position.y]);
       const delaunay = Delaunator.from(coords);
       const positions = [];
@@ -201,7 +186,6 @@ export const WelcomePage = () => {
     };
     requestAnimationFrame(animate);
 
-    // Resize handler
     const onResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
