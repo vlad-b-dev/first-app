@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import Delaunator from "delaunator";
 import { useTheme } from "../../../styles/ThemeContext";
@@ -11,44 +11,45 @@ export const WelcomePage = () => {
 
   // Handle viewport resize for mobile detection
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 767);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth <= 767);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
+  // Initialize or re-initialize Three.js when mobile or theme changes
+  useLayoutEffect(() => {
     const canvasContainer = canvasRef.current;
     if (!canvasContainer) return;
+
+    // Clear any previous canvas
+    while (canvasContainer.firstChild) {
+      canvasContainer.removeChild(canvasContainer.firstChild);
+    }
 
     let width = window.innerWidth;
     let height = window.innerHeight;
 
-    // Read CSS variables from <body> where dark/light mode classes apply
-    const styles = getComputedStyle(document.body);
+    // Read CSS variables from the actual container (inherits from body)
+    const styles = getComputedStyle(canvasContainer);
     const dotColor =
       styles.getPropertyValue("--main-hover-color").trim() || "#00ffff";
     const lineColor =
       styles.getPropertyValue("--main-color").trim() || "#af53ff";
 
-    // THREE.js scene setup
+    // THREE.js setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(60, width / height, 1, 1000);
     camera.position.set(0, -50, 250);
-
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(width, height);
     canvasContainer.appendChild(renderer.domElement);
 
-    // Base triangle vertices
+    // Geometry preparation
     const BASE = 260;
     const HEIGHT = (Math.sqrt(3) / 2) * BASE;
     const A = new THREE.Vector3(-BASE / 2, HEIGHT / 2, 0);
     const B = new THREE.Vector3(BASE / 2, HEIGHT / 2, 0);
     const C = new THREE.Vector3(0, -HEIGHT / 2, 0);
-
-    // Centroid and inner hole
     const centroid = new THREE.Vector3()
       .addVectors(A, B)
       .add(C)
@@ -70,7 +71,7 @@ export const WelcomePage = () => {
       .multiplyScalar(HOLE_SCALE)
       .add(centroid);
 
-    // Point-in-triangle test
+    // Helper: point-in-triangle
     const inTri = (P, V0, V1, V2) => {
       const v0 = { x: V2.x - V0.x, y: V2.y - V0.y };
       const v1 = { x: V1.x - V0.x, y: V1.y - V0.y };
@@ -86,7 +87,7 @@ export const WelcomePage = () => {
       return u >= 0 && v >= 0 && u + v <= 1;
     };
 
-    // Create random dots outside the inner hole
+    // Create random dots
     const COUNT = 80;
     const meshes = [];
     let attempts = 0;
@@ -98,7 +99,6 @@ export const WelcomePage = () => {
         u = 1 - u;
         v = 1 - v;
       }
-
       const P = new THREE.Vector3()
         .addScaledVector(A, 1 - u - v)
         .addScaledVector(B, u)
@@ -106,7 +106,6 @@ export const WelcomePage = () => {
       P.x += (Math.random() - 0.5) * 6;
       P.y += (Math.random() - 0.5) * 6;
       P.z = (Math.random() - 0.5) * 80;
-
       if (inTri(P, H0, H1, H2)) continue;
 
       const dot = new THREE.Mesh(
@@ -119,7 +118,6 @@ export const WelcomePage = () => {
         (Math.random() - 0.5) * 0.2,
         (Math.random() - 0.5) * 0.1
       );
-
       scene.add(dot);
       meshes.push(dot);
     }
@@ -129,21 +127,19 @@ export const WelcomePage = () => {
     meshes.forEach((m) => root.add(m));
     scene.add(root);
 
-    const lineMat = new THREE.LineBasicMaterial({
-      vertexColors: true,
-      transparent: true,
-    });
-    const lines = new THREE.LineSegments(new THREE.BufferGeometry(), lineMat);
+    const lines = new THREE.LineSegments(
+      new THREE.BufferGeometry(),
+      new THREE.LineBasicMaterial({ vertexColors: true, transparent: true })
+    );
     root.add(lines);
 
+    // Animation
     const THRESH = 70;
     const SPEED = 1;
     let lastTime = performance.now();
-
     const animate = (time) => {
       const delta = (time - lastTime) * 0.001 * SPEED;
       lastTime = time;
-
       meshes.forEach((m) => {
         m.position.addScaledVector(m.userData.velocity, delta);
         if (m.position.x > BASE / 2 || m.position.x < -BASE / 2)
@@ -154,21 +150,23 @@ export const WelcomePage = () => {
           m.userData.velocity.z *= -1;
       });
 
-      // Recompute connections via Delaunay
+      // Recompute Delaunay
       const coords = meshes.map((m) => [m.position.x, m.position.y]);
       const delaunay = Delaunator.from(coords);
-      const tri = delaunay.triangles;
       const positions = [];
       const colors = [];
-      const color = new THREE.Color(lineColor);
-
-      for (let i = 0; i < tri.length; i += 3) {
-        const [i0, i1, i2] = [tri[i], tri[i + 1], tri[i + 2]];
-        const P0 = meshes[i0].position;
-        const P1 = meshes[i1].position;
-        const P2 = meshes[i2].position;
-        const cx = (P0.x + P1.x + P2.x) / 3;
-        const cy = (P0.y + P1.y + P2.y) / 3;
+      const c = new THREE.Color(lineColor);
+      for (let i = 0; i < delaunay.triangles.length; i += 3) {
+        const [i0, i1, i2] = [
+          delaunay.triangles[i],
+          delaunay.triangles[i + 1],
+          delaunay.triangles[i + 2],
+        ];
+        const P0 = meshes[i0].position,
+          P1 = meshes[i1].position,
+          P2 = meshes[i2].position;
+        const cx = (P0.x + P1.x + P2.x) / 3,
+          cy = (P0.y + P1.y + P2.y) / 3;
         if (inTri({ x: cx, y: cy }, H0, H1, H2)) continue;
         [
           [P0, P1],
@@ -180,48 +178,44 @@ export const WelcomePage = () => {
             const alpha = 1 - d / THRESH;
             positions.push(u.x, u.y, u.z, v.x, v.y, v.z);
             for (let j = 0; j < 2; j++)
-              colors.push(color.r * alpha, color.g * alpha, color.b * alpha);
+              colors.push(c.r * alpha, c.g * alpha, c.b * alpha);
           }
         });
       }
-
-      // Update geometry
       lines.geometry.dispose();
-      const newGeo = new THREE.BufferGeometry();
-      newGeo.setAttribute(
+      const geom = new THREE.BufferGeometry();
+      geom.setAttribute(
         "position",
         new THREE.BufferAttribute(new Float32Array(positions), 3)
       );
-      newGeo.setAttribute(
+      geom.setAttribute(
         "color",
         new THREE.BufferAttribute(new Float32Array(colors), 3)
       );
-      lines.geometry = newGeo;
+      lines.geometry = geom;
 
       root.rotation.x += 0.001;
       root.rotation.y += 0.0012;
-
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     };
     requestAnimationFrame(animate);
 
-    // Handle canvas resizing
-    const onWindowResize = () => {
+    // Resize handler
+    const onResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
       renderer.setSize(width, height);
     };
-    window.addEventListener("resize", onWindowResize);
+    window.addEventListener("resize", onResize);
 
     return () => {
-      window.removeEventListener("resize", onWindowResize);
+      window.removeEventListener("resize", onResize);
       renderer.dispose();
-      if (canvasContainer.contains(renderer.domElement)) {
-        canvasContainer.removeChild(renderer.domElement);
-      }
+      while (canvasContainer.firstChild)
+        canvasContainer.removeChild(canvasContainer.firstChild);
     };
   }, [isMobile, theme]);
 
