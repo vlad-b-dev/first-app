@@ -175,7 +175,8 @@
     "optional": "Opcional",
     "required": "obligatorio",
     "reasonValidation": "Por favor selecciona un motivo de contacto",
-    "messageValidation": "Es obligatorio ingresar un mensaje"
+    "messageValidation": "Es obligatorio ingresar un mensaje",
+    "send": "Enviar"
   },
   "genericTranslations": {
     "continue": "Continuar",

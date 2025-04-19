@@ -355,7 +355,7 @@ const Contact = () => {
               disabled={loading}
               style={{ width: "100%" }}
             >
-              {loading ? t("contactPage.sending") : t("Enviar")}
+              {loading ? t("contactPage.sending") : t("contactPage.send")}
             </button>
 
             {statusMsg && (
