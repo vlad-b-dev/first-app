@@ -152,7 +152,30 @@
     }
   },
   "contactPage": {
-    "pageTitle": "Contact"
+    "pageTitle": "Contact",
+    "pageHead": "Send a message and receive an email response",
+    "nameAndSurname": "Full name",
+    "typeOfContact": {
+      "title": "Reason",
+      "options": {
+        "jobOffer": "Job offer",
+        "freelance": "Freelance",
+        "errors": "Reporting errors or bugs",
+        "other": "Other"
+      }
+    },
+    "subject": "Subject",
+    "message": "Message",
+    "sending": "Sending...",
+    "badFormat": "Invalid format",
+    "nameValidation": "Please enter a valid full name",
+    "emailValidation": "Please enter a valid email",
+    "sendSuccess": "Message sent successfully!",
+    "sendError": "Oops, something went wrong. Please try again later",
+    "optional": "Optional",
+    "required": "Required",
+    "reasonValidation": "Please select a contact reason",
+    "messageValidation": "Message is required"
   },
   "genericTranslations": {
     "continue": "Continue",

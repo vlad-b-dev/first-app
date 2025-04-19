@@ -116,7 +116,7 @@
   "thisWebsitePage": {
     "pageTitle": "Este sitio web",
     "description": {
-      "title": "All-in (\"A por todas\") refleja la amplitud de los objetivos:",
+      "title": "All-in refleja la amplitud de los objetivos:",
       "objetive1": "<strong>Aprender nuevas tecnologías y habilidades</strong> de forma autónoma",
       "objetive2": "Desarrollar un <strong>proyecto totalmente personal</strong>, desde el diseño al despliegue",
       "objetive3": "<strong>Mostrar conocimientos de forma tangible</strong>, nada de plantillas o código pre-cocinado",
@@ -151,7 +151,31 @@
     }
   },
   "contactPage": {
-    "pageTitle": "Contacto"
+    "pageTitle": "Contacto",
+    "pageHead": "Mande un mensaje y reciba la respuesta por email",
+
+    "nameAndSurname": "Nombre y apellido(s)",
+    "typeOfContact": {
+      "title": "Motivo",
+      "options": {
+        "jobOffer": "Oferta de trabajo",
+        "freelance": "Colaboración",
+        "errors": "Reportar fallos o errores",
+        "other": "Otro"
+      }
+    },
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "sending": "Enviando...",
+    "badFormat": "Formato incorrecto",
+    "nameValidation": "Por favor ingresa nombre y apellido(s) válidos",
+    "emailValidation": "Por favor ingresa un email válido",
+    "sendSuccess": "¡Mensaje enviado correctamente!",
+    "sendError": "Oops, algo ha fallado. Por favor, inténtalo de nuevo más tarde",
+    "optional": "Opcional",
+    "required": "obligatorio",
+    "reasonValidation": "Por favor selecciona un motivo de contacto",
+    "messageValidation": "Es obligatorio ingresar un mensaje"
   },
   "genericTranslations": {
     "continue": "Continuar",

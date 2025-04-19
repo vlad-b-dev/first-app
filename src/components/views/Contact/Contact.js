@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import MainPageHeader from "../../ui/menus/MainPageHeader/MainPageHeader";
 import MainFooter from "../../ui/menus/MainFooter/MainFooter";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import ForwardToInboxTwoToneIcon from "@mui/icons-material/ForwardToInboxTwoTone";
 import {
   Box,
   TextField,
@@ -10,101 +11,162 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  Button,
   Typography,
+  CircularProgress,
 } from "@mui/material";
 import "./Contact.scss";
 
-const SUBJECT_OPTIONS = [
-  { value: "Oferta de trabajo", label: "Oferta de trabajo" },
-  { value: "Oferta freelance", label: "Oferta freelance" },
-  { value: "Reportar error", label: "Reportar error" },
-  { value: "Otros", label: "Otros" },
-];
+const OPTION_KEYS = ["jobOffer", "freelance", "errors", "other"];
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language || "en";
-
   const textColor = "var(--main-hover-color)";
 
+  const reasonOptions = OPTION_KEYS.map((key) => ({
+    value: key,
+    label: t(`contactPage.typeOfContact.options.${key}`),
+  }));
+
+  const [reasonSelect, setReasonSelect] = useState(reasonOptions[0]?.value);
+
+  const commonSx = {
+    "& .MuiInputLabel-root": {
+      color: textColor,
+      "&.Mui-focused": { color: "var(--highlight-color)" },
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": { borderColor: "var(--main-color)" },
+      "&:hover fieldset": { borderColor: "var(--main-color)" },
+      "&.Mui-focused fieldset": { borderColor: "var(--main-color)" },
+    },
+    "& .MuiOutlinedInput-input": { color: textColor },
+    "& .MuiSvgIcon-root": { color: textColor },
+  };
+
+  const menuProps = {
+    PaperProps: {
+      sx: {
+        backgroundColor: "var(--main-background-color)",
+        border: "1px solid var(--main-color)",
+        "& .MuiMenuItem-root": {
+          color: "var(--main-hover-color)",
+          backgroundColor: "var(--main-background-color)",
+          "&:hover": {
+            color: "var(--highlight-color)",
+            backgroundColor: "var(--secondary-background-color)",
+          },
+          "&.Mui-selected, &.Mui-selected:hover": {
+            color: "var(--highlight-color)",
+            backgroundColor: "var(--secondary-background-color)",
+          },
+        },
+      },
+    },
+  };
+
+  const [fullName, setFullName] = useState("");
+  const [fullNameError, setFullNameError] = useState(false);
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
-  const [subject, setSubject] = useState(SUBJECT_OPTIONS[0].value);
+  const [subjectInput, setSubjectInput] = useState("");
   const [messageBody, setMessageBody] = useState("");
+  const [messageError, setMessageError] = useState(false);
   const [statusMsg, setStatusMsg] = useState("");
+  const [statusType, setStatusType] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showImage, setShowImage] = useState(false);
 
-  const validateEmail = (value) => {
-    // simple regex
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+  const validateEmail = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+  const validateFullName = (val) => {
+    const parts = val.trim().split(/\s+/);
+    const rx = /^[A-Za-zÁÉÍÓÚÑáéíóúñ]+$/;
+    return parts.length >= 2 && parts.every((w) => rx.test(w));
   };
 
   const handleSend = async () => {
     setStatusMsg("");
-    if (!validateEmail(email)) {
-      setEmailError(true);
-      setStatusMsg(t("Por favor ingresa un email válido."));
+    setEmailError(false);
+
+    if (!messageBody.trim()) {
+      setMessageError(true);
+      setStatusType("error");
+      setStatusMsg(t("contactPage.messageValidation"));
       return;
     }
-    setEmailError(false);
+    setMessageError(false);
+
+    if (!validateFullName(fullName)) {
+      setFullNameError(true);
+      setStatusType("error");
+      setStatusMsg(t("contactPage.nameValidation"));
+      return;
+    }
+    setFullNameError(false);
+
+    if (!validateEmail(email)) {
+      setEmailError(true);
+      setStatusType("error");
+      setStatusMsg(t("contactPage.emailValidation"));
+      return;
+    }
+    setShowImage(true);
     setLoading(true);
+
+    const chosenLabel =
+      reasonOptions.find((opt) => opt.value === reasonSelect)?.label || "";
+    const subjectToSend = subjectInput
+      ? `${chosenLabel} - ${subjectInput}`
+      : chosenLabel;
 
     try {
       const res = await fetch("https://all-in-backend.onrender.com/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: email.split("@")[0],
+          name: fullName,
           email,
-          subject,
+          subject: subjectToSend,
           message: messageBody,
           lang,
         }),
       });
       const data = await res.json();
+
       if (res.ok) {
-        setStatusMsg(
-          lang === "es"
-            ? "¡El mensaje fue enviado correctamente!"
-            : "Message sent successfully!"
-        );
+        setStatusType("success");
+        setStatusMsg(t("contactPage.sendSuccess"));
+        setFullName("");
         setEmail("");
-        setSubject(SUBJECT_OPTIONS[0].value);
+        setReasonSelect(reasonOptions[0]?.value);
+        setSubjectInput("");
         setMessageBody("");
       } else {
+        setStatusType("error");
         setStatusMsg(
-          `${t("Error")}: ${data.detail || t("No se pudo enviar el mensaje.")}`
+          `${t("Error")}: ${data.detail || t("contactPage.sendError")}`
         );
       }
     } catch (err) {
       console.error(err);
-      setStatusMsg(
-        lang === "es"
-          ? "Hubo un error al enviar el mensaje."
-          : "There was an error sending your message."
-      );
+      setStatusType("error");
+      setStatusMsg(t("contactPage.sendError"));
     } finally {
       setLoading(false);
+      setShowImage(false);
     }
-  };
-
-  const textFieldSx = {
-    "& .MuiInputLabel-root": { color: textColor },
-    "& .MuiInputBase-input": { color: textColor },
-    "& .MuiFormHelperText-root": { color: textColor },
   };
 
   return (
     <div className="page-background">
       <MainPageHeader />
-
       <motion.div
-        className="main-section-container mobile-main-section-container"
+        className="contact-section-container contact-main-section-container"
         initial={{ y: -400, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 17, damping: 7 }}
       >
+        <h2 className="text-center">{t("contactPage.pageHead")}</h2>
         <Box
           component="form"
           noValidate
@@ -113,83 +175,204 @@ const Contact = () => {
             display: "flex",
             flexDirection: "column",
             gap: 2,
-            maxWidth: 600,
+            width: "100%",
+            maxWidth: "800px",
             margin: "0 auto",
-            p: 2,
+            p: 0,
+            mt: 4,
           }}
         >
-          <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-            <TextField
-              label={t("Email")}
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              error={emailError}
-              helperText={emailError ? t("Email inválido") : ""}
-              fullWidth
-              sx={textFieldSx}
-            />
-
-            <FormControl fullWidth>
-              <InputLabel id="subject-label" sx={{ color: textColor }}>
-                {t("Asunto")}
-              </InputLabel>
-              <Select
-                labelId="subject-label"
-                value={subject}
-                label={t("Asunto")}
-                onChange={(e) => setSubject(e.target.value)}
-                sx={{
-                  color: textColor,
-                  "& .MuiSvgIcon-root": { color: textColor },
-                }}
+          <Box
+            sx={{
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+            }}
+          >
+            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+              <FormControl
+                fullWidth
+                variant="outlined"
+                sx={{ ...commonSx, flex: 1 }}
               >
-                {SUBJECT_OPTIONS.map((opt) => (
-                  <MenuItem
-                    key={opt.value}
-                    value={opt.value}
-                    sx={{ color: textColor }}
+                <InputLabel id="reason-label">
+                  {t("contactPage.typeOfContact.title")}
+                </InputLabel>
+                <Select
+                  labelId="reason-label"
+                  value={reasonSelect}
+                  label={`${t("contactPage.typeOfContact.title")} *`}
+                  onChange={(e) => setReasonSelect(e.target.value)}
+                  MenuProps={menuProps}
+                >
+                  {reasonOptions.map((opt) => (
+                    <MenuItem key={opt.value} value={opt.value}>
+                      {opt.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <TextField
+                label={t("contactPage.subject")}
+                value={subjectInput}
+                onChange={(e) => {
+                  if (e.target.value.length <= 100) {
+                    setSubjectInput(e.target.value);
+                  }
+                }}
+                fullWidth
+                placeholder={t("contactPage.optional")}
+                variant="outlined"
+                maxLength={100}
+                sx={{ ...commonSx, flex: 1 }}
+              />
+            </Box>
+
+            <TextField
+              label={t("contactPage.message")}
+              multiline
+              rows={4}
+              value={messageBody}
+              onChange={(e) => {
+                if (e.target.value.length <= 300) {
+                  setMessageBody(e.target.value);
+                }
+              }}
+              maxLength={300}
+              error={messageError}
+              helperText={messageError ? t("contactPage.required") : ""}
+              fullWidth
+              variant="outlined"
+              sx={commonSx}
+            />
+            <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
+              <TextField
+                label={t("contactPage.nameAndSurname")}
+                value={fullName}
+                onChange={(e) => {
+                  if (e.target.value.length <= 80) {
+                    setFullName(e.target.value);
+                  }
+                }}
+                maxLength={80}
+                error={fullNameError}
+                helperText={
+                  fullNameError ? t("contactPage.nameValidation") : ""
+                }
+                fullWidth
+                variant="outlined"
+                sx={{ ...commonSx, flex: 1 }}
+              />
+
+              <TextField
+                label="Email"
+                type="email"
+                value={email}
+                onChange={(e) => {
+                  if (e.target.value.length <= 100) {
+                    setEmail(e.target.value);
+                  }
+                }}
+                maxLength={100}
+                error={emailError}
+                helperText={emailError ? t("contactPage.emailValidation") : ""}
+                fullWidth
+                variant="outlined"
+                sx={{ ...commonSx, flex: 1 }}
+              />
+            </Box>
+
+            <AnimatePresence>
+              {showImage && (
+                <motion.div
+                  initial={{ y: 300, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ x: 300, opacity: 0 }}
+                  transition={{ duration: 0.6 }}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    zIndex: 2,
+                  }}
+                  className="mail-load-icon"
+                >
+                  <Box
+                    sx={{
+                      position: "relative",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "fit-content",
+                      height: "fit-content",
+                    }}
                   >
-                    {t(opt.label)}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+                    <ForwardToInboxTwoToneIcon
+                      sx={{
+                        width: "100%",
+                        height: "100%",
+                        "& .MuiSvgIcon-secondary": {
+                          color: "var(--highlight-color)",
+                        },
+                      }}
+                      htmlColor="var(--main-color)"
+                    />
+                    <CircularProgress
+                      size={70}
+                      thickness={4}
+                      sx={{
+                        marginBottom: 15,
+                      }}
+                      style={{ color: "var(--main-color)" }}
+                    />
+                  </Box>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </Box>
 
-          <TextField
-            label={t("Mensaje")}
-            multiline
-            rows={5}
-            value={messageBody}
-            onChange={(e) => setMessageBody(e.target.value)}
-            fullWidth
-            sx={textFieldSx}
-          />
-
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Button
-              variant="contained"
-              size="large"
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "100%",
+              gap: 1,
+            }}
+          >
+            <button
+              type="button"
+              className="send-button"
               onClick={handleSend}
               disabled={loading}
-              sx={{ color: textColor }}
+              style={{ width: "100%" }}
             >
-              {loading
-                ? lang === "es"
-                  ? "Enviando..."
-                  : "Sending..."
-                : t("Enviar")}
-            </Button>
+              {loading ? t("contactPage.sending") : t("Enviar")}
+            </button>
+
             {statusMsg && (
-              <Typography variant="body1" sx={{ color: textColor }}>
+              <Typography
+                variant="body2"
+                sx={{
+                  color:
+                    statusType === "success" ? "var(--highlight-color)" : "red",
+                  textAlign: "center",
+                }}
+              >
                 {statusMsg}
               </Typography>
             )}
           </Box>
         </Box>
       </motion.div>
-
       <MainFooter />
     </div>
   );
