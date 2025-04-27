@@ -121,7 +121,7 @@ const SidebarMenu = ({ showSidebarMenu: parentShowSidebarMenu, onClose }) => {
   };
 
   const menuItems = [
-    { label: "Main", route: "/home" },
+    { label: t("headerButtons.main"), route: "/home" },
     { label: t("headerButtons.resume"), route: "/resume" },
     { label: t("headerButtons.thisWebsite"), route: "/this-website" },
     { label: t("headerButtons.contact"), route: "/contact" },

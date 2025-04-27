@@ -1,3 +1,131 @@
+:root {
+  --cursor-light: url("/resources/images/cursors/arrow/cursorLight.webp"), auto;
+  --cursor-dark: url("/resources/images/cursors/arrow/cursorDark.webp"), auto;
+
+  --pointer-light: url("/resources/images/cursors/pointer/pointerLight.webp"),
+    pointer;
+  --pointer-dark: url("/resources/images/cursors/pointer/pointerDark.webp"),
+    pointer;
+}
+
+button:hover,
+a:hover {
+  background-color: var(--main-hover-color);
+  color: var(--secondary-background-color);
+}
+
+button:active,
+a:active {
+  background-color: var(--main-hover-color);
+  color: var(--secondary-background-color);
+}
+
+body.light-mode {
+  cursor: var(--cursor-light) !important;
+  background-color: var(--main-background-color);
+}
+
+body.dark-mode {
+  cursor: var(--cursor-dark) !important;
+  background-color: var(--main-background-color);
+}
+
+button,
+a,
+.clickable {
+  cursor: var(--pointer-light) !important;
+}
+
+.dark-mode button,
+.dark-mode a,
+.dark-mode .clickable {
+  cursor: var(--pointer-dark) !important;
+}
+
+body.light-mode .MuiButton-root,
+body.light-mode .MuiIconButton-root,
+body.light-mode .MuiSelect-root,
+body.light-mode .MuiMenuItem-root,
+body.light-mode .MuiTextField-root,
+body.light-mode .MuiInputBase-root,
+body.light-mode .MuiOutlinedInput-root {
+  cursor: var(--pointer-light) !important;
+}
+
+body.dark-mode .MuiButton-root,
+body.dark-mode .MuiIconButton-root,
+body.dark-mode .MuiSelect-root,
+body.dark-mode .MuiMenuItem-root,
+body.dark-mode .MuiTextField-root,
+body.dark-mode .MuiInputBase-root,
+body.dark-mode .MuiOutlinedInput-root {
+  cursor: var(--pointer-dark) !important;
+}
+
+.page-background {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--main-background-color) !important;
+  overflow-y: auto;
+  overflow-x: hidden;
+  content-visibility: auto;
+  will-change: contents;
+}
+
+::-webkit-scrollbar {
+  width: 0.8vw !important;
+  height: 1vh !important;
+  @media (max-width: 768px) {
+    width: 1.5vw !important;
+    height: 2vh !important;
+  }
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary-background-color) !important;
+  border: 0.12vw solid var(--main-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main-color) !important;
+  border-radius: 50px;
+  border: 0.25vw solid var(--secondary-background-color) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--highlight-color) !important;
+  border: 0.25vw solid var(--main-hover-color) !important;
+}
+
+.MuiTooltip-tooltip {
+  font-size: 1.2vw !important;
+  color: var(--main-text-color) !important;
+  background-color: var(--secondary-background-color) !important;
+  padding: 0.7rem !important;
+  border-radius: 1.2rem !important;
+  border: 0.2rem solid var(--main-color);
+  box-shadow: 0.9vw 1.7vh 3rem 1rem rgba(0, 0, 0, 0.8);
+  text-align: justify;
+  min-width: 30vw;
+  content-visibility: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease !important;
+}
+
+.MuiTooltip-tooltip[data-popper-reference-hidden="false"] {
+  opacity: 1;
+}
+
+.MuiTooltip-arrow {
+  color: var(--main-text-color) !important;
+}
+
+.main-color-text {
+  color: var(--main-color) !important;
+}
+
 $transition-duration: 0.4s;
 $header-transition-duration: 0.6s;
 $border-radius: 0.6em;
@@ -68,6 +196,7 @@ $border-radius: 0.6em;
     }
   }
 }
+
 .contact-section-container {
   padding: 1%;
   border-top: 0.3vh solid var(--main-color);
@@ -75,6 +204,7 @@ $border-radius: 0.6em;
   box-shadow: 0 3vh 3vh 0 rgba(0, 0, 0, 1);
   background-color: var(--secondary-background-color);
 }
+
 @media (max-width: 767px) {
   .contact-main-section-container {
     border-top: 0.1vh solid var(--main-color);

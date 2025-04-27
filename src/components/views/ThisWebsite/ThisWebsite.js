@@ -17,6 +17,7 @@ import CommitsLight from "../../../resources/images/contentPhotos/thisWebsite/co
 import KnowledgeDark from "../../../resources/images/contentPhotos/thisWebsite/knowledge/knowledgeDark.webp";
 import KnowledgeLight from "../../../resources/images/contentPhotos/thisWebsite/knowledge/knowledgeLight.webp";
 import SideRender from "../../ui/widgets/SideRender/SideRender";
+import { useNavigate } from "react-router-dom";
 
 import "./ThisWebsite.scss";
 
@@ -33,6 +34,10 @@ const ThisWebsite = () => {
   const navigateToGithub = () => {
     window.open("https://github.com/vlad-b-dev/first-app", "_blank");
   };
+
+  const navigate = useNavigate();
+
+  const handleNavigationClick = (route) => navigate(route);
 
   return (
     <div className="page-background">
@@ -255,7 +260,6 @@ const ThisWebsite = () => {
           </>
         ) : (
           <>
-            {" "}
             <h5 className="mb-5 ">
               <Trans i18nKey="thisWebsitePage.conclusion.description" />
             </h5>
@@ -280,7 +284,7 @@ const ThisWebsite = () => {
                 </div>
                 <div className="row mt-3 github-button-container">
                   <GenericButton
-                    label="Open repository"
+                    label={t("thisWebsitePage.conclusion.repoButton")}
                     width="18vw"
                     onClick={navigateToGithub}
                   />
@@ -324,7 +328,7 @@ const ThisWebsite = () => {
             <h4 className="pt-4">
               <Trans i18nKey="thisWebsitePage.ahead.title" />
             </h4>
-            <div className="row pb-5">
+            <div className="row pb-1">
               <div className="col-12">
                 <h5>
                   <Trans i18nKey="thisWebsitePage.ahead.subtitle" />
@@ -362,6 +366,14 @@ const ThisWebsite = () => {
                     <Trans i18nKey="thisWebsitePage.ahead.expansion10" />
                   </li>
                 </ul>
+                <div className="w-100 text-center mt-4">
+                  <GenericButton
+                    label={t("genericTranslations.continue")}
+                    onClick={() => handleNavigationClick("/contact")}
+                    width="50%"
+                    textButton={true}
+                  />
+                </div>
               </div>
             </div>
           </>
@@ -370,7 +382,7 @@ const ThisWebsite = () => {
             <h4 className="pt-5">
               <Trans i18nKey="thisWebsitePage.ahead.title" />
             </h4>
-            <div className="row pt-4 pb-5">
+            <div className="row pt-4">
               <div className="col-6">
                 <h5>
                   <Trans i18nKey="thisWebsitePage.ahead.subtitle" />
@@ -419,6 +431,14 @@ const ThisWebsite = () => {
                   smokeClassName="under-construction-smoke"
                 />
               </div>
+            </div>
+            <div className="continue-to-contact-button">
+              <GenericButton
+                label={t("genericTranslations.continue")}
+                onClick={() => handleNavigationClick("/contact")}
+                width="100%"
+                textButton={true}
+              />
             </div>
           </>
         )}

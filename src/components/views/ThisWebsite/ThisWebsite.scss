@@ -33,3 +33,13 @@
 .mobile-image {
   margin-right: 1vw !important;
 }
+
+.continue-to-contact-button {
+  @media (min-width: 767px) {
+    width: 30%;
+    margin-top: 5vh;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
