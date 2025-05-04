@@ -52,10 +52,7 @@ const MainPage = () => {
   };
 
   const openLinkedInProfile = () => {
-    window.open(
-      "https://www.linkedin.com/in/vladyslav-boychuk-developer",
-      "_blank"
-    );
+    window.open("https://www.linkedin.com/in/vladyslav-boychuk-dev", "_blank");
   };
 
   const openLocation = () => {
@@ -186,7 +183,7 @@ const MainPage = () => {
                   <li>
                     <div className="mb-1">
                       <LinkedInIcon className="general-data-list-icon" />
-                      vladyslav-boychuk-developer
+                      vladyslav-boychuk-dev
                     </div>
                     <button
                       onClick={() => openLinkedInProfile()}
@@ -345,7 +342,7 @@ const MainPage = () => {
                   <li>
                     <div className="mb-1">
                       <LinkedInIcon className="general-data-list-icon" />
-                      vladyslav-boychuk-developer
+                      vladyslav-boychuk-dev
                     </div>
                     <button
                       onClick={() => openLinkedInProfile()}

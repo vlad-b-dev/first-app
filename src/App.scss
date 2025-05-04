@@ -8,6 +8,16 @@
     pointer;
 }
 
+.MuiButtonBase-root,
+.MuiButtonBase-root * {
+  cursor: var(--pointer-light) !important;
+}
+
+.dark-mode .MuiButtonBase-root,
+.dark-mode .MuiButtonBase-root * {
+  cursor: var(--pointer-dark) !important;
+}
+
 button:hover,
 a:hover {
   background-color: var(--main-hover-color);

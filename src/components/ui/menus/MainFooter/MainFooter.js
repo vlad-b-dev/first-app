@@ -42,7 +42,7 @@ const MainFooter = () => {
           </p>
           <p>
             <Trans i18nKey="footerText.clientVersion" />
-            1.0.1-BETA
+            1.0.3-STABLE
           </p>
           <p className="copyright-text">
             ©Copyright by Owete | 2025 | All-In
