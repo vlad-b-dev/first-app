@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import ContentSection from "../../../ui/sections/ContentSection/ContentSection";
 import { Trans, useTranslation } from "react-i18next";
@@ -8,6 +8,8 @@ import EuropeMapDark from "../../../../resources/images/contentPhotos/personal/e
 import Pets from "../../../../resources/images/contentPhotos/personal/pets/pets.webp";
 import PersonalPhotos from "../../../../resources/images/contentPhotos/personal/personalPhotos/personalPhotos.webp";
 import PersonalPhotos2 from "../../../../resources/images/contentPhotos/personal/personalPhotos/personalPhotos2.webp";
+import { useNavigate } from "react-router-dom";
+import GenericButton from "../../../ui/buttons/GenericButton/GenericButton";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -23,6 +25,10 @@ const PersonalSection = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const navigate = useNavigate();
+
+  const handleNavigationClick = (route) => navigate(route);
+
   return (
     <ContentSection
       className="mb-2 personal-section"
@@ -32,9 +38,7 @@ const PersonalSection = () => {
       {isMobile ? (
         <div className="row mt-3">
           <div className="col-12 mt-4">
-            <p className="text-justify">
-              <Trans i18nKey="resumePage.personalSection.personalText1" />
-            </p>
+            <p className="text-justify"></p>
           </div>
           <div className="col-12 text-center">
             <ImageComponent
@@ -54,9 +58,7 @@ const PersonalSection = () => {
             <ImageComponent image={Pets} width={"90vw"} hoverScale={1} />
           </div>
           <div className="col-12 mt-5">
-            <p className="text-justify">
-              <Trans i18nKey="resumePage.personalSection.personalText3" />
-            </p>
+            <p className="text-justify"></p>
           </div>
           <div className="col-12 text-center mt-3">
             <ImageComponent
@@ -71,12 +73,20 @@ const PersonalSection = () => {
               <Trans i18nKey="resumePage.personalSection.personalText4" />
             </p>
           </div>
-          <div className="col-12 text-center mt-3">
+          <div className="col-12 text-center mt-3 mb-2">
             <ImageComponent
               className="align-personal-photos"
               image={PersonalPhotos}
               width={"90vw"}
               hoverScale={1}
+            />
+          </div>
+          <div className="col-12 mb-4 pb-2 text-center">
+            <GenericButton
+              className="continue-button responsive-button"
+              label={t("genericTranslations.continue")}
+              width={"45vw"}
+              onClick={() => handleNavigationClick("/this-website")}
             />
           </div>
         </div>
@@ -86,7 +96,6 @@ const PersonalSection = () => {
             <div className="col-6">
               <div className="row mt-4">
                 <p>
-                  <Trans i18nKey="resumePage.personalSection.personalText1" />
                   <Trans i18nKey="resumePage.personalSection.personalText2" />
                 </p>
               </div>
@@ -97,7 +106,7 @@ const PersonalSection = () => {
             </div>
             <div className="col-6 text-start">
               <ImageComponent
-                className="align-europe-map"
+                className="align-europe-map mb-"
                 imageDark={EuropeMapDark}
                 imageLight={EuropeMapLight}
                 width={"42vw"}
@@ -109,7 +118,6 @@ const PersonalSection = () => {
             <div className="col-6">
               <div className="row text-start mt-5">
                 <p>
-                  <Trans i18nKey="resumePage.personalSection.personalText3" />
                   <Trans i18nKey="resumePage.personalSection.personalText4" />
                 </p>
               </div>
@@ -126,10 +134,18 @@ const PersonalSection = () => {
               <ImageComponent
                 className="align-personal-photos"
                 image={PersonalPhotos}
-                width={"47vw"}
+                width={"35vw"}
                 hoverScale={1}
               />
             </div>
+          </div>
+          <div className="w-100 mb-4 pb-2 text-center">
+            <GenericButton
+              className="continue-button responsive-button"
+              label={t("genericTranslations.continue")}
+              width={isMobile ? "25vw" : "14vw"}
+              onClick={() => handleNavigationClick("/this-website")}
+            />
           </div>
         </>
       )}

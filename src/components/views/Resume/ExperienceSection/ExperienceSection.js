@@ -39,52 +39,6 @@ const ExperienceSection = ({ scrollToRef }) => {
     }
   };
 
-  const calculateDuration = (startDate) => {
-    const [day, month, year] = startDate.split("-").map(Number);
-    const start = new Date(year, month - 1, day);
-    const now = new Date();
-
-    let diffYears = now.getFullYear() - start.getFullYear();
-    let diffMonths = now.getMonth() - start.getMonth();
-
-    if (diffMonths < 0) {
-      diffYears -= 1;
-      diffMonths += 12;
-    }
-
-    let yearText = "";
-    if (diffYears > 0) {
-      yearText =
-        diffYears +
-        (diffYears > 1
-          ? ` ${t("genericTranslations.years")}`
-          : ` ${t("genericTranslations.year")}`);
-    }
-
-    let monthText = "";
-    if (diffMonths > 0) {
-      monthText =
-        diffMonths +
-        (diffMonths > 1
-          ? ` ${t("genericTranslations.months")}`
-          : ` ${t("genericTranslations.month")}`);
-    }
-
-    if (yearText && monthText) {
-      return isMobile ? (
-        <>
-          {yearText}
-          <br />
-          {monthText}
-        </>
-      ) : (
-        `${yearText}, ${monthText}`
-      );
-    } else {
-      return yearText || monthText;
-    }
-  };
-
   const handleBeforeChange = (oldIndex, newIndex) => {
     setCurrentSlide(newIndex);
   };
@@ -172,18 +126,14 @@ const ExperienceSection = ({ scrollToRef }) => {
               currentSlide === 1 ? "active-text" : "inactive-text"
             }`}
           >
-            <div>
-              <Trans i18nKey="genericTranslations.present" />
-            </div>
+            <div>2025</div>
           </h5>
           <h5
             className={`col-3 ${
               currentSlide === 2 ? "active-text" : "inactive-text"
             }`}
           >
-            <div>
-              <Trans i18nKey="genericTranslations.present" />
-            </div>
+            <div>2025 </div>
           </h5>
         </div>
         <div className="row mt-1 mb-3">
@@ -209,14 +159,16 @@ const ExperienceSection = ({ scrollToRef }) => {
               currentSlide === 1 ? "active-text" : "inactive-text"
             }`}
           >
-            {calculateDuration("01-02-2022")}
+            3 <Trans i18nKey="genericTranslations.years" />
+            <br /> 8 <Trans i18nKey="genericTranslations.months" />{" "}
           </h3>
           <h3
             className={`col-3 ${
               currentSlide === 2 ? "active-text" : "inactive-text"
             }`}
           >
-            {calculateDuration("01-09-2024")}
+            4
+            <Trans i18nKey="genericTranslations.months" />
           </h3>
         </div>
 
@@ -346,20 +298,14 @@ const ExperienceSection = ({ scrollToRef }) => {
               currentSlide === 1 ? "active-text" : "inactive-text"
             }`}
           >
-            <div>
-              2022-
-              <Trans i18nKey="genericTranslations.present" />
-            </div>
+            <div>2022-2025</div>
           </h5>
           <h5
             className={`col-3 ${
               currentSlide === 2 ? "active-text" : "inactive-text"
             }`}
           >
-            <div>
-              2024-
-              <Trans i18nKey="genericTranslations.present" />
-            </div>
+            <div>2024-2025</div>
           </h5>
         </div>
         <div className="row mt-0 mb-2">
@@ -385,14 +331,15 @@ const ExperienceSection = ({ scrollToRef }) => {
               currentSlide === 1 ? "active-text" : "inactive-text"
             }`}
           >
-            {calculateDuration("01-02-2022")}
+            3 <Trans i18nKey="genericTranslations.years" />
+            <br /> 8 <Trans i18nKey="genericTranslations.months" />{" "}
           </h3>
           <h3
             className={`col-3 ${
               currentSlide === 2 ? "active-text" : "inactive-text"
             }`}
           >
-            {calculateDuration("01-09-2024")}
+            4 <Trans i18nKey="genericTranslations.months" />
           </h3>
         </div>
         <div className="slider-container mt-2">

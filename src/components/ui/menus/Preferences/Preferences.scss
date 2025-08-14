@@ -1,8 +1,10 @@
 .preferences-gear-wrapper {
   position: relative;
   display: inline-block;
-  margin-right: 7vw;
-  margin-bottom: 5.5vw;
+  right: 6vw;
+  margin-top: auto;
+  margin-bottom: auto;
+  bottom: 2.5vw;
   @media (max-width: 767px) {
     margin-top: 1vh;
     margin-bottom: 6.3vh;
@@ -15,7 +17,7 @@
 
   top: 0.2vh;
   left: 0;
-  width: 5.7vw;
+  width: 5vw;
   height: auto;
 
   transition: opacity 0.3s ease, transform 0.3s ease;

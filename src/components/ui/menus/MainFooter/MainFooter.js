@@ -42,10 +42,10 @@ const MainFooter = () => {
           </p>
           <p>
             <Trans i18nKey="footerText.clientVersion" />
-            1.0.3-STABLE
+            1.1.0-STABLE
           </p>
           <p className="copyright-text">
-            ©Copyright by Owete | 2025 | All-In
+            ©Copyright | 2025 | All-In
             <br />
             <Trans i18nKey="footerText.copyright" />
           </p>

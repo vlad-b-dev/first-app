@@ -6,9 +6,9 @@
     "contact": "Contacto"
   },
   "footerText": {
-    "goToTop": "¡Vaya! Bajaste casi hasta la deep web — ¡puedo ayudarte a salir de aquí! Haz clic en el avión",
+    "goToTop": "Subir",
     "allInApp": "All-In App | Diseñada, desarrollada y desplegada por Vladyslav Boychuk",
-    "clientVersion": "Versión-Eclater: ",
+    "clientVersion": "Versión: ",
     "copyright": "Todos los derechos reservados"
   },
   "preferences": {
@@ -99,18 +99,7 @@
     "personalSection": {
       "personalText1": "<strong>Siempre está bien conocer con quién vas a trabajar todos los días...</strong><br />Por eso, esta sección es más personal:<br />",
       "personalText2": "<br />Nacido en Ucrania y criado en el sur de Navarra, tengo un poco de los dos mundos. Ahora convivo con un gecko leopardo y una docena de peces amazónicos en Pamplona.",
-      "personalText3": "<strong>Tengo dos facetas: una intensa, despreocupada y enérgica, otra responsable, comprometida y profesional</strong>. Lo importante es saber cuál toca en cada momento.<br /><br />Disfruto lo tradicional y también lo moderno, natural y urbano, tranquilo e intenso, técnico y creativo...<br /><br />¿Madrid o los Pirineos? ¿Programación o diseño? ¿En casa o de fiesta a Budapest? ¿Paseo por el monte o motocross?<br /",
-      "personalText4": "<br />Siempre hay algún proyecto para hacer: desarrollo, diseño, reparaciones, botánica, impresión 3D, pintura... Crecer y aprender es importante. Mención especial al motor: mecánica, coches, motos...<br /><br />Tengo una <strong>manera única de abordar las cosas</strong>, y aprendí a sacarle provecho. Me gusta <strong>pensar a lo grande y actuar con perspectiva.</strong><br /><br />Hay muchos más temas filosóficos que podemos tratar en algún evento corporativo; el networking es importante."
-    },
-    "aheadSection": {
-      "aheadText1": "Ahora que nos conocemos algo mejor, toca hablar del presente y sobre todo, del futuro",
-      "aheadText2": "Hay que decir que estoy muy contento por haber hecho mis practicas y comenzar mi trayectoría profesional en Zeo Technology. Un gran equipo, con un compañerismo notable y metodologías punteras. Me gustan los proyectos que se desarrollan y las tecnologías que se usan. La gran mayoría de mis conocimientos y habilidades los he adquirido aquí.",
-      "aheadText3": "Pero...",
-      "aheadText4": "Por desgracia, hay dos puntos importantes que me hacen plantearme un cambio:",
-      "aheadText5": "Por un lado, <strong>lo que más me gusta del mundo IT es mezclar la parte creativa con la técnica. En una empresa centrada en datos y clientes industriales, la parte creativa se queda en un segundo plano</strong>, centrandose en el manejo de grandes cantidades de datos y la eficiencia.",
-      "aheadText6": "Por otro lado, muchos de <strong>mis planes futuros, requieren de tiempo y movilidad</strong>. Aunque aquí hay posibilidad de teletrabajo, la verdad es que es muy limitada. No estoy en contra de pasar por la oficina, pero quiero hacerlo con liberad de elección, por lo que <strong>busco algo en modalidad hibrida o remota</strong>.",
-      "aheadText7": "Un poco de \"humor\"...",
-      "aheadText8": "Evolución del desarrollador promedio en Zeo:"
+      "personalText4": "<br />Siempre hay algún proyecto para hacer: desarrollo, diseño, reparaciones, botánica, impresión 3D, pintura... Crecer y aprender es importante. Mención especial al motor: mecánica, coches, motos...<br /><br />Tengo una <strong>manera única de abordar las cosas</strong>, y aprendí a sacarle provecho. Me gusta <strong>pensar a lo grande y actuar con perspectiva.</strong><br />más temas filosófico"
     }
   },
   "thisWebsitePage": {
