@@ -141,7 +141,10 @@
 }
 .vlad-profile-smoke {
   margin-top: -8vh;
+  margin-left: -3vw;
+    @media (max-width: 767px) {
   margin-left: -4vw;
+  }
 }
 .vlad-profile-image {
   margin-left: -0.1vw !important;
