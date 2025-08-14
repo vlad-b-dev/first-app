@@ -87,12 +87,13 @@ const MainPage = () => {
             </div>
             <div className="col-12 text-center">
               <ImageComponent
-                className="general-align"
+                className="vlad-profile-image"
                 imageLight={VladProfileLight}
                 imageDark={VladProfileDark}
-                width={"70%"}
+                width={"90%"}
                 hoverScale={1.1}
                 showSmoke={true}
+                smokeClassName="vlad-profile-smoke"
               />
             </div>
             <div className="col-12 general-text-column">
@@ -235,12 +236,13 @@ const MainPage = () => {
           <div className="row mt-2">
             <div className="col-3">
               <ImageComponent
+                className="vlad-profile-image"
                 imageLight={VladProfileLight}
                 imageDark={VladProfileDark}
-                width={"20vw"}
+                width={"90%"}
                 hoverScale={1.1}
-                className={"mt-2"}
                 showSmoke={true}
+                smokeClassName="vlad-profile-smoke"
               />
             </div>
             <div className="col-6 general-text-column">

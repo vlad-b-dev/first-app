@@ -428,7 +428,7 @@ const ThisWebsite = () => {
                   width="42vw"
                   hoverScale={1}
                   showSmoke={true}
-                  smokeClassName="under-construction-smoke"
+                  smokeClassName="main-photo-smoke"
                 />
               </div>
             </div>

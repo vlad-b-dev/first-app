@@ -139,3 +139,14 @@
 .general-align {
   margin-left: -0.1vw !important;
 }
+.vlad-profile-smoke {
+  margin-top: -8vh;
+  margin-left: -4vw;
+}
+.vlad-profile-image {
+  margin-left: -0.1vw !important;
+  margin-top: 13vh !important;
+  @media (max-width: 767px) {
+    margin-top: -5vh !important;
+  }
+}
